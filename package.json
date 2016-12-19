@@ -1,0 +1,71 @@
+{
+  "name": "redux-beacon",
+  "version": "0.1.0",
+  "description": "Analytics integration for Redux and ngrx/store",
+  "main": "lib/index.js",
+  "typings": "./index.d.ts",
+  "files": [
+    "dist",
+    "extensions",
+    "index.d.ts",
+    "lib",
+    "src",
+    "targets"
+  ],
+  "scripts": {
+    "docs:prepare": "gitbook install",
+    "docs:watch": "npm run docs:prepare && gitbook serve",
+    "docs:build": "npm run docs:prepare && rm -rf _book && gitbook build",
+    "docs:publish": "npm run docs:build && cd _book && git init && git commit --allow-empty -m 'Update docs' && git checkout -b gh-pages && git add . && git commit -am 'Update docs' && git push git@github.com:rangle/redux-gtm gh-pages --force",
+    "test": "jest",
+    "test:watch": "npm test -- --watch",
+    "test:cov": "npm test -- --coverage",
+    "lint": "eslint src test",
+    "check": "npm run lint && npm run test",
+    "clean": "rm -rf lib dist extensions targets",
+    "build:main:commonjs": "babel src/main --out-dir lib",
+    "build:extensions:commonjs": "babel src/extensions --out-dir extensions",
+    "build:targets:commonjs": "babel src/targets --out-dir targets",
+    "build:commonjs": "npm run build:main:commonjs && npm run build:extensions:commonjs && npm run build:targets:commonjs",
+    "build:umd": "webpack",
+    "prebuild": "npm run clean",
+    "build": "npm run build:main:commonjs && npm run build:umd",
+    "prepublish": "npm run build"
+  },
+  "engines": {
+    "node": ">=6.2.0"
+  },
+  "keywords": [
+    "redux-beacon",
+    "redux",
+    "analytics",
+    "redux-analytics",
+    "redux-gtm",
+    "google tag manager",
+    "google analytics"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rangle/redux-beacon.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-loader": "^6.2.9",
+    "babel-preset-latest": "^6.16.0",
+    "eslint": "^3.8.1",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-import": "^2.0.1",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.4.1",
+    "gitbook-cli": "^2.3.0",
+    "jest": "^16.0.1",
+    "redux": "^3.6.0",
+    "typescript": "^2.0.3",
+    "typescript-definition-tester": "0.0.4",
+    "webpack": "^1.14.0"
+  },
+  "jest": {
+    "testRegex": "(/test/.*\\.js)$"
+  }
+}

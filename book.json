@@ -1,0 +1,13 @@
+{
+  "title": "Redux Beacon Documentation",
+  "gitbook": "2.5.2",
+  "plugins": ["github", "-sharing"],
+  "pluginsConfig": {
+    "github": {
+      "url": "https://github.com/rangle/redux-beacon"
+    }
+  },
+  "structure": {
+    "summary": "docs/SUMMARY.md"
+  }
+}

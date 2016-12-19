@@ -1,0 +1,8 @@
+node_modules
+.DS_STORE
+.idea
+coverage
+lib
+npm-debug.log
+_book
+dist
