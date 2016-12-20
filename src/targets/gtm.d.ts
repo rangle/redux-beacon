@@ -1,1 +1,1 @@
-export function gtm(): void;
+export function gtm(events: any[]): void;
