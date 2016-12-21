@@ -9,7 +9,7 @@ describe('Target: GoogleTagManager', () => {
       ];
 
       const dataLayer = { push: jest.fn() };
-      const target = GoogleTagManager(dataLayer);
+      const target = new GoogleTagManager(dataLayer);
       target(events);
 
       expect(dataLayer.push).toHaveBeenCalledWith(events[0]);

@@ -15,11 +15,11 @@ describe('Target: Google Analytics', () => {
         eventAction: 'action',
         eventLabel: 'label',
         eventValue: 'value',
-      }
+      },
     ];
 
     const ga = jest.fn();
-    const target = GoogleAnalytics(ga);
+    const target = new GoogleAnalytics(ga);
     target(events);
 
     expect(ga).toHaveBeenCalledWith('send', events[0]);
