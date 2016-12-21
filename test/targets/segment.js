@@ -1,6 +1,6 @@
 const { segment } = require('../../src/targets/segment');
 
-describe('segment target', () => {
+describe('Target: Segment.io', () => {
   window.analytics = {
     identify: jest.fn(),
     group: jest.fn(),
@@ -9,7 +9,7 @@ describe('segment target', () => {
     alias: jest.fn(),
   };
 
-  it('Should not call any service when hitType is undefined', () => {
+  it('does not call any service when hitType is undefined', () => {
     const events = [{
       hitType: undefined,
     }];
@@ -19,7 +19,7 @@ describe('segment target', () => {
     });
   });
 
-  it('Calls page service when hitType is pageview', () => {
+  it('calls page service when hitType is pageview', () => {
     const events = [{
       hitType: 'pageview',
       page: 'random page',
@@ -28,7 +28,7 @@ describe('segment target', () => {
     expect(window.analytics.page).toHaveBeenCalledWith(events[0].page);
   });
 
-  it('Calls track service when hitType is event', () => {
+  it('calls track service when hitType is event', () => {
     const events = [{
       hitType: 'event',
       eventAction: 'random event action',
@@ -37,7 +37,7 @@ describe('segment target', () => {
     expect(window.analytics.track).toHaveBeenCalledWith(events[0].eventAction, events[0]);
   });
 
-  it('Calls identify service when hitType is identify', () => {
+  it('calls identify service when hitType is identify', () => {
     const events = [{
       hitType: 'identify',
       userId: 'random user id',
@@ -46,7 +46,7 @@ describe('segment target', () => {
     expect(window.analytics.identify).toHaveBeenCalledWith(events[0].userId, events[0]);
   });
 
-  it('Calls group service when hitType is group', () => {
+  it('calls group service when hitType is group', () => {
     const events = [{
       hitType: 'group',
       groupId: 'random group id',
@@ -55,7 +55,7 @@ describe('segment target', () => {
     expect(window.analytics.group).toHaveBeenCalledWith(events[0].groupId, events[0]);
   });
 
-  it('Calls alias service when hitType is alias', () => {
+  it('calls alias service when hitType is alias', () => {
     const events = [{
       hitType: 'alias',
       userId: 'random user id',
