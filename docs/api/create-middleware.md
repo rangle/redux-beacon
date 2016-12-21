@@ -18,10 +18,15 @@ import { reducer } from './reducer';
 
 // Import createMiddleware and a target
 import { createMiddleware } from 'redux-beacon';
-import { gtm } from 'redux-beacon/targets/gtm';
+import { GoogleAnalytics } from 'redux-beacon/targets/gtm';
 
 // Define an event
-const someEvent = { eventName: 'some-analytics-event' };
+const someEvent = {
+  eventFields: action => ({
+    hitType: 'pageview',
+    page: action.payload,
+  }),
+};
 
 // Map the event to a Redux action
 const eventsMap = {
