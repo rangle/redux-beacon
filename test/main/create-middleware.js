@@ -18,7 +18,7 @@ describe('createMiddleware(eventDefinitionsMap, target, extensions?)', () => {
       // "/my-account" page, the expected analytics event would look
       // like this:
       const expectedAnalyticsEvent = {
-        event: 'pageview',
+        hitType: 'pageview',
         page: '/my-account',
         referrer: '/home',
       };
@@ -26,9 +26,12 @@ describe('createMiddleware(eventDefinitionsMap, target, extensions?)', () => {
       // (Note: please refer to /test/main/create-events for more
       // examples of event definitions),
       const eventDefinition = {
-        eventName: 'pageview',
-        eventFields(prevState, action) {
-          return { page: action.payload, referrer: prevState.route };
+        eventFields(action, prevState) {
+          return {
+            hitType: 'pageview',
+            page: action.payload,
+            referrer: prevState.route,
+          };
         },
       };
       // Next, map that event definition to the ROUTE_CHANGED action.

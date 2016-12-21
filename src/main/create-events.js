@@ -1,23 +1,23 @@
+function arrify(value) {
+  return Array.isArray(value) ? value : [value];
+}
+
 function createEvents(eventDefinitions, prevState, action) {
-  const asArray = value => (Array.isArray(value) ? value : [value]);
+  return arrify(eventDefinitions).map(({ eventFields, eventSchema }) => {
+    if (typeof eventFields !== 'function') {
+      return null;
+    }
 
-  return asArray(eventDefinitions).map(({ eventName, eventFields, eventSchema }) => {
-    const name = { event: eventName || action.type };
-    const fields = typeof eventFields === 'function' ? eventFields(prevState, action) : {};
-
-    const event = Object.assign(name, fields);
+    const event = eventFields(action, prevState);
 
     if (eventSchema !== undefined) {
       const eventPropIsValid = prop => eventSchema[prop](event[prop]);
-      const isValid = Object.keys(eventSchema).every(eventPropIsValid);
-      if (isValid) {
-        return event;
-      }
-      return `Schema validation failure for ${event.event}`;
+      const isValidEvent = Object.keys(eventSchema).every(eventPropIsValid);
+      return isValidEvent ? event : null;
     }
 
     return event;
-  }).filter(event => typeof event !== 'string');
+  }).filter(event => event !== null);
 }
 
 module.exports = createEvents;

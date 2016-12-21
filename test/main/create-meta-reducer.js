@@ -6,14 +6,17 @@ describe('createMetaReducer(eventDefinitionsMap, target, extensions?)', () => {
     it('creates the event and pushes it to the target', () => {
       const initialState = { route: '/home' };
       const expectedAnalyticsEvent = {
-        event: 'pageview',
+        hitType: 'pageview',
         page: '/my-account',
         referrer: '/home',
       };
       const eventDefinition = {
-        eventName: 'pageview',
-        eventFields(prevState, action) {
-          return { page: action.payload, referrer: prevState.route };
+        eventFields(action, prevState) {
+          return {
+            hitType: 'pageview',
+            page: action.payload,
+            referrer: prevState.route,
+          };
         },
       };
       const eventDefinitionsMap = { ROUTE_CHANGED: eventDefinition };
