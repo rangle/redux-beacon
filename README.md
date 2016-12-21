@@ -57,7 +57,7 @@ import { reducer } from './reducers';
 
 // Import createMiddleware, and a target from redux-beacon:
 import { createMiddleware } from 'redux-beacon';
-import { gtm } from 'redux-beacon/targets/gtm';
+import { gtm } from 'redux-beacon/src/targets/gtm';
 
 // Create an event definition that will be used to create
 // an analytics event from the LOCATION_CHANGED action:
@@ -74,7 +74,7 @@ const eventsMap = {
 };
 
 // Create the middleware:
-const middleware = createMiddleware(eventsMap, target);
+const middleware = createMiddleware(eventsMap, gtm);
 
 // Apply the middleware when creating the Redux store
 const store = createStore(reducer, applyMiddleware(middleware));

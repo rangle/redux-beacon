@@ -45,7 +45,7 @@ type Target = (events: any[]) => void;
  * Create Redux middleware that synchronizes actions to analytics events.
  */
 export function createMiddleware(
-  eventDefinitions: EventDefinitionsMap, 
+  eventDefinitions: EventDefinitionsMap,
   target: Target,
   extensions?: Extensions
   ): any;
@@ -54,7 +54,7 @@ export function createMiddleware(
  * Create a meta reducer that synchronizes actions to analytics events.
  */
 export function createMetaReducer(
-  eventDefinitions: EventDefinitionsMap, 
+  eventDefinitions: EventDefinitionsMap,
   target: Target,
   extensions?: Extensions
 ): any;

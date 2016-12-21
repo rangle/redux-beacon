@@ -11,6 +11,7 @@ import { offlineWeb } from '../../src/extensions/offline-web';
 import { offlineReactNative } from '../../src/extensions/offline-react-native';
 
 import { gtm } from '../../src/targets/gtm';
+import { segment } from '../../src/targets/segment';
 
 // --------------------------------------------------
 
@@ -31,3 +32,4 @@ const eventsMap: EventDefinitionsMap = {
 };
 
 createMiddleware(eventsMap, gtm, { logger, offlineStorage: offlineWeb });
+createMiddleware(eventsMap, segment, { logger, offlineStorage: offlineWeb });

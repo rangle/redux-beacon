@@ -5,4 +5,4 @@ function pushToDataLayer(events) {
   }
 }
 
-module.exports = { pushToDataLayer };
+module.exports = { gtm: pushToDataLayer };
