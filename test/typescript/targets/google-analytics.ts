@@ -9,7 +9,7 @@ import {
 
 const target = GoogleAnalytics(() => {});
 
-const eventDefPageView = {
+const pageView = {
   eventFields: (): PageView => ({
     hitType: 'pageview',
     page: '/home',
@@ -18,7 +18,7 @@ const eventDefPageView = {
   }),
 };
 
-const eventDefEvent = {
+const event = {
   eventFields: (): Event => ({
     hitType: 'event',
     eventCategory: 'category',
@@ -28,7 +28,7 @@ const eventDefEvent = {
   }),
 };
 
-const eventDefUserTiming = {
+const userTiming = {
   eventFields: (): UserTiming => ({
     hitType: 'timing',
     timingCategory: 'category',
@@ -38,7 +38,7 @@ const eventDefUserTiming = {
   }),
 };
 
-const eventDefSocialInteraction = {
+const socialInteraction = {
   eventFields: (): SocialInteraction => ({
     hitType: 'social',
     socialNetwork: 'network',
@@ -47,7 +47,7 @@ const eventDefSocialInteraction = {
   }),
 };
 
-const eventDefException = {
+const exception = {
   eventFields: (): Exception => ({
     hitType: 'exception',
     exDescription: 'descrption',
