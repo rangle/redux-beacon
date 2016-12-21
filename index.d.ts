@@ -8,18 +8,11 @@ export interface EventSchema {
 /**
  * Used by ReduxBeacon to generate an event for a given Redux action.
  *
- * eventName
- * Use this property to specify the name of the event you want to emit
- * for the associated action. If not provided, the event name defaults
- * to the action type.
- *
  * eventFields
  * Attach a function to this property to define any variables you
  * would like to emit with the event. Any function assigned to this
  * property will receive the state of the application (before the
- * action), and the associated action object. Any property named
- * "event" in the returned object will override any defaults or any
- * event names defined in `eventName`.
+ * action), and the associated action object.
  *
  * eventSchema
  * Use this property to define a schema for the event. Attach
@@ -27,7 +20,10 @@ export interface EventSchema {
  * to validate. If any of these validation functions return false,
  * ReduxBeacon will not emit the event.
  */
-export type EventDefinition = { eventName: string } | { eventFields(prevState: any, action: any): any } | { eventSchema: EventSchema };
+export interface EventDefinition {
+  eventFields(action: any, prevState: any): any;
+  eventSchema?: EventSchema;
+}
 
 /**
  * A map between your actions and your analytics events.  Each key
