@@ -34,7 +34,7 @@ const eventsMap = {
 };
 
 // Create the target
-const target = new GoogleAnalytics(window.ga);
+const target = new GoogleAnalytics();
 
 // Create the middleware
 const middleware = createMiddleware(eventsMap, target);

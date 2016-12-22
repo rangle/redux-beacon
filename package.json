@@ -29,7 +29,7 @@
     "build:commonjs": "npm run build:main:commonjs && npm run build:extensions:commonjs && npm run build:targets:commonjs",
     "build:umd": "webpack",
     "prebuild": "npm run clean",
-    "build": "npm run build:main:commonjs && npm run build:umd",
+    "build": "npm run build:commonjs && npm run build:umd",
     "prepublish": "npm run build"
   },
   "engines": {

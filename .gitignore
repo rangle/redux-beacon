@@ -6,3 +6,5 @@ lib
 npm-debug.log
 _book
 dist
+extensions
+targets
