@@ -10,4 +10,5 @@
   * [offlineWeb](docs/extensions/offline-web.md)
   * [offlineReactNative](docs/extensions/offline-react-native.md)
 * [Targets](docs/targets/index.md)
+  * [Google Analytics](docs/targets/google-analytics.md)
   * [GTM](docs/targets/gtm.md)

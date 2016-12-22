@@ -11,4 +11,5 @@ events to an external analytics service.
 As an added convenience Redux-Beacon provides prebuilt targets for
 some popular analytics services:
 
-  * [Google Tag Manager](gtm.md)
+* [Google Analytics](google-analytics.md)
+* [Google Tag Manager](gtm.md)

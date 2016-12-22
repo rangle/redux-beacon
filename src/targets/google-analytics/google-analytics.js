@@ -1,6 +1,6 @@
-function GoogleAnalytics(ga) {
+function GoogleAnalytics() {
   return function GoogleAnalyticsTarget(events) {
-    events.forEach(event => ga('send', event));
+    events.forEach((event) => { window.ga('send', event); });
   };
 }
 
