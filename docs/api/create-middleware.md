@@ -18,10 +18,10 @@ import { reducer } from './reducer';
 
 // Import createMiddleware and a target
 import { createMiddleware } from 'redux-beacon';
-import { GoogleAnalytics } from 'redux-beacon/targets/gtm';
+import { GoogleAnalytics } from 'redux-beacon/targets/google-analytics';
 
 // Define an event
-const someEvent = {
+const pageView = {
   eventFields: action => ({
     hitType: 'pageview',
     page: action.payload,
@@ -30,12 +30,19 @@ const someEvent = {
 
 // Map the event to a Redux action
 const eventsMap = {
-   SOME_ACTION_TYPE: someEvent,
+   LOCATION_CHANGE: pageView,
 };
+
+// Create the target
+const target = new GoogleAnalytics(window.ga);
 
 // Create the middleware
 const middleware = createMiddleware(eventsMap, target);
 
 // Apply the middleware when creating the Redux store
 const store = createStore(reducer, applyMiddleware(middleware));
+
+// Now, whenever the app dispatches the LOCATION_CHANGE action,
+// Redux-Beacon will create a pageview event and push it to the
+// Google Analytics target.
 ```
