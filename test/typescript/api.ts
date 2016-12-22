@@ -17,10 +17,7 @@ const eventSchema = {
 };
 
 const eventDefinition: EventDefinition = {
-  eventName: 'test',
-  eventFields() {
-    return {};
-  },
+  eventFields() {},
   eventSchema,
 };
 
