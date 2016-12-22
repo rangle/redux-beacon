@@ -16,7 +16,7 @@ const eventDefinition = {
 ```
 #### Properties
 
-##### `function` eventFields(prevState, action)
+##### `function` eventFields(action, prevState)
 Attach a function to this property to define any variables you would
 like to emit with the event. Any function assigned to this property
 will receive the state of the application (before the action), and the

@@ -6,7 +6,7 @@ export interface EventSchema {
 }
 
 /**
- * Used by ReduxBeacon to generate an event for a given Redux action.
+ * Used by Redux-Beacon to generate an event for a given Redux action.
  *
  * eventFields
  * Attach a function to this property to define any variables you
