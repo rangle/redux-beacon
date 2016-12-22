@@ -1,7 +1,5 @@
-function GoogleTagManager(dataLayer) {
-  return function GoogleTagManagerTarget(events) {
-    events.forEach(event => dataLayer.push(event));
-  };
+function GoogleTagManager(events) {
+  events.forEach(event => window.dataLayer.push(event));
 }
 
 module.exports = { GoogleTagManager };

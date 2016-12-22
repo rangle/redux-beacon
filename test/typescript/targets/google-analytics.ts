@@ -7,7 +7,7 @@ import {
   Exception,
 } from '../../../src/targets/google-analytics';
 
-const target = GoogleAnalytics(() => {});
+GoogleAnalytics([]);
 
 const pageView = {
   eventFields: (): PageView => ({

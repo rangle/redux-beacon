@@ -11,15 +11,12 @@
    [JavaScript Tracking Snippet](https://developers.google.com/analytics/devguides/collection/analyticsjs/)
    to your site.
 
-3. Import the target constructor, create the target, and provide it
-   when creating the middleware:
+3. Import the target, then provide it when creating the middleware:
 
    ```js
    import { GoogleAnalytics } from 'redux-beacon/targets/google-analytics';
 
-   const target = new GoogleAnalytics();
-
-   const analyticsMiddleware = createMiddleware(eventsMap, target);
+   const analyticsMiddleware = createMiddleware(eventsMap, GoogleAnalytics);
    ```
 
 ### Example

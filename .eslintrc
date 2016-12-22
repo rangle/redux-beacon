@@ -2,8 +2,11 @@
   "extends": "airbnb",
   "rules": {
     "no-param-reassign": 0,
+    "new-cap": [
+      "error", { "capIsNew": false }
+    ],
     "import/no-extraneous-dependencies": [
-      "error", {"devDependencies": ["test/**/*.js"]}
+      "error", { "devDependencies": ["test/**/*.js"] }
     ]
   },
   "env": {

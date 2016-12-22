@@ -1,6 +1,4 @@
-type GoogleAnalyticsTarget = (events: any[]) => void;
-
-export function GoogleAnalytics(ga: Function): GoogleAnalyticsTarget;
+export function GoogleAnalytics(events: any[]): void;
 
 export interface PageView {
   hitType: 'pageview';
