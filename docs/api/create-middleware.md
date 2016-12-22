@@ -33,11 +33,8 @@ const eventsMap = {
    LOCATION_CHANGE: pageView,
 };
 
-// Create the target
-const target = new GoogleAnalytics();
-
 // Create the middleware
-const middleware = createMiddleware(eventsMap, target);
+const middleware = createMiddleware(eventsMap, GoogleAnalytics);
 
 // Apply the middleware when creating the Redux store
 const store = createStore(reducer, applyMiddleware(middleware));

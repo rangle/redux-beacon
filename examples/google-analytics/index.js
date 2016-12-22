@@ -36,8 +36,7 @@ const eventsMap = {
 };
 
 // (Redux Beacon) createMiddleware
-const target = new GoogleAnalytics();
-const analyticsMiddleware = createMiddleware(eventsMap, target, { logger });
+const analyticsMiddleware = createMiddleware(eventsMap, GoogleAnalytics, { logger });
 
 const store = createStore(reducer, applyMiddleware(analyticsMiddleware));
 
