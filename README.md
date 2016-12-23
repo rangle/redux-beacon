@@ -5,7 +5,7 @@ Analytics integration for Redux and ngrx/store
  * decouple your analytics from your app logic
  * define your analytics events once, send them anywhere
  * track analytics offline
- * track analytics in React Native and Corodova
+ * track analytics in React Native and Cordova
 
 <b></b>
 
@@ -30,7 +30,7 @@ are mapped to actions in an event definitions map. Once generated,
 Redux-Beacon sends the analytics events to a given target (e.g. Google
 Analytics).
 
-For example, say your app uses Redux to manage it's routes. Whenever a
+For example, say your app uses Redux to manage its routes. Whenever a
 route changes it fires an action:
 
 ```js
@@ -40,7 +40,7 @@ route changes it fires an action:
 }
 ```
 
-That updates the `route` property in the Redux store:
+This updates the `route` property in the Redux store:
 
 ```js
 const initialState = {
