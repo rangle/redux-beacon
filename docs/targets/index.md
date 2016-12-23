@@ -12,4 +12,4 @@ As an added convenience Redux-Beacon provides prebuilt targets for
 some popular analytics services:
 
 * [Google Analytics](google-analytics.md)
-* [Google Tag Manager](gtm.md)
+* [Google Tag Manager](google-tag-manager.md)

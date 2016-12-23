@@ -1,10 +1,8 @@
-node_modules
 .DS_STORE
 .idea
-coverage
-lib
 npm-debug.log
 _book
+coverage
 dist
-extensions
-targets
+lib
+node_modules
