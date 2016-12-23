@@ -19,4 +19,19 @@ describe('Target: GoogleTagManager', () => {
       expect(window.dataLayer.push).toHaveBeenCalledWith(events[1]);
     });
   });
+
+  describe('When an event has a hitType property but no event property', () => {
+    it('creates an event property and sets it to the hitType string', () => {
+      const events = [{ hitType: 'pageview' }];
+
+      window.dataLayer = { push: jest.fn() };
+      GoogleTagManager(events);
+
+      const expected = {
+        event: 'pageview',
+        hitType: 'pageview',
+      };
+      expect(window.dataLayer.push).toHaveBeenCalledWith(expected);
+    });
+  });
 });
