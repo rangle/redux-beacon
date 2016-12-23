@@ -21,3 +21,29 @@
 
 ### Example
   * [Redux Beacon: Google Analytics Example](https://github.com/rangle/redux-beacon/tree/master/examples/google-analytics)
+
+
+### For Typescript Users
+
+This target also exposes interfaces for common Google Analytics events:
+
+```js
+import {
+  PageView,
+  Event,
+  UserTiming,
+  SocialInteraction,
+  Exception,
+} from 'redux-beacon/targets/google-analytics';
+```
+
+Just specify the type when creating your event definition:
+
+```js
+const pageView = {
+  eventFields: (action): PageView => ({
+    hitType: 'pageview',
+    page: action.payload,
+  }),
+};
+```
