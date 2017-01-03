@@ -7,12 +7,15 @@ import { GoogleAnalyticsTracker } from 'react-native-google-analytics-bridge';
  * @returns {Object}
  */
 function getOptionals(event, accepted) {
-  var result = {};
+  const result = {};
   accepted.forEach((key) => {
     if (event[key] !== undefined) {
-      result[key] = event[key];
+      Object.assign(result, {
+        [key]: event[key],
+      });
     }
   });
+
   return result;
 }
 
@@ -20,7 +23,7 @@ function getOptionals(event, accepted) {
  * Used to create a Google Analytics tracker
  * Provides a target that converts events into native part of Google analytics expect.
  */
-export class ReactNativeGoogleAnaltyics {
+export default class ReactNativeGoogleAnaltyics {
   /**
    * Save all tracker related data that is needed to call native methods with proper data.
    * @param trackerId {String}
@@ -35,34 +38,38 @@ export class ReactNativeGoogleAnaltyics {
    * @param events {Object}
    */
   getTarget(events) {
-    let optonal = {};
-    this.events.forEach((event) => {
-      switch(event.hitType) {
-        case 'event':
-          optional = getOptionals(event, ['eventLabel', 'eventValue']);
+    events.forEach((event) => {
+      switch (event.hitType) {
+        case 'event': {
+          const optional = getOptionals(event, ['eventLabel', 'eventValue']);
           this.tracker.trackEvent(event.eventCategory, event.eventAction, optional);
-        break;
+          break;
+        }
 
-        case 'pageview':
+        case 'pageview': {
           this.tracker.trackScreenView(event.page);
-        break;
+          break;
+        }
 
-        case 'timing':
-          optional = getOptionals(event, ['timingVar', 'timingLabel']);
+        case 'timing': {
+          const optional = getOptionals(event, ['timingVar', 'timingLabel']);
           this.tracker.trackTiming(event.timingCategory, event.timingValue, optional);
-        break;
+          break;
+        }
 
-        case 'social':
-          this.tracker.trackSocialInteraction(event.socialNetwork, event.socialAction, event.socialTarget);
-        break;
+        case 'social': {
+          this.tracker
+            .trackSocialInteraction(event.socialNetwork, event.socialAction, event.socialTarget);
+          break;
+        }
 
-        case 'exception':
+        case 'exception': {
           this.tracker.trackException(event.exDescription, event.exFatal);
-        break;
+          break;
+        }
 
         default:
-        break;
       }
     });
-  };
+  }
 }
