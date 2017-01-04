@@ -35,7 +35,35 @@ describe('Target: React Native Google Analytics', () => {
       );
     });
 
-    it('calls trackEvent for event hitType with optional values', () => {
+    it('calls trackEvent for event hitType with eventValue option value', () => {
+      const events = [
+        {
+          hitType: 'event',
+          eventCategory: 'category',
+          eventAction: 'action',
+          eventValue: 2017, // option
+        },
+      ];
+
+      const tracker = {
+        trackEvent: jest.fn(),
+      };
+
+      const trackingId = 'UA-XXXXXX-Y';
+      const trackerConstructor = () => tracker;
+      const RNGA = ReactNativeGoogleAnalytics(trackingId, trackerConstructor);
+      RNGA(events);
+
+      const option = { value: 2017 };
+
+      expect(tracker.trackEvent).toHaveBeenCalledWith(
+        events[0].eventCategory,
+        events[0].eventAction,
+        option
+      );
+    });
+
+    it('calls trackEvent for event hitType with eventLabel and eventValue option values', () => {
       const events = [
         {
           hitType: 'event',
@@ -111,14 +139,42 @@ describe('Target: React Native Google Analytics', () => {
       );
     });
 
-    it('calls trackTiming for timing hitType with optional values', () => {
+    it('calls trackTiming for timing hitType with timingValue option value', () => {
       const events = [
         {
           hitType: 'timing',
           timingCategory: 'category',
-          timingVar: 'variable',
           timingValue: 123,
-          timingLabel: 'label',
+          timingVar: 'variable', // required option
+        },
+      ];
+
+      const tracker = {
+        trackTiming: jest.fn(),
+      };
+
+      const trackingId = 'UA-XXXXXX-Y';
+      const trackerConstructor = () => tracker;
+      const RNGA = ReactNativeGoogleAnalytics(trackingId, trackerConstructor);
+      RNGA(events);
+
+      const option = { name: 'variable' };
+
+      expect(tracker.trackTiming).toHaveBeenCalledWith(
+        events[0].timingCategory,
+        events[0].timingValue,
+        option
+      );
+    });
+
+    it('calls trackTiming for timing hitType with timingLabel option value', () => {
+      const events = [
+        {
+          hitType: 'timing',
+          timingCategory: 'category',
+          timingValue: 123,
+          timingVar: 'variable',  // required option
+          timingLabel: 'label',   // optional
         },
       ];
 

@@ -5,12 +5,15 @@ function ReactNativeGoogleAnalytics(trackingId, GoogleAnalyticsTracker) {
     events.forEach((event) => {
       switch (event.hitType) {
         case 'event': {
+          const options = {};
           if (event.eventLabel !== undefined) {
-            const options = {
-              label: event.eventLabel,
-              value: event.eventValue,
-            };
+            Object.assign(options, { label: event.eventLabel });
+          }
+          if (event.eventValue !== undefined) {
+            Object.assign(options, { value: event.eventValue });
+          }
 
+          if (Object.keys(options).length > 0) {
             tracker.trackEvent(event.eventCategory, event.eventAction, options);
           } else {
             tracker.trackEvent(event.eventCategory, event.eventAction);
@@ -24,11 +27,14 @@ function ReactNativeGoogleAnalytics(trackingId, GoogleAnalyticsTracker) {
         }
 
         case 'timing': {
+          // timingVar is always required for timingLabel
           if (event.timingVar !== undefined) {
-            const options = {
-              name: event.timingVar,
-              label: event.timingLabel,
-            };
+            const options = { name: event.timingVar };
+
+            if (event.timingLabel !== undefined) {
+              Object.assign(options, { label: event.timingLabel });
+            }
+
             tracker.trackTiming(event.timingCategory, event.timingValue, options);
           } else {
             tracker.trackTiming(event.timingCategory, event.timingValue);
@@ -36,19 +42,17 @@ function ReactNativeGoogleAnalytics(trackingId, GoogleAnalyticsTracker) {
           break;
         }
 
-        case 'social': {
+        case 'social':
           tracker.trackSocialInteraction(
             event.socialNetwork,
             event.socialAction,
             event.socialTarget
           );
           break;
-        }
 
-        case 'exception': {
+        case 'exception':
           tracker.trackException(event.exDescription, event.exFatal);
           break;
-        }
 
         default:
       }
