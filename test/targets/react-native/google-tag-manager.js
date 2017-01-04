@@ -1,4 +1,4 @@
-const { reactNativeGoogleTagManager } = require('../../../src/targets/react-native/google-tag-manager');
+const { ReactNativeGoogleTagManager } = require('../../../src/targets/react-native/google-tag-manager');
 
 describe('Target: React Native GoogleTagManager', () => {
   const googleTagManager = {
@@ -12,7 +12,7 @@ describe('Target: React Native GoogleTagManager', () => {
         { event: 'some-other-event' },
       ];
 
-      reactNativeGoogleTagManager(events, googleTagManager);
+      ReactNativeGoogleTagManager(events, googleTagManager);
 
       expect(googleTagManager.pushDataLayerEvent).toHaveBeenCalledWith(events[0]);
       expect(googleTagManager.pushDataLayerEvent).toHaveBeenCalledWith(events[1]);
@@ -23,7 +23,7 @@ describe('Target: React Native GoogleTagManager', () => {
     it('creates an event property and sets it to the hitType string', () => {
       const events = [{ hitType: 'pageview' }];
 
-      reactNativeGoogleTagManager(events, googleTagManager);
+      ReactNativeGoogleTagManager(events, googleTagManager);
 
       const expected = {
         event: 'pageview',

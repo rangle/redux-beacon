@@ -1,4 +1,4 @@
-function reactNativeGoogleTagManager(events, googleTagManager) {
+function ReactNativeGoogleTagManager(events, googleTagManager) {
   events.forEach((event) => {
     const eventToPush = (() => {
       if (event.event === undefined && event.hitType !== undefined) {
@@ -10,4 +10,4 @@ function reactNativeGoogleTagManager(events, googleTagManager) {
   });
 }
 
-module.exports = { reactNativeGoogleTagManager };
+module.exports = { ReactNativeGoogleTagManager };
