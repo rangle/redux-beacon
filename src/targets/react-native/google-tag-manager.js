@@ -1,6 +1,4 @@
-import { GoogleTagManager } from 'react-native-google-analytics-bridge';
-
-function ReactNativeGoogleTagManager (events) {
+function reactNativeGoogleTagManager (events, googleTagManager) {
   events.forEach((event) => {
     const eventToPush = (() => {
       if (event.event === undefined && event.hitType !== undefined) {
@@ -8,8 +6,8 @@ function ReactNativeGoogleTagManager (events) {
       }
       return event;
     })();
-    GoogleTagManager.pushDataLayerEvent(eventToPush)
+    googleTagManager.pushDataLayerEvent(eventToPush)
   });
 }
 
-module.exports = { ReactNativeGoogleTagManager };
+module.exports = { reactNativeGoogleTagManager };
