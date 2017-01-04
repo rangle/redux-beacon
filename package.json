@@ -67,8 +67,5 @@
   },
   "jest": {
     "testRegex": "(/test/.*\\.js)$"
-  },
-  "dependencies": {
-    "react-native-google-analytics-bridge": "^4.0.2"
   }
 }
