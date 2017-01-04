@@ -1,12 +1,12 @@
-function reactNativeGoogleTagManager (events, googleTagManager) {
+function reactNativeGoogleTagManager(events, googleTagManager) {
   events.forEach((event) => {
     const eventToPush = (() => {
       if (event.event === undefined && event.hitType !== undefined) {
-        return Object.assign({}, event, {event: event.hitType});
+        return Object.assign({}, event, { event: event.hitType });
       }
       return event;
     })();
-    googleTagManager.pushDataLayerEvent(eventToPush)
+    googleTagManager.pushDataLayerEvent(eventToPush);
   });
 }
 
