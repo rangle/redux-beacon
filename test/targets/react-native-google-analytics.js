@@ -1,7 +1,6 @@
 const { ReactNativeGoogleAnalytics } = require('../../src/targets/react-native/google-analytics');
 
 describe('Target: React Native Google Analytics', () => {
-
   describe('ReactNativeGoogleAnalytics(trackingId, trackerConstructor)', () => {
     it('creates GoogleAnalyticsTracker', () => {
       const trackerConstructor = jest.fn();
@@ -17,7 +16,7 @@ describe('Target: React Native Google Analytics', () => {
         {
           hitType: 'event',
           eventCategory: 'category',
-          eventAction: 'action'
+          eventAction: 'action',
         },
       ];
 
@@ -72,7 +71,7 @@ describe('Target: React Native Google Analytics', () => {
       const events = [
         {
           hitType: 'pageview',
-          page: '/home'
+          page: '/home',
         },
       ];
 

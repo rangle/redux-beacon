@@ -1,5 +1,4 @@
 function ReactNativeGoogleAnalytics(trackingId, GoogleAnalyticsTracker) {
-
   const tracker = new GoogleAnalyticsTracker(trackingId);
 
   function target(events) {
@@ -9,7 +8,7 @@ function ReactNativeGoogleAnalytics(trackingId, GoogleAnalyticsTracker) {
           if (event.eventLabel !== undefined) {
             const options = {
               label: event.eventLabel,
-              value: event.eventValue
+              value: event.eventValue,
             };
 
             tracker.trackEvent(event.eventCategory, event.eventAction, options);
@@ -28,7 +27,7 @@ function ReactNativeGoogleAnalytics(trackingId, GoogleAnalyticsTracker) {
           if (event.timingVar !== undefined) {
             const options = {
               name: event.timingVar,
-              label: event.timingLabel
+              label: event.timingLabel,
             };
             tracker.trackTiming(event.timingCategory, event.timingValue, options);
           } else {
