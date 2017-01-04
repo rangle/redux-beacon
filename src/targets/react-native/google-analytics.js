@@ -23,7 +23,7 @@ function getOptionals(event, accepted) {
  * Used to create a Google Analytics tracker
  * Provides a target that converts events into native part of Google analytics expect.
  */
-export default class ReactNativeGoogleAnaltyics {
+export default class ReactNativeGoogleAnalytics {
   /**
    * Save all tracker related data that is needed to call native methods with proper data.
    * @param trackerId {String}
