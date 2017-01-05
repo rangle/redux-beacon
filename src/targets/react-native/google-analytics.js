@@ -6,11 +6,12 @@ function ReactNativeGoogleAnalytics(trackingId, GoogleAnalyticsTracker) {
       switch (event.hitType) {
         case 'event': {
           const options = {};
+
           if (event.eventLabel !== undefined) {
-            Object.assign(options, { label: event.eventLabel });
+            options.label = event.eventLabel;
           }
           if (event.eventValue !== undefined) {
-            Object.assign(options, { value: event.eventValue });
+            options.value = event.eventValue;
           }
 
           if (Object.keys(options).length > 0) {
@@ -32,7 +33,7 @@ function ReactNativeGoogleAnalytics(trackingId, GoogleAnalyticsTracker) {
             const options = { name: event.timingVar };
 
             if (event.timingLabel !== undefined) {
-              Object.assign(options, { label: event.timingLabel });
+              options.label = event.timingLabel;
             }
 
             tracker.trackTiming(event.timingCategory, event.timingValue, options);
@@ -42,17 +43,19 @@ function ReactNativeGoogleAnalytics(trackingId, GoogleAnalyticsTracker) {
           break;
         }
 
-        case 'social':
+        case 'social': {
           tracker.trackSocialInteraction(
             event.socialNetwork,
             event.socialAction,
             event.socialTarget
           );
           break;
+        }
 
-        case 'exception':
+        case 'exception': {
           tracker.trackException(event.exDescription, event.exFatal);
           break;
+        }
 
         default:
       }
