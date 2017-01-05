@@ -1,10 +1,6 @@
 const { ReactNativeGoogleTagManager } = require('../../../src/targets/react-native/google-tag-manager');
 
 describe('Target: React Native GoogleTagManager', () => {
-  const googleTagManager = {
-    pushDataLayerEvent: jest.fn(),
-  };
-
   describe('When given an array of events', () => {
     it('pushes those events to the data layer', () => {
       const events = [
@@ -12,6 +8,9 @@ describe('Target: React Native GoogleTagManager', () => {
         { event: 'some-other-event' },
       ];
 
+      const googleTagManager = {
+        pushDataLayerEvent: jest.fn(),
+      };
       ReactNativeGoogleTagManager(events, googleTagManager);
 
       expect(googleTagManager.pushDataLayerEvent).toHaveBeenCalledWith(events[0]);
@@ -23,6 +22,9 @@ describe('Target: React Native GoogleTagManager', () => {
     it('creates an event property and sets it to the hitType string', () => {
       const events = [{ hitType: 'pageview' }];
 
+      const googleTagManager = {
+        pushDataLayerEvent: jest.fn(),
+      };
       ReactNativeGoogleTagManager(events, googleTagManager);
 
       const expected = {
