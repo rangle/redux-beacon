@@ -1,1 +1,1 @@
-export function ReactNativeGoogleTagManager(events: any[]): void;
+export function GoogleTagManager(trackingId: string, GTMBridge: any): void;
