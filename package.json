@@ -68,15 +68,8 @@
   "jest": {
     "testRegex": "(/test/.*\\.js)$",
     "collectCoverageFrom": [
-      "**/*.{js,jsx}",
-      "!**/extensions/**",
-      "!**/coverage/**",
-      "!**/dist/**",
-      "!**/examples/**",
-      "!**/lib/**",
-      "!**/node_modules/**",
-      "!**/vendor/**",
-      "!webpack.config.js"
+      "src/**/*.js",
+      "!**/extensions/**"
     ],
     "coverageThreshold": {
       "global": {
