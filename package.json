@@ -21,7 +21,7 @@
     "test:watch": "npm test -- --watch",
     "test:cov": "npm test -- --coverage",
     "lint": "eslint src test",
-    "check": "npm run lint && npm run test",
+    "check": "npm run lint && npm run test:cov",
     "clean": "rm -rf lib dist extensions targets",
     "build:main:commonjs": "babel src/main --out-dir lib",
     "build:extensions:commonjs": "babel src/extensions --out-dir extensions",
@@ -66,6 +66,25 @@
     "webpack": "^1.14.0"
   },
   "jest": {
-    "testRegex": "(/test/.*\\.js)$"
+    "testRegex": "(/test/.*\\.js)$",
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/extensions/**",
+      "!**/coverage/**",
+      "!**/dist/**",
+      "!**/examples/**",
+      "!**/lib/**",
+      "!**/node_modules/**",
+      "!**/vendor/**",
+      "!webpack.config.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    }
   }
 }
