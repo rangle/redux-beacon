@@ -59,7 +59,7 @@
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.4.1",
     "gitbook-cli": "^2.3.0",
-    "jest": "^16.0.1",
+    "jest": "18.1.0",
     "redux": "^3.6.0",
     "typescript": "^2.0.3",
     "typescript-definition-tester": "0.0.4",
