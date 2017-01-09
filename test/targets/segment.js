@@ -1,4 +1,4 @@
-const { segment } = require('../../src/targets/segment');
+const { Segment } = require('../../src/targets/segment');
 
 describe('Target: Segment.io', () => {
   window.analytics = {
@@ -13,7 +13,7 @@ describe('Target: Segment.io', () => {
     const events = [{
       hitType: undefined,
     }];
-    segment(events);
+    Segment(events);
     Object.keys(window.analytics).forEach((key) => {
       expect(window.analytics[key]).not.toHaveBeenCalled();
     });
@@ -24,7 +24,7 @@ describe('Target: Segment.io', () => {
       hitType: 'pageview',
       page: 'random page',
     }];
-    segment(events);
+    Segment(events);
     expect(window.analytics.page).toHaveBeenCalledWith(events[0].page);
   });
 
@@ -33,7 +33,7 @@ describe('Target: Segment.io', () => {
       hitType: 'event',
       eventAction: 'random event action',
     }];
-    segment(events);
+    Segment(events);
     expect(window.analytics.track).toHaveBeenCalledWith(events[0].eventAction, events[0]);
   });
 
@@ -42,7 +42,7 @@ describe('Target: Segment.io', () => {
       hitType: 'identify',
       userId: 'random user id',
     }];
-    segment(events);
+    Segment(events);
     expect(window.analytics.identify).toHaveBeenCalledWith(events[0].userId, events[0]);
   });
 
@@ -51,7 +51,7 @@ describe('Target: Segment.io', () => {
       hitType: 'group',
       groupId: 'random group id',
     }];
-    segment(events);
+    Segment(events);
     expect(window.analytics.group).toHaveBeenCalledWith(events[0].groupId, events[0]);
   });
 
@@ -60,7 +60,7 @@ describe('Target: Segment.io', () => {
       hitType: 'alias',
       userId: 'random user id',
     }];
-    segment(events);
+    Segment(events);
     expect(window.analytics.alias).toHaveBeenCalledWith(events[0].userId);
   });
 });
