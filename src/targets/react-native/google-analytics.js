@@ -1,4 +1,4 @@
-function ReactNativeGoogleAnalytics(trackingId, GoogleAnalyticsTracker) {
+function GoogleAnalytics(trackingId, GoogleAnalyticsTracker) {
   const tracker = new GoogleAnalyticsTracker(trackingId);
 
   function target(events) {
@@ -65,4 +65,4 @@ function ReactNativeGoogleAnalytics(trackingId, GoogleAnalyticsTracker) {
   return target;
 }
 
-module.exports = { ReactNativeGoogleAnalytics };
+module.exports = { GoogleAnalytics };
