@@ -7,7 +7,7 @@
    a note of your property's
    [tracking Id](https://support.google.com/analytics/answer/1008080).
 
-2. Install a npm package,
+2. Install the npm package,
    [GoogleAnalyticsBridge](https://www.npmjs.com/package/react-native-google-analytics-bridge),
    in your project.
 
