@@ -17,11 +17,9 @@
     "docs:watch": "npm run docs:prepare && gitbook serve",
     "docs:build": "npm run docs:prepare && rm -rf _book && gitbook build",
     "docs:publish": "npm run docs:build && cd _book && git init && git commit --allow-empty -m 'Update docs' && git checkout -b gh-pages && git add . && git commit -am 'Update docs' && git push git@github.com:rangle/redux-beacon gh-pages --force",
-    "test": "jest",
-    "test:watch": "npm test -- --watch",
-    "test:cov": "npm test -- --coverage",
     "lint": "eslint src test",
-    "check": "npm run lint && npm run test",
+    "test": "jest --watch && npm run lint",
+    "check": "npm run lint && jest --coverage",
     "clean": "rm -rf lib dist extensions targets",
     "build:main:commonjs": "babel src/main --out-dir lib",
     "build:extensions:commonjs": "babel src/extensions --out-dir extensions",
@@ -59,13 +57,25 @@
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.4.1",
     "gitbook-cli": "^2.3.0",
-    "jest": "^16.0.1",
+    "jest": "18.1.0",
     "redux": "^3.6.0",
     "typescript": "^2.0.3",
     "typescript-definition-tester": "0.0.4",
     "webpack": "^1.14.0"
   },
   "jest": {
-    "testRegex": "(/test/.*\\.js)$"
+    "testRegex": "(/test/.*\\.js)$",
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!**/extensions/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 70,
+        "functions": 70,
+        "lines": 70,
+        "statements": 70
+      }
+    }
   }
 }
