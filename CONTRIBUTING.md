@@ -14,15 +14,31 @@ This project follows the coding conventions laid out in the
 
 ## Architecture
 
-createMetaReducer
-add - link to ngrx/store docs https://gist.github.com/btroncone/a6e4347326749f938510#implementing-a-meta-reducer
-createMiddleware
-add - link to redux middleware http://redux.js.org/docs/advanced/Middleware.html
+The two functions `createMiddleware` and `createMetaReducer` make up
+the apex of Redux-Beacon's API. As the function names imply, one
+creates Redux middleware, and one creates an ngrx meta reducer.
 
-eventdefinitionsmap, eventdefintions
-create-events
-register events (sent to target, loggers, or offline storage)
+If you're unfamiliar with Redux middleware, or ngrx meta reducers, you
+can learn more about them here:
+[Redux middleware](http://redux.js.org/docs/advanced/Middleware.html),
+and here: [ngrx meta reducers](https://gist.github.com/btroncone/a6e4347326749f938510#implementing-a-meta-reducer)
 
-extensions and targets, how they
+The bulk of the work in `createMiddleware` and `createMetaReducer` is
+done by two functions: `createEvents` and `registerEvents`.
 
-read the tests for more
+The function `createEvents` is in charge of creating events from an
+`EventDefinition`. If you want to change how Redux-Beacon creates
+events this is where you should look to make your changes.
+
+The function `registerEvents` takes the events created by
+`createEvents` and sends them off to a target, offline storage, or a
+logger. If you want to change the way Redux-Beacon handles targets, or
+extensions, this is where you should look to make your changes.
+
+I encourage you to read the unit tests for `createEvents` and
+`registerEvents` to get a better idea of what each function does.
+
+Finally, please read
+the [official docs](https://rangle.github.io/redux-beacon) for
+definitions and examples of `Extensions`, `Targets`, and
+`EventDefinitions`.
