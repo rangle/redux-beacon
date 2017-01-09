@@ -1,3 +1,3 @@
-const { segment } = require('./segment');
+const { Segment } = require('./segment');
 
-module.exports = { segment };
+module.exports = { Segment };

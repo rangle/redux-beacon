@@ -29,5 +29,5 @@ function sendSegmentEvent(events) {
 }
 
 module.exports = {
-  segment: sendSegmentEvent,
+  Segment: sendSegmentEvent,
 };
