@@ -7,6 +7,7 @@ const styles = {
   label: 'color: #93748A; font-weight: bold;',
 };
 
+/* eslint-disable no-console */
 function logEvents(events) {
   if (events.length > 1) {
     console.group('%c Events:', styles.label);
