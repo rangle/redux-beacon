@@ -1,12 +1,12 @@
-const { ReactNativeGoogleAnalytics } = require('../../src/targets/react-native/google-analytics');
+const { GoogleAnalytics } = require('../../src/targets/react-native/google-analytics');
 
 describe('Target: React Native Google Analytics', () => {
-  describe('ReactNativeGoogleAnalytics(trackingId, trackerConstructor)', () => {
+  describe('GoogleAnalytics(trackingId, trackerConstructor)', () => {
     it('creates GoogleAnalyticsTracker', () => {
       const trackerConstructor = jest.fn();
       const trackingId = 'UA-XXXXXX-Y';
 
-      ReactNativeGoogleAnalytics(trackingId, trackerConstructor);
+      GoogleAnalytics(trackingId, trackerConstructor);
 
       expect(trackerConstructor).toHaveBeenCalledWith(trackingId);
     });
@@ -26,8 +26,8 @@ describe('Target: React Native Google Analytics', () => {
 
       const trackingId = 'UA-XXXXXX-Y';
       const trackerConstructor = () => tracker;
-      const RNGA = ReactNativeGoogleAnalytics(trackingId, trackerConstructor);
-      RNGA(events);
+      const target = GoogleAnalytics(trackingId, trackerConstructor);
+      target(events);
 
       expect(tracker.trackEvent).toHaveBeenCalledWith(
         events[0].eventCategory,
@@ -51,8 +51,8 @@ describe('Target: React Native Google Analytics', () => {
 
       const trackingId = 'UA-XXXXXX-Y';
       const trackerConstructor = () => tracker;
-      const RNGA = ReactNativeGoogleAnalytics(trackingId, trackerConstructor);
-      RNGA(events);
+      const target = GoogleAnalytics(trackingId, trackerConstructor);
+      target(events);
 
       const option = { value: 2017 };
 
@@ -80,8 +80,8 @@ describe('Target: React Native Google Analytics', () => {
 
       const trackingId = 'UA-XXXXXX-Y';
       const trackerConstructor = () => tracker;
-      const RNGA = ReactNativeGoogleAnalytics(trackingId, trackerConstructor);
-      RNGA(events);
+      const target = GoogleAnalytics(trackingId, trackerConstructor);
+      target(events);
 
       const options = {
         label: 'label',
@@ -109,8 +109,8 @@ describe('Target: React Native Google Analytics', () => {
 
       const trackingId = 'UA-XXXXXX-Y';
       const trackerConstructor = () => tracker;
-      const RNGA = ReactNativeGoogleAnalytics(trackingId, trackerConstructor);
-      RNGA(events);
+      const target = GoogleAnalytics(trackingId, trackerConstructor);
+      target(events);
 
       expect(tracker.trackScreenView).toHaveBeenCalledWith(events[0].page);
     });
@@ -130,8 +130,8 @@ describe('Target: React Native Google Analytics', () => {
 
       const trackingId = 'UA-XXXXXX-Y';
       const trackerConstructor = () => tracker;
-      const RNGA = ReactNativeGoogleAnalytics(trackingId, trackerConstructor);
-      RNGA(events);
+      const target = GoogleAnalytics(trackingId, trackerConstructor);
+      target(events);
 
       expect(tracker.trackTiming).toHaveBeenCalledWith(
         events[0].timingCategory,
@@ -155,8 +155,8 @@ describe('Target: React Native Google Analytics', () => {
 
       const trackingId = 'UA-XXXXXX-Y';
       const trackerConstructor = () => tracker;
-      const RNGA = ReactNativeGoogleAnalytics(trackingId, trackerConstructor);
-      RNGA(events);
+      const target = GoogleAnalytics(trackingId, trackerConstructor);
+      target(events);
 
       const option = { name: 'variable' };
 
@@ -184,8 +184,8 @@ describe('Target: React Native Google Analytics', () => {
 
       const trackingId = 'UA-XXXXXX-Y';
       const trackerConstructor = () => tracker;
-      const RNGA = ReactNativeGoogleAnalytics(trackingId, trackerConstructor);
-      RNGA(events);
+      const target = GoogleAnalytics(trackingId, trackerConstructor);
+      target(events);
 
       const options = {
         name: 'variable',
@@ -215,8 +215,8 @@ describe('Target: React Native Google Analytics', () => {
 
       const trackingId = 'UA-XXXXXX-Y';
       const trackerConstructor = () => tracker;
-      const RNGA = ReactNativeGoogleAnalytics(trackingId, trackerConstructor);
-      RNGA(events);
+      const target = GoogleAnalytics(trackingId, trackerConstructor);
+      target(events);
 
       expect(tracker.trackSocialInteraction).toHaveBeenCalledWith(
         events[0].socialNetwork,
@@ -241,8 +241,8 @@ describe('Target: React Native Google Analytics', () => {
 
       const trackingId = 'UA-XXXXXX-Y';
       const trackerConstructor = () => tracker;
-      const RNGA = ReactNativeGoogleAnalytics(trackingId, trackerConstructor);
-      RNGA(events);
+      const target = GoogleAnalytics(trackingId, trackerConstructor);
+      target(events);
 
       expect(tracker.trackException).toHaveBeenCalledWith(
         events[0].exDescription,
