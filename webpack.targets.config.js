@@ -1,6 +1,8 @@
 const webpack = require('webpack');
 const path = require('path');
 
+const isProdBuild = process.env.NODE_ENV === 'PRODUCTION';
+
 module.exports = {
   module: {
     loaders: [
@@ -8,18 +10,19 @@ module.exports = {
     ],
   },
 
-  entry: [
-    './src/main/index',
-  ],
+  entry: {
+    'google-analytics': './src/targets/google-analytics',
+    'google-tag-manager': './src/targets/google-tag-manager',
+    'segment': './src/targets/segment',
+  },
 
   output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'redux-beacon.min.js',
-    library: 'ReduxBeacon',
+    path: path.join(__dirname, 'targets/dist'),
+    filename: isProdBuild ? '[name].umd.min.js' : '[name].umd.js',
     libraryTarget: 'umd',
   },
 
-  plugins: [
+  plugins: isProdBuild ? [
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
         pure_getters: true,
@@ -29,5 +32,5 @@ module.exports = {
         warnings: false,
       },
     }),
-  ],
+  ] : [],
 };
