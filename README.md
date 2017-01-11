@@ -16,8 +16,8 @@ Rendux-Beacon provides a way to map your Redux or ngrx actions to
 analytics events. Once generated, Redux-Beacon sends the analytics
 events to a given target (e.g. Google Analytics).
 
-Analytics events are defined in an event definition, and mapped to a
-given action in an event definitions map:
+Analytics events are defined in an event definition, and mapped to
+actions in an event definitions map:
 
 ```js
 // Event Definition
@@ -44,8 +44,9 @@ fired, then it will push the generated event to a given target
  - [For ngrx/store users]()
 
 ## Targets
-Redux-Beacon provides some prebuilt targets for popular analytics
+Redux-Beacon provides prebuilt targets for some popular analytics
 services:
+
  - [Google Analytics]()
  - [Google Tag Manager]()
  - [Segment.io]()
