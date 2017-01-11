@@ -13,3 +13,4 @@ some popular analytics services:
 
 * [Google Analytics](google-analytics.md)
 * [Google Tag Manager](google-tag-manager.md)
+* [Segment.io](segment.md)
