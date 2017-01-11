@@ -14,8 +14,7 @@ npm install --save redux-beacon
 
 Rendux-Beacon provides a way to map your Redux or ngrx actions to
 analytics events. Once generated, Redux-Beacon sends the analytics
-events to a given target (e.g. Google Analytics, Google Tag Manager,
-Segment.io etc.).
+events to a given target (e.g. Google Analytics).
 
 Analytics events are defined in an event definition, and mapped to a
 given action in an event definitions map:
