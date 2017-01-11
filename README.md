@@ -39,18 +39,18 @@ With the above event definitions map, Redux-Beacon will create a
 fired, then it will push the generated event to a given target
 (e.g. Google Analytics).
 
+## Quick Start
+ - [For Redux users]()
+ - [For ngrx/store users]()
+
+## Targets
 Redux-Beacon provides some prebuilt targets for popular analytics
 services:
-
  - [Google Analytics]()
  - [Google Tag Manager]()
  - [Segment.io]()
  - [_(React Native)_ Google Analytics]()
  - [_(React Native)_ Google Tag Manager]()
-
-## Quick Start
- - [For Redux users]()
- - [For ngrx/store users]()
 
 ## Docs
 Check out the [project site](https://rangle.github.io/redux-beacon/)
