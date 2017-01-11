@@ -1,20 +1,16 @@
 # Redux Beacon
-
-Analytics integration for Redux and ngrx/store
-
-Check out the [project site](https://rangle.github.io/redux-beacon/)
-for API docs, tutorials, examples and more.
-
 [![license](https://img.shields.io/github/license/rangle/redux-beacon.svg)](LICENSE)
 [![npm version](https://img.shields.io/npm/v/redux-beacon.svg)](https://www.npmjs.com/package/redux-beacon)
 [![CircleCI](https://img.shields.io/circleci/project/github/rangle/redux-beacon.svg)](https://circleci.com/gh/rangle/redux-beacon)
+
+> Analytics integration for Redux and ngrx/store
 
 ```bash
 npm install --save redux-beacon
 ```
 ----
 
-### How it works
+## How it works
 
 Rendux-Beacon provides a way to map your Redux or ngrx actions to
 analytics events. Once generated, Redux-Beacon sends the analytics
@@ -53,6 +49,10 @@ services:
  - [_(React Native)_ Google Analytics]()
  - [_(React Native)_ Google Tag Manager]()
 
-### Quick Start
+## Quick Start
  - [For Redux users]()
  - [For ngrx/store users]()
+
+## Docs
+Check out the [project site](https://rangle.github.io/redux-beacon/)
+for API docs, tutorials, examples and more.
