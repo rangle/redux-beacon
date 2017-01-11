@@ -21,7 +21,7 @@
    import { GoogleAnalyticsTracker } from 'react-native-google-analytics-bridge';
    import { GoogleAnalytics } from 'redux-beacon/targets/react-native';
 
-   let target = GoogleAnalytics('UA-12345678-1', GoogleAnalyticsTracker);
+   const target = GoogleAnalytics('UA-12345678-1', GoogleAnalyticsTracker);
    const analyticsMiddleware = createMiddleware(eventsMap, target);
    ```
 

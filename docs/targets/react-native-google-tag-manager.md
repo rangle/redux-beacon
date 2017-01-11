@@ -24,7 +24,7 @@
    import { GoogleTagManager } from 'redux-beacon/targets/react-native';
 
    const containerId = (Platform.OS === 'ios') ? 'GTM-IOSXXXX' : 'GTM-ANDROID';
-   let target = GoogleTagManager(containerId, GTMBridge);
+   const target = GoogleTagManager(containerId, GTMBridge);
    const analyticsMiddleware = createMiddleware(eventsMap, target);
    ```
 
