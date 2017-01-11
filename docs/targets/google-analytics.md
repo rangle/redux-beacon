@@ -25,11 +25,9 @@
    const analyticsMiddleware = createMiddleware(eventsMap, GoogleAnalytics);
    ```
 
-
-
-### Example
-  * [Redux Beacon: Google Analytics Example](https://github.com/rangle/redux-beacon/tree/master/examples/google-analytics)
-
+### Examples
+  * [Google Analytics (Redux) Example](https://github.com/rangle/redux-beacon/tree/master/examples/google-analytics)
+  * [Google Analytics (ngrx) Example](https://github.com/rangle/redux-beacon/tree/master/examples/google-analytics-ngrx)
 
 ### For Typescript Users
 

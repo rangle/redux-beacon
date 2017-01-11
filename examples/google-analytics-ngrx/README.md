@@ -1,4 +1,4 @@
-# Google Analytics (Redux) Example
+# Google Analytics (ngrx) Example
 
 Follow these steps to run the example:
 
@@ -11,12 +11,12 @@ Follow these steps to run the example:
    ```
    git clone https://github.com/rangle/redux-beacon.git
 
-   cd redux-beacon/examples/google-analytics
+   cd redux-beacon/examples/google-analytics-ngrx
 
    npm install
    ```
 
-3. Open up `redux-beacon/examples/google-analytics/index.html` in an
+3. Open up `redux-beacon/examples/google-analytics-ngrx/index.html` in an
    editor and replace `UA-XXXXXXXX-X` with your property's tracking ID.
 
 4. Run `npm start` and head on over to http://localhost:8080/ in a modern browser.
