@@ -79,4 +79,6 @@ Now, whenever the app dispatches the `[Router] Update Location` action,
 Redux-Beacon will create a pageview event and push it to the Google
 Analytics target.
 
-### [A Full Working Example](https://github.com/rangle/redux-beacon/tree/master/examples/google-analytics-ngrx)
+----
+
+### [See A Full Working Example](https://github.com/rangle/redux-beacon/tree/master/examples/google-analytics-ngrx)
