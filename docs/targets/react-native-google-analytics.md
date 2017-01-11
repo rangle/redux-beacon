@@ -19,11 +19,10 @@
 
    ```js
    import { GoogleAnalyticsTracker } from 'react-native-google-analytics-bridge';
-   import { ReactNativeGoogleAnalytics } from 'redux-beacon/targets/react-native';
+   import { GoogleAnalytics } from 'redux-beacon/targets/react-native';
 
-   let reactNativeGA = ReactNativeGoogleAnalytics('UA-12345678-1', GoogleAnalyticsTracker);
-
-   const analyticsMiddleware = createMiddleware(eventsMap, GoogleAnalytics);
+   const target = GoogleAnalytics('UA-12345678-1', GoogleAnalyticsTracker);
+   const analyticsMiddleware = createMiddleware(eventsMap, target);
    ```
 
 

@@ -1,5 +1,7 @@
-const { ReactNativeGoogleAnalytics } = require('./google-analytics');
+const { GoogleAnalytics } = require('./google-analytics');
+const { GoogleTagManager } = require('./google-tag-manager');
 
 module.exports = {
-  ReactNativeGoogleAnalytics,
+  GoogleAnalytics,
+  GoogleTagManager,
 };
