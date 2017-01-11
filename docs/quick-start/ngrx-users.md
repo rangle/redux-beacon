@@ -30,7 +30,7 @@ import { AppComponent }  from './app.component';
 import { appRoutes } from './app.routes';
 
 // Import createMetaReducer and a target
-import { createMiddleware } from 'redux-beacon';
+import { createMetaReducer } from 'redux-beacon';
 import {
   GoogleAnalytics,
   PageView,
