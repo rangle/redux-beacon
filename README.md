@@ -1,65 +1,26 @@
 # Redux Beacon
-
-Analytics integration for Redux and ngrx/store
-
- * decouple your analytics from your app logic
- * define your analytics events once, send them anywhere
- * track analytics offline
- * track analytics in React Native and Cordova
-
-<b></b>
-
-See the official docs for tutorials, examples, and more.
-
-<b></b>
-
 [![license](https://img.shields.io/github/license/rangle/redux-beacon.svg)](LICENSE)
 [![npm version](https://img.shields.io/npm/v/redux-beacon.svg)](https://www.npmjs.com/package/redux-beacon)
 [![CircleCI](https://img.shields.io/circleci/project/github/rangle/redux-beacon.svg)](https://circleci.com/gh/rangle/redux-beacon)
+
+> Analytics integration for Redux and ngrx/store
 
 ```bash
 npm install --save redux-beacon
 ```
 ----
 
-### Quick Start
+## How it works
 
-Redux-Beacon provides a way to map your Redux/ngrx actions to analytics
-events. Analytics events are generated from event definitions, which
-are mapped to actions in an event definitions map. Once generated,
-Redux-Beacon sends the analytics events to a given target (e.g. Google
-Analytics).
+Rendux-Beacon provides a way to map your Redux or ngrx actions to
+analytics events. Once generated, Redux-Beacon sends the analytics
+events to a given target (e.g. Google Analytics).
 
-For example, say your app uses Redux to manage its routes. Whenever a
-route changes it fires an action:
+Analytics events are defined in an event definition, and mapped to
+actions in an event definitions map:
 
 ```js
-{
-  type: 'LOCATION_CHANGE',
-  payload: '/some/new/route',
-}
-```
-
-This updates the `route` property in the Redux store:
-
-```js
-const initialState = {
-  route: '/home',
-}
-```
-
-Here's how you would set up Redux-Beacon to push a pageview event
-whenever the route changes:
-
-```js
-import { createStore, applyMiddleware } from 'redux';
-import { reducer } from './reducer';
-
-// Import createMiddleware and a target
-import { createMiddleware } from 'redux-beacon';
-import { GoogleAnalytics } from 'redux-beacon/targets/google-analytics';
-
-// Define an event
+// Event Definition
 const pageView = {
   eventFields: action => ({
     hitType: 'pageview',
@@ -67,26 +28,31 @@ const pageView = {
   }),
 };
 
-// Map the event to a Redux action
+// Event Definitions Map
 const eventsMap = {
-   LOCATION_CHANGE: pageView,
-};
-
-// Create the middleware
-const middleware = createMiddleware(eventsMap, GoogleAnalytics);
-
-// Apply the middleware when creating the Redux store
-const store = createStore(reducer, applyMiddleware(middleware));
-
-// Now, whenever the app dispatches the LOCATION_CHANGE action,
-// Redux-Beacon will create a pageview event and push it to the
-// Google Analytics target.
+  LOCATION_CHANGE: pageView,
+}
 ```
 
-### Documentation
-The [official docs](https://rangle.github.io/redux-beacon/) contain
-tutorials, examples, and a comprehensive API reference for the latest
-npm version.
+With the above event definitions map, Redux-Beacon will create a
+`pageView` event whenever an action with type `LOCATION_CHANGE` is
+fired, then it will push the generated event to a given target
+(e.g. Google Analytics).
 
-### License
-This project is licensed under the MIT License.
+## Quick Start
+ - [For Redux users]()
+ - [For ngrx/store users]()
+
+## Targets
+Redux-Beacon provides prebuilt targets for some popular analytics
+services:
+
+ - [Google Analytics]()
+ - [Google Tag Manager]()
+ - [Segment.io]()
+ - [_(React Native)_ Google Analytics]()
+ - [_(React Native)_ Google Tag Manager]()
+
+## Docs
+Check out the [project site](https://rangle.github.io/redux-beacon/)
+for API docs, tutorials, examples and more.
