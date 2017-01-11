@@ -1,5 +1,8 @@
 # Table of Contents
 
+* [Quick Start](docs/quick-start/index.md)
+  * [For Redux users](docs/quick-start/redux-users.md)
+  * [For ngrx users](docs/quick-start/ngrx-users.md)
 * [API Reference](docs/api/index.md)
   * [createMiddleware](docs/api/create-middleware.md)
   * [createMetaReducer](docs/api/create-meta-reducer.md)
