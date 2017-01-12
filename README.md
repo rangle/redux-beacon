@@ -1,4 +1,4 @@
-<img title="redux-beacon" src="logo/redux-beacon-logo-dark.png" width="38%">
+<img title="redux-beacon" src="logo/redux-beacon-logo-dark.png" width="33%">
 
 [![license](https://img.shields.io/github/license/rangle/redux-beacon.svg)](LICENSE)
 [![npm version](https://img.shields.io/npm/v/redux-beacon.svg)](https://www.npmjs.com/package/redux-beacon)
