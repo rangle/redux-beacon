@@ -1,13 +1,15 @@
-# Redux Beacon
+<img title="redux-beacon" src="logo/redux-beacon-logo-dark.png" width="33%">
+
 [![license](https://img.shields.io/github/license/rangle/redux-beacon.svg)](LICENSE)
 [![npm version](https://img.shields.io/npm/v/redux-beacon.svg)](https://www.npmjs.com/package/redux-beacon)
 [![CircleCI](https://img.shields.io/circleci/project/github/rangle/redux-beacon.svg)](https://circleci.com/gh/rangle/redux-beacon)
 
-> Analytics integration for Redux and ngrx/store
+Analytics integration for Redux and ngrx/store
 
 ```bash
 npm install --save redux-beacon
 ```
+
 ----
 
 ## How it works
