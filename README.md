@@ -1,4 +1,4 @@
-# <img title="redux-beacon" src="logo/redux-beacon-logo-dark.png" width="33%">
+# <img title="redux-beacon" src="logo/redux-beacon-logo-dark.png" width="32%">
 
 Analytics integration for Redux and ngrx/store
 
