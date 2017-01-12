@@ -1,4 +1,4 @@
-# <img title="redux-beacon" src="logo/redux-beacon-logo-dark.png" width="32%">
+# <a href="https://rangle.github.io/redux-beacon/"><img title="Redux-Beacon" src="https://raw.githubusercontent.com/rangle/redux-beacon/a46b988335ea5a817ba9d7ba0c4fff98fe30b57c/logo/redux-beacon-logo-dark.png" width="32%"></a>
 
 Analytics integration for Redux and ngrx/store
 
