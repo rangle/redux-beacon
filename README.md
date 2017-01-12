@@ -10,8 +10,6 @@ Analytics integration for Redux and ngrx/store
 npm install --save redux-beacon
 ```
 
-----
-
 ## How it works
 
 Rendux-Beacon provides a way to map your Redux or ngrx actions to
