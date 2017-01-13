@@ -53,7 +53,7 @@ const isConnected = state => state.isConnected;
 // create the offline storage extension
 const offlineStorage = offlineReactNative(AsyncStorage, isConnected);
 
-// initialize the Google Analytics target
+// initialize your target
 const target = GoogleAnalytics('UA-12345678-1', GoogleAnalyticsTracker);
 
 // create the analytics middleware
