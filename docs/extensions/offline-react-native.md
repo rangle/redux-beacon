@@ -17,11 +17,9 @@ import {
   NetInfo,
   AsyncStorage,
 } from 'react-native';
-import { createMiddleware, Extensions } from 'redux-gtm';
-import { GoogleTagManager } from 'react-native-google-analytics-bridge';
-
-// initialize your GTM container
-GoogleTagManager.openContainerWithID('GTM-XXXXXX');
+import { createMiddleware } from 'redux-beacon';
+import { GoogleAnalytics } from 'redux-beacon/extensions/offline-react-native';
+import { GoogleAnalyticsTracker } from 'react-native-google-analytics-bridge';
 
 // define Redux action types
 const UPDATE_CONNECTIVITY = 'UPDATE_CONNECTIVITY';
@@ -42,7 +40,7 @@ function reducer(state = initialState, action) {
 }
 
 // map your redux action types to analytics events
-const eventDefinitionsMap = {
+const eventsMap = {
   ...
 };
 
@@ -53,18 +51,14 @@ const eventDefinitionsMap = {
 const isConnected = state => state.isConnected;
 
 // create the offline storage extension
-const offlineStorage = Extensions.offlineReactNative(AsyncStorage, isConnected);
+const offlineStorage = offlineReactNative(AsyncStorage, isConnected);
 
-// create a custom data layer extension
-const customDataLayer = {
-  push: GoogleTagManager.pushDataLayerEvent,
-};
+// initialize the Google Analytics target
+const target = GoogleAnalytics('UA-12345678-1', GoogleAnalyticsTracker);
 
 // create the analytics middleware
-const middleware = createMiddleware(
-  eventDefinitionsMap,
-  { customDataLayer, offlineStorage }
-);
+const middleware = createMiddleware(eventsMap, GoogleAnalytics, { offlineStorage });
+
 // create the store
 const store = createStore(reducer, applyMiddleware(middleware));
 

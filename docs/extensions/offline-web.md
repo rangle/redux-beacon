@@ -14,7 +14,9 @@ offline.
 
 ```js
 import { createStore, applyMiddleware } from 'redux';
-import { createMiddleware, Extensions } from 'redux-gtm';
+import { createMiddleware } from 'redux-beacon';
+import { offlineWeb } from 'redux-beacon/extensions/offline-web';
+import { GoogleAnalytics } from 'redux-beacon/targets/google-analytics';
 
 // define Redux action types
 const UPDATE_CONNECTIVITY = 'UPDATE_CONNECTIVITY';
@@ -46,9 +48,9 @@ const eventDefinitionsMap = {
 const isConnected = state => state.isConnected;
 
 // create the offline storage extension
-const offlineStorage = Extensions.offlineWeb(isConnected);
+const offlineStorage = offlineWeb(isConnected);
 // create the analytics middleware
-const middleware = createMiddleware(eventDefinitionsMap, { offlineStorage });
+const middleware = createMiddleware(eventDefinitionsMap, GoogleAnalytics, { offlineStorage });
 // create the store
 const store = createStore(reducer, applyMiddleware(middleware));
 
