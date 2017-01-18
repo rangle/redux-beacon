@@ -20,6 +20,10 @@ function openDB(dbName, version) {
   });
 }
 
+function addTimestamp(events) {
+  return events.map(event => Object.assign({}, event, { timeSaved: new Date() }));
+}
+
 function save(events, db) {
   return new Promise((resolve, reject) => {
     const transaction = db.transaction(['EventsStore'], 'readwrite');
@@ -64,4 +68,4 @@ function offlineWeb(isConnected) {
   };
 }
 
-module.exports = { offlineWeb };
+module.exports = { offlineWeb, addTimestamp };
