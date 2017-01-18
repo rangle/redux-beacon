@@ -1,3 +1,5 @@
+const addTimestamp = require('../utils/add-timestamp');
+
 const DB_NAME = 'AnalyticsEvents';
 const DB_VERSION = 1;
 
@@ -20,16 +22,12 @@ function openDB(dbName, version) {
   });
 }
 
-function addTimestamp(events) {
-  return events.map(event => Object.assign({}, event, { timeSaved: new Date() }));
-}
-
 function save(events, db) {
   return new Promise((resolve, reject) => {
     const transaction = db.transaction(['EventsStore'], 'readwrite');
     const objectStore = transaction.objectStore('EventsStore');
 
-    const addEvents = objectStore.add(events);
+    const addEvents = objectStore.add(addTimestamp(events));
     addEvents.onsuccess = () => resolve(events);
     addEvents.onerror = reject;
   });
