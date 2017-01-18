@@ -1,8 +1,10 @@
 .DS_STORE
 .idea
-npm-debug.log
+npm-debug.log*
 _book
 coverage
 dist
 lib
 node_modules
+/targets
+/extensions
