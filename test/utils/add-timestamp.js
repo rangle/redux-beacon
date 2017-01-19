@@ -9,7 +9,7 @@ describe('addTimestamp', () => {
       const result = addTimestamp(events);
 
       const timestamp = result[0].timeSaved;
-      expect(moment.isDate(timestamp)).toBe(true);
+      expect(isNaN(timestamp)).toBe(false);
       expect(moment(timestamp).fromNow()).toEqual('a few seconds ago');
     });
 

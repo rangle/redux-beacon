@@ -18,4 +18,5 @@
   * [Segment.io](docs/targets/segment.md)
   * [(React Native) Google Analytics](docs/targets/react-native-google-analytics.md)
   * [(React Native) Google Tag Manager](docs/targets/react-native-google-tag-manager.md)
+* [Notes on Offline Events](docs/notes-on-offline-events.md)
 * [Migrating From ReduxGTM](docs/migrating-from-redux-gtm.md)
