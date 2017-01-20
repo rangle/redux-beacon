@@ -1,7 +1,7 @@
 /**
  * A function that sends an event to amplitude
  */
-export function amplitude(events: any[]): void;
+export function Amplitude(events: any[]): void;
 
 export type AmplitudeProp = string | number | null;
 

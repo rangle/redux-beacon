@@ -9,12 +9,13 @@
    [Google Tag Manager container snippet](https://developers.google.com/tag-manager/quickstart)
    to your site.
 
-3. Import the target, then provide it when creating the middleware:
+3. Import the target, then provide it when creating middleware or a meta reducer:
 
     ```js
     import { GoogleTagManager } from 'redux-beacon/targets/google-tag-manager';
 
-    const analyticsMiddleware = createMiddleware(eventsMap, GoogleTagManager);
+    const middleware = createMiddleware(eventsMap, GoogleTagManager);
+    const metaReducer = createMetaReducer(eventsMap, GoogleTagManager);
     ```
 
 > **Tip:**

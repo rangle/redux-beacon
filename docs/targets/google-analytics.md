@@ -17,12 +17,13 @@
     > [here](https://developers.google.com/analytics/devguides/collection/analyticsjs/debugging)
     > to enable it.
 
-3. Import the target, then provide it when creating the middleware:
+3. Import the target, then provide it when creating middleware or a meta reducer:
 
    ```js
    import { GoogleAnalytics } from 'redux-beacon/targets/google-analytics';
 
-   const analyticsMiddleware = createMiddleware(eventsMap, GoogleAnalytics);
+   const middleware = createMiddleware(eventsMap, GoogleAnalytics);
+   const metaReducer = createMetaReducer(eventsMap, GoogleAnalytics);
    ```
 
 ### Examples

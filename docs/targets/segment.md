@@ -14,12 +14,13 @@
     > [here](https://segment.com/docs/sources/website/analytics.js/#debug)
     > to enable it.
 
-3. Import the target, then provide it when creating the middleware:
+3. Import the target, then provide it when creating middleware or a meta reducer:
 
    ```js
    import { Segment } from 'redux-beacon/targets/segment';
 
-   const analyticsMiddleware = createMiddleware(eventsMap, Segment);
+   const middleware = createMiddleware(eventsMap, Segment);
+   const metaReducer = createMetaReducer(eventsMap, Segment);
    ```
 
 
