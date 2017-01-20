@@ -52,6 +52,7 @@ services:
  - [Segment.io](https://rangle.github.io/redux-beacon/docs/targets/segment.html)
  - [_(React Native)_ Google Analytics](https://rangle.github.io/redux-beacon/docs/targets/react-native-google-analytics.html)
  - [_(React Native)_ Google Tag Manager](https://rangle.github.io/redux-beacon/docs/targets/react-native-google-tag-manager.html)
+ - Amplitude
 
 ## Docs
 Check out the [project site](https://rangle.github.io/redux-beacon/)
