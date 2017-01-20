@@ -1,6 +1,6 @@
 {
   "name": "redux-beacon",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Analytics integration for Redux and ngrx/store",
   "main": "lib/index.js",
   "typings": "./index.d.ts",
@@ -10,7 +10,8 @@
     "index.d.ts",
     "lib",
     "src",
-    "targets"
+    "targets",
+    "utils"
   ],
   "scripts": {
     "docs:prepare": "gitbook install",
@@ -20,12 +21,13 @@
     "lint": "eslint src test",
     "test": "jest --watch && npm run lint",
     "check": "npm run lint && jest --coverage",
-    "clean": "rm -rf lib dist extensions targets coverage",
+    "clean": "rm -rf lib dist extensions targets coverage utils",
     "prebuild": "npm run clean",
     "build:cjs:main": "babel src/main --out-dir lib",
+    "build:cjs:utils": "babel src/utils --out-dir utils",
     "build:cjs:extensions": "babel src/extensions --out-dir extensions --copy-files",
     "build:cjs:targets": "babel src/targets --out-dir targets --copy-files",
-    "build:cjs": "npm run build:cjs:main && npm run build:cjs:extensions && npm run build:cjs:targets",
+    "build:cjs": "npm run build:cjs:main && npm run build:cjs:extensions && npm run build:cjs:targets && npm run build:cjs:utils",
     "build:umd:main": "webpack --config webpack.main.config.js",
     "build:umd:targets": "webpack --config webpack.targets.config.js",
     "build:umd:extensions": "webpack --config webpack.extensions.config.js",
