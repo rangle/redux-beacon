@@ -2,6 +2,16 @@
 
 Analytics integration for Redux and ngrx/store
 
+ * React Native support
+ * works well with React and Angular apps
+ * track analytics events offline
+ * centralize your analytics logic (keep action creators clean)
+ * send analytics events to multiple targets (e.g. Google Analytics)
+ * easily create your own custom targets.
+ * easily create your own extensions for logging, and offline event collection
+
+----
+
 [![CircleCI](https://img.shields.io/circleci/project/github/rangle/redux-beacon.svg)](https://circleci.com/gh/rangle/redux-beacon)
 [![npm version](https://img.shields.io/npm/v/redux-beacon.svg)](https://www.npmjs.com/package/redux-beacon)
 [![license](https://img.shields.io/github/license/rangle/redux-beacon.svg)](LICENSE)
