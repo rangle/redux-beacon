@@ -24,7 +24,7 @@ function reducer(state = initialState, action) {
   switch (action.type) {
     case 'UPDATE_CONNECTIVITY' {
       return Object.assign({}, state, { isConnected: action.payload });
-    },
+    }
     ...
     default:
       return state;
@@ -61,7 +61,7 @@ const isConnected = state => state.isConnected;
 Then, create the offline storage extension:
 
 ```js
-import { offlineWeb } from 'redux-beacon/extensions/offline-react-native';
+import { offlineWeb } from 'redux-beacon/extensions/offline-web';
 
 // pass in the connectivity selector as the first parameter
 const offlineStorage = offlineWeb(isConnected);

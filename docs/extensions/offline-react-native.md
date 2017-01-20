@@ -26,7 +26,7 @@ function reducer(state = initialState, action) {
   switch (action.type) {
     case 'UPDATE_CONNECTIVITY' {
       return Object.assign({}, state, { isConnected: action.payload });
-    },
+    }
     ...
     default:
       return state;
