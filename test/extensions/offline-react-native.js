@@ -30,7 +30,7 @@ describe('When saving events:', () => {
       const sampleSavedEvent = {
         hitType: 'pageview',
         page: '/home',
-        timeSaved: 'Wed Jan 18 2017 15:04:51 GMT-0500 (EST)',
+        timeSaved: '1484858459226',
       };
       const AsyncStorage = {
         getItem: () => Promise.resolve(JSON.stringify([sampleSavedEvent])),
