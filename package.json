@@ -76,6 +76,7 @@
   },
   "jest": {
     "testRegex": "(/test/.*\\.js)$",
+    "testPathIgnorePatterns": ["<rootDir>/_book/", "<rootDir>/node_modules/"],
     "collectCoverageFrom": [
       "src/**/*.js",
       "!**/extensions/**"
