@@ -21,7 +21,7 @@
     "lint": "eslint src test",
     "test": "jest --watch && npm run lint",
     "check": "npm run lint && jest --coverage",
-    "clean": "rm -rf lib dist extensions targets coverage utils",
+    "clean": "rm -rf lib dist extensions targets coverage utils _book",
     "prebuild": "npm run clean",
     "build:cjs:main": "babel src/main --out-dir lib",
     "build:cjs:utils": "babel src/utils --out-dir utils",
