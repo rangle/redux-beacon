@@ -33,8 +33,25 @@
 
 * If an event object doesn't have an `event` property, but
   has a `hitType` property, this target will create an `event`
-  property and set it to the `hitType` string.
+  property and set it to the `hitType` string. For example:
 
+  ```js
+  // Given the following event definition
+  const pageview = {
+    eventFields: action => ({
+      hitType: 'pageview',
+      page: action.payload,
+    }),
+  };
+  // Say the action is equal to
+  // { type: LOCATION_CHANGE, payload: '/home' }
+  // The following object will get pushed to the dataLayer
+  const dataLayerEvent = {
+    hitType: 'pageview',
+    event: 'pageview', // this is done automatically
+    page: '/home',
+  };
+  ```
   > **Tip:** This gives you the option to use the event interfaces
   > exposed by the [Google Analytics target](./google-analytics.md) in
   > your event definitions.
