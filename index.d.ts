@@ -54,3 +54,13 @@ export function createMetaReducer(
   target: Target,
   extensions?: Extensions
 ): any;
+
+/**
+ * Create events from an event definition.
+ * Use this function for testing your event definitions.
+ */
+export function createEvents(
+  eventDefinition: EventDefinition | Array<EventDefinition>,
+  prevState: any,
+  action: any,
+): Array<any>;
