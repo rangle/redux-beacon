@@ -1,6 +1,6 @@
 # Google Analytics
 
-### Usage Instructions
+### Set Up
 
 1. Sign up for Google Analytics if you haven't already, and
    [create a new web property](https://support.google.com/analytics/answer/1008015?hl=en). Make
@@ -25,6 +25,23 @@
    const middleware = createMiddleware(eventsMap, GoogleAnalytics);
    const metaReducer = createMetaReducer(eventsMap, GoogleAnalytics);
    ```
+
+### Usage
+
+Each event passed to the target is pushed to Google Analytics using
+the global tracker: `window.ga('send', [generated event])`. The
+generated event must have a `hitType` property specifying the type of
+analytics event and any other properties required for the event type.
+Please refer to the [analytics.js docs](https://developers.google.com/analytics/devguides/collection/analyticsjs/sending-hits)
+for a listing of the most common user interaction events, and their
+required properties.
+
+> **Tip:**
+> If you're using Typescript, there are typed interfaces for each of
+> the above events (see below). If you're not using Typescript, you
+> may want to quickly scan the type definitions instead of going
+> through the analytics.js docs:
+> [google-analytics/index.d.ts](https://github.com/rangle/redux-beacon/blob/master/src/targets/google-analytics/index.d.ts)
 
 ### Examples
   * [Google Analytics (Redux) Example](https://github.com/rangle/redux-beacon/tree/master/examples/google-analytics)
