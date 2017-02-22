@@ -2,13 +2,14 @@
 
 Analytics integration for Redux and ngrx/store
 
- * React Native support
- * works well with React and Angular apps
- * track analytics events offline
- * centralize your analytics logic (keep action creators clean)
- * send analytics events to multiple targets (e.g. Google Analytics)
- * easily create your own custom targets.
- * easily create your own extensions for logging, and offline event collection
+ * Use with any framework: React, Angular, and React Native
+ * Send analytics to mutiple targets including:
+   * Google Analytics
+   * Google Tag Manager
+   * Segment.io
+   * Amplitude
+ * Create your own extensions: custom targets, loggers, and offline
+   event collectors
 
 ----
 
@@ -22,9 +23,9 @@ npm install --save redux-beacon
 
 ## How it works
 
-Rendux-Beacon provides a way to map your Redux or ngrx actions to
-analytics events. Once generated, Redux-Beacon sends the analytics
-events to a given target (e.g. Google Analytics).
+Redux-Beacon maps your Redux or ngrx actions to analytics events. Once
+generated, Redux-Beacon sends the generated events to a target
+(e.g. Google Analytics).
 
 Analytics events are defined in an event definition, and mapped to
 actions in an event definitions map:
@@ -46,8 +47,8 @@ const eventsMap = {
 
 With the above event definitions map, Redux-Beacon will create a
 `pageView` event whenever an action with type `LOCATION_CHANGE` is
-fired, then it will push the generated event to a given target
-(e.g. Google Analytics).
+fired, then it will push the generated event to a target (e.g. Google
+Analytics).
 
 ## Quick Start
  - [For Redux users](https://rangle.github.io/redux-beacon/docs/quick-start/redux-users.html)
