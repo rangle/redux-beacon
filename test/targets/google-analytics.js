@@ -30,5 +30,20 @@ describe('Target: Google Analytics', () => {
       expect(window.ga).toHaveBeenCalledWith('send', events[0]);
       expect(window.ga).toHaveBeenCalledWith('send', events[1]);
     });
+    describe('on a page view hit', () => {
+      it('updates the tracker window.ga("set", "page", ...)', () => {
+        const events = [
+          {
+            hitType: 'pageview',
+            page: '/home',
+          },
+        ];
+
+        window.ga = jest.fn();
+        GoogleAnalytics(events);
+
+        expect(window.ga).toHaveBeenCalledWith('set', 'page', '/home');
+      });
+    });
   });
 });
