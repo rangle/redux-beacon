@@ -25,7 +25,7 @@
     "prebuild": "yarn run clean",
     "build:cjs:main": "babel src/main --out-dir lib",
     "build:cjs:utils": "babel src/utils --out-dir utils",
-    "build:cjs:extensions": "babel src/extensions --out-dir extensions --copy-files",
+    "build:cjs:extensions": "babel src/extensions --out-dir extensions --copy-files --ignore __tests__",
     "build:cjs:targets": "babel src/targets --out-dir targets --copy-files",
     "build:cjs": "yarn run build:cjs:main && yarn run build:cjs:extensions && yarn run build:cjs:targets && yarn run build:cjs:utils",
     "build:umd:main": "webpack --config webpack.main.config.js",
@@ -75,7 +75,7 @@
     "webpack": "^1.14.0"
   },
   "jest": {
-    "testRegex": "(/test/.*\\.js)$",
+    "testRegex": "(/__tests__/.*|/test/.*\\.js)$",
     "testPathIgnorePatterns": ["<rootDir>/_book/", "<rootDir>/node_modules/"],
     "collectCoverageFrom": [
       "src/**/*.js",
