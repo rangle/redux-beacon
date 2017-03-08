@@ -3,9 +3,9 @@ function makeStrConsole() {
   let isNested = false;
 
   function log(...messages) {
-    const newMessages = messages.map(msg =>
+    const newMessages = messages.map(msg => (
       typeof msg !== 'string' ? JSON.stringify(msg) : msg
-    ).join(' ');
+    )).join(' ');
 
     if (output.length > 0) {
       if (isNested) {

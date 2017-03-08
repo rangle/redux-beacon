@@ -76,10 +76,13 @@
   },
   "jest": {
     "testRegex": "(/__tests__/.*|/test/.*\\.js)$",
-    "testPathIgnorePatterns": ["<rootDir>/_book/", "<rootDir>/node_modules/"],
+    "testPathIgnorePatterns": [
+      "<rootDir>/_book/",
+      "<rootDir>/node_modules/",
+      "__snapshots__"
+    ],
     "collectCoverageFrom": [
-      "src/**/*.js",
-      "!**/extensions/**"
+      "src/**/*.js"
     ],
     "coverageThreshold": {
       "global": {
