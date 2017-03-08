@@ -15,7 +15,7 @@ function logEvents(events) {
       console.log(`%c (${index + 1})`, styles.label, event);
     });
     console.groupEnd('Events');
-  } else {
+  } else if (events.length === 1) {
     console.log('%c Event: ', styles.label, events[0]);
   }
 }
@@ -25,20 +25,22 @@ function logAction(action) {
 }
 
 function logger(events, action, state, isSavedOffline, wasSavedOffline) {
-  if (isSavedOffline) {
-    console.group('%c Analytics (pushed to offline storage)', styles.title.danger);
-    logAction(action);
-    logEvents(events);
-    console.groupEnd();
-  } else if (wasSavedOffline) {
-    console.group('%c Analytics (from offline storage)', styles.title.warning);
-    logEvents(events);
-    console.groupEnd();
-  } else {
-    console.group('%c Analytics', styles.title.primary);
-    logAction(action);
-    logEvents(events);
-    console.groupEnd();
+  if (events.length > 0) {
+    if (isSavedOffline) {
+      console.group('%c Analytics (pushed to offline storage)', styles.title.danger);
+      logAction(action);
+      logEvents(events);
+      console.groupEnd();
+    } else if (wasSavedOffline) {
+      console.group('%c Analytics (from offline storage)', styles.title.warning);
+      logEvents(events);
+      console.groupEnd();
+    } else {
+      console.group('%c Analytics', styles.title.primary);
+      logAction(action);
+      logEvents(events);
+      console.groupEnd();
+    }
   }
 }
 
