@@ -6,7 +6,7 @@
       "error", { "capIsNew": false }
     ],
     "import/no-extraneous-dependencies": [
-      "error", { "devDependencies": ["test/**/*.js"] }
+      "error", { "devDependencies": ["test/**/*.js", "**/*.test.js", "**/*.spec.js"] }
     ],
     "comma-dangle": [
       "error", {
