@@ -16,12 +16,12 @@ function logEvents(events) {
     });
     console.groupEnd('Events');
   } else if (events.length === 1) {
-    console.log('%c Event: ', styles.label, events[0]);
+    console.log('%c Event:', styles.label, events[0]);
   }
 }
 
 function logAction(action) {
-  console.log('%c Action: ', styles.label, action);
+  console.log('%c Action:', styles.label, action);
 }
 
 function logger(events, action, state, isSavedOffline, wasSavedOffline) {
