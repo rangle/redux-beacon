@@ -1,3 +1,12 @@
+function getTimestamp(sinceEpoch) {
+  const date = new Date(sinceEpoch);
+  return date
+    .toTimeString()
+    .match(/^\d\d:\d\d:\d\d/g)
+    .concat(date.getTime().toString().slice(-3))
+    .join('.');
+}
+
 const styles = {
   title: {
     primary: 'color: #1da1f2; font-weight: bold;',
@@ -25,18 +34,21 @@ function logAction(action) {
 }
 
 function logger(events, action, state, isSavedOffline, wasSavedOffline) {
+  const timestamp = getTimestamp(Date.now());
+  const title = `Analytics events @ ${timestamp} ${action.type}`;
+
   if (events.length > 0) {
     if (isSavedOffline) {
-      console.group('%c Analytics (pushed to offline storage)', styles.title.danger);
+      console.group(`%c ${title} (saved offline)`, styles.title.danger);
       logAction(action);
       logEvents(events);
       console.groupEnd();
     } else if (wasSavedOffline) {
-      console.group('%c Analytics (from offline storage)', styles.title.warning);
+      console.group(`%c ${title} (was offline)`, styles.title.warning);
       logEvents(events);
       console.groupEnd();
     } else {
-      console.group('%c Analytics', styles.title.primary);
+      console.group(`%c ${title}`, styles.title.primary);
       logAction(action);
       logEvents(events);
       console.groupEnd();
@@ -44,4 +56,5 @@ function logger(events, action, state, isSavedOffline, wasSavedOffline) {
   }
 }
 
-module.exports = { logger };
+
+module.exports = { logger, getTimestamp };
