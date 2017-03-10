@@ -66,6 +66,7 @@
     "eslint-plugin-import": "^2.0.1",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.4.1",
+    "fake-indexeddb": "^1.0.11",
     "fuzzy-equal": "^1.0.1",
     "gitbook-cli": "^2.3.0",
     "jest": "^19.0.2",
