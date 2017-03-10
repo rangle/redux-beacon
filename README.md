@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://rangle.github.io/redux-beacon/">
-    <img alt="Redux Beacon" src="http://localhost:8080/redux-beacon-logomark.png" width="150">
+    <img alt="Redux Beacon" src="https://raw.githubusercontent.com/rangle/redux-beacon/af4a88229194291f6b6c9f5311b86488f6b16f1d/logo/redux-beacon-logomark.png" width="150">
   </a>
 </p>
 
