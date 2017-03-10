@@ -1,21 +1,30 @@
-# <a href="https://rangle.github.io/redux-beacon/"><img title="Redux-Beacon" src="https://raw.githubusercontent.com/rangle/redux-beacon/a46b988335ea5a817ba9d7ba0c4fff98fe30b57c/logo/redux-beacon-logo-dark.png" width="32%"></a>
+<p align="center">
+  <a href="https://rangle.github.io/redux-beacon/">
+    <img alt="Redux Beacon" src="http://localhost:8080/redux-beacon-logomark.png" width="150">
+  </a>
+</p>
 
+<p align="center">
 Analytics integration for Redux and ngrx/store
+</p>
 
- * Use with any framework: React, Angular, and React Native
- * Send analytics to mutiple targets including:
+<p align="center">
+  <a href="https://circleci.com/gh/rangle/redux-beacon"><img src="https://img.shields.io/circleci/project/github/rangle/redux-beacon.svg"></a>
+  <a href="https://www.npmjs.com/package/redux-beacon"><img src="https://img.shields.io/npm/v/redux-beacon.svg"></a>
+  <a href="https://github.com/rangle/redux-beacon/blob/master/LICENSE"><img src="https://img.shields.io/github/license/rangle/redux-beacon.svg"></a>
+</p>
+
+----
+
+ * Works with Angular, React, and React Native
+ * Sends analytics events anywhere, including:
    * Google Analytics
    * Google Tag Manager
    * Segment.io
    * Amplitude
- * Create your own extensions: custom targets, loggers, and offline
-   event collectors
+ * Supports Typescript
 
 ----
-
-[![CircleCI](https://img.shields.io/circleci/project/github/rangle/redux-beacon.svg)](https://circleci.com/gh/rangle/redux-beacon)
-[![npm version](https://img.shields.io/npm/v/redux-beacon.svg)](https://www.npmjs.com/package/redux-beacon)
-[![license](https://img.shields.io/github/license/rangle/redux-beacon.svg)](LICENSE)
 
 ```bash
 npm install --save redux-beacon
