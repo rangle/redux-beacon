@@ -9,6 +9,12 @@ describe('logger()', () => {
   });
 
   Date.now = jest.fn(() => 1489105897006);
+  // toTimeString will return the time in the machine's timezone.
+  // The following stub ensures that the tests will work from any
+  // timezone. This is especially needed to make the tests pass on
+  // circle-ci.
+  /* eslint-disable no-extend-native */
+  Date.prototype.toTimeString = jest.fn(() => '19:31:37 GMT-0500 (EST)');
 
   const makeAction = () => ({ type: 'ROUTE_CHANGED', payload: '/home' });
 
