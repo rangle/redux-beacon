@@ -1,6 +1,6 @@
 {
   "name": "redux-beacon",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Analytics integration for Redux and ngrx/store",
   "main": "lib/index.js",
   "typings": "./index.d.ts",
