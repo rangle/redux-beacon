@@ -19,7 +19,7 @@
     "docs:build": "yarn run docs:prepare && rm -rf _book && gitbook build",
     "docs:publish": "yarn run docs:build && cd _book && git init && git commit --allow-empty -m 'Update docs' && git checkout -b gh-pages && git add . && git commit -am 'Update docs' && git push git@github.com:rangle/redux-beacon gh-pages --force",
     "lint": "eslint src test",
-    "test": "yarn run lint && jest --watch",
+    "test": "yarn run lint && jest --watch && yarn run lint",
     "check": "yarn run lint && jest --coverage",
     "clean": "rm -rf lib dist extensions targets coverage utils _book",
     "prebuild": "yarn run clean",

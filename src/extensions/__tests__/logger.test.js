@@ -1,18 +1,17 @@
-const {
-  logger,
-  getTimestamp,
-} = require('../logger');
 const { makeConsoleMock } = require('consolemock');
-
-beforeEach(() => {
-  /* eslint-disable no-global-assign */
-  console = makeConsoleMock();
-});
-
-const makeAction = () => ({ type: 'ROUTE_CHANGED', payload: '/home' });
+const { logger, getTimestamp } = require('../logger');
 
 /* eslint-disable no-console */
 describe('logger()', () => {
+  beforeEach(() => {
+    /* eslint-disable no-global-assign */
+    console = makeConsoleMock();
+  });
+
+  Date.now = jest.fn(() => 1489105897006);
+
+  const makeAction = () => ({ type: 'ROUTE_CHANGED', payload: '/home' });
+
   it('logs actions and any resulting analytics event', () => {
     const events = [{ hitType: 'pageview', page: '/home' }];
     const action = makeAction();
@@ -53,8 +52,7 @@ describe('logger()', () => {
 });
 
 describe('getTimestamp(date)', () => {
-  it('...', () => {
-    const date = new Date(1489105897606);
-    expect(getTimestamp(date)).toEqual('19:31:37.606');
+  it('returns a timestamp', () => {
+    expect(getTimestamp(1489105897606)).toEqual('19:31:37.606');
   });
 });
