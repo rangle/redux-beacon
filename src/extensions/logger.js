@@ -1,3 +1,8 @@
+function getTimestamp(date) {
+  const milliseconds = date.getTime().toString().slice(-3);
+  return date.toTimeString().match(/^\d\d:\d\d:\d\d/g)[0] + '.' + milliseconds;
+}
+
 const styles = {
   title: {
     primary: 'color: #1da1f2; font-weight: bold;',
@@ -44,4 +49,5 @@ function logger(events, action, state, isSavedOffline, wasSavedOffline) {
   }
 }
 
-module.exports = { logger };
+
+module.exports = { logger, getTimestamp };

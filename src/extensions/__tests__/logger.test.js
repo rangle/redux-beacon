@@ -1,4 +1,7 @@
-const { logger } = require('../logger');
+const {
+  logger,
+  getTimestamp,
+} = require('../logger');
 const { makeConsoleMock } = require('consolemock');
 
 beforeEach(() => {
@@ -46,5 +49,12 @@ describe('logger()', () => {
     const action = makeAction();
     logger(events, action);
     expect(console.printHistory()).toMatchSnapshot();
+  });
+});
+
+describe('getTimestamp(date)', () => {
+  it('...', () => {
+    const date = new Date(1489105897606);
+    expect(getTimestamp(date)).toEqual('19:31:37.606');
   });
 });
