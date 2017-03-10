@@ -1,4 +1,4 @@
-const addTimestamp = require('../utils/add-timestamp');
+const addTimestamp = require('../../utils/add-timestamp');
 
 const DB_NAME = 'AnalyticsEvents';
 const DB_VERSION = 1;

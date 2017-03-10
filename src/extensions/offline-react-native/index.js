@@ -1,4 +1,4 @@
-const addTimestamp = require('../utils/add-timestamp');
+const addTimestamp = require('../../utils/add-timestamp');
 
 const STORE_KEY = 'EventsStore';
 
