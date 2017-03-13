@@ -29,6 +29,14 @@ Analytics integration for Redux and ngrx/store
 ```bash
 npm install --save redux-beacon
 ```
+<p align="center">
+  <img src="https://cloud.githubusercontent.com/assets/7446702/23868943/b5a26442-07f7-11e7-935a-59048e02eb5b.gif">
+  <img src="https://cloud.githubusercontent.com/assets/7446702/23869223/949ae1b0-07f8-11e7-93fd-0b904f3660ea.gif">
+</p>
+
+## Quick Start
+ - [For Redux users](https://rangle.github.io/redux-beacon/docs/quick-start/redux-users.html)
+ - [For ngrx/store users](https://rangle.github.io/redux-beacon/docs/quick-start/ngrx-users.html)
 
 ## How it works
 
@@ -58,10 +66,6 @@ With the above event definitions map, Redux-Beacon will create a
 `pageView` event whenever an action with type `LOCATION_CHANGE` is
 fired, then it will push the generated event to a target (e.g. Google
 Analytics).
-
-## Quick Start
- - [For Redux users](https://rangle.github.io/redux-beacon/docs/quick-start/redux-users.html)
- - [For ngrx/store users](https://rangle.github.io/redux-beacon/docs/quick-start/ngrx-users.html)
 
 ## Targets
 Redux-Beacon provides prebuilt targets for some popular analytics
