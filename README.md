@@ -17,11 +17,12 @@ Analytics integration for Redux and ngrx/store
 ----
 
  * Works with Angular, React, and React Native
- * Sends analytics events anywhere, including:
+ * Supports _every_ analytics platform, including:
    * Google Analytics
    * Google Tag Manager
    * Segment.io
    * Amplitude
+ * Can track analytics offline
  * Supports Typescript
 
 ----
