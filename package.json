@@ -23,7 +23,7 @@
     "check": "yarn run lint && jest --coverage",
     "clean": "rm -rf lib dist extensions targets coverage utils _book",
     "prebuild": "yarn run clean",
-    "build:cjs:main": "babel src/main --out-dir lib",
+    "build:cjs:main": "babel src/main --out-dir lib --ignore __tests__",
     "build:cjs:utils": "babel src/utils --out-dir utils",
     "build:cjs:extensions": "babel src/extensions --out-dir extensions --copy-files --ignore __tests__",
     "build:cjs:targets": "babel src/targets --out-dir targets --copy-files",
