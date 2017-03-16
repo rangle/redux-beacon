@@ -1,4 +1,4 @@
-const createEvents = require('../../src/main/create-events');
+const createEvents = require('../create-events');
 
 describe('createEvents(eventDefinitions, prevState, action)', () => {
   describe('When the event definition is an empty object', () => {
@@ -92,6 +92,77 @@ describe('createEvents(eventDefinitions, prevState, action)', () => {
       const expected = 3;
       const actual = createEvents(eventDefinitions, prevState, action).length;
       expect(actual).toBe(expected);
+    });
+  });
+
+  describe('When eventFields returns undefined', () => {
+    it('returns an empty array', () => {
+      const eventDefinition = { eventFields() {} };
+      expect(createEvents(eventDefinition)).toEqual([]);
+    });
+  });
+
+  describe('When eventFields returns undefined (with eventSchema)', () => {
+    it('returns an empty array', () => {
+      const eventDefinition = {
+        eventFields() {},
+        eventSchema: {
+          someProp: val => val === 'hey',
+        },
+      };
+      expect(createEvents(eventDefinition)).toEqual([]);
+    });
+  });
+
+  describe('When eventFields returns null', () => {
+    it('returns an empty array', () => {
+      const eventDefinition = { eventFields: () => null };
+      expect(createEvents(eventDefinition)).toEqual([]);
+    });
+  });
+
+  describe('When eventFields returns a string', () => {
+    it('returns that string in an array', () => {
+      const eventDefinition = { eventFields: () => 'some string' };
+      expect(createEvents(eventDefinition)).toEqual(['some string']);
+    });
+    describe('with an eventSchema', () => {
+      const someProp = jest.fn();
+      const eventDefinition = {
+        eventFields: () => 'some string',
+        eventSchema: { someProp },
+      };
+
+      const events = createEvents(eventDefinition);
+
+      it('ignores the eventSchema', () => {
+        expect(someProp).not.toHaveBeenCalled();
+      });
+      it('still returns the string in an array', () => {
+        expect(events).toEqual(['some string']);
+      });
+    });
+  });
+
+  describe('When eventFields returns a number', () => {
+    it('returns that number in an array', () => {
+      const eventDefinition = { eventFields: () => 1234 };
+      expect(createEvents(eventDefinition)).toEqual([1234]);
+    });
+    describe('with an eventSchema', () => {
+      const someProp = jest.fn();
+      const eventDefinition = {
+        eventFields: () => 1234,
+        eventSchema: { someProp },
+      };
+      const events = createEvents(eventDefinition);
+
+      it('ignores the eventSchema', () => {
+        expect(someProp).not.toHaveBeenCalled();
+      });
+      it('still returns the number in an array', () => {
+        expect(events).toEqual([1234]);
+      });
     });
   });
 });

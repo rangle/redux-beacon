@@ -10,14 +10,14 @@ function createEvents(eventDefinitions, prevState, action) {
 
     const event = eventFields(action, prevState);
 
-    if (eventSchema !== undefined) {
+    if (eventSchema !== undefined && typeof event === 'object') {
       const eventPropIsValid = prop => eventSchema[prop](event[prop]);
       const isValidEvent = Object.keys(eventSchema).every(eventPropIsValid);
       return isValidEvent ? event : null;
     }
 
     return event;
-  }).filter(event => event !== null);
+  }).filter(event => event !== null && event !== undefined);
 }
 
 module.exports = createEvents;
