@@ -62,5 +62,5 @@ export function createMetaReducer(
 export function createEvents(
   eventDefinition: EventDefinition | Array<EventDefinition>,
   prevState: any,
-  action: any,
+  action: any
 ): Array<any>;
