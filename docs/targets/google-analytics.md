@@ -28,9 +28,9 @@
 
     > **Warning:**
     > the last line of the tracking snippet `ga('send', 'pageview')` hits Google
-    > Analytics with a page view that matches the first loaded route. Be sure to
-    > filter this first page view from your event definitions so the initial page
-    > load isn't recorded twice.
+    > Analytics with a page view that matches the first loaded route. If you're
+    > tracking page views using Redux Beacon, be sure to remove this line so the
+    > initial page load isn't recorded twice.
 
 ### Usage
 
