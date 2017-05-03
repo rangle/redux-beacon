@@ -1,168 +1,154 @@
 const createEvents = require('../create-events');
 
-describe('createEvents(eventDefinitions, prevState, action)', () => {
-  describe('When the event definition is an empty object', () => {
-    it('returns an empty array', () => {
-      const eventDefinitions = {};
-      const prevState = {};
-      const action = { type: 'SOME_ACTION_TYPE' };
+describe('createEvents(eventDef, prevState, action)', () => {
+  [
+    {
+      title: 'event definition is an empty object',
+      eventDef: {},
+      expected: [],
+    },
 
-      const expected = [];
-      const actual = createEvents(eventDefinitions, prevState, action);
-      expect(actual).toEqual(expected);
-    });
-  });
+    {
+      title: 'event definition is an empty array',
+      eventDef: [],
+      expected: [],
+    },
 
-  describe('When the event definition is an empty array', () => {
-    it('returns an empty array', () => {
-      const eventDefinitions = [];
-      const prevState = {};
-      const action = { type: 'SOME_ACTION_TYPE' };
+    {
+      title: 'basic event definition',
+      eventDef: {
+        eventFields: () => ({ event: 'pageview', route: '/login' }),
+      },
+      expected: [{ event: 'pageview', route: '/login' }],
+    },
 
-      const expected = [];
-      const actual = createEvents(eventDefinitions, prevState, action);
-      expect(actual).toEqual(expected);
-    });
-  });
+    {
+      title: 'event definition uses data from action',
+      eventDef: {
+        eventFields: action => ({ route: action.payload }),
+      },
+      action: { type: 'ROUTE_CHANGED', payload: '/home' },
+      expected: [{ route: '/home' }],
+    },
 
-  describe('When the event definition has an eventFields method', () => {
-    it('calls eventFields with (action, prevState)', () => {
-      const eventDefinitions = { eventFields: jest.fn() };
-      const prevState = { prop1: 'value1', prop2: 'value2' };
-      const action = { type: 'SOME_ACTION_TYPE' };
+    {
+      title: 'event definition uses data from prevState',
+      eventDef: {
+        eventFields: (_, prevState) => ({ something: prevState.whatever }),
+      },
+      prevState: { whatever: 'kent beck' },
+      expected: [{ something: 'kent beck' }],
+    },
 
-      createEvents(eventDefinitions, prevState, action);
-      expect(eventDefinitions.eventFields).toHaveBeenCalledWith(action, prevState);
-    });
-    it('takes whatever is returned by eventFields as the new event', () => {
-      const eventDefinitions = { eventFields: () => ({ prop: 'value 1' }) };
-      const prevState = {};
-      const action = { type: 'SOME_ACTION_TYPE' };
+    {
+      title: 'event definition uses data from prevState & action',
+      eventDef: {
+        eventFields: (action, prevState) => ({
+          referrer: prevState.route,
+          route: action.payload,
+        }),
+      },
+      prevState: { route: '/' },
+      action: { payload: '/checkout' },
+      expected: [{ referrer: '/', route: '/checkout' }],
+    },
 
-      const expected = [{ prop: 'value 1' }];
-      const actual = createEvents(eventDefinitions, prevState, action);
-      expect(actual).toEqual(expected);
-    });
-  });
+    {
+      title: 'event definition has a passing schema',
+      eventDef: {
+        eventFields: () => ({ event: 'pageview', route: '/login' }),
+        eventSchema: { route: value => value !== '/home' },
+      },
+      expected: [{ event: 'pageview', route: '/login' }],
+    },
 
-  describe('When the event definition has an eventSchema property', () => {
-    it('returns the event if it matches the schema', () => {
-      const eventDefinitions = {
-        eventFields() {
-          return { route: '/login' };
-        },
-        eventSchema: {
-          route: value => value !== '/my-account',
-        },
-      };
-      const prevState = {};
-      const action = { type: 'SOME_ACTION_TYPE' };
+    {
+      title: 'event definition has a failing schema',
+      eventDef: {
+        eventFields: () => ({ event: 'pageview', route: '/login' }),
+        eventSchema: { route: value => value !== '/login' },
+      },
+      expected: [],
+    },
 
-      const expected = [{ route: '/login' }];
-      const actual = createEvents(eventDefinitions, prevState, action);
-      expect(actual).toEqual(expected);
-    });
-    it('does not return the event if it does not match the schema', () => {
-      const eventDefinitions = {
-        eventFields() {
-          return { route: '/my-account' };
-        },
-        eventSchema: {
-          route: value => value !== '/my-account',
-        },
-      };
-      const prevState = {};
-      const action = { type: 'SOME_ACTION_TYPE' };
+    {
+      title: 'an array of event definitions',
+      eventDef: [
+        { eventFields: () => ({ hitType: 'pageview' }) },
+        { eventFields: () => ({ hitType: 'event' }) },
+        { eventFields: () => ({ hitType: 'timing' }) },
+      ],
+      expected: [
+        { hitType: 'pageview' },
+        { hitType: 'event' },
+        { hitType: 'timing' },
+      ],
+    },
 
-      const expected = [];
-      const actual = createEvents(eventDefinitions, prevState, action);
-      expect(actual).toEqual(expected);
-    });
-  });
+    {
+      title: "event definition's eventFields returns undefined",
+      eventDef: { eventFields: () => {} },
+      expected: [],
+    },
 
-  describe('When an array of event definitions is provided', () => {
-    it('creates an event for each event definition', () => {
-      const event1 = { eventFields: () => ({ hitType: 'pageview' }) };
-      const event2 = { eventFields: () => ({ hitType: 'event' }) };
-      const event3 = { eventFields: () => ({ hitType: 'timing' }) };
-      const eventDefinitions = [event1, event2, event3];
-      const prevState = {};
-      const action = { type: 'SOME_ACTION_TYPE' };
+    {
+      title: "event definition's eventFields returns undefined & has failing schema",
+      eventDef: {
+        eventFields: () => {},
+        eventSchema: { someProp: value => typeof value === 'string' },
+      },
+      expected: [],
+    },
 
-      const expected = 3;
-      const actual = createEvents(eventDefinitions, prevState, action).length;
-      expect(actual).toBe(expected);
-    });
-  });
+    {
+      title: "event definition's eventFields returns null",
+      eventDef: { eventFields: () => null },
+      expected: [],
+    },
 
-  describe('When eventFields returns undefined', () => {
-    it('returns an empty array', () => {
-      const eventDefinition = { eventFields() {} };
-      expect(createEvents(eventDefinition)).toEqual([]);
-    });
-  });
+    {
+      title: "event definition's eventFields returns a string",
+      eventDef: { eventFields: () => 'some string' },
+      expected: ['some string'],
+    },
 
-  describe('When eventFields returns undefined (with eventSchema)', () => {
-    it('returns an empty array', () => {
-      const eventDefinition = {
-        eventFields() {},
-        eventSchema: {
-          someProp: val => val === 'hey',
-        },
-      };
-      expect(createEvents(eventDefinition)).toEqual([]);
-    });
-  });
-
-  describe('When eventFields returns null', () => {
-    it('returns an empty array', () => {
-      const eventDefinition = { eventFields: () => null };
-      expect(createEvents(eventDefinition)).toEqual([]);
-    });
-  });
-
-  describe('When eventFields returns a string', () => {
-    it('returns that string in an array', () => {
-      const eventDefinition = { eventFields: () => 'some string' };
-      expect(createEvents(eventDefinition)).toEqual(['some string']);
-    });
-    describe('with an eventSchema', () => {
-      const someProp = jest.fn();
-      const eventDefinition = {
+    {
+      title: "event definition's eventFields returns a string & has failing schema",
+      eventDef: {
         eventFields: () => 'some string',
-        eventSchema: { someProp },
-      };
+        eventSchema: { someProp: value => value !== 'some string' },
+      },
+      expected: ['some string'],
+    },
 
-      const events = createEvents(eventDefinition);
+    {
+      title: "event definition's eventFields returns a number",
+      eventDef: { eventFields: () => 1234 },
+      expected: [1234],
+    },
 
-      it('ignores the eventSchema', () => {
-        expect(someProp).not.toHaveBeenCalled();
-      });
-      it('still returns the string in an array', () => {
-        expect(events).toEqual(['some string']);
-      });
-    });
-  });
-
-  describe('When eventFields returns a number', () => {
-    it('returns that number in an array', () => {
-      const eventDefinition = { eventFields: () => 1234 };
-      expect(createEvents(eventDefinition)).toEqual([1234]);
-    });
-    describe('with an eventSchema', () => {
-      const someProp = jest.fn();
-      const eventDefinition = {
+    {
+      title: "event definition's eventFields returns a number & has failing schema",
+      eventDef: {
         eventFields: () => 1234,
-        eventSchema: { someProp },
-      };
-      const events = createEvents(eventDefinition);
+        eventSchema: { someProp: value => value !== 1234 },
+      },
+      expected: [1234],
+    },
+  ].forEach((scenario) => {
+    const {
+      title,
+      eventDef,
+      prevState,
+      action,
+      expected,
+    } = scenario;
 
-      it('ignores the eventSchema', () => {
-        expect(someProp).not.toHaveBeenCalled();
-      });
-      it('still returns the number in an array', () => {
-        expect(events).toEqual([1234]);
-      });
+    test(title || 'no title', () => {
+      if (title === undefined || eventDef === undefined || expected === undefined) {
+        throw new Error('tests require title, eventDef, and expected keys');
+      }
+      expect(createEvents(eventDef, prevState || {}, action || {})).toEqual(expected);
     });
   });
 });
