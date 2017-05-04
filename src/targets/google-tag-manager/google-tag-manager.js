@@ -1,4 +1,7 @@
 function GoogleTagManager(events) {
+  if (typeof window === 'undefined' || !window.dataLayer || typeof window.dataLayer.push !== 'function') {
+    return;
+  }
   events.forEach((event) => {
     const eventToPush = (() => {
       if (event.event === undefined && event.hitType !== undefined) {
