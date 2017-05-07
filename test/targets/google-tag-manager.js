@@ -34,4 +34,11 @@ describe('Target: GoogleTagManager', () => {
       expect(window.dataLayer.push).toHaveBeenCalledWith(expected);
     });
   });
+
+  describe('When dataLayer is not defined', () => {
+    it('should throw an error informing the user.', () => {
+      const events = [{ hitType: 'pageview' }];
+      expect(() => GoogleTagManager(events)).toThrow('window.dataLayer is not defined. Have you forgotten to include Google Tag Manager and dataLayer?');
+    });
+  });
 });

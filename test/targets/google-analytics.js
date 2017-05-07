@@ -30,6 +30,7 @@ describe('Target: Google Analytics', () => {
       expect(window.ga).toHaveBeenCalledWith('send', events[0]);
       expect(window.ga).toHaveBeenCalledWith('send', events[1]);
     });
+
     describe('on a page view hit', () => {
       it('updates the tracker window.ga("set", "page", ...)', () => {
         const events = [
@@ -43,6 +44,18 @@ describe('Target: Google Analytics', () => {
         GoogleAnalytics(events);
 
         expect(window.ga).toHaveBeenCalledWith('set', 'page', '/home');
+      });
+    });
+
+    describe('When ga is not defined', () => {
+      it('should throw an error informing the user.', () => {
+        const events = [
+          {
+            hitType: 'pageview',
+            page: '/home',
+          },
+        ];
+        expect(() => GoogleAnalytics(events)).toThrow('window.ga is not defined, Have you forgotten to include Google Analytics?');
       });
     });
   });
