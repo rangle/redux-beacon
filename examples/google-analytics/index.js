@@ -3,20 +3,25 @@ const { createStore, applyMiddleware } = require('redux');
 // (Redux Beacon) imports
 const { createMiddleware } = require('redux-beacon');
 const { logger } = require('redux-beacon/extensions/logger');
+const { offlineWeb } = require('redux-beacon/extensions/offline-web');
 const { GoogleAnalytics } = require('redux-beacon/targets/google-analytics');
 
 const Actions = {
   PAGE_CHANGED: 'PAGE_CHANGED',
+  CONNECTIVITY_CHANGED: 'CONNECTIVITY_CHANGED',
 };
 
 const initialState = {
   currentPage: '/',
+  isConnected: true,
 };
 
 function reducer(state = initialState, action) {
   switch (action.type) {
     case Actions.PAGE_CHANGED:
       return Object.assign({}, state, { currentPage: action.payload });
+    case Actions.CONNECTIVITY_CHANGED:
+      return Object.assign({}, state, { isConnected: action.payload });
     default:
       return state;
   }
@@ -35,8 +40,15 @@ const eventsMap = {
   PAGE_CHANGED: pageView,
 };
 
+// (Redux Beacon) offlineWeb
+const offlineStorage = offlineWeb(state => state.isConnected);
+
 // (Redux Beacon) createMiddleware
-const analyticsMiddleware = createMiddleware(eventsMap, GoogleAnalytics, { logger });
+const analyticsMiddleware = createMiddleware(
+  eventsMap,
+  GoogleAnalytics,
+  { logger, offlineStorage }
+);
 
 const store = createStore(reducer, applyMiddleware(analyticsMiddleware));
 
@@ -71,4 +83,20 @@ document.getElementById('nav-link-news').addEventListener('click', function() {
 });
 document.getElementById('nav-link-magazine').addEventListener('click', function() {
   store.dispatch({ type: Actions.PAGE_CHANGED, payload: '/magazine' });
+});
+
+// --------------------------------------------------
+
+window.addEventListener('offline', () => {
+  store.dispatch({
+    type: Actions.CONNECTIVITY_CHANGED,
+    payload: false,
+  });
+});
+
+window.addEventListener('online', () => {
+  store.dispatch({
+    type: Actions.CONNECTIVITY_CHANGED,
+    payload: true,
+  });
 });
