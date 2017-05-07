@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://rangle.github.io/redux-beacon/">
-    <img alt="Redux Beacon" src="https://raw.githubusercontent.com/rangle/redux-beacon/af4a88229194291f6b6c9f5311b86488f6b16f1d/logo/redux-beacon-logomark.png" width="150">
+    <img alt="Redux Beacon" src="https://raw.githubusercontent.com/rangle/redux-beacon/af4a88229194291f6b6c9f5311b86488f6b16f1d/logo/redux-beacon-logomark.png" width="200">
   </a>
 </p>
 
@@ -14,36 +14,37 @@ Analytics integration for Redux and ngrx/store
   <a href="https://github.com/rangle/redux-beacon/blob/master/LICENSE"><img src="https://img.shields.io/github/license/rangle/redux-beacon.svg"></a>
 </p>
 
-----
-
- * Works with Angular, React, and React Native
- * Supports _every_ analytics platform, including:
+## Features
+ * Integrate with _any_ analytics service, including:
    * Google Analytics
    * Google Tag Manager
    * Segment.io
-   * Amplitude
- * Can track analytics offline
- * Supports Typescript
+ * Track analytics offline
+ * Decouple analytics logic from app logic
 
-----
+## Installation
 
 ```bash
 npm install --save redux-beacon
 ```
+## Demo
+
 <p align="center">
-  <img src="https://cloud.githubusercontent.com/assets/7446702/23868943/b5a26442-07f7-11e7-935a-59048e02eb5b.gif">
-  <img src="https://cloud.githubusercontent.com/assets/7446702/23869223/949ae1b0-07f8-11e7-93fd-0b904f3660ea.gif">
+  <img src="https://cloud.githubusercontent.com/assets/7446702/23868943/b5a26442-07f7-11e7-935a-59048e02eb5b.gif" width="750">
+  <img src="https://cloud.githubusercontent.com/assets/7446702/23869223/949ae1b0-07f8-11e7-93fd-0b904f3660ea.gif" width="750">
 </p>
 
 ## Quick Start
- - [For Redux users](https://rangle.github.io/redux-beacon/docs/quick-start/redux-users.html)
- - [For ngrx/store users](https://rangle.github.io/redux-beacon/docs/quick-start/ngrx-users.html)
+ - [I'm using Redux.](https://rangle.github.io/redux-beacon/docs/quick-start/redux-users.html)
+ - [I'm using ngrx/store.](https://rangle.github.io/redux-beacon/docs/quick-start/ngrx-users.html)
 
 ## How it works
 
-Redux-Beacon maps your Redux or ngrx actions to analytics events. Once
-generated, Redux-Beacon sends the generated events to a target
-(e.g. Google Analytics).
+<p align="center">
+  <img src="https://cloud.githubusercontent.com/assets/7446702/25776983/852cb482-329c-11e7-8196-e26b8664221c.png" width="600">
+</p>
+
+Redux Beacon maps redux/ngrx actions to analytics events then sends them to a target (e.g. Google Analytics).
 
 Analytics events are defined in an event definition, and mapped to
 actions in an event definitions map:
@@ -63,14 +64,11 @@ const eventsMap = {
 }
 ```
 
-With the above event definitions map, Redux-Beacon will create a
-`pageView` event whenever an action with type `LOCATION_CHANGE` is
-fired, then it will push the generated event to a target (e.g. Google
-Analytics).
+With the event definitions map above Redux Beacon will create a `pageView` event
+whenever redux/ngrx dispatches a `LOCATION_CHANGE` action, then it will push the
+generated analytics event to a target (e.g. Google Analytics).
 
-## Targets
-Redux-Beacon provides prebuilt targets for some popular analytics
-services:
+## Built-In Targets
 
  - [Google Analytics](https://rangle.github.io/redux-beacon/docs/targets/google-analytics.html)
  - [Google Tag Manager](https://rangle.github.io/redux-beacon/docs/targets/google-tag-manager.html)

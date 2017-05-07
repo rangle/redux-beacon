@@ -44,8 +44,7 @@ describe('logger()', () => {
 
   it('logs events that were saved offline with a helpful message', () => {
     const events = [{ hitType: 'pageview', page: '/' }];
-    const action = makeAction();
-    logger(events, action, {}, false, true);
+    logger(events, null, null, false, true);
     expect(console.printHistory()).toMatchSnapshot();
   });
 

@@ -25,7 +25,7 @@ GROUP %c Analytics events @ 19:31:37.006 ROUTE_CHANGED (saved offline), color: #
 
 exports[`logger() logs events that were saved offline with a helpful message 1`] = `
 "
-GROUP %c Analytics events @ 19:31:37.006 ROUTE_CHANGED (was offline), color: #F39237; font-weight: bold;
+GROUP %c Analytics events @ 19:31:37.006  (was offline), color: #F39237; font-weight: bold;
   LOG %c Event:, color: #93748A; font-weight: bold;, {hitType: 'pageview', page: '/'}"
 `;
 
