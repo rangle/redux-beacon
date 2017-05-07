@@ -47,10 +47,15 @@ describe('Target: Google Analytics', () => {
       });
     });
 
-    describe('If window does not exist', () => {
-      it('should just silently not send events', () => {
-        const events = [{ hitType: 'pageview' }];
-        expect(() => GoogleAnalytics(events)).not.toThrow();
+    describe('When ga is not defined', () => {
+      it('should throw an error informing the user.', () => {
+        const events = [
+          {
+            hitType: 'pageview',
+            page: '/home',
+          },
+        ];
+        expect(() => GoogleAnalytics(events)).toThrow('window.ga is not defined, Have you forgotten to include Google Analytics?');
       });
     });
   });

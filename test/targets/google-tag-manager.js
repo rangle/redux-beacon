@@ -35,10 +35,10 @@ describe('Target: GoogleTagManager', () => {
     });
   });
 
-  describe('If window does not exist', () => {
-    it('should just silently not send events', () => {
+  describe('When dataLayer is not defined', () => {
+    it('should throw an error informing the user.', () => {
       const events = [{ hitType: 'pageview' }];
-      expect(() => GoogleTagManager(events)).not.toThrow();
+      expect(() => GoogleTagManager(events)).toThrow('window.dataLayer is not defined. Have you forgotten to include Google Tag Manager and dataLayer?');
     });
   });
 });
