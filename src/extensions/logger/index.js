@@ -35,7 +35,7 @@ function logAction(action) {
 
 function logger(events, action, state, isSavedOffline, wasSavedOffline) {
   const timestamp = getTimestamp(Date.now());
-  const title = `Analytics events @ ${timestamp} ${action.type}`;
+  const title = `Analytics events @ ${timestamp} ${action ? action.type : ''}`;
 
   if (events.length > 0) {
     if (isSavedOffline) {
