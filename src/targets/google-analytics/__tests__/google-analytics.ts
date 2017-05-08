@@ -5,7 +5,7 @@ import {
   UserTiming,
   SocialInteraction,
   Exception,
-} from '../../../src/targets/google-analytics';
+} from '../';
 
 GoogleAnalytics([]);
 

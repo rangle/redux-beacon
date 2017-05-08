@@ -1,10 +1,8 @@
-const { GoogleTagManager } = require('../../src/targets/google-tag-manager');
+const { GoogleTagManager } = require('../google-tag-manager');
 
-describe('Target: GoogleTagManager', () => {
-  beforeEach(() => {
-    window.dataLayer = undefined;
-  });
+beforeEach(() => { window.dataLayer = undefined; });
 
+describe('GoogleTagManager(events)', () => {
   describe('When given an array of events', () => {
     it('pushes those events to the data layer', () => {
       const events = [

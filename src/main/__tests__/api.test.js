@@ -2,7 +2,7 @@ const {
   createMiddleware,
   createMetaReducer,
   createEvents,
-} = require('../../src/main');
+} = require('../');
 
 describe('API', () => {
   it('Exposes Redux Beacon correctly', () => {

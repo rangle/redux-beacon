@@ -1,6 +1,4 @@
-const {
-  Amplitude,
-} = require('../../src/targets/amplitude');
+const { Amplitude } = require('../amplitude');
 
 describe('Target: Amplitude', () => {
   const instanceMock = {

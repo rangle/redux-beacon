@@ -1,5 +1,5 @@
 const { createStore } = require('redux');
-const createMetaReducer = require('../../src/main/create-meta-reducer');
+const createMetaReducer = require('../create-meta-reducer');
 
 describe('createMetaReducer(eventDefinitionsMap, target, extensions?)', () => {
   describe('When ngrx/store dispatches an action that has an event definition', () => {

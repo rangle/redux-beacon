@@ -1,5 +1,5 @@
 const moment = require('moment');
-const { addTimestamp } = require('../../src/extensions/offline-web');
+const { addTimestamp } = require('../add-timestamp');
 
 describe('addTimestamp', () => {
   describe('When given an array of event objects', () => {

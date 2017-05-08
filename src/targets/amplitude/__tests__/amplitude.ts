@@ -10,6 +10,6 @@ import {
   SetVersionName,
   Identify,
   LogRevenueV2,
-} from '../../../src/targets/amplitude';
+} from '../';
 
 Amplitude([]);

@@ -1,4 +1,4 @@
-const { GoogleTagManager } = require('../../../src/targets/react-native/google-tag-manager');
+const { GoogleTagManager } = require('../google-tag-manager');
 
 describe('GoogleTagManager(trackingId, GTMBridge)', () => {
   describe('When given an array of events', () => {

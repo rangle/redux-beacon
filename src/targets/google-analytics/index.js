@@ -1,3 +1,1 @@
-const { GoogleAnalytics } = require('./google-analytics');
-
-module.exports = { GoogleAnalytics };
+module.exports = require('./google-analytics');

@@ -1,5 +1,5 @@
 const { createStore, applyMiddleware } = require('redux');
-const createMiddleware = require('../../src/main/create-middleware');
+const createMiddleware = require('../create-middleware');
 
 describe('createMiddleware(eventDefinitionsMap, target, extensions?)', () => {
   describe('When Redux dispatches an action that has an event definition', () => {

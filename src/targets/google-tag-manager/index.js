@@ -1,3 +1,1 @@
-const { GoogleTagManager } = require('./google-tag-manager');
-
-module.exports = { GoogleTagManager };
+module.exports = require('./google-tag-manager');

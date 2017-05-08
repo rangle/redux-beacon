@@ -5,16 +5,16 @@ import {
   EventDefinitionsMap,
   EventDefinition,
   EventSchema,
-} from '../../index.d';
+} from '../../../index.d';
 
-import { logger } from '../../src/extensions/logger';
-import { offlineWeb } from '../../src/extensions/offline-web';
-import { offlineReactNative } from '../../src/extensions/offline-react-native';
+import { logger } from '../../extensions/logger';
+import { offlineWeb } from '../../extensions/offline-web';
+import { offlineReactNative } from '../../extensions/offline-react-native';
 
 // --------------------------------------------------
 
-const eventSchema = {
-  event: () => true
+const eventSchema: EventSchema = {
+  event: () => true,
 };
 
 const eventDefinition: EventDefinition = {
