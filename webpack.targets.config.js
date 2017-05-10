@@ -12,6 +12,7 @@ module.exports = {
 
   entry: {
     'google-analytics': './src/targets/google-analytics',
+    'cordova-google-analytics': './src/targets/cordova-google-analytics',
     'google-tag-manager': './src/targets/google-tag-manager',
     'segment': './src/targets/segment',
   },
