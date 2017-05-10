@@ -1,6 +1,6 @@
 const {
   CordovaGoogleAnalytics,
-} = require('../../src/targets/cordova-google-analytics');
+} = require('../cordova-google-analytics');
 
 describe('Target: Cordova Google Analytics', () => {
   beforeEach(() => {
