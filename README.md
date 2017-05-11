@@ -79,7 +79,7 @@ Redux Beacon provides extensions to help handle intermittent outages in
 connectivity. These extensions place events in a persistent store when offline
 (e.g indexedDB). When back online, the extensions purge the store and pass the
 events off to a target. Read more about offline event collection in the
-[docs](http://localhost:4000/docs/extensions/offline-web.html).
+[docs](https://rangle.github.io/redux-beacon/docs/extensions/offline-web.html).
 
 ## Built-In Targets
 
