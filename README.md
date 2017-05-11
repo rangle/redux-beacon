@@ -68,6 +68,19 @@ With the event definitions map above Redux Beacon will create a `pageView` event
 whenever redux/ngrx dispatches a `LOCATION_CHANGE` action, then it will push the
 generated analytics event to a target (e.g. Google Analytics).
 
+## Offline Event Collection
+<p align="center">
+  <a href="https://rangle.github.io/redux-beacon/docs/notes-on-offline-events.html">
+    <img src="https://cloud.githubusercontent.com/assets/7446702/25926466/60728c2e-35bd-11e7-85b2-7e265c968202.png" width="700">
+  </a>
+</p>
+
+Redux Beacon provides extensions to help handle intermittent outages in
+connectivity. These extensions place events in a persistent store when offline
+(e.g indexedDB). When back online, the extensions purge the store and pass the
+events off to a target. Read more about offline event collection in the
+[docs](https://rangle.github.io/redux-beacon/docs/extensions/offline-web.html).
+
 ## Built-In Targets
 
  - [Google Analytics](https://rangle.github.io/redux-beacon/docs/targets/google-analytics.html)
