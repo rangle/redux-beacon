@@ -69,11 +69,17 @@ whenever redux/ngrx dispatches a `LOCATION_CHANGE` action, then it will push the
 generated analytics event to a target (e.g. Google Analytics).
 
 ## Offline Event Collection
-Redux Beacon comes with two extensions for measuring offline events, one for web
-apps, and one for native apps. Both extensions read the app's connection status
-from state, they record events in a persistent storage service when the app is
-offline, and they push the events to an analytics target when the app is back
-online.
+<p align="center">
+  <a href="https://rangle.github.io/redux-beacon/docs/notes-on-offline-events.html">
+    <img src="https://cloud.githubusercontent.com/assets/7446702/25926466/60728c2e-35bd-11e7-85b2-7e265c968202.png" width="700">
+  </a>
+</p>
+
+Redux Beacon provides extensions to help handle intermittent outages in
+connectivity. These extensions place events in a persistent store when offline
+(e.g indexedDB). When back online, the extensions purge the store and pass the
+events off to a target. Read more about offline event collection in the
+[docs](http://localhost:4000/docs/extensions/offline-web.html).
 
 ## Built-In Targets
 
