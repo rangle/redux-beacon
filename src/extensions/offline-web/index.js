@@ -1,1 +1,1 @@
-module.export = require('./offline-web');
+module.exports = require('./offline-web');
