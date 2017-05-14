@@ -1,7 +1,7 @@
 const path = require('path');
 const readFile = require('fs').readFileSync;
 const run = require('child_process').execSync;
-const childProcess = require('child_process');
+
 const log = console.log;
 const baseDir = process.cwd();
 
