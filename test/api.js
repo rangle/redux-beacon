@@ -1,4 +1,6 @@
 const assert = require('assert');
+const path = require('path');
+const { check } = require('typings-tester');
 
 [
   ['redux-beacon', 'createMiddleware', 'createMetaReducer', 'createEvents'],
@@ -16,3 +18,7 @@ const assert = require('assert');
   assert.doesNotThrow(() => require(base), base);
   routes.forEach(route => assert.ok(require(base)[route], `${base}.${route}`));
 });
+
+const tsFile = path.join(__dirname, 'api.ts');
+const tsConfigFile = path.join(__dirname, 'tsconfig.json');
+check([tsFile], tsConfigFile);
