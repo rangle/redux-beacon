@@ -14,6 +14,7 @@
     "utils"
   ],
   "scripts": {
+    "test-package": "node ./test-package",
     "docs:prepare": "gitbook install",
     "docs:watch": "yarn run docs:prepare && gitbook serve",
     "docs:build": "yarn run docs:prepare && rm -rf _book && gitbook build",
