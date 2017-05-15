@@ -11,14 +11,17 @@ module.exports = {
   },
 
   entry: {
-    'google-analytics': './src/targets/google-analytics',
-    'cordova-google-analytics': './src/targets/cordova-google-analytics',
-    'google-tag-manager': './src/targets/google-tag-manager',
-    'segment': './src/targets/segment',
+    'dist/redux-beacon': './src/main/index',
+    'targets/dist/segment': './src/targets/segment',
+    'targets/dist/google-tag-manager': './src/targets/google-tag-manager',
+    'targets/dist/google-analytics': './src/targets/google-analytics',
+    'targets/dist/cordova-google-analytics': './src/targets/cordova-google-analytics',
+    'extensions/dist/logger': './src/extensions/logger',
+    'extensions/dist/offline-web': './src/extensions/offline-web',
   },
 
   output: {
-    path: path.join(__dirname, 'targets/dist'),
+    path: path.join(__dirname, './'),
     filename: isProdBuild ? '[name].umd.min.js' : '[name].umd.js',
     libraryTarget: 'umd',
   },
