@@ -1,0 +1,832 @@
+{
+  "exportFormatVersion": 2,
+  "exportTime": "2017-01-09 21:40:15",
+  "containerVersion": {
+    "path": "accounts/999074954/containers/6171185/versions/0",
+    "accountId": "999074954",
+    "containerId": "6171185",
+    "containerVersionId": "0",
+    "container": {
+      "path": "accounts/999074954/containers/6171185",
+      "accountId": "999074954",
+      "containerId": "6171185",
+      "name": "angular-redux-exmple-web",
+      "publicId": "GTM-W5RKGL3",
+      "usageContext": [
+        "WEB"
+      ],
+      "fingerprint": "1483998009030",
+      "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/999074954/containers/6171185/workspaces?apiLink=container"
+    },
+    "tag": [
+      {
+        "accountId": "999074954",
+        "containerId": "6171185",
+        "tagId": "1",
+        "name": "GAEvents",
+        "type": "ua",
+        "parameter": [
+          {
+            "type": "BOOLEAN",
+            "key": "nonInteraction",
+            "value": "false"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "doubleClick",
+            "value": "false"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "setTrackerName",
+            "value": "false"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "useDebugVersion",
+            "value": "false"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "eventValue",
+            "value": "{{eventValue}}"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "eventCategory",
+            "value": "{{eventCategory}}"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "trackType",
+            "value": "TRACK_EVENT"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "enableLinkId",
+            "value": "false"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "eventAction",
+            "value": "{{eventAction}}"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "eventLabel",
+            "value": "{{eventLabel}}"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "enableEcommerce",
+            "value": "false"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "trackingId",
+            "value": "{{GA_TRACKING_ID}}"
+          }
+        ],
+        "fingerprint": "1482522179891",
+        "firingTriggerId": [
+          "5"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT"
+      },
+      {
+        "accountId": "999074954",
+        "containerId": "6171185",
+        "tagId": "2",
+        "name": "GAPageViews",
+        "type": "ua",
+        "parameter": [
+          {
+            "type": "BOOLEAN",
+            "key": "doubleClick",
+            "value": "false"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "setTrackerName",
+            "value": "false"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "useDebugVersion",
+            "value": "false"
+          },
+          {
+            "type": "LIST",
+            "key": "fieldsToSet",
+            "list": [
+              {
+                "type": "MAP",
+                "map": [
+                  {
+                    "type": "TEMPLATE",
+                    "key": "fieldName",
+                    "value": "title"
+                  },
+                  {
+                    "type": "TEMPLATE",
+                    "key": "value",
+                    "value": "{{title}}"
+                  }
+                ]
+              },
+              {
+                "type": "MAP",
+                "map": [
+                  {
+                    "type": "TEMPLATE",
+                    "key": "fieldName",
+                    "value": "location"
+                  },
+                  {
+                    "type": "TEMPLATE",
+                    "key": "value",
+                    "value": "{{location}}"
+                  }
+                ]
+              },
+              {
+                "type": "MAP",
+                "map": [
+                  {
+                    "type": "TEMPLATE",
+                    "key": "fieldName",
+                    "value": "cookieDomain"
+                  },
+                  {
+                    "type": "TEMPLATE",
+                    "key": "value",
+                    "value": "none"
+                  }
+                ]
+              },
+              {
+                "type": "MAP",
+                "map": [
+                  {
+                    "type": "TEMPLATE",
+                    "key": "fieldName",
+                    "value": "page"
+                  },
+                  {
+                    "type": "TEMPLATE",
+                    "key": "value",
+                    "value": "{{page}}"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "useHashAutoLink",
+            "value": "false"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "trackType",
+            "value": "TRACK_PAGEVIEW"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "decorateFormsAutoLink",
+            "value": "false"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "enableLinkId",
+            "value": "false"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "enableEcommerce",
+            "value": "false"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "trackingId",
+            "value": "{{GA_TRACKING_ID}}"
+          }
+        ],
+        "fingerprint": "1483998002094",
+        "firingTriggerId": [
+          "6"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT"
+      },
+      {
+        "accountId": "999074954",
+        "containerId": "6171185",
+        "tagId": "3",
+        "name": "GATiming",
+        "type": "ua",
+        "parameter": [
+          {
+            "type": "BOOLEAN",
+            "key": "doubleClick",
+            "value": "false"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "setTrackerName",
+            "value": "false"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "useDebugVersion",
+            "value": "false"
+          },
+          {
+            "type": "LIST",
+            "key": "fieldsToSet",
+            "list": [
+              {
+                "type": "MAP",
+                "map": [
+                  {
+                    "type": "TEMPLATE",
+                    "key": "fieldName",
+                    "value": "cookieDomain"
+                  },
+                  {
+                    "type": "TEMPLATE",
+                    "key": "value",
+                    "value": "none"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "trackType",
+            "value": "TRACK_TIMING"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "timingLabel",
+            "value": "{{timingLabel}}"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "enableLinkId",
+            "value": "false"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "timingCategory",
+            "value": "{{timingCategory}}"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "timingVar",
+            "value": "{{timingVar}}"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "timingValue",
+            "value": "{{timingValue}}"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "trackingId",
+            "value": "{{GA_TRACKING_ID}}"
+          }
+        ],
+        "fingerprint": "1482522179894",
+        "firingTriggerId": [
+          "7"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT"
+      }
+    ],
+    "trigger": [
+      {
+        "accountId": "999074954",
+        "containerId": "6171185",
+        "triggerId": "5",
+        "name": "Event",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "event"
+              }
+            ]
+          }
+        ],
+        "filter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{hitType}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "event"
+              }
+            ]
+          }
+        ],
+        "fingerprint": "1483996156253"
+      },
+      {
+        "accountId": "999074954",
+        "containerId": "6171185",
+        "triggerId": "6",
+        "name": "PageView",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "pageview"
+              }
+            ]
+          }
+        ],
+        "filter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{hitType}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "pageview"
+              }
+            ]
+          }
+        ],
+        "fingerprint": "1483996164562"
+      },
+      {
+        "accountId": "999074954",
+        "containerId": "6171185",
+        "triggerId": "7",
+        "name": "Timing",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "timing"
+              }
+            ]
+          }
+        ],
+        "filter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{hitType}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "timing"
+              }
+            ]
+          }
+        ],
+        "fingerprint": "1483996172453"
+      }
+    ],
+    "variable": [
+      {
+        "accountId": "999074954",
+        "containerId": "6171185",
+        "variableId": "2",
+        "name": "GA_TRACKING_ID",
+        "type": "c",
+        "parameter": [
+          {
+            "type": "TEMPLATE",
+            "key": "value",
+            "value": "UA-88271601-1"
+          }
+        ],
+        "fingerprint": "1482522179888"
+      },
+      {
+        "accountId": "999074954",
+        "containerId": "6171185",
+        "variableId": "3",
+        "name": "eventAction",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "setDefaultValue",
+            "value": "true"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "defaultValue",
+            "value": "unknown action"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "eventAction"
+          }
+        ],
+        "fingerprint": "1482522179888"
+      },
+      {
+        "accountId": "999074954",
+        "containerId": "6171185",
+        "variableId": "4",
+        "name": "eventCategory",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "setDefaultValue",
+            "value": "true"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "defaultValue",
+            "value": "unknown category"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "eventCategory"
+          }
+        ],
+        "fingerprint": "1482522179889"
+      },
+      {
+        "accountId": "999074954",
+        "containerId": "6171185",
+        "variableId": "5",
+        "name": "eventLabel",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "setDefaultValue",
+            "value": "true"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "defaultValue",
+            "value": "unknown label"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "eventLabel"
+          }
+        ],
+        "fingerprint": "1482522179889"
+      },
+      {
+        "accountId": "999074954",
+        "containerId": "6171185",
+        "variableId": "6",
+        "name": "eventValue",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "setDefaultValue",
+            "value": "true"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "defaultValue",
+            "value": "unknown value"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "eventValue"
+          }
+        ],
+        "fingerprint": "1482522179889"
+      },
+      {
+        "accountId": "999074954",
+        "containerId": "6171185",
+        "variableId": "1",
+        "name": "hitType",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "setDefaultValue",
+            "value": "false"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "hitType"
+          }
+        ],
+        "fingerprint": "1482522179887"
+      },
+      {
+        "accountId": "999074954",
+        "containerId": "6171185",
+        "variableId": "7",
+        "name": "location",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "setDefaultValue",
+            "value": "false"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "location"
+          }
+        ],
+        "fingerprint": "1482522179889"
+      },
+      {
+        "accountId": "999074954",
+        "containerId": "6171185",
+        "variableId": "8",
+        "name": "page",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "setDefaultValue",
+            "value": "true"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "defaultValue",
+            "value": "unknown page"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "page"
+          }
+        ],
+        "fingerprint": "1482522179889"
+      },
+      {
+        "accountId": "999074954",
+        "containerId": "6171185",
+        "variableId": "9",
+        "name": "timingCategory",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "setDefaultValue",
+            "value": "true"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "defaultValue",
+            "value": "unknown category"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "timingCategory"
+          }
+        ],
+        "fingerprint": "1482522179889"
+      },
+      {
+        "accountId": "999074954",
+        "containerId": "6171185",
+        "variableId": "10",
+        "name": "timingLabel",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "setDefaultValue",
+            "value": "true"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "defaultValue",
+            "value": "unknown label"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "timingLabel"
+          }
+        ],
+        "fingerprint": "1482522179890"
+      },
+      {
+        "accountId": "999074954",
+        "containerId": "6171185",
+        "variableId": "11",
+        "name": "timingValue",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "setDefaultValue",
+            "value": "true"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "defaultValue",
+            "value": "unknown value"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "timingValue"
+          }
+        ],
+        "fingerprint": "1482522179890"
+      },
+      {
+        "accountId": "999074954",
+        "containerId": "6171185",
+        "variableId": "12",
+        "name": "timingVar",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "setDefaultValue",
+            "value": "true"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "defaultValue",
+            "value": "unknown var"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "timingVar"
+          }
+        ],
+        "fingerprint": "1482522179890"
+      },
+      {
+        "accountId": "999074954",
+        "containerId": "6171185",
+        "variableId": "13",
+        "name": "title",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "setDefaultValue",
+            "value": "false"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "title"
+          }
+        ],
+        "fingerprint": "1482522179890"
+      }
+    ],
+    "builtInVariable": [
+      {
+        "accountId": "999074954",
+        "containerId": "6171185",
+        "type": "PAGE_URL",
+        "name": "Page URL"
+      },
+      {
+        "accountId": "999074954",
+        "containerId": "6171185",
+        "type": "PAGE_HOSTNAME",
+        "name": "Page Hostname"
+      },
+      {
+        "accountId": "999074954",
+        "containerId": "6171185",
+        "type": "PAGE_PATH",
+        "name": "Page Path"
+      },
+      {
+        "accountId": "999074954",
+        "containerId": "6171185",
+        "type": "REFERRER",
+        "name": "Referrer"
+      },
+      {
+        "accountId": "999074954",
+        "containerId": "6171185",
+        "type": "EVENT",
+        "name": "Event"
+      }
+    ],
+    "fingerprint": "0",
+    "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/999074954/containers/6171185/versions/0?apiLink=version"
+  }
+}
