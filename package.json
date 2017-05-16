@@ -29,15 +29,9 @@
     "build:cjs:extensions": "babel src/extensions --out-dir extensions --copy-files --ignore __tests__",
     "build:cjs:targets": "babel src/targets --out-dir targets --copy-files --ignore __tests__",
     "build:cjs": "yarn run build:cjs:main && yarn run build:cjs:extensions && yarn run build:cjs:targets && yarn run build:cjs:utils",
-    "build:umd:main": "webpack --config webpack.main.config.js",
-    "build:umd:targets": "webpack --config webpack.targets.config.js",
-    "build:umd:extensions": "webpack --config webpack.extensions.config.js",
-    "build:umd": "yarn run build:umd:main && yarn run build:umd:targets && yarn run build:umd:extensions",
-    "build:umd:prod:main": "NODE_ENV=PRODUCTION webpack --config webpack.main.config.js",
-    "build:umd:prod:targets": "NODE_ENV=PRODUCTION webpack --config webpack.targets.config.js",
-    "build:umd:prod:extensions": "NODE_ENV=PRODUCTION webpack --config webpack.extensions.config.js",
-    "build:umd:prod": "yarn run build:umd:prod:main && yarn run build:umd:prod:targets && yarn run build:umd:prod:extensions",
-    "build": "yarn run build:cjs && yarn run build:umd:prod && yarn run build:umd",
+    "build:umd:dev": "webpack",
+    "build:umd:prod": "NODE_ENV=PRODUCTION webpack",
+    "build": "yarn run build:cjs && yarn run build:umd:prod && yarn run build:umd:dev",
     "prepublish": "yarn run build"
   },
   "engines": {
