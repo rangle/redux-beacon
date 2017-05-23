@@ -1,9 +1,9 @@
-function GoogleTagManager(events) {
+const GoogleTagManager = ({ dataLayerName = 'dataLayer' } = {}) => (events) => {
   if (typeof window === 'undefined') {
     return;
   }
-  if (!window.dataLayer || typeof window.dataLayer.push !== 'function') {
-    throw new Error('window.dataLayer is not defined. Have you forgotten to include Google Tag Manager and dataLayer?');
+  if (!window[dataLayerName] || typeof window[dataLayerName].push !== 'function') {
+    throw new Error(`redux-beacon error: window.${dataLayerName} is not defined. Have you forgotten to include Google Tag Manager and dataLayer?`);
   }
   events.forEach((event) => {
     const eventToPush = (() => {
@@ -12,8 +12,8 @@ function GoogleTagManager(events) {
       }
       return event;
     })();
-    window.dataLayer.push(eventToPush);
+    window[dataLayerName].push(eventToPush);
   });
-}
+};
 
 module.exports = { GoogleTagManager };
