@@ -3,6 +3,7 @@
 npm-debug.log*
 _book
 coverage
+dist
 lib
 node_modules
 /targets
