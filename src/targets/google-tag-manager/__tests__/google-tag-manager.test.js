@@ -5,7 +5,7 @@ beforeEach(() => {
   window.iAmADataLayer = undefined;
 });
 
-describe('GoogleTagManager({...settings})(events)', () => {
+describe('GoogleTagManager({...options})(events)', () => {
   describe('When given an array of events', () => {
     it('pushes those events to the data layer', () => {
       const events = [
@@ -21,9 +21,9 @@ describe('GoogleTagManager({...settings})(events)', () => {
     });
   });
 
-  describe('When settings has dataLayerName: iAmADataLayer', () => {
+  describe('When options has dataLayerName: iAmADataLayer', () => {
     it('pushes events to iAmADataLayer data layer', () => {
-      const settings = {
+      const options = {
         dataLayerName: 'iAmADataLayer',
       };
       const events = [
@@ -31,11 +31,11 @@ describe('GoogleTagManager({...settings})(events)', () => {
         { event: 'some-other-event' },
       ];
 
-      window[settings.dataLayerName] = { push: jest.fn() };
-      GoogleTagManager(settings)(events);
+      window[options.dataLayerName] = { push: jest.fn() };
+      GoogleTagManager(options)(events);
 
-      expect(window[settings.dataLayerName].push).toHaveBeenCalledWith(events[0]);
-      expect(window[settings.dataLayerName].push).toHaveBeenCalledWith(events[1]);
+      expect(window[options.dataLayerName].push).toHaveBeenCalledWith(events[0]);
+      expect(window[options.dataLayerName].push).toHaveBeenCalledWith(events[1]);
     });
   });
 
@@ -63,11 +63,11 @@ describe('GoogleTagManager({...settings})(events)', () => {
 
   describe('When iAmADataLayer custom named dataLayer is not defined', () => {
     it('should throw an error informing the user.', () => {
-      const settings = {
+      const options = {
         dataLayerName: 'iAmADataLayer',
       };
       const events = [{ hitType: 'pageview' }];
-      expect(() => GoogleTagManager(settings)(events)).toThrow('window.iAmADataLayer is not defined. Have you forgotten to include Google Tag Manager and dataLayer?');
+      expect(() => GoogleTagManager(options)(events)).toThrow('window.iAmADataLayer is not defined. Have you forgotten to include Google Tag Manager and dataLayer?');
     });
   });
 });
