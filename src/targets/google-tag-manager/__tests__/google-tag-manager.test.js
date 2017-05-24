@@ -1,8 +1,11 @@
 const { GoogleTagManager } = require('../google-tag-manager');
 
-beforeEach(() => { window.dataLayer = undefined; });
+beforeEach(() => {
+  window.dataLayer = undefined;
+  window.iAmADataLayer = undefined;
+});
 
-describe('GoogleTagManager(events)', () => {
+describe('GoogleTagManager({...options})(events)', () => {
   describe('When given an array of events', () => {
     it('pushes those events to the data layer', () => {
       const events = [
@@ -11,10 +14,28 @@ describe('GoogleTagManager(events)', () => {
       ];
 
       window.dataLayer = { push: jest.fn() };
-      GoogleTagManager(events);
+      GoogleTagManager()(events);
 
       expect(window.dataLayer.push).toHaveBeenCalledWith(events[0]);
       expect(window.dataLayer.push).toHaveBeenCalledWith(events[1]);
+    });
+  });
+
+  describe('When options has dataLayerName: iAmADataLayer', () => {
+    it('pushes events to iAmADataLayer data layer', () => {
+      const options = {
+        dataLayerName: 'iAmADataLayer',
+      };
+      const events = [
+        { event: 'some-event' },
+        { event: 'some-other-event' },
+      ];
+
+      window[options.dataLayerName] = { push: jest.fn() };
+      GoogleTagManager(options)(events);
+
+      expect(window[options.dataLayerName].push).toHaveBeenCalledWith(events[0]);
+      expect(window[options.dataLayerName].push).toHaveBeenCalledWith(events[1]);
     });
   });
 
@@ -23,7 +44,7 @@ describe('GoogleTagManager(events)', () => {
       const events = [{ hitType: 'pageview' }];
 
       window.dataLayer = { push: jest.fn() };
-      GoogleTagManager(events);
+      GoogleTagManager()(events);
 
       const expected = {
         event: 'pageview',
@@ -33,10 +54,20 @@ describe('GoogleTagManager(events)', () => {
     });
   });
 
-  describe('When dataLayer is not defined', () => {
+  describe('When default dataLayer is not defined', () => {
     it('should throw an error informing the user.', () => {
       const events = [{ hitType: 'pageview' }];
-      expect(() => GoogleTagManager(events)).toThrow('window.dataLayer is not defined. Have you forgotten to include Google Tag Manager and dataLayer?');
+      expect(() => GoogleTagManager()(events)).toThrow('window.dataLayer is not defined. Have you forgotten to include Google Tag Manager and dataLayer?');
+    });
+  });
+
+  describe('When iAmADataLayer custom named dataLayer is not defined', () => {
+    it('should throw an error informing the user.', () => {
+      const options = {
+        dataLayerName: 'iAmADataLayer',
+      };
+      const events = [{ hitType: 'pageview' }];
+      expect(() => GoogleTagManager(options)(events)).toThrow('window.iAmADataLayer is not defined. Have you forgotten to include Google Tag Manager and dataLayer?');
     });
   });
 });

@@ -14,8 +14,8 @@
     ```js
     import { GoogleTagManager } from 'redux-beacon/targets/google-tag-manager';
 
-    const middleware = createMiddleware(eventsMap, GoogleTagManager);
-    const metaReducer = createMetaReducer(eventsMap, GoogleTagManager);
+    const middleware = createMiddleware(eventsMap, GoogleTagManager());
+    const metaReducer = createMetaReducer(eventsMap, GoogleTagManager());
     ```
 
 > **Tip:**
@@ -26,7 +26,17 @@
 
 ### Notes
 
-* This target will push all generated event objects to the `window.dataLayer`.
+* This target will push all generated event objects to the `window.dataLayer` by default.
+  As detailed on [GTM docs](https://developers.google.com/tag-manager/devguide#renaming), it is possible to rename the data layer instance.
+  This is supported: You jsut need to pass to the target a `dataLayerName` in the `options` object.
+
+  ```js
+  const options = {
+    dataLayerName: 'yourFancyNamedDataLayer',
+  };
+
+  GoogleTagManager(options);
+  ```
 
 * Only event objects with an `event` property will trigger a Custom
   Event in Google Tag Manager.
