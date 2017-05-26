@@ -34,8 +34,8 @@ export interface EventDefinitionsMap {
   [key: string]: EventDefinition | Array<EventDefinition>;
 }
 
-type Extensions = { logger(): void } | { offlineStorage: any };
-type Target = (events: any[]) => void;
+export type Extensions = { logger(): void } | { offlineStorage: any };
+export type Target = (events: any[]) => void;
 
 /**
  * Create Redux middleware that synchronizes actions to analytics events.
