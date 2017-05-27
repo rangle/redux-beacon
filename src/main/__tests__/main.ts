@@ -9,30 +9,21 @@ import {
 
 import { logger } from '../../extensions/logger';
 import { offlineWeb } from '../../extensions/offline-web';
-import { offlineReactNative } from '../../extensions/offline-react-native';
 
-// --------------------------------------------------
+let eventSchema: EventSchema;
+eventSchema = { event: () => true };
+eventSchema = { event: () => false };
 
-const eventSchema: EventSchema = {
-  event: () => true,
-};
+let eventDefinition: EventDefinition;
+eventDefinition = { eventFields() {}, eventSchema: {} };
 
-const eventDefinition: EventDefinition = {
-  eventFields() {},
-  eventSchema,
-};
-
-const eventsMap: EventDefinitionsMap = {
-  TEST: eventDefinition,
-};
-
-// --------------------------------------------------
+let eventsMap: EventDefinitionsMap;
+eventsMap = { SOME_ACTION_TYPE: eventDefinition };
 
 const target = () => {};
 createMiddleware(eventsMap, target, { logger, offlineStorage: offlineWeb });
 createMetaReducer(eventsMap, target, { logger, offlineStorage: offlineWeb });
 
-// --------------------------------------------------
 let events: Array<any>
 events = createEvents(eventDefinition, {}, {});
 events = createEvents([eventDefinition, eventDefinition], {}, {});

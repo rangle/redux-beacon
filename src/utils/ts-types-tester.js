@@ -1,10 +1,11 @@
-const tt = require('typescript-definition-tester');
+const path = require('path');
+const { check } = require('typings-tester');
 
-function tsTypesTester(dir) {
+function tsTypesTester(tsFiles) {
   describe('Typescript type definitions', () => {
-    it('compiles successfully', (done) => {
-      const isTSFile = fileName => fileName.match(/\.ts$/);
-      tt.compileDirectory(dir, isTSFile, () => done());
+    it('compiles successfully', () => {
+      const tsConfigFile = path.join(__dirname, 'tsconfig.json');
+      check(tsFiles, tsConfigFile);
     });
   });
 }

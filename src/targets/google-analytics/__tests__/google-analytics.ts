@@ -6,8 +6,9 @@ import {
   SocialInteraction,
   Exception,
 } from '../';
+import { Target } from '../../../../';
 
-GoogleAnalytics([]);
+const gaTarget: Target = GoogleAnalytics;
 
 const pageView = {
   eventFields: (): PageView => ({
