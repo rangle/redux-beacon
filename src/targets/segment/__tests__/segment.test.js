@@ -1,4 +1,4 @@
-const { Segment } = require('../segment');
+const { Segment } = require('../');
 
 describe('Target: Segment.io', () => {
   window.analytics = {

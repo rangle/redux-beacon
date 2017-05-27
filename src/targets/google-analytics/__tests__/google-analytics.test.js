@@ -1,4 +1,4 @@
-const { GoogleAnalytics } = require('../google-analytics');
+const { GoogleAnalytics } = require('../');
 
 beforeEach(() => { window.ga = undefined; });
 

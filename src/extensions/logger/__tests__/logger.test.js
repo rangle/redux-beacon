@@ -1,5 +1,5 @@
 const { makeConsoleMock } = require('consolemock');
-const { logger, getTimestamp } = require('../logger');
+const { logger, getTimestamp } = require('../');
 
 /* eslint-disable no-console */
 describe('logger()', () => {

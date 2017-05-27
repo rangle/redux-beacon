@@ -1,7 +1,7 @@
 const fakeIndexedDB = require('fake-indexeddb');
 const fuzzyEqual = require('fuzzy-equal');
 
-const { offlineWeb } = require('../offline-web');
+const { offlineWeb } = require('../');
 
 describe('offlineWeb', () => {
   window.indexedDB = fakeIndexedDB;
