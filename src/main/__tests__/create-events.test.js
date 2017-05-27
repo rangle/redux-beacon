@@ -1,4 +1,4 @@
-const createEvents = require('../create-events');
+const { createEvents } = require('../');
 
 describe('createEvents(eventDef, prevState, action)', () => {
   [

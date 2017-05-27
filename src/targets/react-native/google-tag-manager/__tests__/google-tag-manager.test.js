@@ -1,4 +1,4 @@
-const { GoogleTagManager } = require('../google-tag-manager');
+const { GoogleTagManager } = require('../');
 
 describe('GoogleTagManager(trackingId, GTMBridge)', () => {
   describe('When given an array of events', () => {

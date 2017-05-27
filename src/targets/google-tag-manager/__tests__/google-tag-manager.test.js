@@ -1,4 +1,4 @@
-const { GoogleTagManager } = require('../google-tag-manager');
+const { GoogleTagManager } = require('../');
 
 beforeEach(() => {
   window.dataLayer = undefined;

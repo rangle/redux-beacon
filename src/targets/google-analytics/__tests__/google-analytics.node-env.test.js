@@ -2,7 +2,7 @@
  * @jest-environment node
  */
 
-const { GoogleAnalytics } = require('../google-analytics');
+const { GoogleAnalytics } = require('../');
 
 describe('If window does not exist', () => {
   it('should just silently not send events', () => {
