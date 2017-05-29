@@ -3,21 +3,24 @@ function arrify(value) {
 }
 
 function createEvents(eventDefinitions, prevState, action) {
-  return arrify(eventDefinitions).map(({ eventFields, eventSchema }) => {
+  const eventCollection = [];
+  arrify(eventDefinitions).forEach(({ eventFields, eventSchema }) => {
     if (typeof eventFields !== 'function') {
       return null;
     }
+    const events = arrify(eventFields(action, prevState)).map((event) => {
+      if (eventSchema !== undefined && typeof event === 'object') {
+        const eventPropIsValid = prop => eventSchema[prop](event[prop]);
+        const isValidEvent = Object.keys(eventSchema).every(eventPropIsValid);
+        return isValidEvent ? event : null;
+      }
 
-    const event = eventFields(action, prevState);
+      return event;
+    }).filter(event => event !== null && event !== undefined);
 
-    if (eventSchema !== undefined && typeof event === 'object') {
-      const eventPropIsValid = prop => eventSchema[prop](event[prop]);
-      const isValidEvent = Object.keys(eventSchema).every(eventPropIsValid);
-      return isValidEvent ? event : null;
-    }
-
-    return event;
-  }).filter(event => event !== null && event !== undefined);
+    return eventCollection.push(...events);
+  });
+  return eventCollection;
 }
 
 module.exports = createEvents;
