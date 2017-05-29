@@ -113,6 +113,21 @@ describe('createEvents(eventDef, prevState, action)', () => {
     },
 
     {
+      title: "event definition's eventFields returns an array of events",
+      eventDef: { eventFields: () => [{ someProp: 'some string' }, { someProp: 'other string' }] },
+      expected: [{ someProp: 'some string' }, { someProp: 'other string' }],
+    },
+
+    {
+      title: "event definition's eventFields returns an array of events & has failing schema",
+      eventDef: {
+        eventFields: () => [{ someProp: 'some string' }, { someProp: 'other string' }],
+        eventSchema: { someProp: value => value !== 'other string' },
+      },
+      expected: [{ someProp: 'some string' }],
+    },
+
+    {
       title: "event definition's eventFields returns a string & has failing schema",
       eventDef: {
         eventFields: () => 'some string',
