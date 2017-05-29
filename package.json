@@ -21,7 +21,7 @@
     "docs:publish": "yarn run docs:build && cd _book && git init && git commit --allow-empty -m 'Update docs' && git checkout -b gh-pages && git add . && git commit -am 'Update docs' && git push git@github.com:rangle/redux-beacon gh-pages --force",
     "lint": "eslint src",
     "test": "yarn run lint && jest --watch && yarn run lint",
-    "check": "yarn run lint && jest --coverage",
+    "check": "yarn run lint && jest --coverage && codecov",
     "clean": "rm -rf lib dist extensions targets coverage utils _book",
     "prebuild": "yarn run clean",
     "build:cjs:main": "babel src/main --out-dir lib --ignore __tests__",
@@ -55,6 +55,7 @@
     "babel-cli": "^6.18.0",
     "babel-loader": "^6.2.9",
     "babel-preset-latest": "^6.16.0",
+    "codecov": "^2.2.0",
     "consolemock": "^0.2.0",
     "eslint": "^3.8.1",
     "eslint-config-airbnb": "^12.0.0",
@@ -68,7 +69,7 @@
     "moment": "^2.17.1",
     "redux": "^3.6.0",
     "typescript": "^2.0.3",
-    "typescript-definition-tester": "0.0.4",
+    "typings-tester": "^0.2.2",
     "webpack": "^1.14.0"
   },
   "jest": {
@@ -82,10 +83,10 @@
     ],
     "coverageThreshold": {
       "global": {
-        "branches": 70,
-        "functions": 70,
-        "lines": 70,
-        "statements": 70
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
       }
     }
   }
