@@ -1,4 +1,10 @@
-function registerEvents(events, target, extensions, state, action) {
+function registerEvents(
+  events,
+  target,
+  extensions = {},
+  state = {},
+  action = {}
+) {
   const {
     logger,
     offlineStorage,

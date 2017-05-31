@@ -4,18 +4,13 @@ import {
   createEvents,
   EventDefinitionsMap,
   EventDefinition,
-  EventSchema,
 } from '../../../index.d';
 
 import { logger } from '../../extensions/logger';
 import { offlineWeb } from '../../extensions/offline-web';
 
-let eventSchema: EventSchema;
-eventSchema = { event: () => true };
-eventSchema = { event: () => false };
-
 let eventDefinition: EventDefinition;
-eventDefinition = { eventFields() {}, eventSchema: {} };
+eventDefinition = () => ({});
 
 let eventsMap: EventDefinitionsMap;
 eventsMap = { SOME_ACTION_TYPE: eventDefinition };

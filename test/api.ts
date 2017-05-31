@@ -4,7 +4,6 @@ import {
   createEvents,
   EventDefinitionsMap,
   EventDefinition,
-  EventSchema,
 } from 'redux-beacon';
 
 import { GoogleAnalytics } from 'redux-beacon/targets/google-analytics';
@@ -20,3 +19,5 @@ import {
 import { logger } from 'redux-beacon/extensions/logger';
 import { offlineWeb } from 'redux-beacon/extensions/offline-web';
 import { offlineReactNative } from 'redux-beacon/extensions/offline-react-native';
+
+import { ensure } from 'redux-beacon/utils';

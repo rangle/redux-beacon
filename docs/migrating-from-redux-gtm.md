@@ -36,20 +36,22 @@ const eventDefinition = {
 
 ##### Now
 ```js
-const eventDefinition = {
-  eventFields: (action, prevState) => ({
-    event: 'my-app-page-view',
-    route: action.payload.location.pathname,
-  }),
-  eventSchema: {
-    event: value => typeof value === 'string',
-    route: value => typeof value === 'string',
-  },
-};
+const eventDefinition = (action, prevState) => ({
+  event: 'my-app-page-view',
+  route: action.payload.location.pathname,
+});
 ```
+ - An event definition is a function in Redux Beacon, which can be loosely
+   mapped to the `eventFields` method in redux-gtm, with one exception - the
+   paremeters (action, and prevState) have been switched.
+
+ - There is no longer an `eventSchema`, instead we suggest using typed
+   interfaces (Flow/Typescript) or higher-order functions to achieve the same
+   result. Redux Beacon exposes a utility function to make this
+   easier: [`ensure`](./utils/ensure.md).
+
  - There is no `eventName` property, you now return the event name in
-   the `eventFields` method.
- - The parameters in the `eventFields` method have switched.
+   the event definition.
 
 ----
 
@@ -63,8 +65,8 @@ const metaReducer = createMetaReducer(eventsMap);
 
 ##### Now
 ```js
-const middleware = createMiddleware(eventsMap, GoogleTagManager);
-const metaReducer = createMiddleware(eventsMap, GoogleTagManager);
+const middleware = createMiddleware(eventsMap, GoogleTagManager());
+const metaReducer = createMiddleware(eventsMap, GoogleTagManager());
 ```
 
 - You now provide the analytics targets when creating middleware and
@@ -97,12 +99,10 @@ import {
 } from 'redux-beacon/targets/google-analytics';
 
 const eventDefinitionsMap = {
-  ROUTE_CHANGED: {
-    eventFields: (action): PageView => ({
-      hitType: 'pageview',
-      page: action.payload,
-    }),
-  },
+  ROUTE_CHANGED: (action): PageView => ({
+    hitType: 'pageview',
+    page: action.payload,
+  }),
 };
 ```
 

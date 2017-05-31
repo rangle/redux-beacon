@@ -1,37 +1,26 @@
 // Type definitions for redux-beacon
 // Project: https://github.com/rangle/redux-beacon
 
-export interface EventSchema {
-  [key: string]: (eventFieldValue: any) => boolean;
+interface Action {
+  type: any;
 }
 
 /**
- * Used by Redux-Beacon to generate an event for a given Redux action.
- *
- * eventFields
- * Attach a function to this property to define any variables you
- * would like to emit with the event. Any function assigned to this
- * property will receive the state of the application (before the
- * action), and the associated action object.
- *
- * eventSchema
- * Use this property to define a schema for the event. Attach
- * validation functions for each property in the event that you want
- * to validate. If any of these validation functions return false,
- * ReduxBeacon will not emit the event.
+ * Used by Redux-Beacon to generate an event or series of events for a
+ * given Redux action. An event definition is a function that will
+ * receive the state of the application (before the action), and the
+ * associated action object. The function should return an event, or
+ * an array of events.
  */
-export interface EventDefinition {
-  eventFields(action: any, prevState: any): any;
-  eventSchema?: EventSchema;
-}
+export type EventDefinition = (action: Action, prevState: any) => any | Array<any>;
 
 /**
  * A map between your actions and your analytics events.  Each key
  * must be an action type. Each property must be a valid
- * EventDefinition or an array of EventDefinitions.
+ * EventDefinition.
  */
 export interface EventDefinitionsMap {
-  [key: string]: EventDefinition | Array<EventDefinition>;
+  [key: string]: EventDefinition;
 }
 
 export type Extensions = { logger(): void } | { offlineStorage: any };
