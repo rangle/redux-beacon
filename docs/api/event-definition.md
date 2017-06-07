@@ -1,8 +1,8 @@
 ### `EventDefinition`
 
 A `function` used by Redux Beacon to generate an event or series of events for a
-given Redux action. An event definition receives the state of the application
-(before the action), and the associated action object.
+given Redux action. An event definition receives the associated action object,
+and the state of the application (before the action).
 
 #### A Basic Event Definition
 ```js

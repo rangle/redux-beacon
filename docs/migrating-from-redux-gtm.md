@@ -36,7 +36,7 @@ const eventDefinition = {
 
 ##### Now
 ```js
-const eventDefinition = (action, prevState) => ({
+const eventDefinition = action => ({
   event: 'my-app-page-view',
   route: action.payload.location.pathname,
 });
