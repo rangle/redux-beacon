@@ -1,5 +1,5 @@
 ### `EventDefinitionsMap`
-`Object` used by Redux-Beacon to map action types to [eventDefinitions](./event-definition.md).
+`Object` used by Redux Beacon to map action types to [eventDefinitions](./event-definition.md).
 
 ```js
 import {
@@ -10,7 +10,6 @@ anotherEventDefinition,
 
 const eventDefinitionsMap = {
   'SOME_ACTION_TYPE': someEventDefinition,
-  'SOME_OTHER_ACTION_TYPE': [someOtherEventDefinition, anotherEventDefinition],
 };
 ```
 
@@ -18,5 +17,3 @@ const eventDefinitionsMap = {
  - Each key in the eventDefinitionsMap must correspond to an action type.
  - Each property in the eventDefinitionsMap must be a valid
    [eventDefinition](./event-definition.md).
- - You can provide an array of event definitions if you want to emit
-   multiple events for a single action.

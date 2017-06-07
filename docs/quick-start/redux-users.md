@@ -17,7 +17,7 @@ route changes it fires an action:
 > Angular users, and [react-redux-router](https://github.com/reactjs/react-router-redux)
 > for React users.
 
-Here's how you would set up Redux-Beacon to push a pageview event to
+Here's how you would set up Redux Beacon to push a pageview event to
 Google Analytics whenever the route changes:
 
 ```js
@@ -29,12 +29,10 @@ import { createMiddleware } from 'redux-beacon';
 import { GoogleAnalytics } from 'redux-beacon/targets/google-analytics';
 
 // Define an event
-const pageView = {
-  eventFields: action => ({
-    hitType: 'pageview',
-    page: action.payload,
-  }),
-};
+const pageView = action => ({
+  hitType: 'pageview',
+  page: action.payload,
+}),
 
 // Map the event to a Redux action
 const eventsMap = {
@@ -49,7 +47,7 @@ const store = createStore(reducer, applyMiddleware(middleware));
 ```
 
 Now, whenever the app dispatches the `LOCATION_CHANGE` action,
-Redux-Beacon will create a pageview event and push it to the Google
+Redux Beacon will create a pageview event and push it to the Google
 Analytics target.
 
 ----

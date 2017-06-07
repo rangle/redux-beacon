@@ -16,7 +16,7 @@ route changes it fires the following action:
 > the [ngrx/router-store](https://github.com/ngrx/router-store) to
 > automatically sync angular/router changes with ngrx/store.
 
-Here's how you would set up Redux-Beacon to push a pageview event to
+Here's how you would set up Redux Beacon to push a pageview event to
 Google Analytics whenever the route changes:
 
 ```js
@@ -40,12 +40,10 @@ import {
 import { routerReducer, RouterStoreModule } from '@ngrx/router-store';
 
 // Define an event
-const pageView = {
-  eventFields: (action: Action): PageView => ({
-    hitType: 'pageview',
-    page: action.payload.path,
-  }),
-};
+const pageView = (action: Action): PageView => ({
+  hitType: 'pageview',
+  page: action.payload.path,
+});
 
 // Map the event to an ngrx/store action
 const eventsMap = {
@@ -76,7 +74,7 @@ export class AppModule { }
 ```
 
 Now, whenever the app dispatches the `[Router] Update Location` action,
-Redux-Beacon will create a pageview event and push it to the Google
+Redux Beacon will create a pageview event and push it to the Google
 Analytics target.
 
 ----

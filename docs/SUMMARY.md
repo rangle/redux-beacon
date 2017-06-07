@@ -20,6 +20,8 @@
   * [logger](docs/extensions/logger.md)
   * [offlineWeb](docs/extensions/offline-web.md)
   * [offlineReactNative](docs/extensions/offline-react-native.md)
+* [Utils](docs/utils/index.md)
+  * [ensure](docs/utils/ensure.md)
 * [Notes on Unit Testing](docs/notes-on-unit-testing.md)
 * [Notes on Offline Events](docs/notes-on-offline-events.md)
 * [Migrating From ReduxGTM](docs/migrating-from-redux-gtm.md)
