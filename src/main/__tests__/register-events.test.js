@@ -1,7 +1,6 @@
 const registerEvents = require('../register-events');
 
-
-describe('registerEvents(events, target, extensions, prevPrevState, action)', () => {
+describe('registerEvents()', () => {
   describe('When given an array of events, and a target', () => {
     it('pushes events to the target', () => {
       const events = [{ event: 'some-event' }];
