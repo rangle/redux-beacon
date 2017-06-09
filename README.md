@@ -51,23 +51,31 @@ Analytics events are defined in an event definition, and mapped to
 actions in an event definitions map:
 
 ```js
-// Event Definition
-const pageView = {
-  eventFields: action => ({
-    hitType: 'pageview',
-    page: action.payload,
-  }),
-};
+// This is an event definition
+const pageView = (action, prevState) => ({
+  hitType: 'pageview',
+  page: action.payload,
+  referrer: prevState.route,
+});
 
-// Event Definitions Map
+// This is another event definition
+const buttonClick = action => ({
+  hitType: 'event',
+  eventCategory: 'button-click',
+  eventAction: action.type,
+});
+
+// This is how you map event definitions to redux/ngrx actions
 const eventsMap = {
-  LOCATION_CHANGE: pageView,
+  LOCATION_CHANGED: pageView,
+  BUTTON_CLICKED: buttonClick,
 }
 ```
 
-With the event definitions map above Redux Beacon will create a `pageView` event
-whenever redux/ngrx dispatches a `LOCATION_CHANGE` action, then it will push the
-generated analytics event to a target (e.g. Google Analytics).
+With the set up above Redux Beacon will create `pageView`, and `buttonClick`
+events whenever redux/ngrx dispatches `LOCATION_CHANGED` or `BUTTON_CLICKED`,
+then it'll push the generated analytics events to a target (e.g. Google
+Analytics).
 
 ## Offline Event Collection
 <p align="center">
