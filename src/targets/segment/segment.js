@@ -2,8 +2,9 @@
  * An function that sends an event to segment.io
  */
 function sendSegmentEvent(events) {
-  if (!window || !window.analytics) {
-    return;
+  if (!window) return;
+  if (!window.analytics) {
+    throw new Error('window.analytics is not defined, Have you forgotten to include the Segment tracking snippet?');
   }
   events.forEach((event) => {
     switch (event.hitType) {
