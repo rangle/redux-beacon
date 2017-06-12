@@ -70,10 +70,8 @@ import {
 To use them, just specify the event type in your event definition:
 
 ```js
-const pageView = {
-  eventFields: (action): PageView => ({
-    hitType: 'pageview',
-    page: action.payload,
-  }),
-};
+const pageView = (action): PageView => ({
+  hitType: 'pageview',
+  page: action.payload,
+});
 ```

@@ -28,7 +28,7 @@
 
 * This target will push all generated event objects to the `window.dataLayer` by default.
   As detailed on [GTM docs](https://developers.google.com/tag-manager/devguide#renaming), it is possible to rename the data layer instance.
-  This is supported: You jsut need to pass to the target a `dataLayerName` in the `options` object.
+  This is supported: You just need to pass to the target a `dataLayerName` in the `options` object.
 
   ```js
   const options = {
