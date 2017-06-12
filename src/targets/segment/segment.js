@@ -3,7 +3,7 @@
  */
 function sendSegmentEvent(events) {
   if (!window) return;
-  if (window && !window.analytics) {
+  if (!window.analytics) {
     throw new Error('window.analytics is not defined, Have you forgotten to include the Segment tracking snippet?');
   }
   events.forEach((event) => {
