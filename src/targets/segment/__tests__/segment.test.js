@@ -64,3 +64,10 @@ describe('Target: Segment.io', () => {
     expect(window.analytics.alias).toHaveBeenCalledWith(events[0].userId);
   });
 });
+
+describe('When Segment is not defined', () => {
+  it('should throw an error informing the user.', () => {
+    window.analytics = undefined;
+    expect(() => Segment()).toThrow('window.analytics is not defined, Have you forgotten to include the Segment tracking snippet?');
+  });
+});
