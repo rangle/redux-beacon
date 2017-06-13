@@ -28,12 +28,10 @@ function reducer(state = initialState, action) {
 }
 
 // (Redux Beacon) EventDefinition
-const pageView = {
-  eventFields: action => ({
-    hitType: 'pageview',
-    page: action.payload,
-  })
-};
+const pageView = action => ({
+  hitType: 'pageview',
+  page: action.payload,
+});
 
 // (Redux Beacon) EventDefinitionsMap
 const eventsMap = {

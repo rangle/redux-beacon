@@ -22,26 +22,20 @@ import {
 
 // (redux-beacon)
 const eventsMap = {
-  COUNT_DECREMENTED: {
-    eventFields: (action: Action): Event => ({
-      hitType: 'event',
-      eventCategory: 'count-changed',
-      eventAction: action.type,
-    }),
-  },
-  COUNT_INCREMENTED: {
-    eventFields: (action: Action): Event => ({
-      hitType: 'event',
-      eventCategory: 'count-changed',
-      eventAction: action.type,
-    }),
-  },
-  '[Router] Update Location': {
-    eventFields: (action: Action): PageView => ({
-      hitType: 'pageview',
-      page: action.payload.path,
-    }),
-  },
+  COUNT_DECREMENTED: (action: Action): Event => ({
+    hitType: 'event',
+    eventCategory: 'count-changed',
+    eventAction: action.type,
+  }),
+  COUNT_INCREMENTED: (action: Action): Event => ({
+    hitType: 'event',
+    eventCategory: 'count-changed',
+    eventAction: action.type,
+  }),
+  '[Router] Update Location': (action: Action): PageView => ({
+    hitType: 'pageview',
+    page: action.payload.path,
+  }),
 };
 
 // (redux-beacon)
