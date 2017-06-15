@@ -42,10 +42,8 @@ import {
 To use it, just specify the Segment.io event in your event definition:
 
 ```js
-const pageView = {
-  eventFields: (action): PageView => ({
-    hitType: 'pageview',
-    page: action.payload,
-  }),
-};
+const pageView = (action): PageView => ({
+  hitType: 'pageview',
+  page: action.payload,
+});
 ```
