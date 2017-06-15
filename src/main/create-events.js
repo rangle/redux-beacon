@@ -1,4 +1,4 @@
-const createEvents = (eventDefinition, prevState, action) =>
-  [].concat(eventDefinition(action, prevState)).filter(ifTruethy => ifTruethy);
+const createEvents = (eventDefinition, prevState, action, nextState) =>
+  [].concat(eventDefinition(action, prevState, nextState)).filter(ifTruethy => ifTruethy);
 
 module.exports = createEvents;

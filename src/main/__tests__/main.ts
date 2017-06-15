@@ -19,6 +19,5 @@ const target = () => {};
 createMiddleware(eventsMap, target, { logger, offlineStorage: offlineWeb });
 createMetaReducer(eventsMap, target, { logger, offlineStorage: offlineWeb });
 
-let events: Array<any>
-events = createEvents(eventDefinition, {}, {});
-events = createEvents([eventDefinition, eventDefinition], {}, {});
+let events: Array<any>;
+events = createEvents(eventDefinition, {}, {}, {});

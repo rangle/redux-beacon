@@ -5,15 +5,16 @@ transformations it's not a bad idea to test them. Or better yet to
 start out with a test or two, and build out your event definitions to
 make the tests pass.
 
-To help with testing, Redux-Beacon exposes a function `createEvents`
+To help with testing, Redux Beacon exposes a function `createEvents`
 which it uses internally to create events from event
 definitions. `createEvents` has the following signature:
 
 ```js
-function createEvents(
-  eventDefinition: EventDefinition | Array<EventDefinition>,
+export function createEvents(
+  eventDefinition: EventDefinition,
   prevState: any,
   action: any,
+  nextState: any
 ): Array<any>;
 ```
 

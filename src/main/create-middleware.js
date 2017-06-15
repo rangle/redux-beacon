@@ -8,12 +8,19 @@ function createMiddleware(eventDefinitionsMap, target, extensions = {}) {
     }
 
     const prevState = store.getState();
+    const result = next(action);
+    const nextState = store.getState();
 
-    const events = createEvents(eventDefinitionsMap[action.type], prevState, action);
+    const events = createEvents(
+      eventDefinitionsMap[action.type],
+      prevState,
+      action,
+      nextState
+    );
 
     registerEvents(events, target, extensions, prevState, action);
 
-    return next(action);
+    return result;
   };
 }
 

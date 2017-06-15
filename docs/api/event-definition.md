@@ -1,16 +1,25 @@
 ### `EventDefinition`
 
 A `function` used by Redux Beacon to generate an event or series of events for a
-given Redux action. An event definition receives the associated action object,
-and the state of the application (before the action).
+given Redux action. An event definition receives the associated action object
+and the state of the application (before and after the action).
+
+```typescript
+export type EventDefinition = (
+  action: Action,
+  prevState: any,
+  nextState: any
+) => any | Array<any>;
+```
 
 #### A Basic Event Definition
 ```js
-function (action, prevState) {
+function (action, prevState, nextState) {
   return {
     hitType: 'pageview',
     route: action.payload.location.pathname,
     referrer: prevState.currentRoute,
+    numUserActions: nextState.numUserActions,
   };
 }
 ```
