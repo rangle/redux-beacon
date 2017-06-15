@@ -58,13 +58,9 @@ import {
 To use them, just specify the event type in your event definition:
 
 ```js
-const pageView = {
-  eventFields: (action): LogEvent => ({
-    hitType: 'logEvent',
-    eventType: 'pageview',
-    eventProperties: {
-       page: action.payload,
-    },
-  }),
-};
+const pageView = (action): LogEvent => ({
+  hitType: 'logEvent',
+  eventType: 'pageview',
+  eventProperties: { page: action.payload },
+});
 ```

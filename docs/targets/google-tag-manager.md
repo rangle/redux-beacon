@@ -47,12 +47,11 @@
 
   ```js
   // Given the following event definition
-  const pageview = {
-    eventFields: action => ({
-      hitType: 'pageview',
-      page: action.payload,
-    }),
-  };
+  const pageview = action => ({
+    hitType: 'pageview',
+    page: action.payload,
+  });
+
   // Say the action is equal to
   // { type: LOCATION_CHANGE, payload: '/home' }
   // The following object will get pushed to the dataLayer

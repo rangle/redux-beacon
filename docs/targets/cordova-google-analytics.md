@@ -3,7 +3,7 @@
 ### Set Up
 
 1. Sign up for Google Analytics if you haven't already, and
-   [create a new mobile property](https://support.google.com/analytics/answer/1008015?hl=en). (Note, that it 
+   [create a new mobile property](https://support.google.com/analytics/answer/1008015?hl=en). (Note, that it
    must be a mobile app property, not a web property.) Make a note of your property's
    [tracking Id](https://support.google.com/analytics/answer/1008080).
 
@@ -13,7 +13,7 @@
 
     > **Tip:**
     > If you are using Ionic, initialize it in the onready callback. You may also want to install
-     the Angular 2 tooling from [http://ionicframework.com/docs/native/google-analytics/](http://ionicframework.com/docs/native/google-analytics/) 
+     the Angular 2 tooling from [http://ionicframework.com/docs/native/google-analytics/](http://ionicframework.com/docs/native/google-analytics/)
 
 3. Import the target, then provide it when creating middleware or a meta reducer:
 
@@ -26,7 +26,7 @@
 
 ### Usage
 
-Each event passed to the target is pushed to Google Analytics via the 
+Each event passed to the target is pushed to Google Analytics via the
 Google Analytics Plugin which installs the Google Analytics mobile SDK. The
 generated event must have a `hitType` property specifying the type of
 analytics event and any other properties required for the event type.
@@ -61,10 +61,8 @@ import {
 To use them, just specify the event type in your event definition:
 
 ```js
-const pageView = {
-  eventFields: (action): PageView => ({
-    hitType: 'pageview',
-    page: action.payload,
-  }),
-};
+const pageView = (action): PageView => ({
+  hitType: 'pageview',
+  page: action.payload,
+});
 ```

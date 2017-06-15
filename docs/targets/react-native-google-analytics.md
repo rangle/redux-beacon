@@ -25,7 +25,5 @@
    const analyticsMiddleware = createMiddleware(eventsMap, target);
    ```
 
-
-
 ### Example
   * [Redux Beacon: React Native Google Analytics Example](https://github.com/johannalee/react-native-redux-example)
