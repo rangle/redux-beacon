@@ -6,22 +6,39 @@ function runIntegrationTests(title, prepareStore) {
     describe('When an action with an associated event definition is dispatched', () => {
       it('creates the event and pushes it to the target', () => {
         const eventsMap = {
-          ROUTE_CHANGED: (action, prevState) => ({
+          ROUTE_CHANGED: (action, prevState, nextState) => ({
             hitType: 'pageview',
             page: action.payload,
             referrer: prevState.route,
+            numActions: nextState.numActions,
           }),
         };
         const target = jest.fn();
 
-        const reducer = (state = { route: '/home' }) => state;
+        const initialState = {
+          route: '/home',
+          numActions: 0,
+        };
+        const reducer = (state = initialState, action) => {
+          if (action.type === 'ROUTE_CHANGED') {
+            return Object.assign({}, state, {
+              route: action.payload,
+              numActions: state.numActions + 1,
+            });
+          }
+          return state;
+        };
+
         const store = prepareStore(reducer, eventsMap, target);
 
         store.dispatch({ type: 'ROUTE_CHANGED', payload: '/my-account' });
 
-        expect(target).toHaveBeenCalledWith([
-          { hitType: 'pageview', page: '/my-account', referrer: '/home' },
-        ]);
+        expect(target).toHaveBeenCalledWith([{
+          hitType: 'pageview',
+          page: '/my-account',
+          referrer: '/home',
+          numActions: 1,
+        }]);
       });
     });
 

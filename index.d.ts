@@ -6,13 +6,16 @@ interface Action {
 }
 
 /**
- * Used by Redux-Beacon to generate an event or series of events for a
- * given Redux action. An event definition is a function that will
- * receive the state of the application (before the action), and the
- * associated action object. The function should return an event, or
- * an array of events.
+ * Used by Redux Beacon to generate an event or series of
+ * events for a given Redux action. An event definition receives the
+ * associated action object and the state of the application (before
+ * and after the action).
  */
-export type EventDefinition = (action: Action, prevState: any) => any | Array<any>;
+export type EventDefinition = (
+  action: Action,
+  prevState: any,
+  nextState: any
+) => any | Array<any>;
 
 /**
  * A map between your actions and your analytics events.  Each key
@@ -49,7 +52,8 @@ export function createMetaReducer(
  * Use this function for testing your event definitions.
  */
 export function createEvents(
-  eventDefinition: EventDefinition | Array<EventDefinition>,
+  eventDefinition: EventDefinition,
   prevState: any,
-  action: any
+  action: any,
+  nextState: any
 ): Array<any>;

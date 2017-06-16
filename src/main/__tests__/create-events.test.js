@@ -80,11 +80,24 @@ describe('createEvents(eventDef, prevState, action)', () => {
         { hitType: 'timing' },
       ],
     },
+    {
+      title: 'event definition uses previous state',
+      eventDef: (action, prevState, nextState) => ({
+        hitType: 'event',
+        numActions: nextState.numActions,
+      }),
+      nextState: { numActions: 3 },
+      expected: [{
+        hitType: 'event',
+        numActions: 3,
+      }],
+    },
   ].forEach((scenario, index) => {
     const {
       title,
       eventDef,
       prevState,
+      nextState,
       action,
       expected,
     } = scenario;
@@ -93,7 +106,13 @@ describe('createEvents(eventDef, prevState, action)', () => {
       if (title === undefined || eventDef === undefined || expected === undefined) {
         throw new Error('tests require title, eventDef, and expected keys');
       }
-      expect(createEvents(eventDef, prevState || {}, action || {})).toEqual(expected);
+      const events = createEvents(
+        eventDef,
+        prevState || {},
+        action || {},
+        nextState || {}
+      );
+      expect(events).toEqual(expected);
     });
   });
 });
