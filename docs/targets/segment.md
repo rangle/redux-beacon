@@ -14,6 +14,12 @@
     > [here](https://segment.com/docs/sources/website/analytics.js/#debug)
     > to enable it.
 
+    > **<span style="color: #b51c1c">Warning:</span>**
+    > the last line of the tracking snippet `analytics.page();` hits Segment.io
+    > with a page view that matches the first loaded route. If you're tracking
+    > page views using Redux Beacon, be sure to remove this line so the initial
+    > page load isn't recorded twice.
+
 3. Import the target, then provide it when creating middleware or a meta reducer:
 
    ```js
