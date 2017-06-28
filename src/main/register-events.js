@@ -31,4 +31,4 @@ function registerEvents(
   }
 }
 
-module.exports = registerEvents;
+export default registerEvents;

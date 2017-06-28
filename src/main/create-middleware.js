@@ -1,5 +1,5 @@
-const createEvents = require('./create-events');
-const registerEvents = require('./register-events');
+import createEvents from './create-events';
+import registerEvents from './register-events';
 
 function createMiddleware(eventDefinitionsMap, target, extensions = {}) {
   return store => next => (action) => {
@@ -24,4 +24,4 @@ function createMiddleware(eventDefinitionsMap, target, extensions = {}) {
   };
 }
 
-module.exports = createMiddleware;
+export default createMiddleware;

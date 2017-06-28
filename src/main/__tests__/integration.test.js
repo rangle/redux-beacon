@@ -1,5 +1,5 @@
-const { createStore, applyMiddleware } = require('redux');
-const { createMiddleware, createMetaReducer } = require('../');
+import { createStore, applyMiddleware } from 'redux';
+import { createMiddleware, createMetaReducer } from '../';
 
 function runIntegrationTests(title, prepareStore) {
   describe(title, () => {

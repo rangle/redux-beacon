@@ -17,7 +17,10 @@ const { check } = require('typings-tester');
 ].forEach((routes) => {
   const base = routes.splice(0, 1)[0];
   assert.doesNotThrow(() => require(base), base);
-  routes.forEach(route => assert.ok(require(base)[route], `${base}.${route}`));
+  routes.forEach((route) => {
+    assert.ok(require(base)[route], `${base}.${route}`);
+    assert.equal(typeof require(base)[route], 'function');
+  });
 });
 
 const tsFile = path.join(__dirname, 'api.ts');
