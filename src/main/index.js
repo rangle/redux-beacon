@@ -1,8 +1,8 @@
-const createMiddleware = require('./create-middleware');
-const createMetaReducer = require('./create-meta-reducer');
-const createEvents = require('./create-events');
+import createMiddleware from './create-middleware';
+import createMetaReducer from './create-meta-reducer';
+import createEvents from './create-events';
 
-module.exports = {
+export {
   createMiddleware,
   createMetaReducer,
   createEvents,

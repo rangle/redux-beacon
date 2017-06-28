@@ -1,4 +1,4 @@
-const { createEvents } = require('../');
+import { createEvents } from '../';
 
 describe('createEvents(eventDef, prevState, action)', () => {
   [

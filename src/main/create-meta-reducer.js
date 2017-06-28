@@ -1,5 +1,5 @@
-const createEvents = require('./create-events');
-const registerEvents = require('./register-events');
+import createEvents from './create-events';
+import registerEvents from './register-events';
 
 function createMetaReducer(eventDefinitionsMap, target, extensions = {}) {
   /* Why not arrow functions? AOT... */
@@ -25,4 +25,4 @@ function createMetaReducer(eventDefinitionsMap, target, extensions = {}) {
   };
 }
 
-module.exports = createMetaReducer;
+export default createMetaReducer;
