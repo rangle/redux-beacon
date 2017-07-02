@@ -56,5 +56,4 @@ function logger(events, action, state, isSavedOffline, wasSavedOffline) {
   }
 }
 
-
-module.exports = { logger, getTimestamp };
+export { logger, getTimestamp };
