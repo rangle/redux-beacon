@@ -49,6 +49,44 @@ required properties.
 > through the analytics.js docs:
 > [google-analytics/index.d.ts](https://github.com/rangle/redux-beacon/blob/master/src/targets/google-analytics/index.d.ts)
 
+### Google Analytics Ecommerce Plugin
+
+The Google Analytics target has support for the basic ecommerce plugin built-in.
+In order to use the ecommerce features, you first need to add this line to the
+end of your tracking snippet: `ga('require', 'ecommerce');`
+
+You must add the require **after** you call `ga('create', 'UA-XXXXX-Y')`.
+Once you've done this, you can use the ecommerce specific events to track
+transactions:
+
+- addTransaction
+- addItem
+- ecommSend
+- ecommClear
+
+You can also provide a `customTrackerId` field to your event object if you want
+to use a custom tracker object to track events. Ex:
+
+```js
+  const events = [
+    {
+      hitType: 'addItem',
+      customTrackerId: 'myTracker',
+      ...
+    },
+  ];
+```
+
+**Note:**
+Google Analytics will _fail silently_ if you try to use these events without adding the
+require call in your initial tracking code. It is also **not** recommended to use GA's
+basic analytics plugin if you're also going to use the enhanced ecommerce plugin. At
+this time, we do not have support for the enhanced ecommerce plugin.
+
+See the google developer docs for
+[more information on creating a custom tracker](https://developers.google.com/analytics/devguides/collection/analyticsjs/creating-trackers) and
+for [using the google analytics ecommerce plugin](https://developers.google.com/analytics/devguides/collection/analyticsjs/ecommerce)
+
 ### Examples
   * [Google Analytics (Redux) Example](https://github.com/rangle/redux-beacon/tree/master/examples/google-analytics)
   * [Google Analytics (ngrx) Example](https://github.com/rangle/redux-beacon/tree/master/examples/google-analytics-ngrx)

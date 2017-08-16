@@ -30,6 +30,25 @@ export interface SocialInteraction {
   socialTarget: string,
 }
 
+export interface EcommItem {
+  hitType: 'addItem',
+  id: string,
+  name: string,
+  sku?: string,
+  category?: string,
+  price?: number,
+  quantity?: number,
+}
+
+export interface EcommTransaction {
+  hitType: 'addTransaction',
+  id: string,
+  affliation?: string,
+  revenue?: number,
+  shipping?: number,
+  tax?: number,
+}
+
 export interface Exception {
   hitType: 'exception',
   exDescription?: string,
