@@ -12,7 +12,6 @@ Analytics integration for Redux and ngrx/store
   <a href="https://circleci.com/gh/rangle/redux-beacon"><img src="https://img.shields.io/circleci/project/github/rangle/redux-beacon.svg"></a>
   <a href="https://www.npmjs.com/package/redux-beacon"><img src="https://img.shields.io/npm/v/redux-beacon.svg"></a>
   <a href="https://github.com/rangle/redux-beacon/blob/master/LICENSE"><img src="https://img.shields.io/github/license/rangle/redux-beacon.svg"></a>
-  <a href="https://codecov.io/gh/rangle/redux-beacon"><img src="https://codecov.io/gh/rangle/redux-beacon/branch/master/graph/badge.svg" alt="Codecov" /></a>
 </p>
 
 ## Features
