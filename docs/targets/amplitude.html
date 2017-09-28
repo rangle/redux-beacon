@@ -1,0 +1,624 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Amplitude | Redux Beacon Documentation</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.5.2">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../../docs/targets/react-native-google-analytics.html" />
+    
+    
+    <link rel="prev" href="../../docs/targets/segment.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book" data-level="3.4" data-chapter-title="Amplitude" data-filepath="docs/targets/amplitude.md" data-basepath="../.." data-revision="Thu Sep 28 2017 19:51:43 GMT-0400 (EDT)">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="docs/quick-start/index.html">
+            
+                
+                    <a href="../../docs/quick-start/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Quick Start
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="docs/quick-start/redux-users.html">
+            
+                
+                    <a href="../../docs/quick-start/redux-users.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        For Redux users
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="docs/quick-start/ngrx-users.html">
+            
+                
+                    <a href="../../docs/quick-start/ngrx-users.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        For ngrx users
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="docs/api/index.html">
+            
+                
+                    <a href="../../docs/api/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        API Reference
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="docs/api/create-middleware.html">
+            
+                
+                    <a href="../../docs/api/create-middleware.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        createMiddleware
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="docs/api/create-meta-reducer.html">
+            
+                
+                    <a href="../../docs/api/create-meta-reducer.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        createMetaReducer
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="docs/api/event-definitions-map.html">
+            
+                
+                    <a href="../../docs/api/event-definitions-map.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        EventDefinitionsMap
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="docs/api/event-definition.html">
+            
+                
+                    <a href="../../docs/api/event-definition.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        EventDefinition
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="docs/targets/index.html">
+            
+                
+                    <a href="../../docs/targets/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Targets
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="docs/targets/google-analytics.html">
+            
+                
+                    <a href="../../docs/targets/google-analytics.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Google Analytics
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="docs/targets/google-tag-manager.html">
+            
+                
+                    <a href="../../docs/targets/google-tag-manager.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Google Tag Manager
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="docs/targets/segment.html">
+            
+                
+                    <a href="../../docs/targets/segment.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Segment.io
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="3.4" data-path="docs/targets/amplitude.html">
+            
+                
+                    <a href="../../docs/targets/amplitude.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        Amplitude
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="docs/targets/react-native-google-analytics.html">
+            
+                
+                    <a href="../../docs/targets/react-native-google-analytics.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        (React Native) Google Analytics
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="docs/targets/react-native-google-tag-manager.html">
+            
+                
+                    <a href="../../docs/targets/react-native-google-tag-manager.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        (React Native) Google Tag Manager
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="docs/targets/cordova-google-analytics.html">
+            
+                
+                    <a href="../../docs/targets/cordova-google-analytics.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                        (Cordova) Google Analytics
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="docs/extensions/index.html">
+            
+                
+                    <a href="../../docs/extensions/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Extensions
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="docs/extensions/logger.html">
+            
+                
+                    <a href="../../docs/extensions/logger.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        logger
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="docs/extensions/offline-web.html">
+            
+                
+                    <a href="../../docs/extensions/offline-web.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        offlineWeb
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="docs/extensions/offline-react-native.html">
+            
+                
+                    <a href="../../docs/extensions/offline-react-native.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        offlineReactNative
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="docs/utils/index.html">
+            
+                
+                    <a href="../../docs/utils/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Utils
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="docs/utils/ensure.html">
+            
+                
+                    <a href="../../docs/utils/ensure.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        ensure
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="docs/notes-on-unit-testing.html">
+            
+                
+                    <a href="../../docs/notes-on-unit-testing.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Notes on Unit Testing
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="docs/notes-on-offline-events.html">
+            
+                
+                    <a href="../../docs/notes-on-offline-events.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        Notes on Offline Events
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="docs/migrating-from-redux-gtm.html">
+            
+                
+                    <a href="../../docs/migrating-from-redux-gtm.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        Migrating From ReduxGTM
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../" >Redux Beacon Documentation</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="amplitude">Amplitude</h1>
+<h3 id="usage-instructions">Usage Instructions</h3>
+<ol>
+<li><p>Sign up for Amplitude at <a href="http://amplitude.com" target="_blank">http://amplitude.com</a> if you haven&apos;t
+already, and make a note of your API key.</p>
+</li>
+<li><p>Paste the following snippet near the top of your app&apos;s <code>&lt;head&gt;</code>
+tag, and replace <code>API_KEY_HERE</code> with your API key.</p>
+<pre><code class="lang-js"> &lt;script type=<span class="hljs-string">&quot;text/javascript&quot;</span>&gt;
+   (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e,t</span>)</span>{<span class="hljs-keyword">var</span> n=e.amplitude||{_q:[],_iq:{}};<span class="hljs-keyword">var</span> r=t.createElement(<span class="hljs-string">&quot;script&quot;</span>);r.type=<span class="hljs-string">&quot;text/javascript&quot;</span>;
+   r.async=<span class="hljs-literal">true</span>;r.src=<span class="hljs-string">&quot;https://d24n15hnbwhuhn.cloudfront.net/libs/amplitude-3.4.0-min.gz.js&quot;</span>;
+   r.onload=<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{e.amplitude.runQueuedFunctions()};<span class="hljs-keyword">var</span> i=t.getElementsByTagName(<span class="hljs-string">&quot;script&quot;</span>)[<span class="hljs-number">0</span>];
+   i.parentNode.insertBefore(r,i);<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">s</span>(<span class="hljs-params">e,t</span>)</span>{e.prototype[t]=<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">this</span>._q.push([t].concat(<span class="hljs-built_in">Array</span>.prototype.slice.call(<span class="hljs-built_in">arguments</span>,<span class="hljs-number">0</span>)));
+   <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>}}<span class="hljs-keyword">var</span> o=<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">this</span>._q=[];<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>};<span class="hljs-keyword">var</span> a=[<span class="hljs-string">&quot;add&quot;</span>,<span class="hljs-string">&quot;append&quot;</span>,<span class="hljs-string">&quot;clearAll&quot;</span>,<span class="hljs-string">&quot;prepend&quot;</span>,<span class="hljs-string">&quot;set&quot;</span>,<span class="hljs-string">&quot;setOnce&quot;</span>,<span class="hljs-string">&quot;unset&quot;</span>];
+   <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> u=<span class="hljs-number">0</span>;u&lt;a.length;u++){s(o,a[u])}n.Identify=o;<span class="hljs-keyword">var</span> c=<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-keyword">this</span>._q=[];<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+   };<span class="hljs-keyword">var</span> p=[<span class="hljs-string">&quot;setProductId&quot;</span>,<span class="hljs-string">&quot;setQuantity&quot;</span>,<span class="hljs-string">&quot;setPrice&quot;</span>,<span class="hljs-string">&quot;setRevenueType&quot;</span>,<span class="hljs-string">&quot;setEventProperties&quot;</span>];
+   <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> l=<span class="hljs-number">0</span>;l&lt;p.length;l++){s(c,p[l])}n.Revenue=c;<span class="hljs-keyword">var</span> d=[<span class="hljs-string">&quot;init&quot;</span>,<span class="hljs-string">&quot;logEvent&quot;</span>,<span class="hljs-string">&quot;logRevenue&quot;</span>,<span class="hljs-string">&quot;setUserId&quot;</span>,<span class="hljs-string">&quot;setUserProperties&quot;</span>,<span class="hljs-string">&quot;setOptOut&quot;</span>,<span class="hljs-string">&quot;setVersionName&quot;</span>,<span class="hljs-string">&quot;setDomain&quot;</span>,<span class="hljs-string">&quot;setDeviceId&quot;</span>,<span class="hljs-string">&quot;setGlobalUserProperties&quot;</span>,<span class="hljs-string">&quot;identify&quot;</span>,<span class="hljs-string">&quot;clearUserProperties&quot;</span>,<span class="hljs-string">&quot;setGroup&quot;</span>,<span class="hljs-string">&quot;logRevenueV2&quot;</span>,<span class="hljs-string">&quot;regenerateDeviceId&quot;</span>,<span class="hljs-string">&quot;logEventWithTimestamp&quot;</span>,<span class="hljs-string">&quot;logEventWithGroups&quot;</span>];
+   <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">v</span>(<span class="hljs-params">e</span>)</span>{<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">t</span>(<span class="hljs-params">t</span>)</span>{e[t]=<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{e._q.push([t].concat(<span class="hljs-built_in">Array</span>.prototype.slice.call(<span class="hljs-built_in">arguments</span>,<span class="hljs-number">0</span>)));
+   }}<span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> n=<span class="hljs-number">0</span>;n&lt;d.length;n++){t(d[n])}}v(n);n.getInstance=<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)</span>{e=(!e||e.length===<span class="hljs-number">0</span>?<span class="hljs-string">&quot;$default_instance&quot;</span>:e).toLowerCase();
+   <span class="hljs-keyword">if</span>(!n._iq.hasOwnProperty(e)){n._iq[e]={_q:[]};v(n._iq[e])}<span class="hljs-keyword">return</span> n._iq[e]};e.amplitude=n;
+   })(<span class="hljs-built_in">window</span>,<span class="hljs-built_in">document</span>);
+
+   amplitude.getInstance().init(<span class="hljs-string">&quot;API_KEY_HERE&quot;</span>);
+ <span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</span></code></pre>
+</li>
+<li><p>Import the target, then provide it when creating middleware or a meta reducer:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { Amplitude } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;redux-beacon/targets/amplitude&apos;</span>;
+
+<span class="hljs-keyword">const</span> middleware = createMiddleware(eventsMap, Amplitude);
+<span class="hljs-keyword">const</span> metaReducer = createMetaReducer(eventsMap, Amplitude);
+</code></pre>
+</li>
+</ol>
+<h3 id="for-typescript-users">For Typescript Users</h3>
+<p>This target also exposes interfaces for common events:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> {
+  SetUserId,
+  SetUserProperties,
+  ClearUserProperties,
+  LogEvent,
+  SetGroup,
+  RegenerateDeviceId,
+  SetOptOut,
+  SetVersionName,
+  Identify,
+  LogRevenueV2,
+} <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;redux-beacon/targets/amplitude&apos;</span>;
+</code></pre>
+<p>To use them, just specify the event type in your event definition:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> pageView = (action): LogEvent =&gt; ({
+  hitType: <span class="hljs-string">&apos;logEvent&apos;</span>,
+  eventType: <span class="hljs-string">&apos;pageview&apos;</span>,
+  eventProperties: { page: action.payload },
+});
+</code></pre>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../../docs/targets/segment.html" class="navigation navigation-prev " aria-label="Previous page: Segment.io"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../../docs/targets/react-native-google-analytics.html" class="navigation navigation-next " aria-label="Next page: (React Native) Google Analytics"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../../gitbook/app.js"></script>
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-github/plugin.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-ga/plugin.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"github":{"url":"https://github.com/rangle/redux-beacon"},"ga":{"token":"UA-41067508-13","configuration":"auto"},"highlight":{},"search":{},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

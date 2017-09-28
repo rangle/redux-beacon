@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`logger() logs actions and any resulting analytics event 1`] = `
+"
+GROUP %c Analytics events @ 19:31:37.006 ROUTE_CHANGED, color: #1da1f2; font-weight: bold;
+  LOG %c Action:, color: #93748A; font-weight: bold;, {type: 'ROUTE_CHANGED', payload: '/home'}
+  LOG %c Event:, color: #93748A; font-weight: bold;, {hitType: 'pageview', page: '/home'}"
+`;
+
+exports[`logger() logs actions and any resulting analytics events 1`] = `
+"
+GROUP %c Analytics events @ 19:31:37.006 ROUTE_CHANGED, color: #1da1f2; font-weight: bold;
+  LOG %c Action:, color: #93748A; font-weight: bold;, {type: 'ROUTE_CHANGED', payload: '/home'}
+  GROUP %c Events:, color: #93748A; font-weight: bold;
+    LOG %c (1), color: #93748A; font-weight: bold;, {hitType: 'pageview', page: '/'}
+    LOG %c (2), color: #93748A; font-weight: bold;, {hitType: 'pageview', page: '/home'}"
+`;
+
+exports[`logger() logs events that are saved offline with a helpful message 1`] = `
+"
+GROUP %c Analytics events @ 19:31:37.006 ROUTE_CHANGED (saved offline), color: #D63230; font-weight: bold;
+  LOG %c Action:, color: #93748A; font-weight: bold;, {type: 'ROUTE_CHANGED', payload: '/home'}
+  LOG %c Event:, color: #93748A; font-weight: bold;, {hitType: 'pageview', page: '/'}"
+`;
+
+exports[`logger() logs events that were saved offline with a helpful message 1`] = `
+"
+GROUP %c Analytics events @ 19:31:37.006  (was offline), color: #F39237; font-weight: bold;
+  LOG %c Event:, color: #93748A; font-weight: bold;, {hitType: 'pageview', page: '/'}"
+`;
+
+exports[`logger() logs nothing when there are no events 1`] = `""`;

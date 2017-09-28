@@ -1,0 +1,634 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Notes on Offline Events | Redux Beacon Documentation</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.5.2">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../docs/migrating-from-redux-gtm.html" />
+    
+    
+    <link rel="prev" href="../docs/notes-on-unit-testing.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book" data-level="7" data-chapter-title="Notes on Offline Events" data-filepath="docs/notes-on-offline-events.md" data-basepath=".." data-revision="Thu Sep 28 2017 19:51:43 GMT-0400 (EDT)">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="docs/quick-start/index.html">
+            
+                
+                    <a href="../docs/quick-start/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Quick Start
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="docs/quick-start/redux-users.html">
+            
+                
+                    <a href="../docs/quick-start/redux-users.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        For Redux users
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="docs/quick-start/ngrx-users.html">
+            
+                
+                    <a href="../docs/quick-start/ngrx-users.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        For ngrx users
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="docs/api/index.html">
+            
+                
+                    <a href="../docs/api/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        API Reference
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="docs/api/create-middleware.html">
+            
+                
+                    <a href="../docs/api/create-middleware.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        createMiddleware
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="docs/api/create-meta-reducer.html">
+            
+                
+                    <a href="../docs/api/create-meta-reducer.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        createMetaReducer
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="docs/api/event-definitions-map.html">
+            
+                
+                    <a href="../docs/api/event-definitions-map.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        EventDefinitionsMap
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="docs/api/event-definition.html">
+            
+                
+                    <a href="../docs/api/event-definition.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        EventDefinition
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="docs/targets/index.html">
+            
+                
+                    <a href="../docs/targets/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Targets
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="docs/targets/google-analytics.html">
+            
+                
+                    <a href="../docs/targets/google-analytics.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Google Analytics
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="docs/targets/google-tag-manager.html">
+            
+                
+                    <a href="../docs/targets/google-tag-manager.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Google Tag Manager
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="docs/targets/segment.html">
+            
+                
+                    <a href="../docs/targets/segment.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Segment.io
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="docs/targets/amplitude.html">
+            
+                
+                    <a href="../docs/targets/amplitude.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        Amplitude
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="docs/targets/react-native-google-analytics.html">
+            
+                
+                    <a href="../docs/targets/react-native-google-analytics.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        (React Native) Google Analytics
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="docs/targets/react-native-google-tag-manager.html">
+            
+                
+                    <a href="../docs/targets/react-native-google-tag-manager.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        (React Native) Google Tag Manager
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="docs/targets/cordova-google-analytics.html">
+            
+                
+                    <a href="../docs/targets/cordova-google-analytics.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                        (Cordova) Google Analytics
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="docs/extensions/index.html">
+            
+                
+                    <a href="../docs/extensions/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Extensions
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="docs/extensions/logger.html">
+            
+                
+                    <a href="../docs/extensions/logger.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        logger
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="docs/extensions/offline-web.html">
+            
+                
+                    <a href="../docs/extensions/offline-web.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        offlineWeb
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="docs/extensions/offline-react-native.html">
+            
+                
+                    <a href="../docs/extensions/offline-react-native.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        offlineReactNative
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="docs/utils/index.html">
+            
+                
+                    <a href="../docs/utils/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Utils
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="docs/utils/ensure.html">
+            
+                
+                    <a href="../docs/utils/ensure.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        ensure
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="docs/notes-on-unit-testing.html">
+            
+                
+                    <a href="../docs/notes-on-unit-testing.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Notes on Unit Testing
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="7" data-path="docs/notes-on-offline-events.html">
+            
+                
+                    <a href="../docs/notes-on-offline-events.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        Notes on Offline Events
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="docs/migrating-from-redux-gtm.html">
+            
+                
+                    <a href="../docs/migrating-from-redux-gtm.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        Migrating From ReduxGTM
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >Redux Beacon Documentation</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="notes-on-offline-events">Notes on Offline Events</h1>
+<p>Redux-Beacon comes with two extensions for measuring offline events,
+one for web apps, and one for native apps. Both extensions read the
+app&apos;s connection status from state, they record events in a persistent
+storage service when the app is offline, and they push the events to
+an analytics target when the app is back online.</p>
+<blockquote>
+<p>When working on a native app, you may not have to worry about offline
+event collection. Some analytics SDK&apos;s like the Google Analytics iOS
+and Android SDK&apos;s store events locally by default before dispatching
+them to the google analytics servers. See the
+<a href="https://developers.google.com/analytics/devguides/collection/ios/v3/dispatch" target="_blank">Dispatching (iOS SDK) docs</a>
+and the
+<a href="https://developers.google.com/analytics/devguides/collection/android/v4/dispatch" target="_blank">Dispatching (Android SDK) docs</a></p>
+</blockquote>
+<p>Both extensions add a timestamp to each event right before they&apos;re
+saved offline. Whether or not you use this piece of meta data is up to
+you and the types of analytics you want to track. For most analytics
+events the exact time an event was recorded doesn&apos;t matter, and many
+analytics services don&apos;t even provide reports that drill down to this
+level of detail.</p>
+<p>If you&apos;re working on a web app, and your analytics reports warrant the
+need for exact-time analytics, you can use the offline event
+timestamps directly, or if you need to compute derived data (like a
+time delta) you can do so by making a higher order target.</p>
+<p>For example, here&apos;s how you would create a higher order target to track
+exact-time offline events in Google Analytics:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { GoogleAnalytics } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;redux-beacon/targets/google-analytics&apos;</span>;
+<span class="hljs-keyword">import</span> { TRACKING_ID } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./constants&apos;</span>;
+<span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;axios&apos;</span>;
+
+<span class="hljs-keyword">const</span> higherOrderTarget = (events) =&gt; {
+  <span class="hljs-comment">// filter out any events that were saved offline</span>
+  <span class="hljs-keyword">const</span> currentEvents = events.filter(event =&gt; {
+    <span class="hljs-keyword">if</span> (event.timeSaved === <span class="hljs-literal">undefined</span>) {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>; <span class="hljs-comment">// keep these events</span>
+    }
+    <span class="hljs-comment">// calculate the time since the event was saved</span>
+    <span class="hljs-keyword">const</span> timeSinceEventSaved = <span class="hljs-built_in">Date</span>.now() - event.timeSaved;
+    <span class="hljs-comment">// post the offline events to google analytics</span>
+    ga(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">tracker</span>) </span>{
+       <span class="hljs-keyword">const</span> url = <span class="hljs-string">&apos;https://www.google-analytics.com/collect&apos;</span>;
+
+       <span class="hljs-keyword">const</span> params = [
+         <span class="hljs-string">&apos;v=1&apos;</span>,
+         <span class="hljs-string">`tid=<span class="hljs-subst">${TRACKING_ID}</span>`</span>,
+         <span class="hljs-string">`cid=<span class="hljs-subst">${tracker.get(&apos;clientId&apos;)}</span>`</span>,
+         <span class="hljs-string">`t=<span class="hljs-subst">${event.hitType}</span>`</span>,
+         <span class="hljs-string">`dp=<span class="hljs-subst">${event.page}</span>`</span>,
+         <span class="hljs-string">`qt=<span class="hljs-subst">${timeSinceEventSaved}</span>`</span>,
+       ].join(<span class="hljs-string">&apos;&amp;&apos;</span>);
+
+       axios.post(<span class="hljs-string">`<span class="hljs-subst">${url}</span>?<span class="hljs-subst">${params}</span>`</span>);
+    });
+
+  <span class="hljs-comment">// push any events that were not saved offline directly to the target</span>
+  GoogleAnalytics(currentEvents);
+};
+</code></pre>
+<p>Note that in Google Analytics, you have to use the measurement
+protocal (i.e. hit the google analytics rest api directly) if you want
+to specify the queue time parameter.</p>
+<ul>
+<li><a href="https://developers.google.com/analytics/devguides/collection/protocol/v1/devguide" target="_blank">Measurement Protocol Docs</a></li>
+<li><a href="https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters#qt" target="_blank">Queue Time Parameter Docs</a></li>
+</ul>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../docs/notes-on-unit-testing.html" class="navigation navigation-prev " aria-label="Previous page: Notes on Unit Testing"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../docs/migrating-from-redux-gtm.html" class="navigation navigation-next " aria-label="Next page: Migrating From ReduxGTM"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-github/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-ga/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"github":{"url":"https://github.com/rangle/redux-beacon"},"ga":{"token":"UA-41067508-13","configuration":"auto"},"highlight":{},"search":{},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

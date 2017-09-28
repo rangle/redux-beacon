@@ -1,0 +1,16 @@
+{
+  "name": "redux-beacon-google-analytics",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "devDependencies": {
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
+  },
+  "dependencies": {
+    "redux": "^3.6.0",
+    "redux-beacon": "1.x"
+  }
+}

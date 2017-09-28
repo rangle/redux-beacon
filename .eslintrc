@@ -1,0 +1,33 @@
+{
+  "extends": "airbnb",
+  "rules": {
+    "no-param-reassign": 0,
+    "new-cap": [
+      "error", { "capIsNew": false }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error", {
+        "devDependencies": [
+          "test/**/*.js",
+          "**/*.test.js",
+          "**/*.spec.js",
+          "**/ts-types-tester.js"
+        ]
+      }
+    ],
+    "comma-dangle": [
+      "error", {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "always-multiline",
+        "exports": "always-multiline",
+        "functions": "ignore"
+      }
+    ]
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true
+  }
+}
