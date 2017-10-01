@@ -8,8 +8,10 @@ function GoogleAnalytics(events) {
     throw new Error('window.ga is not defined, Have you forgotten to include Google Analytics?');
   }
   events.forEach((event) => {
+    const customTrackerId = event.customTrackerId || event.tracker;
+    const trackerId = !!customTrackerId && !!customTrackerId.trim() ? `${customTrackerId}.` : '';
+      
     if (isEcommEvent(event)) {
-      const trackerId = event.customTrackerId ? `${event.customTrackerId}.` : '';
       const callEvent = type => ({
         addItem: () => window.ga(`${trackerId}ecommerce:addItem`, filterEcommEvents(event)),
         addTransaction: () => window.ga(`${trackerId}ecommerce:addTransaction`, filterEcommEvents(event)),
@@ -20,9 +22,9 @@ function GoogleAnalytics(events) {
       callEvent(event.hitType);
     } else {
       if (event.hitType === 'pageview') {
-        window.ga('set', 'page', event.page);
+        window.ga(`${trackerId}set`, 'page', event.page);
       }
-      window.ga('send', event);
+      window.ga(`${trackerId}send`, event);
     }
   });
 }

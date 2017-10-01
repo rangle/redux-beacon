@@ -26,6 +26,35 @@ describe('GoogleAnalytics(events)', () => {
     expect(window.ga).toHaveBeenCalledWith('send', events[0]);
     expect(window.ga).toHaveBeenCalledWith('send', events[1]);
   });
+    
+  describe('with events that have trackers', () => {
+    it('calls window.ga("<tracker>:send", <event>) for each event', () => {
+      const events = [
+        {
+          hitType: 'pageview',
+          page: '/home',
+          title: 'homepage',
+          location: 'https://some.site/home',
+          tracker: 'testHub',
+        },
+        {
+          hitType: 'event',
+          eventCategory: 'category',
+          eventAction: 'action',
+          eventLabel: 'label',
+          eventValue: 'value',
+          tracker: 'customApp',
+        },
+      ];
+        
+      window.ga = jest.fn();
+      GoogleAnalytics(events);
+          
+      expect(window.ga).toHaveBeenCalledWith('testHub.set', 'page', events[0].page);
+      expect(window.ga).toHaveBeenCalledWith('testHub.send', events[0]);
+      expect(window.ga).toHaveBeenCalledWith('customApp.send', events[1]);
+    });
+  });
 
   describe('on a page view hit', () => {
     it('updates the tracker window.ga("set", "page", ...)', () => {
