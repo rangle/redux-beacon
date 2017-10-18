@@ -80,12 +80,65 @@ to use a custom tracker object to track events. Ex:
 **Note:**
 Google Analytics will _fail silently_ if you try to use these events without adding the
 require call in your initial tracking code. It is also **not** recommended to use GA's
-basic analytics plugin if you're also going to use the enhanced ecommerce plugin. At
-this time, we do not have support for the enhanced ecommerce plugin.
+basic analytics plugin if you're also going to use the enhanced ecommerce plugin.
 
 See the google developer docs for
 [more information on creating a custom tracker](https://developers.google.com/analytics/devguides/collection/analyticsjs/creating-trackers) and
 for [using the google analytics ecommerce plugin](https://developers.google.com/analytics/devguides/collection/analyticsjs/ecommerce)
+
+### Google Analytics Enhanced Ecommerce Plugin
+
+The Google Analytics target also has support for the enhanced ecommerce plugin.
+It should be noted that it isn't recommended to use both the enhanced plugin and
+basic plugin together without multiple trackers. Please refer to the [enhanced
+ecommerce plugin documentation here](https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce)
+
+To use the enhanced ecommerce plugin, first add this line to the end of your
+tracking snippet: `ga('require', 'ec');` Again, this must be added after the
+create call with your Google Analytics UA code.
+
+This allows you to use these enhanced ecommerce events:
+
+- addProduct
+- addImpression
+- addPromo
+- addAction
+
+The basic actions are used as well:
+
+- ecommSend
+- ecommClear
+- addItem
+- addTransaction
+
+In order to tell Redux Beacon which version of the ecommerce plugin you're using,
+your events should pass the `ecommType` key:
+
+```JavaScript
+const events = [
+  {
+    hitType: 'addImpression',
+    ecommType: 'enhanced',
+    // ...
+  },
+];
+```
+
+For adding custom actions, you can specify the type of action using the key `actionName`.
+
+```JavaScript
+const events = [
+  {
+    hitType: 'addAction',
+    ecommType: 'enhanced',
+    actionName: 'click',
+    // ...
+  },
+];
+```
+
+Everything else works the same as in the basic ecommerce plugin. Please see [the
+developer documentation for more information on how these events work.](https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce)
 
 ### Examples
   * [Google Analytics (Redux) Example](https://github.com/rangle/redux-beacon/tree/master/examples/google-analytics)
