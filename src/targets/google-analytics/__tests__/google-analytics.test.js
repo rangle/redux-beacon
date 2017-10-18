@@ -26,7 +26,7 @@ describe('GoogleAnalytics(events)', () => {
     expect(window.ga).toHaveBeenCalledWith('send', events[0]);
     expect(window.ga).toHaveBeenCalledWith('send', events[1]);
   });
-    
+
   describe('with events that have trackers', () => {
     it('calls window.ga("<tracker>:send", <event>) for each event', () => {
       const events = [
@@ -46,10 +46,10 @@ describe('GoogleAnalytics(events)', () => {
           tracker: 'customApp',
         },
       ];
-        
+
       window.ga = jest.fn();
       GoogleAnalytics(events);
-          
+
       expect(window.ga).toHaveBeenCalledWith('testHub.set', 'page', events[0].page);
       expect(window.ga).toHaveBeenCalledWith('testHub.send', events[0]);
       expect(window.ga).toHaveBeenCalledWith('customApp.send', events[1]);
@@ -161,6 +161,50 @@ describe('GoogleAnalytics(events)', () => {
 
       GoogleAnalytics(events);
       expect(window.ga).toHaveBeenCalledWith('ecommerce:send');
+    });
+  });
+
+  describe('when ga enhanced ecommerce is being used', () => {
+    beforeEach(() => {
+      window.ga = jest.fn();
+    });
+
+    it('should call ecommerce events using enhanced prefix', () => {
+      const events = [
+        {
+          hitType: 'ecommClear',
+          ecommType: 'enhanced',
+        },
+      ];
+
+      GoogleAnalytics(events);
+      expect(window.ga).toHaveBeenCalledWith('ec:clear');
+    });
+
+    ['addProduct', 'addImpression', 'addPromo'].forEach((hitType) => {
+      test(`hitType ${hitType} should be handled by ecomm plugin`, () => {
+        const events = [
+          {
+            hitType,
+            ecommType: 'enhanced',
+          },
+        ];
+        GoogleAnalytics(events);
+        expect(window.ga).toHaveBeenCalledWith(`ec:${hitType}`, {});
+      });
+    });
+
+    it('should pass in action type to addAction call', () => {
+      const events = [
+        {
+          hitType: 'addAction',
+          ecommType: 'enhanced',
+          actionName: 'click',
+        },
+      ];
+
+      GoogleAnalytics(events);
+      expect(window.ga).toHaveBeenCalledWith('ec:addAction', 'click', {});
     });
   });
 });

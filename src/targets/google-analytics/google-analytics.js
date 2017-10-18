@@ -10,13 +10,18 @@ function GoogleAnalytics(events) {
   events.forEach((event) => {
     const customTrackerId = event.customTrackerId || event.tracker;
     const trackerId = !!customTrackerId && !!customTrackerId.trim() ? `${customTrackerId}.` : '';
-      
+    const ecommPluginType = event.ecommType === 'enhanced' ? 'ec' : 'ecommerce';
+
     if (isEcommEvent(event)) {
       const callEvent = type => ({
-        addItem: () => window.ga(`${trackerId}ecommerce:addItem`, filterEcommEvents(event)),
-        addTransaction: () => window.ga(`${trackerId}ecommerce:addTransaction`, filterEcommEvents(event)),
-        ecommClear: () => window.ga(`${trackerId}ecommerce:clear`),
-        ecommSend: () => window.ga(`${trackerId}ecommerce:send`),
+        addItem: () => window.ga(`${trackerId}${ecommPluginType}:addItem`, filterEcommEvents(event)),
+        addTransaction: () => window.ga(`${trackerId}${ecommPluginType}:addTransaction`, filterEcommEvents(event)),
+        addImpression: () => window.ga(`${trackerId}${ecommPluginType}:addImpression`, filterEcommEvents(event)),
+        addProduct: () => window.ga(`${trackerId}${ecommPluginType}:addProduct`, filterEcommEvents(event)),
+        addPromo: () => window.ga(`${trackerId}${ecommPluginType}:addPromo`, filterEcommEvents(event)),
+        addAction: () => window.ga(`${trackerId}${ecommPluginType}:addAction`, event.actionName, filterEcommEvents(event)),
+        ecommClear: () => window.ga(`${trackerId}${ecommPluginType}:clear`),
+        ecommSend: () => window.ga(`${trackerId}${ecommPluginType}:send`),
       }[type])();
 
       callEvent(event.hitType);

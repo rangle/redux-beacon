@@ -30,6 +30,12 @@ export interface SocialInteraction {
   socialTarget: string,
 }
 
+export interface Exception {
+  hitType: 'exception',
+  exDescription?: string,
+  exFatal?: boolean,
+}
+
 export interface EcommItem {
   hitType: 'addItem',
   id: string,
@@ -43,14 +49,50 @@ export interface EcommItem {
 export interface EcommTransaction {
   hitType: 'addTransaction',
   id: string,
-  affliation?: string,
+  affilation?: string,
   revenue?: number,
   shipping?: number,
   tax?: number,
 }
 
-export interface Exception {
-  hitType: 'exception',
-  exDescription?: string,
-  exFatal?: boolean,
+export interface EcommImpression {
+  id: string,
+  name: string,
+  list?: string,
+  brand?: string,
+  category?: string,
+  variant?: string,
+  position?: number,
+  currency?: number,
+}
+
+export interface EcommProduct {
+  id: string,
+  name: string,
+  brand?: string,
+  category?: string,
+  variant?: string,
+  price?: number,
+  quantity?: number,
+  coupon?: string,
+  position?: number,
+}
+
+export interface EcommPromotion {
+  id: string,
+  name: string,
+  creative?: string,
+  position?: string,
+}
+
+export interface EcommAction {
+  id: string,
+  affiliation?: string,
+  revenue?: number,
+  tax?: number,
+  shipping?: number,
+  coupon?: string,
+  list?: string,
+  step?: number,
+  option?: string,
 }
