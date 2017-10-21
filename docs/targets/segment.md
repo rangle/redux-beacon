@@ -25,8 +25,8 @@
    ```js
    import { Segment } from 'redux-beacon/targets/segment';
 
-   const middleware = createMiddleware(eventsMap, Segment);
-   const metaReducer = createMetaReducer(eventsMap, Segment);
+   const middleware = createMiddleware(eventsMap, Segment());
+   const metaReducer = createMetaReducer(eventsMap, Segment());
    ```
 
 

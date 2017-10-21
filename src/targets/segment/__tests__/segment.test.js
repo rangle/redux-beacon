@@ -1,19 +1,20 @@
-const { Segment } = require('../');
+import { Segment } from '../';
+
+window.analytics = {
+  identify: jest.fn(),
+  group: jest.fn(),
+  page: jest.fn(),
+  track: jest.fn(),
+  alias: jest.fn(),
+};
+const target = Segment();
 
 describe('Target: Segment.io', () => {
-  window.analytics = {
-    identify: jest.fn(),
-    group: jest.fn(),
-    page: jest.fn(),
-    track: jest.fn(),
-    alias: jest.fn(),
-  };
-
   it('does not call any service when hitType is undefined', () => {
     const events = [{
       hitType: undefined,
     }];
-    Segment(events);
+    target(events);
     Object.keys(window.analytics).forEach((key) => {
       expect(window.analytics[key]).not.toHaveBeenCalled();
     });
@@ -24,7 +25,7 @@ describe('Target: Segment.io', () => {
       hitType: 'pageview',
       page: 'random page',
     }];
-    Segment(events);
+    target(events);
     expect(window.analytics.page).toHaveBeenCalledWith(events[0].page);
   });
 
@@ -33,7 +34,7 @@ describe('Target: Segment.io', () => {
       hitType: 'event',
       eventAction: 'random event action',
     }];
-    Segment(events);
+    target(events);
     expect(window.analytics.track).toHaveBeenCalledWith(events[0].eventAction, events[0]);
   });
 
@@ -42,7 +43,7 @@ describe('Target: Segment.io', () => {
       hitType: 'identify',
       userId: 'random user id',
     }];
-    Segment(events);
+    target(events);
     expect(window.analytics.identify).toHaveBeenCalledWith(events[0].userId, events[0]);
   });
 
@@ -51,7 +52,7 @@ describe('Target: Segment.io', () => {
       hitType: 'group',
       groupId: 'random group id',
     }];
-    Segment(events);
+    target(events);
     expect(window.analytics.group).toHaveBeenCalledWith(events[0].groupId, events[0]);
   });
 
@@ -60,7 +61,7 @@ describe('Target: Segment.io', () => {
       hitType: 'alias',
       userId: 'random user id',
     }];
-    Segment(events);
+    target(events);
     expect(window.analytics.alias).toHaveBeenCalledWith(events[0].userId);
   });
 });
@@ -68,6 +69,6 @@ describe('Target: Segment.io', () => {
 describe('When Segment is not defined', () => {
   it('should throw an error informing the user.', () => {
     window.analytics = undefined;
-    expect(() => Segment()).toThrow('window.analytics is not defined, Have you forgotten to include the Segment tracking snippet?');
+    expect(() => target()).toThrowErrorMatchingSnapshot();
   });
 });

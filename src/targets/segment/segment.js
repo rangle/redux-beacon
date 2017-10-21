@@ -1,7 +1,4 @@
-/**
- * An function that sends an event to segment.io
- */
-function sendSegmentEvent(events) {
+const Segment = () => (events) => {
   if (!window) return;
   if (!window.analytics) {
     throw new Error('window.analytics is not defined, Have you forgotten to include the Segment tracking snippet?');
@@ -27,8 +24,6 @@ function sendSegmentEvent(events) {
         break;
     }
   });
-}
-
-module.exports = {
-  Segment: sendSegmentEvent,
 };
+
+module.exports = { Segment };
