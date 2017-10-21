@@ -1,8 +1,9 @@
+import { Target } from '../../../';
+
 /**
- * A function that sends events to segment.io
- * @param {any[]} events that are need to be sent
+ * Creates the Segment target
  */
-export function Segment(events: any[]): void;
+export function Segment(): Target;
 
 export interface Event {
   hitType: 'event';

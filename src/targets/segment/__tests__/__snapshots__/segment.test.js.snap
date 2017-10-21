@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`When Segment is not defined should throw an error informing the user. 1`] = `"window.analytics is not defined, Have you forgotten to include the Segment tracking snippet?"`;
