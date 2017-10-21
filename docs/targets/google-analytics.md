@@ -22,8 +22,8 @@
    ```js
    import { GoogleAnalytics } from 'redux-beacon/targets/google-analytics';
 
-   const middleware = createMiddleware(eventsMap, GoogleAnalytics);
-   const metaReducer = createMetaReducer(eventsMap, GoogleAnalytics);
+   const middleware = createMiddleware(eventsMap, GoogleAnalytics());
+   const metaReducer = createMetaReducer(eventsMap, GoogleAnalytics());
    ```
 
     > **Warning:**

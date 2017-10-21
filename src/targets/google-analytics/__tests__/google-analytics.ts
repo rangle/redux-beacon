@@ -8,7 +8,9 @@ import {
 } from '../';
 import { Target } from '../../../../';
 
-const gaTarget: Target = GoogleAnalytics;
+let gaTarget: Target;
+
+gaTarget = GoogleAnalytics();
 
 const pageView = {
   eventFields: (): PageView => ({

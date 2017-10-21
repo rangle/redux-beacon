@@ -1,6 +1,8 @@
-const { GoogleAnalytics } = require('../');
+import { GoogleAnalytics } from '../';
 
 beforeEach(() => { window.ga = undefined; });
+
+const target = GoogleAnalytics();
 
 describe('GoogleAnalytics(events)', () => {
   it('calls window.ga("send", <event>) for each event', () => {
@@ -21,7 +23,7 @@ describe('GoogleAnalytics(events)', () => {
     ];
 
     window.ga = jest.fn();
-    GoogleAnalytics(events);
+    target(events);
 
     expect(window.ga).toHaveBeenCalledWith('send', events[0]);
     expect(window.ga).toHaveBeenCalledWith('send', events[1]);
@@ -48,7 +50,7 @@ describe('GoogleAnalytics(events)', () => {
       ];
 
       window.ga = jest.fn();
-      GoogleAnalytics(events);
+      target(events);
 
       expect(window.ga).toHaveBeenCalledWith('testHub.set', 'page', events[0].page);
       expect(window.ga).toHaveBeenCalledWith('testHub.send', events[0]);
@@ -66,7 +68,7 @@ describe('GoogleAnalytics(events)', () => {
       ];
 
       window.ga = jest.fn();
-      GoogleAnalytics(events);
+      target(events);
 
       expect(window.ga).toHaveBeenCalledWith('set', 'page', '/home');
     });
@@ -80,7 +82,7 @@ describe('GoogleAnalytics(events)', () => {
           page: '/home',
         },
       ];
-      expect(() => GoogleAnalytics(events)).toThrow('window.ga is not defined, Have you forgotten to include Google Analytics?');
+      expect(() => target(events)).toThrow('window.ga is not defined, Have you forgotten to include Google Analytics?');
     });
   });
 
@@ -100,7 +102,7 @@ describe('GoogleAnalytics(events)', () => {
         },
       ];
 
-      GoogleAnalytics(events);
+      target(events);
 
       expect(window.ga).toHaveBeenCalledWith('ecommerce:addItem', {
         id: itemId,
@@ -119,7 +121,7 @@ describe('GoogleAnalytics(events)', () => {
         },
       ];
 
-      GoogleAnalytics(events);
+      target(events);
       expect(window.ga).toHaveBeenCalledWith('ecommerce:addTransaction', {
         id,
         revenue,
@@ -133,7 +135,7 @@ describe('GoogleAnalytics(events)', () => {
         },
       ];
 
-      GoogleAnalytics(events);
+      target(events);
       expect(window.ga).toHaveBeenCalledWith('ecommerce:clear');
     });
 
@@ -148,7 +150,7 @@ describe('GoogleAnalytics(events)', () => {
         },
       ];
 
-      GoogleAnalytics(events);
+      target(events);
       expect(window.ga).toHaveBeenCalledWith(`${customTrackerId}.ecommerce:addTransaction`, { id });
     });
 
@@ -159,7 +161,7 @@ describe('GoogleAnalytics(events)', () => {
         },
       ];
 
-      GoogleAnalytics(events);
+      target(events);
       expect(window.ga).toHaveBeenCalledWith('ecommerce:send');
     });
   });
@@ -177,7 +179,7 @@ describe('GoogleAnalytics(events)', () => {
         },
       ];
 
-      GoogleAnalytics(events);
+      target(events);
       expect(window.ga).toHaveBeenCalledWith('ec:clear');
     });
 
@@ -189,7 +191,7 @@ describe('GoogleAnalytics(events)', () => {
             ecommType: 'enhanced',
           },
         ];
-        GoogleAnalytics(events);
+        target(events);
         expect(window.ga).toHaveBeenCalledWith(`ec:${hitType}`, {});
       });
     });
@@ -203,7 +205,7 @@ describe('GoogleAnalytics(events)', () => {
         },
       ];
 
-      GoogleAnalytics(events);
+      target(events);
       expect(window.ga).toHaveBeenCalledWith('ec:addAction', 'click', {});
     });
   });
