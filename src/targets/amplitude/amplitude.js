@@ -1,4 +1,4 @@
-const Amplitude = () => (events) => {
+const Amplitude = () => events => {
   if (!window || !window.amplitude) {
     return;
   }
@@ -7,7 +7,7 @@ const Amplitude = () => (events) => {
   let identity;
   let revenue;
 
-  events.forEach((event) => {
+  events.forEach(event => {
     switch (event.hitType) {
       case 'setUserId':
         app.setUserId(event.userId);
@@ -36,45 +36,45 @@ const Amplitude = () => (events) => {
       case 'identify':
         identity = new window.amplitude.Identify();
 
-        Object.keys(event).forEach((op) => {
+        Object.keys(event).forEach(op => {
           const args = event[op];
 
           switch (op) {
             case 'set':
-              Object.keys(args).forEach((key) => {
+              Object.keys(args).forEach(key => {
                 const value = args[key];
 
                 identity.set(key, value);
               });
               break;
             case 'setOnce':
-              Object.keys(args).forEach((key) => {
+              Object.keys(args).forEach(key => {
                 const value = args[key];
 
                 identity.setOnce(key, value);
               });
               break;
             case 'unset':
-              args.forEach((key) => {
+              args.forEach(key => {
                 identity.unset(key);
               });
               break;
             case 'add':
-              Object.keys(args).forEach((key) => {
+              Object.keys(args).forEach(key => {
                 const value = args[key];
 
                 identity.add(key, value);
               });
               break;
             case 'append':
-              Object.keys(args).forEach((key) => {
+              Object.keys(args).forEach(key => {
                 const value = args[key];
 
                 identity.append(key, value);
               });
               break;
             case 'prepend':
-              Object.keys(args).forEach((key) => {
+              Object.keys(args).forEach(key => {
                 const value = args[key];
 
                 identity.prepend(key, value);
@@ -90,7 +90,7 @@ const Amplitude = () => (events) => {
       case 'logRevenueV2':
         revenue = new window.amplitude.Revenue();
 
-        Object.keys(event).forEach((attr) => {
+        Object.keys(event).forEach(attr => {
           const val = event[attr];
 
           switch (attr) {

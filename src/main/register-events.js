@@ -19,7 +19,7 @@ function registerEvents(
   } else if (offlineStorage.isConnected(state)) {
     target(events);
     ifLoggerLog(events, action, state);
-    offlineStorage.purgeEvents((oldEvents) => {
+    offlineStorage.purgeEvents(oldEvents => {
       if (Array.isArray(oldEvents) && oldEvents.length > 0) {
         target(oldEvents);
         ifLoggerLog(oldEvents, null, null, false, true);

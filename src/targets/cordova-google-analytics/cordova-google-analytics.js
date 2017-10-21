@@ -1,5 +1,5 @@
-const CordovaGoogleAnalytics = () => (events) => {
-  events.forEach((event) => {
+const CordovaGoogleAnalytics = () => events => {
+  events.forEach(event => {
     switch (event.hitType) {
       case 'pageview':
         window.ga.trackView(event.page, event.location, event.newSession);
@@ -9,7 +9,8 @@ const CordovaGoogleAnalytics = () => (events) => {
           event.eventCategory,
           event.eventAction,
           event.eventLabel,
-          event.eventValue);
+          event.eventValue
+        );
         break;
       default:
         break;

@@ -6,12 +6,12 @@ beforeAll(() => {
   console = makeConsoleMock();
 });
 
-afterEach(() => {
-  console.clearHistory();
-});
-
 /* eslint-disable no-console */
 describe('logger()', () => {
+  afterEach(() => {
+    console.clearHistory();
+  });
+
   Date.now = jest.fn(() => 1489105897006);
   // toTimeString will return the time in the machine's timezone.
   // The following stub ensures that the tests will work from any

@@ -2,7 +2,7 @@ import createEvents from './create-events';
 import registerEvents from './register-events';
 
 function createMiddleware(eventDefinitionsMap, target, extensions = {}) {
-  return store => next => (action) => {
+  return store => next => action => {
     if (!eventDefinitionsMap[action.type]) {
       return next(action);
     }

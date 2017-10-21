@@ -4,8 +4,8 @@ import registerEvents from './register-events';
 function createMetaReducer(eventDefinitionsMap, target, extensions = {}) {
   /* Why not arrow functions? AOT... */
   /* eslint-disable func-names */
-  return function (reducer) {
-    return function (prevState, action) {
+  return function(reducer) {
+    return function(prevState, action) {
       if (!eventDefinitionsMap[action.type]) {
         return reducer(prevState, action);
       }

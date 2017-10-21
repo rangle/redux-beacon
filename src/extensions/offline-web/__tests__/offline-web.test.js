@@ -9,11 +9,15 @@ describe('offlineWeb', () => {
   test('saveEvents and purgeEvents integration', () => {
     const { saveEvents, purgeEvents } = offlineWeb();
     const events = [{ hitType: 'pageview', page: '/home' }];
-    const expectedSavedEvent = { hitType: 'pageview', page: '/home', timeSaved: 1489163254030 };
+    const expectedSavedEvent = {
+      hitType: 'pageview',
+      page: '/home',
+      timeSaved: 1489163254030,
+    };
 
     return saveEvents(events)
       .then(() => purgeEvents(purgedEvents => purgedEvents))
-      .then((purgedEvents) => {
+      .then(purgedEvents => {
         expect(Array.isArray(purgedEvents)).toBe(true);
         expect(purgedEvents.length).toBe(1);
 

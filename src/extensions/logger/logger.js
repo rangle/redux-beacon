@@ -3,7 +3,12 @@ function getTimestamp(sinceEpoch) {
   return date
     .toTimeString()
     .match(/^\d\d:\d\d:\d\d/g)
-    .concat(date.getTime().toString().slice(-3))
+    .concat(
+      date
+        .getTime()
+        .toString()
+        .slice(-3)
+    )
     .join('.');
 }
 

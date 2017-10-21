@@ -7,11 +7,11 @@ function openDB(dbName, version) {
   return new Promise((resolve, reject) => {
     const request = window.indexedDB.open(dbName, version);
 
-    request.onsuccess = (event) => {
+    request.onsuccess = event => {
       const db = event.target.result;
       resolve(db);
     };
-    request.onupgradeneeded = (event) => {
+    request.onupgradeneeded = event => {
       /* Runs if the db hasn't been created yet, or if the requested db
        * version is greater than the existing db version.  This will run
        * before onsuccess */
@@ -40,7 +40,7 @@ function purge(db) {
     const openCursor = objectStore.openCursor();
 
     let oldEvents = [];
-    openCursor.onsuccess = (event) => {
+    openCursor.onsuccess = event => {
       const cursor = event.target.result;
       if (cursor) {
         oldEvents = oldEvents.concat(cursor.value);
@@ -60,7 +60,9 @@ function offlineWeb(isConnected) {
       return openDB(DB_NAME, DB_VERSION).then(db => save(events, db));
     },
     purgeEvents(handlePurgedEvents) {
-      return openDB(DB_NAME, DB_VERSION).then(purge).then(handlePurgedEvents);
+      return openDB(DB_NAME, DB_VERSION)
+        .then(purge)
+        .then(handlePurgedEvents);
     },
     isConnected,
   };

@@ -6,7 +6,10 @@ const hasShape = (event, shape) =>
 
 const isValidPageView = event =>
   hasShape(event, {
-    hitType: joi.string().only('pageview').required(),
+    hitType: joi
+      .string()
+      .only('pageview')
+      .required(),
     route: joi.string().disallow('/404'),
     referrer: joi.string(),
   });

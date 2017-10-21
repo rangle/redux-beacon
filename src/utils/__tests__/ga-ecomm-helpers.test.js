@@ -35,7 +35,7 @@ describe('Util: Filter Ecommerce Events', () => {
       { hitType: 'ecommClear' },
       { hitType: 'ecommSend' },
     ];
-    events.forEach((event) => {
+    events.forEach(event => {
       test(`${JSON.stringify(event)} => true,`, () => {
         expect(isEcommEvent(event)).toBeTruthy();
       });

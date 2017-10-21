@@ -56,11 +56,11 @@ describe('createEvents(eventDef, prevState, action)', () => {
     },
     {
       title: 'event definition returns an array of events',
-      eventDef: () => ([
+      eventDef: () => [
         { hitType: 'pageview' },
         { hitType: 'event' },
         { hitType: 'timing' },
-      ]),
+      ],
       expected: [
         { hitType: 'pageview' },
         { hitType: 'event' },
@@ -69,16 +69,13 @@ describe('createEvents(eventDef, prevState, action)', () => {
     },
     {
       title: 'event definition returns an array of events, with some nulls',
-      eventDef: () => ([
+      eventDef: () => [
         { hitType: 'pageview' },
         null,
         { hitType: 'timing' },
         null,
-      ]),
-      expected: [
-        { hitType: 'pageview' },
-        { hitType: 'timing' },
       ],
+      expected: [{ hitType: 'pageview' }, { hitType: 'timing' }],
     },
     {
       title: 'event definition uses previous state',
@@ -87,10 +84,12 @@ describe('createEvents(eventDef, prevState, action)', () => {
         numActions: nextState.numActions,
       }),
       nextState: { numActions: 3 },
-      expected: [{
-        hitType: 'event',
-        numActions: 3,
-      }],
+      expected: [
+        {
+          hitType: 'event',
+          numActions: 3,
+        },
+      ],
     },
   ].forEach((scenario, index) => {
     const {
@@ -103,7 +102,11 @@ describe('createEvents(eventDef, prevState, action)', () => {
     } = scenario;
 
     test(`${index + 1}. ${title}` || 'no title', () => {
-      if (title === undefined || eventDef === undefined || expected === undefined) {
+      if (
+        title === undefined ||
+        eventDef === undefined ||
+        expected === undefined
+      ) {
         throw new Error('tests require title, eventDef, and expected keys');
       }
       const events = createEvents(
