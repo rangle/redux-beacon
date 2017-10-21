@@ -1,7 +1,7 @@
 import { Target } from '../../../';
 
 /**
- * Creates the Amplitude Redux Beacon target
+ * Creates the Amplitude target
  */
 export function Amplitude(): Target;
 

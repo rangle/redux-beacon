@@ -1,6 +1,6 @@
-const { filterEcommEvents, isEcommEvent } = require('../../utils');
+import { filterEcommEvents, isEcommEvent } from '../../utils';
 
-function GoogleAnalytics(events) {
+const GoogleAnalytics = () => (events) => {
   if (typeof window === 'undefined') {
     return;
   }
@@ -32,6 +32,6 @@ function GoogleAnalytics(events) {
       window.ga(`${trackerId}send`, event);
     }
   });
-}
+};
 
 module.exports = { GoogleAnalytics };

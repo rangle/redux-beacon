@@ -1,4 +1,9 @@
-export function GoogleAnalytics(events: any[]): void;
+import { Target } from '../../../';
+
+/**
+ * Creates the Google Analytics target
+ */
+export function GoogleAnalytics(): Target;
 
 export interface PageView {
   hitType: 'pageview';
