@@ -11,5 +11,8 @@ import {
   Identify,
   LogRevenueV2,
 } from '../';
+import { Target } from '../../../../';
 
-Amplitude([]);
+let amplitudeTarget: Target;
+
+amplitudeTarget = Amplitude();

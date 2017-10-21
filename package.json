@@ -76,6 +76,7 @@
     "testPathIgnorePatterns": [
       "<rootDir>/_book/",
       "<rootDir>/node_modules/",
+      "mocks.js",
       "__snapshots__"
     ],
     "collectCoverageFrom": [

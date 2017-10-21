@@ -3,6 +3,7 @@
     "target": "ES2015",
     "moduleResolution": "node",
     "noImplicitAny": true,
+    "allowSyntheticDefaultImports": true,
     "strictNullChecks": true
   }
 }

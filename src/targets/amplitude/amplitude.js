@@ -1,7 +1,4 @@
-/**
- * A function that sends an event to amplitude
- */
-function sendAmplitudeEvent(events) {
+const Amplitude = () => (events) => {
   if (!window || !window.amplitude) {
     return;
   }
@@ -123,8 +120,6 @@ function sendAmplitudeEvent(events) {
         break;
     }
   });
-}
-
-module.exports = {
-  Amplitude: sendAmplitudeEvent,
 };
+
+module.exports = { Amplitude };
