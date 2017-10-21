@@ -1,10 +1,16 @@
 {
-  "extends": "airbnb",
+  "extends": [
+    "airbnb-base",
+    "prettier"
+  ],
+  "plugins": [
+    "prettier"
+  ],
   "rules": {
-    "no-param-reassign": 0,
-    "new-cap": [
-      "error", { "capIsNew": false }
-    ],
+    "prettier/prettier": ["error", {
+      "singleQuote": true,
+      "trailingComma": "es5"
+    }],
     "import/no-extraneous-dependencies": [
       "error", {
         "devDependencies": [
@@ -13,15 +19,6 @@
           "**/*.spec.js",
           "**/ts-types-tester.js"
         ]
-      }
-    ],
-    "comma-dangle": [
-      "error", {
-        "arrays": "always-multiline",
-        "objects": "always-multiline",
-        "imports": "always-multiline",
-        "exports": "always-multiline",
-        "functions": "ignore"
       }
     ]
   },

@@ -14,6 +14,8 @@
     "utils"
   ],
   "scripts": {
+    "precommit": "lint-staged",
+    "beautify": "prettier --single-quote --trailing-comma es5 --write \"{src,__{tests,mocks}__}/**/*.js\"",
     "test-api": "node ./test/run-api-test.js",
     "docs:prepare": "gitbook install",
     "docs:watch": "yarn run docs:prepare && gitbook serve",
@@ -21,7 +23,7 @@
     "docs:publish": "yarn run docs:build && cd _book && git init && git commit --allow-empty -m 'Update docs' && git checkout -b gh-pages && git add . && git commit -am 'Update docs' && git push git@github.com:rangle/redux-beacon gh-pages --force",
     "lint": "eslint src",
     "test": "jest --watch",
-    "check": "jest --coverage",
+    "check": "jest --coverage && yarn lint",
     "clean": "rm -rf lib dist extensions targets coverage utils _book",
     "prebuild": "yarn run clean",
     "build:cjs:main": "babel src/main --out-dir lib --ignore __tests__",
@@ -56,22 +58,31 @@
     "babel-loader": "^6.2.9",
     "babel-preset-latest": "^6.16.0",
     "consolemock": "^1.0.1",
-    "eslint": "^3.8.1",
-    "eslint-config-airbnb": "^12.0.0",
-    "eslint-plugin-import": "^2.0.1",
-    "eslint-plugin-jsx-a11y": "^2.2.3",
-    "eslint-plugin-react": "^6.4.1",
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-config-prettier": "^2.6.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-prettier": "^2.3.1",
     "fake-indexeddb": "^1.0.11",
     "fuzzy-equal": "^1.0.1",
     "gitbook-cli": "^2.3.0",
+    "husky": "^0.14.3",
     "jest": "^20.0.0",
     "joi": "^10.5.2",
+    "lint-staged": "^4.3.0",
     "moment": "^2.17.1",
+    "prettier": "^1.7.4",
     "redux": "^3.6.0",
     "typescript": "^2.0.3",
     "typings-tester": "^0.2.2",
     "webpack": "^1.14.0"
   },
+   "lint-staged": {
+    "*.{js}": [
+      "beautify",
+      "git add"
+    ]
+   },
   "jest": {
     "testPathIgnorePatterns": [
       "<rootDir>/_book/",
