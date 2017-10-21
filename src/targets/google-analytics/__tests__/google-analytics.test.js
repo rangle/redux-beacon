@@ -1,6 +1,8 @@
 import { GoogleAnalytics } from '../';
 
-beforeEach(() => { window.ga = undefined; });
+beforeEach(() => {
+  window.ga = undefined;
+});
 
 const target = GoogleAnalytics();
 
@@ -52,7 +54,11 @@ describe('GoogleAnalytics(events)', () => {
       window.ga = jest.fn();
       target(events);
 
-      expect(window.ga).toHaveBeenCalledWith('testHub.set', 'page', events[0].page);
+      expect(window.ga).toHaveBeenCalledWith(
+        'testHub.set',
+        'page',
+        events[0].page
+      );
       expect(window.ga).toHaveBeenCalledWith('testHub.send', events[0]);
       expect(window.ga).toHaveBeenCalledWith('customApp.send', events[1]);
     });
@@ -82,7 +88,9 @@ describe('GoogleAnalytics(events)', () => {
           page: '/home',
         },
       ];
-      expect(() => target(events)).toThrow('window.ga is not defined, Have you forgotten to include Google Analytics?');
+      expect(() => target(events)).toThrow(
+        'window.ga is not defined, Have you forgotten to include Google Analytics?'
+      );
     });
   });
 
@@ -151,7 +159,11 @@ describe('GoogleAnalytics(events)', () => {
       ];
 
       target(events);
-      expect(window.ga).toHaveBeenCalledWith(`${customTrackerId}.ecommerce:addTransaction`, { id });
+      expect(
+        window.ga
+      ).toHaveBeenCalledWith(`${customTrackerId}.ecommerce:addTransaction`, {
+        id,
+      });
     });
 
     it('sends current cart state when send is called', () => {
@@ -183,7 +195,7 @@ describe('GoogleAnalytics(events)', () => {
       expect(window.ga).toHaveBeenCalledWith('ec:clear');
     });
 
-    ['addProduct', 'addImpression', 'addPromo'].forEach((hitType) => {
+    ['addProduct', 'addImpression', 'addPromo'].forEach(hitType => {
       test(`hitType ${hitType} should be handled by ecomm plugin`, () => {
         const events = [
           {

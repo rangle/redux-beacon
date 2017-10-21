@@ -33,12 +33,14 @@ function runIntegrationTests(title, prepareStore) {
 
         store.dispatch({ type: 'ROUTE_CHANGED', payload: '/my-account' });
 
-        expect(target).toHaveBeenCalledWith([{
-          hitType: 'pageview',
-          page: '/my-account',
-          referrer: '/home',
-          numActions: 1,
-        }]);
+        expect(target).toHaveBeenCalledWith([
+          {
+            hitType: 'pageview',
+            page: '/my-account',
+            referrer: '/home',
+            numActions: 1,
+          },
+        ]);
       });
     });
 
@@ -64,10 +66,10 @@ function runIntegrationTests(title, prepareStore) {
             event => ([...hitTypes].includes(event.hitType) ? event : null)
           );
 
-        const eventDef = () => ([
+        const eventDef = () => [
           { hitType: 'pageview' },
           { hitType: 'not-pageview-or-error' },
-        ]);
+        ];
 
         const eventsMap = {
           ROUTE_CHANGED: onlyEventsOfType('pageview', 'error')(eventDef),

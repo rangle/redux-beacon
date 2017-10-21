@@ -173,8 +173,8 @@ describe('Target: React Native Google Analytics', () => {
           hitType: 'timing',
           timingCategory: 'category',
           timingValue: 123,
-          timingVar: 'variable',  // required option
-          timingLabel: 'label',   // optional
+          timingVar: 'variable', // required option
+          timingLabel: 'label', // optional
         },
       ];
 
@@ -225,7 +225,6 @@ describe('Target: React Native Google Analytics', () => {
       );
     });
 
-
     it('calls trackException for exception hitType', () => {
       const events = [
         {
@@ -246,7 +245,7 @@ describe('Target: React Native Google Analytics', () => {
 
       expect(tracker.trackException).toHaveBeenCalledWith(
         events[0].exDescription,
-        events[0].exFatal,
+        events[0].exFatal
       );
     });
   });

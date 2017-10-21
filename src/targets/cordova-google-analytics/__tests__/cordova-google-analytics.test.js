@@ -29,10 +29,16 @@ describe('Target: Cordova Google Analytics', () => {
     target(events);
 
     expect(window.ga.trackEvent).toHaveBeenCalledWith(
-      events[0].eventCategory, events[0].eventAction, events[0].eventLabel, events[0].eventValue
+      events[0].eventCategory,
+      events[0].eventAction,
+      events[0].eventLabel,
+      events[0].eventValue
     );
     expect(window.ga.trackEvent).toHaveBeenCalledWith(
-      events[1].eventCategory, events[1].eventAction, events[1].eventLabel, events[1].eventValue
+      events[1].eventCategory,
+      events[1].eventAction,
+      events[1].eventLabel,
+      events[1].eventValue
     );
   });
 
@@ -46,12 +52,14 @@ describe('Target: Cordova Google Analytics', () => {
         {
           hitType: 'pageview',
           page: 'home',
-          location: 'my-scheme://content/1111?utm_source=google&utm_campaign=my-campaign',
+          location:
+            'my-scheme://content/1111?utm_source=google&utm_campaign=my-campaign',
         },
         {
           hitType: 'pageview',
           page: 'home',
-          location: 'my-scheme://content/1111?utm_source=google&utm_campaign=my-campaign',
+          location:
+            'my-scheme://content/1111?utm_source=google&utm_campaign=my-campaign',
           newSession: true,
         },
       ];
@@ -59,12 +67,20 @@ describe('Target: Cordova Google Analytics', () => {
       window.ga = { trackView: jest.fn() };
       target(events);
 
-      expect(window.ga.trackView).toHaveBeenCalledWith(events[0].page, undefined, undefined);
       expect(window.ga.trackView).toHaveBeenCalledWith(
-        events[1].page, events[1].location, undefined
+        events[0].page,
+        undefined,
+        undefined
       );
       expect(window.ga.trackView).toHaveBeenCalledWith(
-        events[2].page, events[2].location, events[2].newSession
+        events[1].page,
+        events[1].location,
+        undefined
+      );
+      expect(window.ga.trackView).toHaveBeenCalledWith(
+        events[2].page,
+        events[2].location,
+        events[2].newSession
       );
     });
   });

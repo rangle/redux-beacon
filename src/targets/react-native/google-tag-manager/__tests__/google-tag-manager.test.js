@@ -8,10 +8,7 @@ describe('GoogleTagManager(trackingId, GTMBridge)', () => {
         openContainerWithId: jest.fn(),
         pushDataLayerEvent: jest.fn(),
       };
-      const events = [
-        { event: 'some-event' },
-        { event: 'some-other-event' },
-      ];
+      const events = [{ event: 'some-event' }, { event: 'some-other-event' }];
 
       const target = GoogleTagManager(trackingId, GTMBridge);
       target(events);

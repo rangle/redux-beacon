@@ -24,8 +24,7 @@ describe('registerEvents()', () => {
 
       registerEvents(events, target, extensions, prevState, action);
 
-      expect(extensions.logger)
-        .toHaveBeenCalledWith(events, action, prevState);
+      expect(extensions.logger).toHaveBeenCalledWith(events, action, prevState);
     });
   });
 
@@ -46,14 +45,21 @@ describe('registerEvents()', () => {
       registerEvents(events, target, extensions, prevState, action);
 
       it('calls offlineStorage.saveEvents with the events', () => {
-        expect(extensions.offlineStorage.saveEvents).toHaveBeenCalledWith(events);
+        expect(extensions.offlineStorage.saveEvents).toHaveBeenCalledWith(
+          events
+        );
       });
       it('does not push events to the target', () => {
         expect(target).not.toHaveBeenCalled();
       });
       it('logs events correctly', () => {
-        expect(extensions.logger)
-          .toHaveBeenCalledWith(events, action, prevState, true, false);
+        expect(extensions.logger).toHaveBeenCalledWith(
+          events,
+          action,
+          prevState,
+          true,
+          false
+        );
       });
     });
 
@@ -78,8 +84,11 @@ describe('registerEvents()', () => {
         expect(target).toHaveBeenCalledWith(events);
       });
       it('logs events correctly', () => {
-        expect(extensions.logger)
-          .toHaveBeenCalledWith(events, action, prevState);
+        expect(extensions.logger).toHaveBeenCalledWith(
+          events,
+          action,
+          prevState
+        );
       });
       it('calls offlineStorage.purgeEvents', () => {
         expect(extensions.offlineStorage.purgeEvents).toHaveBeenCalled();
@@ -88,8 +97,13 @@ describe('registerEvents()', () => {
         expect(target).toHaveBeenCalledWith(oldEvents);
       });
       it('logs the purged events', () => {
-        expect(extensions.logger)
-          .toHaveBeenCalledWith(oldEvents, null, null, false, true);
+        expect(extensions.logger).toHaveBeenCalledWith(
+          oldEvents,
+          null,
+          null,
+          false,
+          true
+        );
       });
     });
   });

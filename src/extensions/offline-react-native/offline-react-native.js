@@ -6,7 +6,7 @@ function offlineReactNative(AsyncStorage, isConnected) {
   const saveEvents = events =>
     AsyncStorage.getItem(STORE_KEY)
       .then(JSON.parse)
-      .then((oldEvents) => {
+      .then(oldEvents => {
         const stampedEvents = addTimestamp(events);
         return oldEvents ? oldEvents.concat(stampedEvents) : stampedEvents;
       })
