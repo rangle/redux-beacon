@@ -1,1 +1,6 @@
-export function CordovaGoogleAnalytics(events: any[]): void;
+import { Target } from '../../../';
+
+/**
+ * Creates the Google Analytics for Cordova target
+ */
+export function CordovaGoogleAnalytics(): Target;
