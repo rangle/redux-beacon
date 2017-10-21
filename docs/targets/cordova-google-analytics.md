@@ -20,8 +20,8 @@
    ```js
    import { CordovaGoogleAnalytics } from 'redux-beacon/targets/cordova-google-analytics';
 
-   const middleware = createMiddleware(eventsMap, CordovaGoogleAnalytics);
-   const metaReducer = createMetaReducer(eventsMap, CordovaGoogleAnalytics);
+   const middleware = createMiddleware(eventsMap, CordovaGoogleAnalytics());
+   const metaReducer = createMetaReducer(eventsMap, CordovaGoogleAnalytics());
    ```
 
 ### Usage

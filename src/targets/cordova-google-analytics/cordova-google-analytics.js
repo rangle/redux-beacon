@@ -1,4 +1,4 @@
-function CordovaGoogleAnalytics(events) {
+const CordovaGoogleAnalytics = () => (events) => {
   events.forEach((event) => {
     switch (event.hitType) {
       case 'pageview':
@@ -15,6 +15,6 @@ function CordovaGoogleAnalytics(events) {
         break;
     }
   });
-}
+};
 
 module.exports = { CordovaGoogleAnalytics };
