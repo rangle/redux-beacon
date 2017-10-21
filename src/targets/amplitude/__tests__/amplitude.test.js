@@ -1,41 +1,10 @@
-const { Amplitude } = require('../');
+import { Amplitude } from '../';
+import amplitudeSDKMock from './amplitude.mocks';
+
+window.amplitude = amplitudeSDKMock;
+const target = Amplitude();
 
 describe('Target: Amplitude', () => {
-  const instanceMock = {
-    setUserId: jest.fn(),
-    setUserProperties: jest.fn(),
-    clearUserProperties: jest.fn(),
-    logEvent: jest.fn(),
-    setGroup: jest.fn(),
-    regenerateDeviceId: jest.fn(),
-    setOptOut: jest.fn(),
-    setVersionName: jest.fn(),
-    identify: jest.fn(),
-    logRevenueV2: jest.fn(),
-  };
-  const identityMock = {
-    add: jest.fn(),
-    set: jest.fn(),
-    setOnce: jest.fn(),
-    unset: jest.fn(),
-    append: jest.fn(),
-    prepend: jest.fn(),
-  };
-  const revenueMock = {
-    setProductId: jest.fn(),
-    setPrice: jest.fn(),
-    setQuantity: jest.fn(),
-    setRevenueType: jest.fn(),
-    setEventProperties: jest.fn(),
-  };
-
-  window.amplitude = {
-    getInstance: () => instanceMock,
-    Identify: () => identityMock,
-    Revenue: () => revenueMock,
-    logRevenueV2: jest.fn(),
-  };
-
   it('does not call any service when hitType is undefined', () => {
     const app = window.amplitude.getInstance();
 
@@ -43,7 +12,7 @@ describe('Target: Amplitude', () => {
       hitType: undefined,
     }];
 
-    Amplitude(evts);
+    target(evts);
 
     Object.keys(app).forEach((key) => {
       expect(app[key]).not.toHaveBeenCalled();
@@ -58,7 +27,7 @@ describe('Target: Amplitude', () => {
       userId: 42,
     }];
 
-    Amplitude(evts);
+    target(evts);
 
     expect(app.setUserId).toHaveBeenCalledWith(evts[0].userId);
   });
@@ -73,7 +42,7 @@ describe('Target: Amplitude', () => {
       },
     }];
 
-    Amplitude(evts);
+    target(evts);
 
     expect(app.setUserProperties).toHaveBeenCalledWith(evts[0].userProperties);
   });
@@ -85,7 +54,7 @@ describe('Target: Amplitude', () => {
       hitType: 'clearUserProperties',
     }];
 
-    Amplitude(evts);
+    target(evts);
 
     expect(app.clearUserProperties).toHaveBeenCalled();
   });
@@ -106,7 +75,7 @@ describe('Target: Amplitude', () => {
       },
     }];
 
-    Amplitude(evts);
+    target(evts);
 
     expect(app.logEvent).toHaveBeenCalledWith(evts[0].eventType, undefined);
     expect(app.logEvent).toHaveBeenCalledWith(
@@ -124,7 +93,7 @@ describe('Target: Amplitude', () => {
       groupName: 15,
     }];
 
-    Amplitude(evts);
+    target(evts);
 
     expect(app.setGroup).toHaveBeenCalledWith(
       evts[0].groupType,
@@ -139,7 +108,7 @@ describe('Target: Amplitude', () => {
       hitType: 'regenerateDeviceId',
     }];
 
-    Amplitude(evts);
+    target(evts);
 
     expect(app.regenerateDeviceId).toHaveBeenCalled();
   });
@@ -151,7 +120,7 @@ describe('Target: Amplitude', () => {
       hitType: 'setOptOut',
     }];
 
-    Amplitude(evts);
+    target(evts);
 
     expect(app.setOptOut).toHaveBeenCalled();
   });
@@ -164,7 +133,7 @@ describe('Target: Amplitude', () => {
       versionName: '1.12.3',
     }];
 
-    Amplitude(evts);
+    target(evts);
 
     expect(app.setVersionName).toHaveBeenCalledWith(evts[0].versionName);
   });
@@ -195,7 +164,7 @@ describe('Target: Amplitude', () => {
       },
     }];
 
-    Amplitude(evts);
+    target(evts);
 
     Object.keys(evts[0].set).forEach((k) => {
       expect(identity.set).toHaveBeenCalledWith(k, evts[0].set[k]);
@@ -233,7 +202,7 @@ describe('Target: Amplitude', () => {
       },
     }];
 
-    Amplitude(evts);
+    target(evts);
 
     expect(revenue.setProductId).toHaveBeenCalledWith(evts[0].productId);
     expect(revenue.setPrice).toHaveBeenCalledWith(evts[0].price);

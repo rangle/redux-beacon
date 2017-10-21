@@ -1,7 +1,9 @@
+import { Target } from '../../../';
+
 /**
- * A function that sends an event to amplitude
+ * Creates the Amplitude Redux Beacon target
  */
-export function Amplitude(events: any[]): void;
+export function Amplitude(): Target;
 
 export type AmplitudeProp = string | number | null;
 

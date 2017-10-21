@@ -32,8 +32,8 @@
    ```js
    import { Amplitude } from 'redux-beacon/targets/amplitude';
 
-   const middleware = createMiddleware(eventsMap, Amplitude);
-   const metaReducer = createMetaReducer(eventsMap, Amplitude);
+   const middleware = createMiddleware(eventsMap, Amplitude());
+   const metaReducer = createMetaReducer(eventsMap, Amplitude());
    ```
 
 ### For Typescript Users
