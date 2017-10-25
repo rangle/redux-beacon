@@ -22,6 +22,21 @@ const styles = {
 };
 
 /* eslint-disable no-console */
+const groups = [];
+const hr="-----"; hr+=hr; hr+=hr; hr+=hr; hr+=hr; // 80 char column
+
+if (!console.group) {
+  console.group = function(label) {
+    groups.push(label);
+    console.log(hr + "\nBEGIN GROUP: " + label + "");
+  };
+}
+if (!console.groupEnd) {
+  console.groupEnd = function() {
+    console.log("END GROUP: " + groups.pop() + "\n" + hr);
+  };
+}
+
 function logEvents(events) {
   if (events.length > 1) {
     console.group('%c Events:', styles.label);
