@@ -23,17 +23,17 @@ const styles = {
 
 /* eslint-disable no-console */
 const groups = [];
-let hr="-----"; hr+=hr; hr+=hr; hr+=hr; hr+=hr; // 80 char column
+const hr = '-'.repeat(80); // 80 dashes row line
 
 if (!console.group) {
-  console.group = function(label) {
+  console.group = function logGroupStart(label) {
     groups.push(label);
-    console.log(hr + "\nBEGIN GROUP: " + label + "");
+    console.log('%c \nBEGIN GROUP: %c', hr, label);
   };
 }
 if (!console.groupEnd) {
-  console.groupEnd = function() {
-    console.log("END GROUP: " + groups.pop() + "\n" + hr);
+  console.groupEnd = function logGroupEnd() {
+    console.log('END GROUP: %c\n%c', groups.pop(), hr);
   };
 }
 
