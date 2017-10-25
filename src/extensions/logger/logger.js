@@ -23,7 +23,7 @@ const styles = {
 
 /* eslint-disable no-console */
 const groups = [];
-const hr="-----"; hr+=hr; hr+=hr; hr+=hr; hr+=hr; // 80 char column
+let hr="-----"; hr+=hr; hr+=hr; hr+=hr; hr+=hr; // 80 char column
 
 if (!console.group) {
   console.group = function(label) {
