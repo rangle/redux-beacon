@@ -1,7 +1,6 @@
 import isPromise from '../utils/is-promise';
 import flatten from 'lodash.flatten';
 
-
 function registerEvents(
   events,
   target,
@@ -17,11 +16,10 @@ function registerEvents(
     }
   };
 
-  const handleEvents = (e) => {
+  const handleEvents = e => {
     if (offlineStorage === undefined) {
       target(e);
       ifLoggerLog(e, action, state);
-
     } else if (offlineStorage.isConnected(state)) {
       target(e);
       ifLoggerLog(e, action, state);

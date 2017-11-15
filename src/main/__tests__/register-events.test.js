@@ -44,9 +44,7 @@ describe('When given an offline storage extension', () => {
     registerEvents(events, target, extensions, prevState, action);
 
     it('calls offlineStorage.saveEvents with the events', () => {
-      expect(extensions.offlineStorage.saveEvents).toHaveBeenCalledWith(
-        events
-      );
+      expect(extensions.offlineStorage.saveEvents).toHaveBeenCalledWith(events);
     });
     it('does not push events to the target', () => {
       expect(target).not.toHaveBeenCalled();
@@ -83,11 +81,7 @@ describe('When given an offline storage extension', () => {
       expect(target).toHaveBeenCalledWith(events);
     });
     it('logs events correctly', () => {
-      expect(extensions.logger).toHaveBeenCalledWith(
-        events,
-        action,
-        prevState
-      );
+      expect(extensions.logger).toHaveBeenCalledWith(events, action, prevState);
     });
     it('calls offlineStorage.purgeEvents', () => {
       expect(extensions.offlineStorage.purgeEvents).toHaveBeenCalled();
@@ -110,14 +104,12 @@ describe('When given an offline storage extension', () => {
 describe('Asynchronous events', () => {
   describe('When given an array with an async event that returns one event', () => {
     it('pushes the event to the target once available', async () => {
-      const events = [
-        Promise.resolve({ event: 'some event' }),
-      ];
+      const events = [Promise.resolve({ event: 'some event' })];
       const target = jest.fn();
 
       await registerEvents(events, target);
 
-      expect(target).toHaveBeenCalledWith([{ event: 'some event'}]);
+      expect(target).toHaveBeenCalledWith([{ event: 'some event' }]);
     });
   });
 
@@ -126,7 +118,7 @@ describe('Asynchronous events', () => {
       const events = [
         Promise.resolve([
           { event: 'some event' },
-          { event: 'some other event'},
+          { event: 'some other event' },
         ]),
       ];
       const target = jest.fn();
@@ -135,7 +127,7 @@ describe('Asynchronous events', () => {
 
       expect(target).toHaveBeenCalledWith([
         { event: 'some event' },
-        { event: 'some other event'},
+        { event: 'some other event' },
       ]);
     });
   });
@@ -145,10 +137,7 @@ describe('Asynchronous events', () => {
       { event: 'sync-event-1' },
       Promise.resolve({ event: 'async-event-1' }),
       { event: 'sync-event-2' },
-      Promise.resolve([
-        { event: 'async-event-2' },
-        { event: 'async-event-3' },
-      ]),
+      Promise.resolve([{ event: 'async-event-2' }, { event: 'async-event-3' }]),
     ];
 
     it('pushes the sync events immediately to the target', () => {
@@ -176,12 +165,9 @@ describe('Asynchronous events', () => {
   });
 
   describe('When given a logger extension', () => {
-
     describe('and an array with an async event that returns one event', () => {
       it('logs the event once available', async () => {
-        const events = [
-          Promise.resolve({ event: 'some event' }),
-        ];
+        const events = [Promise.resolve({ event: 'some event' })];
         const target = jest.fn();
         const action = { type: 'SOME_ACTION_TYPE' };
         const prevState = { route: '/home' };
@@ -204,7 +190,7 @@ describe('Asynchronous events', () => {
         const events = [
           Promise.resolve([
             { event: 'some event' },
-            { event: 'some other event'},
+            { event: 'some other event' },
           ]),
         ];
         const target = jest.fn();
@@ -283,7 +269,6 @@ describe('Asynchronous events', () => {
       const action = { type: 'SOME_ACTION_TYPE' };
       const oldEvents = [{ event: 'some-old-event' }];
 
-
       it('saves sync events immediately and async events once available', async () => {
         const extensions = {
           logger: jest.fn(),
@@ -295,8 +280,14 @@ describe('Asynchronous events', () => {
         };
         await registerEvents(events, target, extensions, prevState, action);
         expect(extensions.offlineStorage.saveEvents.mock.calls).toEqual([
-          [[{"event": "sync-event-1"}, {"event": "sync-event-2"}]],
-          [[{"event": "async-event-1"}, {"event": "async-event-2"}, {"event": "async-event-3"}]],
+          [[{ event: 'sync-event-1' }, { event: 'sync-event-2' }]],
+          [
+            [
+              { event: 'async-event-1' },
+              { event: 'async-event-2' },
+              { event: 'async-event-3' },
+            ],
+          ],
         ]);
       });
 
@@ -325,11 +316,11 @@ describe('Asynchronous events', () => {
         await registerEvents(events, target, extensions, prevState, action);
         expect(extensions.logger.mock.calls).toEqual([
           [
-            [
-              { event: 'sync-event-1' },
-              { event: 'sync-event-2' },
-            ],
-            action, prevState, true, false
+            [{ event: 'sync-event-1' }, { event: 'sync-event-2' }],
+            action,
+            prevState,
+            true,
+            false,
           ],
           [
             [
@@ -337,23 +328,21 @@ describe('Asynchronous events', () => {
               { event: 'async-event-2' },
               { event: 'async-event-3' },
             ],
-            action, prevState, true, false
-          ]
+            action,
+            prevState,
+            true,
+            false,
+          ],
         ]);
       });
     });
 
     describe('if the app is online', () => {
-      it('pushes new events to the target once available', () => {
-      });
-      it('logs the new events', () => {
-      });
-      it('calls offlineStorage.purgeEvents', () => {
-      });
-      it('pushes purged events to the target', () => {
-      });
-      it('logs the purged events', () => {
-      });
+      it('pushes new events to the target once available', () => {});
+      it('logs the new events', () => {});
+      it('calls offlineStorage.purgeEvents', () => {});
+      it('pushes purged events to the target', () => {});
+      it('logs the purged events', () => {});
     });
   });
 });
