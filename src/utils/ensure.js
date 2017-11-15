@@ -3,4 +3,4 @@ const ensure = (isValid, eventDef) => (...args) => {
   return isValid(event) ? event : null;
 };
 
-module.exports = { ensure };
+export default ensure;
