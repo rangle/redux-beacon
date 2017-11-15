@@ -6,7 +6,7 @@
 * [API Reference](docs/api/index.md)
   * [createMiddleware](docs/api/create-middleware.md)
   * [createMetaReducer](docs/api/create-meta-reducer.md)
-  * [EventDefinitionsMap](docs/api/event-definitions-map.md)
+  * [EventsMap](docs/api/events-map.md)
   * [EventDefinition](docs/api/event-definition.md)
 * [Targets](docs/targets/index.md)
   * [Google Analytics](docs/targets/google-analytics.md)

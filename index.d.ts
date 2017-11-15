@@ -22,7 +22,7 @@ export type EventDefinition = (
  * must be an action type. Each property must be a valid
  * EventDefinition.
  */
-export interface EventDefinitionsMap {
+export interface EventsMap {
   [key: string]: EventDefinition;
 }
 
@@ -33,7 +33,7 @@ export type Target = (events: any[]) => void;
  * Create Redux middleware that synchronizes actions to analytics events.
  */
 export function createMiddleware(
-  eventDefinitions: EventDefinitionsMap,
+  eventsMap: EventsMap,
   target: Target,
   extensions?: Extensions
   ): any;
@@ -42,7 +42,7 @@ export function createMiddleware(
  * Create a meta reducer that synchronizes actions to analytics events.
  */
 export function createMetaReducer(
-  eventDefinitions: EventDefinitionsMap,
+  eventsMap: EventsMap,
   target: Target,
   extensions?: Extensions
 ): any;

@@ -2,7 +2,7 @@ import {
   createMiddleware,
   createMetaReducer,
   createEvents,
-  EventDefinitionsMap,
+  EventsMap,
   EventDefinition,
 } from 'redux-beacon';
 
