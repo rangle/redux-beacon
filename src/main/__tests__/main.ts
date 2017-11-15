@@ -2,7 +2,7 @@ import {
   createMiddleware,
   createMetaReducer,
   createEvents,
-  EventDefinitionsMap,
+  EventsMap,
   EventDefinition,
 } from '../../../index.d';
 
@@ -12,7 +12,7 @@ import { offlineWeb } from '../../extensions/offline-web';
 let eventDefinition: EventDefinition;
 eventDefinition = () => ({});
 
-let eventsMap: EventDefinitionsMap;
+let eventsMap: EventsMap;
 eventsMap = { SOME_ACTION_TYPE: eventDefinition };
 
 const target = () => {};
