@@ -91,6 +91,11 @@ describe('createEvents(eventDef, prevState, action)', () => {
         },
       ],
     },
+    {
+      title: 'event definition returns a Promise',
+      eventDef: () => Promise.resolve(),
+      expected: [Promise.resolve()],
+    },
   ].forEach((scenario, index) => {
     const {
       title,

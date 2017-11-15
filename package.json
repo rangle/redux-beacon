@@ -101,5 +101,8 @@
         "statements": 90
       }
     }
+  },
+  "dependencies": {
+    "lodash.flatten": "^4.4.0"
   }
 }

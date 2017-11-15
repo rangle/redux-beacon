@@ -15,7 +15,7 @@ export type EventDefinition = (
   action: Action,
   prevState: any,
   nextState: any
-) => any | Array<any>;
+) => any | Array<any> | Promise<any>;
 
 /**
  * A map between your actions and your analytics events.  Each key
