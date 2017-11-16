@@ -1,4 +1,4 @@
-import flatten from 'lodash.flatten';
+import flatten from 'flatten';
 import isPromise from '../utils/is-promise';
 
 function registerEvents(
