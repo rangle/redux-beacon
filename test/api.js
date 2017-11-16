@@ -5,6 +5,7 @@ const { check } = require('typings-tester');
 [
   ['redux-beacon', 'createMiddleware', 'createMetaReducer', 'createEvents'],
   ['redux-beacon/targets/google-analytics', 'GoogleAnalytics'],
+  ['redux-beacon/targets/google-analytics-gtag', 'GoogleAnalyticsGtag'],
   ['redux-beacon/targets/google-tag-manager', 'GoogleTagManager'],
   ['redux-beacon/targets/segment', 'Segment'],
   ['redux-beacon/targets/amplitude', 'Amplitude'],
