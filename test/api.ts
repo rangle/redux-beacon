@@ -15,6 +15,8 @@ import {
   GoogleAnalytics as RNGA,
   GoogleTagManager as RNGTM,
 } from 'redux-beacon/targets/react-native';
+import { GoogleAnalyticsGtag } from 'redux-beacon/targets/google-analytics-gtag';
+
 
 import { logger } from 'redux-beacon/extensions/logger';
 import { offlineWeb } from 'redux-beacon/extensions/offline-web';
