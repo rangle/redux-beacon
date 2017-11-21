@@ -1,9 +1,13 @@
-import { Target } from '../../../';
+type Options = {
+  instance: any,
+};
+
+type Target = (events: any[]) => void;
 
 /**
  * Creates the Amplitude target
  */
-export function Amplitude(): Target;
+export function Amplitude(options?: Options): Target;
 
 export type AmplitudeProp = string | number | null;
 
