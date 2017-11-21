@@ -10,6 +10,7 @@ const instanceMock = {
   identify: jest.fn(),
   logRevenueV2: jest.fn(),
 };
+
 const identityMock = {
   add: jest.fn(),
   set: jest.fn(),
@@ -32,5 +33,20 @@ const amplitudeSDKMock = {
   Revenue: () => revenueMock,
   logRevenueV2: jest.fn(),
 };
+
+export function resetAllMocks() {
+  [
+    instanceMock,
+    identityMock,
+    revenueMock,
+    amplitudeSDKMock,
+  ].forEach(mockObj => {
+    Object.keys(mockObj).forEach(key => {
+      if (typeof mockObj[key].mockReset === 'function') {
+        mockObj[key].mockReset();
+      }
+    });
+  });
+}
 
 export default amplitudeSDKMock;

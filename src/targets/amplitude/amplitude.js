@@ -1,9 +1,9 @@
-const Amplitude = () => events => {
+const Amplitude = ({ instance } = {}) => events => {
   if (!window || !window.amplitude) {
     return;
   }
 
-  const app = window.amplitude.getInstance();
+  const app = instance || window.amplitude.getInstance();
   let identity;
   let revenue;
 
