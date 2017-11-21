@@ -3,7 +3,7 @@ const Amplitude = ({ instance } = {}) => events => {
     return;
   }
 
-  const app = instance ? instance : window.amplitude.getInstance();
+  const app = instance || window.amplitude.getInstance();
   let identity;
   let revenue;
 
