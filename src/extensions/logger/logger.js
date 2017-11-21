@@ -23,6 +23,7 @@ const styles = {
   label: 'color: #93748A; font-weight: bold;',
 };
 
+/* eslint-disable no-console */
 function logger(events, action, state, isSavedOffline, wasSavedOffline) {
   const timestamp = getTimestamp(Date.now());
   const title = `Analytics events @ ${timestamp} ${action ? action.type : ''}`;
@@ -42,7 +43,7 @@ function logger(events, action, state, isSavedOffline, wasSavedOffline) {
     };
   }
 
-  function logEvents(events) {
+  function logEvents() {
     if (events.length > 1) {
       console.group('%c Events:', styles.label);
       events.forEach((event, index) => {
@@ -54,24 +55,24 @@ function logger(events, action, state, isSavedOffline, wasSavedOffline) {
     }
   }
 
-  function logAction(action) {
+  function logAction() {
     console.log('%c Action:', styles.label, action);
   }
 
   if (events.length > 0) {
     if (isSavedOffline) {
       console.group(`%c ${title} (saved offline)`, styles.title.danger);
-      logAction(action);
-      logEvents(events);
+      logAction();
+      logEvents();
       console.groupEnd();
     } else if (wasSavedOffline) {
       console.group(`%c ${title} (was offline)`, styles.title.warning);
-      logEvents(events);
+      logEvents();
       console.groupEnd();
     } else {
       console.group(`%c ${title}`, styles.title.primary);
-      logAction(action);
-      logEvents(events);
+      logAction();
+      logEvents();
       console.groupEnd();
     }
   }
