@@ -1,8 +1,8 @@
-const { addTimestamp } = require('../../utils/add-timestamp');
+import addTimestamp from '../../utils/add-timestamp';
 
 const STORE_KEY = 'EventsStore';
 
-function offlineReactNative(AsyncStorage, isConnected) {
+export function offlineReactNative(AsyncStorage, isConnected) {
   const saveEvents = events =>
     AsyncStorage.getItem(STORE_KEY)
       .then(JSON.parse)
@@ -25,5 +25,3 @@ function offlineReactNative(AsyncStorage, isConnected) {
     purgeEvents,
   };
 }
-
-module.exports = { offlineReactNative };

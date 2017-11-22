@@ -1,7 +1,7 @@
-const fakeIndexedDB = require('fake-indexeddb');
-const fuzzyEqual = require('fuzzy-equal');
+import fakeIndexedDB from 'fake-indexeddb';
+import fuzzyEqual from 'fuzzy-equal';
 
-const { offlineWeb } = require('../');
+import { offlineWeb } from '../';
 
 describe('offlineWeb', () => {
   window.indexedDB = fakeIndexedDB;

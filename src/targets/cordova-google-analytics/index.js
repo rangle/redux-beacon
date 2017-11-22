@@ -1,3 +1,1 @@
-const { CordovaGoogleAnalytics } = require('./cordova-google-analytics');
-
-module.exports = { CordovaGoogleAnalytics };
+export { CordovaGoogleAnalytics } from './cordova-google-analytics';

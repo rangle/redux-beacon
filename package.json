@@ -16,7 +16,7 @@
   "scripts": {
     "precommit": "lint-staged",
     "beautify": "prettier --single-quote --trailing-comma es5 --write \"{src,__{tests,mocks}__}/**/*.js\"",
-    "test-api": "node ./test/run-api-test.js",
+    "test:api": "node ./test/run-api-test.js",
     "docs:prepare": "gitbook install",
     "docs:watch": "yarn run docs:prepare && gitbook serve",
     "docs:build": "yarn run docs:prepare && rm -rf _book && gitbook build",

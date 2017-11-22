@@ -1,5 +1,5 @@
-const moment = require('moment');
-const { addTimestamp } = require('../add-timestamp');
+import moment from 'moment';
+import addTimestamp from '../add-timestamp';
 
 describe('addTimestamp', () => {
   describe('When given an array of event objects', () => {

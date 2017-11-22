@@ -1,4 +1,4 @@
-const filterEcommEvents = obj => {
+export const filterEcommEvents = obj => {
   const newObj = {};
   const invalidKeys = ['hitType', 'customTrackerId', 'ecommType', 'actionName'];
   Object.keys(obj).forEach(key => {
@@ -9,7 +9,7 @@ const filterEcommEvents = obj => {
   return newObj;
 };
 
-const isEcommEvent = event =>
+export const isEcommEvent = event =>
   [
     'addTransaction',
     'addItem',
@@ -20,8 +20,3 @@ const isEcommEvent = event =>
     'ecommSend',
     'ecommClear',
   ].indexOf(event.hitType) > -1;
-
-module.exports = {
-  filterEcommEvents,
-  isEcommEvent,
-};

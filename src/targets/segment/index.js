@@ -1,3 +1,1 @@
-const { Segment } = require('./segment');
-
-module.exports = { Segment };
+export { Segment } from './segment';

@@ -1,4 +1,4 @@
-const { addTimestamp } = require('../../utils/add-timestamp');
+import addTimestamp from '../../utils/add-timestamp';
 
 const DB_NAME = 'AnalyticsEvents';
 const DB_VERSION = 1;
@@ -54,7 +54,7 @@ function purge(db) {
   });
 }
 
-function offlineWeb(isConnected) {
+export function offlineWeb(isConnected) {
   return {
     saveEvents(events) {
       return openDB(DB_NAME, DB_VERSION).then(db => save(events, db));
@@ -67,5 +67,3 @@ function offlineWeb(isConnected) {
     isConnected,
   };
 }
-
-module.exports = { offlineWeb, addTimestamp };

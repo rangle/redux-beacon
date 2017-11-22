@@ -1,4 +1,6 @@
-const GoogleTagManager = ({ dataLayerName = 'dataLayer' } = {}) => events => {
+export const GoogleTagManager = (
+  { dataLayerName = 'dataLayer' } = {}
+) => events => {
   if (typeof window === 'undefined') {
     return;
   }
@@ -20,5 +22,3 @@ const GoogleTagManager = ({ dataLayerName = 'dataLayer' } = {}) => events => {
     window[dataLayerName].push(eventToPush);
   });
 };
-
-module.exports = { GoogleTagManager };

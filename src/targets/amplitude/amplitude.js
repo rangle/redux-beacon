@@ -1,4 +1,4 @@
-const Amplitude = ({ instance } = {}) => events => {
+export const Amplitude = ({ instance } = {}) => events => {
   if (!window || !window.amplitude) {
     return;
   }
@@ -121,5 +121,3 @@ const Amplitude = ({ instance } = {}) => events => {
     }
   });
 };
-
-module.exports = { Amplitude };

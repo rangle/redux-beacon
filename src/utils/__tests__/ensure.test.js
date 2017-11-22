@@ -1,5 +1,5 @@
-const joi = require('joi');
-const { ensure } = require('../');
+import joi from 'joi';
+import ensure from '../ensure';
 
 const hasShape = (event, shape) =>
   !joi.validate(event, joi.object().keys(shape)).error;

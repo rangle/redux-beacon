@@ -1,4 +1,4 @@
-const CordovaGoogleAnalytics = () => events => {
+export const CordovaGoogleAnalytics = () => events => {
   events.forEach(event => {
     switch (event.hitType) {
       case 'pageview':
@@ -17,5 +17,3 @@ const CordovaGoogleAnalytics = () => events => {
     }
   });
 };
-
-module.exports = { CordovaGoogleAnalytics };

@@ -1,5 +1,5 @@
-const path = require('path');
-const { check } = require('typings-tester');
+import path from 'path';
+import { check } from 'typings-tester';
 
 function tsTypesTester(tsFiles) {
   describe('Typescript type definitions', () => {
@@ -10,4 +10,4 @@ function tsTypesTester(tsFiles) {
   });
 }
 
-module.exports = { tsTypesTester };
+export default tsTypesTester;

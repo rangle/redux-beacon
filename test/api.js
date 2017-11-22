@@ -15,6 +15,7 @@ const { check } = require('typings-tester');
   ['redux-beacon/extensions/offline-web', 'offlineWeb'],
   ['redux-beacon/extensions/offline-react-native', 'offlineReactNative'],
   ['redux-beacon/utils', 'ensure'],
+  ['redux-beacon/utils', 'debounceEvent']
 ].forEach((routes) => {
   const base = routes.splice(0, 1)[0];
   assert.doesNotThrow(() => require(base), base);

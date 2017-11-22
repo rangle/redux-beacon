@@ -1,4 +1,4 @@
-const { filterEcommEvents, isEcommEvent } = require('../');
+import { filterEcommEvents, isEcommEvent } from '../';
 
 describe('Util: Filter Ecommerce Events', () => {
   const [name, id, revenue] = ['fooname', 'fooid', 523.55];

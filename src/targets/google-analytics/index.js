@@ -1,1 +1,1 @@
-module.exports = require('./google-analytics');
+export { GoogleAnalytics } from './google-analytics';
