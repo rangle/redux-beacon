@@ -22,6 +22,7 @@
   * [offlineReactNative](docs/extensions/offline-react-native.md)
 * [Utils](docs/utils/index.md)
   * [ensure](docs/utils/ensure.md)
+  * [debounceEvent](docs/utils/debounce-event.md)
 * [Notes on Unit Testing](docs/notes-on-unit-testing.md)
 * [Notes on Offline Events](docs/notes-on-offline-events.md)
 * [Migrating From ReduxGTM](docs/migrating-from-redux-gtm.md)
