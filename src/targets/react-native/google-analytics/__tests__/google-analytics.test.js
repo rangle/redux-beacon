@@ -1,4 +1,4 @@
-const { GoogleAnalytics } = require('../');
+import { GoogleAnalytics } from '../';
 
 describe('Target: React Native Google Analytics', () => {
   describe('GoogleAnalytics(trackingId, trackerConstructor)', () => {

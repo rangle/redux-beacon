@@ -23,3 +23,4 @@ import { offlineWeb } from 'redux-beacon/extensions/offline-web';
 import { offlineReactNative } from 'redux-beacon/extensions/offline-react-native';
 
 import { ensure } from 'redux-beacon/utils';
+import { debounceEvent } from 'redux-beacon/utils';

@@ -4,6 +4,4 @@ function addTimestamp(events) {
   );
 }
 
-module.exports = {
-  addTimestamp,
-};
+export default addTimestamp;

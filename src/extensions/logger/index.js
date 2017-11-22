@@ -1,3 +1,1 @@
-import { logger, getTimestamp } from './logger';
-
-export { logger, getTimestamp };
+export { logger, getTimestamp } from './logger';

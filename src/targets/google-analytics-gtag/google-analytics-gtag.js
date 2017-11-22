@@ -1,4 +1,4 @@
-function GoogleAnalyticsGtag(gaTrackingId) {
+export function GoogleAnalyticsGtag(gaTrackingId) {
   return function target(events) {
     if (typeof window === 'undefined') {
       return;
@@ -38,5 +38,3 @@ function GoogleAnalyticsGtag(gaTrackingId) {
     });
   };
 }
-
-export default GoogleAnalyticsGtag;

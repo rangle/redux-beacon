@@ -1,5 +1,6 @@
-const fuzzyEqual = require('fuzzy-equal');
-const { offlineReactNative } = require('../');
+import fuzzyEqual from 'fuzzy-equal';
+
+import { offlineReactNative } from '../';
 
 describe('When saving events:', () => {
   it('calls AsyncStorage.setItem correctly', () => {

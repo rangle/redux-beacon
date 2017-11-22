@@ -1,3 +1,1 @@
-import GoogleAnalyticsGtag from './google-analytics-gtag';
-
-module.exports = { GoogleAnalyticsGtag };
+export { GoogleAnalyticsGtag } from './google-analytics-gtag';

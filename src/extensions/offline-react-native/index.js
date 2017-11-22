@@ -1,1 +1,1 @@
-module.exports = require('./offline-react-native');
+export { offlineReactNative } from './offline-react-native';

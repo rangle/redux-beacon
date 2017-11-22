@@ -1,7 +1,2 @@
-const { GoogleAnalytics } = require('./google-analytics');
-const { GoogleTagManager } = require('./google-tag-manager');
-
-module.exports = {
-  GoogleAnalytics,
-  GoogleTagManager,
-};
+export { GoogleAnalytics } from './google-analytics';
+export { GoogleTagManager } from './google-tag-manager';

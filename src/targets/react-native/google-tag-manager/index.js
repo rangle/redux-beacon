@@ -1,1 +1,1 @@
-module.exports = require('./google-tag-manager');
+export { GoogleTagManager } from './google-tag-manager';

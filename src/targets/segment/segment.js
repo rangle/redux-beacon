@@ -1,4 +1,4 @@
-const Segment = () => events => {
+export const Segment = () => events => {
   if (!window) return;
   if (!window.analytics) {
     throw new Error(
@@ -27,5 +27,3 @@ const Segment = () => events => {
     }
   });
 };
-
-module.exports = { Segment };

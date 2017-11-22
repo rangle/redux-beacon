@@ -1,6 +1,6 @@
 import { filterEcommEvents, isEcommEvent } from '../../utils';
 
-const GoogleAnalytics = () => events => {
+export const GoogleAnalytics = () => events => {
   if (typeof window === 'undefined') {
     return;
   }
@@ -64,5 +64,3 @@ const GoogleAnalytics = () => events => {
     }
   });
 };
-
-module.exports = { GoogleAnalytics };

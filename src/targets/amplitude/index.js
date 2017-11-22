@@ -1,1 +1,1 @@
-module.exports = require('./amplitude');
+export { Amplitude } from './amplitude';

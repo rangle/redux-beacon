@@ -1,4 +1,4 @@
-function GoogleTagManager(trackingId, GTMBridge) {
+export function GoogleTagManager(trackingId, GTMBridge) {
   GTMBridge.openContainerWithId(trackingId);
   return function GoogleTagManagerTarget(events) {
     events.forEach(event => {
@@ -12,5 +12,3 @@ function GoogleTagManager(trackingId, GTMBridge) {
     });
   };
 }
-
-module.exports = { GoogleTagManager };

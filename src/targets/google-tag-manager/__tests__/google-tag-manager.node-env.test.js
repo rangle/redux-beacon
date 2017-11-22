@@ -2,7 +2,7 @@
  * @jest-environment node
  */
 
-const { GoogleTagManager } = require('../');
+import { GoogleTagManager } from '../';
 
 describe('If window does not exist', () => {
   it('should just silently not send events', () => {

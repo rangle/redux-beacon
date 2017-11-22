@@ -1,4 +1,4 @@
-function GoogleAnalytics(trackingId, GoogleAnalyticsTracker) {
+export function GoogleAnalytics(trackingId, GoogleAnalyticsTracker) {
   const tracker = new GoogleAnalyticsTracker(trackingId);
 
   function target(events) {
@@ -68,5 +68,3 @@ function GoogleAnalytics(trackingId, GoogleAnalyticsTracker) {
 
   return target;
 }
-
-module.exports = { GoogleAnalytics };

@@ -1,6 +1,6 @@
 import repeat from 'repeat-string';
 
-function getTimestamp(sinceEpoch) {
+export function getTimestamp(sinceEpoch) {
   const date = new Date(sinceEpoch);
   return date
     .toTimeString()
@@ -24,7 +24,7 @@ const styles = {
 };
 
 /* eslint-disable no-console */
-function logger(events, action, state, isSavedOffline, wasSavedOffline) {
+export function logger(events, action, state, isSavedOffline, wasSavedOffline) {
   const timestamp = getTimestamp(Date.now());
   const title = `Analytics events @ ${timestamp} ${action ? action.type : ''}`;
 
@@ -77,5 +77,3 @@ function logger(events, action, state, isSavedOffline, wasSavedOffline) {
     }
   }
 }
-
-export { logger, getTimestamp };
