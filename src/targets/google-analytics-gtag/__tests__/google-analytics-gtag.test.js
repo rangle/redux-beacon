@@ -4,6 +4,15 @@ beforeEach(() => {
   window.gtag = jest.fn();
 });
 
+it('configures the Google Analytics property with the tracking ID', () => {
+  GoogleAnalyticsGtag('GA_TRACKING_ID');
+  expect(window.gtag).toHaveBeenCalledWith(
+    'config',
+    'GA_TRACKING_ID',
+    { 'send_page_view': false }
+  );
+});
+
 describe('Page Tracking', () => {
   test('given { type: "page" }', () => {
     const events = [{ type: 'page' }];
@@ -107,6 +116,7 @@ describe('Undefined Event Type', () => {
   test('given {}', () => {
     const events = [{}];
     const target = GoogleAnalyticsGtag('GA_TRACKING_ID');
+    window.gtag.mockReset();
 
     target(events);
 
@@ -115,6 +125,7 @@ describe('Undefined Event Type', () => {
   test('given { type: "skdjf" }', () => {
     const events = [{ type: 'lskdjf' }];
     const target = GoogleAnalyticsGtag('GA_TRACKING_ID');
+    window.gtag.mockReset();
 
     target(events);
 
@@ -127,8 +138,6 @@ describe('When window.gtag is not defined', () => {
     const events = { type: 'page' };
     window.gtag = undefined;
 
-    const target = GoogleAnalyticsGtag('GA_TRACKING_ID');
-
-    expect(() => target(events)).toThrow();
+    expect(() => GoogleAnalyticsGtag('GA_TRACKING_ID')).toThrow();
   });
 });
