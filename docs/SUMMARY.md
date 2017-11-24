@@ -10,6 +10,7 @@
   * [EventDefinition](docs/api/event-definition.md)
 * [Targets](docs/targets/index.md)
   * [Google Analytics](docs/targets/google-analytics.md)
+  * [Google Analytics (gtag.js)](docs/targets/google-analytics-gtag.md)
   * [Google Tag Manager](docs/targets/google-tag-manager.md)
   * [Segment.io](docs/targets/segment.md)
   * [Amplitude](docs/targets/amplitude.md)
