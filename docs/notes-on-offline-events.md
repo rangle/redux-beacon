@@ -1,6 +1,6 @@
 # Notes on Offline Events
 
-Redux-Beacon comes with two extensions for measuring offline events,
+Redux Beacon comes with two extensions for measuring offline events,
 one for web apps, and one for native apps. Both extensions read the
 app's connection status from state, they record events in a persistent
 storage service when the app is offline, and they push the events to
