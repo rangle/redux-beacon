@@ -9,10 +9,9 @@ export function GoogleAnalyticsGtag(gaTrackingId) {
     );
   }
 
-  window.gtag('config', gaTrackingId, { 'send_page_view': false });
+  window.gtag('config', gaTrackingId, { send_page_view: false });
 
   return function target(events) {
-
     const pageTracking = events.filter(event => event.type === 'page');
     const eventTracking = events.filter(event => event.type === 'event');
 

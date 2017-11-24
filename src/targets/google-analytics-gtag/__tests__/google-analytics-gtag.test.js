@@ -6,11 +6,9 @@ beforeEach(() => {
 
 it('configures the Google Analytics property with the tracking ID', () => {
   GoogleAnalyticsGtag('GA_TRACKING_ID');
-  expect(window.gtag).toHaveBeenCalledWith(
-    'config',
-    'GA_TRACKING_ID',
-    { 'send_page_view': false }
-  );
+  expect(window.gtag).toHaveBeenCalledWith('config', 'GA_TRACKING_ID', {
+    send_page_view: false,
+  });
 });
 
 describe('Page Tracking', () => {
@@ -135,7 +133,6 @@ describe('Undefined Event Type', () => {
 
 describe('When window.gtag is not defined', () => {
   it('throws an error informing the developer', () => {
-    const events = { type: 'page' };
     window.gtag = undefined;
 
     expect(() => GoogleAnalyticsGtag('GA_TRACKING_ID')).toThrow();
