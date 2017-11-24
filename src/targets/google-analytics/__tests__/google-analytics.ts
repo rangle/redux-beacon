@@ -12,48 +12,38 @@ let gaTarget: Target;
 
 gaTarget = GoogleAnalytics();
 
-const pageView = {
-  eventFields: (): PageView => ({
-    hitType: 'pageview',
-    page: '/home',
-    title: 'homepage',
-    location: 'https://some.site/home',
-  }),
-};
+const pageView = (): PageView => ({
+  hitType: 'pageview',
+  page: '/home',
+  title: 'homepage',
+  location: 'https://some.site/home',
+});
 
-const event = {
-  eventFields: (): Event => ({
-    hitType: 'event',
-    eventCategory: 'category',
-    eventAction: 'action',
-    eventLabel: 'label',
-    eventValue: 3,
-  }),
-};
+const event = (): Event => ({
+  hitType: 'event',
+  eventCategory: 'category',
+  eventAction: 'action',
+  eventLabel: 'label',
+  eventValue: 3,
+});
 
-const userTiming = {
-  eventFields: (): UserTiming => ({
-    hitType: 'timing',
-    timingCategory: 'category',
-    timingVar: 'variable',
-    timingValue: 20,
-    timingLabel: 'label',
-  }),
-};
+const userTiming = (): UserTiming => ({
+  hitType: 'timing',
+  timingCategory: 'category',
+  timingVar: 'variable',
+  timingValue: 20,
+  timingLabel: 'label',
+});
 
-const socialInteraction = {
-  eventFields: (): SocialInteraction => ({
-    hitType: 'social',
-    socialNetwork: 'network',
-    socialAction: 'action',
-    socialTarget: 'target',
-  }),
-};
+const socialInteraction = (): SocialInteraction => ({
+  hitType: 'social',
+  socialNetwork: 'network',
+  socialAction: 'action',
+  socialTarget: 'target',
+});
 
-const exception = {
-  eventFields: (): Exception => ({
-    hitType: 'exception',
-    exDescription: 'descrption',
-    exFatal: false,
-  }),
-};
+const exception = (): Exception => ({
+  hitType: 'exception',
+  exDescription: 'descrption',
+  exFatal: false,
+});
