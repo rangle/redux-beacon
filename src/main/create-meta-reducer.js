@@ -18,7 +18,7 @@ function createMetaReducer(eventDefinitionsMap, target, extensions = {}) {
         nextState
       );
 
-      registerEvents(events, target, extensions, prevState, action);
+      registerEvents(events, target, extensions, prevState, action, nextState);
 
       return nextState;
     };

@@ -5,8 +5,9 @@ function registerEvents(
   events,
   target,
   extensions = {},
-  state = {},
-  action = {}
+  prevState = {},
+  action = {},
+  nextState = {}
 ) {
   const { logger, offlineStorage } = extensions;
 
@@ -16,22 +17,30 @@ function registerEvents(
     }
   };
 
+  const isEmptyArray = e => Array.isArray(e) && e.length === 0;
+
+  const passEventsToTarget = e => {
+    if (!isEmptyArray(e)) {
+      target(e);
+    }
+  };
+
   const handleEvents = e => {
     if (offlineStorage === undefined) {
-      target(e);
-      ifLoggerLog(e, action, state);
-    } else if (offlineStorage.isConnected(state)) {
-      target(e);
-      ifLoggerLog(e, action, state);
+      passEventsToTarget(e);
+      ifLoggerLog(e, action, prevState);
+    } else if (offlineStorage.isConnected(nextState)) {
+      passEventsToTarget(e);
+      ifLoggerLog(e, action, prevState);
       offlineStorage.purgeEvents(oldEvents => {
-        if (Array.isArray(oldEvents) && oldEvents.length > 0) {
+        if (!isEmptyArray(oldEvents)) {
           target(oldEvents);
           ifLoggerLog(oldEvents, null, null, false, true);
         }
       });
     } else {
       offlineStorage.saveEvents(e);
-      ifLoggerLog(e, action, state, true, false);
+      ifLoggerLog(e, action, prevState, true, false);
     }
   };
 
