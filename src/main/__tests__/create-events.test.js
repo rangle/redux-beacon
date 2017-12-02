@@ -3,6 +3,11 @@ import { createEvents } from '../';
 describe('createEvents(eventDef, prevState, action)', () => {
   [
     {
+      title: 'events definitions is undefined (not in eventsMap)',
+      eventDef: undefined,
+      expected: [],
+    },
+    {
       title: 'event definition returns undefined',
       eventDef: () => {},
       expected: [],
@@ -109,7 +114,6 @@ describe('createEvents(eventDef, prevState, action)', () => {
     test(`${index + 1}. ${title}` || 'no title', () => {
       if (
         title === undefined ||
-        eventDef === undefined ||
         expected === undefined
       ) {
         throw new Error('tests require title, eventDef, and expected keys');
