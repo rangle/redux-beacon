@@ -77,7 +77,14 @@ describe('When given an offline storage extension', () => {
       };
 
       expect(() => {
-        registerEvents(events, target, extensions, prevState, action, nextState);
+        registerEvents(
+          events,
+          target,
+          extensions,
+          prevState,
+          action,
+          nextState
+        );
       }).not.toThrow();
     });
   });
@@ -339,7 +346,14 @@ describe('Asynchronous events', () => {
             isConnected: state => state.isConnected,
           },
         };
-        await registerEvents(events, target, extensions, prevState, action, nextState);
+        await registerEvents(
+          events,
+          target,
+          extensions,
+          prevState,
+          action,
+          nextState
+        );
         expect(extensions.offlineStorage.saveEvents.mock.calls).toEqual([
           [[{ event: 'sync-event-1' }, { event: 'sync-event-2' }]],
           [
@@ -361,7 +375,14 @@ describe('Asynchronous events', () => {
             isConnected: state => state.isConnected,
           },
         };
-        await registerEvents(events, target, extensions, prevState, action, nextState);
+        await registerEvents(
+          events,
+          target,
+          extensions,
+          prevState,
+          action,
+          nextState
+        );
         expect(target).not.toHaveBeenCalled();
       });
 
@@ -374,7 +395,14 @@ describe('Asynchronous events', () => {
             isConnected: state => state.isConnected,
           },
         };
-        await registerEvents(events, target, extensions, prevState, action, nextState);
+        await registerEvents(
+          events,
+          target,
+          extensions,
+          prevState,
+          action,
+          nextState
+        );
         expect(extensions.logger.mock.calls).toEqual([
           [
             [{ event: 'sync-event-1' }, { event: 'sync-event-2' }],
@@ -423,7 +451,14 @@ describe('Asynchronous events', () => {
             isConnected: state => state.isConnected,
           },
         };
-        registerEvents(events, target, extensions, prevState, action, nextState);
+        registerEvents(
+          events,
+          target,
+          extensions,
+          prevState,
+          action,
+          nextState
+        );
         expect(target).toHaveBeenCalledWith([
           { event: 'sync-event-1' },
           { event: 'sync-event-2' },
@@ -438,7 +473,14 @@ describe('Asynchronous events', () => {
             isConnected: state => state.isConnected,
           },
         };
-        await registerEvents(events, target, extensions, prevState, action, nextState);
+        await registerEvents(
+          events,
+          target,
+          extensions,
+          prevState,
+          action,
+          nextState
+        );
         expect(target).toHaveBeenCalledWith([
           { event: 'async-event-1' },
           { event: 'async-event-2' },
@@ -454,10 +496,15 @@ describe('Asynchronous events', () => {
             isConnected: state => state.isConnected,
           },
         };
-        registerEvents(events, target, extensions, prevState, action, nextState);
-        expect(target).toHaveBeenCalledWith([
-          { event: 'some-old-event' }
-        ]);
+        registerEvents(
+          events,
+          target,
+          extensions,
+          prevState,
+          action,
+          nextState
+        );
+        expect(target).toHaveBeenCalledWith([{ event: 'some-old-event' }]);
       });
       it('logs events correctly', async () => {
         const extensions = {
@@ -468,20 +515,21 @@ describe('Asynchronous events', () => {
             isConnected: state => state.isConnected,
           },
         };
-        await registerEvents(events, target, extensions, prevState, action, nextState);
+        await registerEvents(
+          events,
+          target,
+          extensions,
+          prevState,
+          action,
+          nextState
+        );
         expect(extensions.logger.mock.calls).toEqual([
           [
             [{ event: 'sync-event-1' }, { event: 'sync-event-2' }],
             action,
             prevState,
           ],
-          [
-            [{ event: 'some-old-event' }],
-            null,
-            null,
-            false,
-            true
-          ],
+          [[{ event: 'some-old-event' }], null, null, false, true],
           [
             [
               { event: 'async-event-1' },
@@ -490,7 +538,7 @@ describe('Asynchronous events', () => {
             ],
             action,
             prevState,
-          ]
+          ],
         ]);
       });
     });

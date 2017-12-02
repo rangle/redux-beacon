@@ -112,10 +112,7 @@ describe('createEvents(eventDef, prevState, action)', () => {
     } = scenario;
 
     test(`${index + 1}. ${title}` || 'no title', () => {
-      if (
-        title === undefined ||
-        expected === undefined
-      ) {
+      if (title === undefined || expected === undefined) {
         throw new Error('tests require title, eventDef, and expected keys');
       }
       const events = createEvents(
