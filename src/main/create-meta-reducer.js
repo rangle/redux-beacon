@@ -6,10 +6,6 @@ function createMetaReducer(eventDefinitionsMap, target, extensions = {}) {
   /* eslint-disable func-names */
   return function(reducer) {
     return function(prevState, action) {
-      if (!eventDefinitionsMap[action.type]) {
-        return reducer(prevState, action);
-      }
-
       const nextState = reducer(prevState, action);
       const events = createEvents(
         eventDefinitionsMap[action.type],

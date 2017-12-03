@@ -3,10 +3,6 @@ import registerEvents from './register-events';
 
 function createMiddleware(eventDefinitionsMap, target, extensions = {}) {
   return store => next => action => {
-    if (!eventDefinitionsMap[action.type]) {
-      return next(action);
-    }
-
     const prevState = store.getState();
     const result = next(action);
     const nextState = store.getState();
