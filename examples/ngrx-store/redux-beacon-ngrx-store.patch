@@ -1,0 +1,321 @@
+From ebed28c93959d007e099fdb17beca2fccdac3436 Mon Sep 17 00:00:00 2001
+From: Thomas Marek <ttmarek@outlook.com>
+Date: Tue, 12 Dec 2017 23:50:30 -0500
+Subject: [PATCH] Redux Beacon integration
+
+---
+ example-app/app/analytics/events-map.ts            | 20 +++++++++++++
+ example-app/app/analytics/events/book-search.ts    | 19 +++++++++++++
+ .../app/analytics/events/collection-add-book.ts    | 13 +++++++++
+ example-app/app/analytics/events/index.ts          |  5 ++++
+ example-app/app/analytics/events/page-view.ts      | 13 +++++++++
+ example-app/app/analytics/index.ts                 | 33 ++++++++++++++++++++++
+ example-app/app/core/actions/connectivity.ts       | 11 ++++++++
+ example-app/app/core/containers/app.ts             | 14 +++++++++
+ example-app/app/core/reducers/connectivity.ts      | 26 +++++++++++++++++
+ example-app/app/reducers/index.ts                  | 11 ++++++--
+ example-app/index.html                             | 11 ++++++++
+ 11 files changed, 174 insertions(+), 2 deletions(-)
+ create mode 100644 example-app/app/analytics/events-map.ts
+ create mode 100644 example-app/app/analytics/events/book-search.ts
+ create mode 100644 example-app/app/analytics/events/collection-add-book.ts
+ create mode 100644 example-app/app/analytics/events/index.ts
+ create mode 100644 example-app/app/analytics/events/page-view.ts
+ create mode 100644 example-app/app/analytics/index.ts
+ create mode 100644 example-app/app/core/actions/connectivity.ts
+ create mode 100644 example-app/app/core/reducers/connectivity.ts
+
+diff --git a/example-app/app/analytics/events-map.ts b/example-app/app/analytics/events-map.ts
+new file mode 100644
+index 0000000..a02a289
+--- /dev/null
++++ b/example-app/app/analytics/events-map.ts
+@@ -0,0 +1,20 @@
++/*
++ Here we map event definitions to Action types. Basically, we are
++ exporting an object that tells Redux Beacon what events to fire when
++ a given Action is dispatched.
++*/
++
++import { EventsMap } from 'redux-beacon';
++import { ROUTER_NAVIGATION } from '@ngrx/router-store';
++import { SEARCH } from '../books/actions/book';
++import { ADD_BOOK_SUCCESS } from '../books/actions/collection';
++
++import { pageView, bookSearch, collectionAddBook } from './events';
++
++const eventsMap: EventsMap = {
++  [ROUTER_NAVIGATION]: pageView,
++  [SEARCH]: bookSearch,
++  [ADD_BOOK_SUCCESS]: collectionAddBook,
++};
++
++export default eventsMap;
+diff --git a/example-app/app/analytics/events/book-search.ts b/example-app/app/analytics/events/book-search.ts
+new file mode 100644
+index 0000000..892aabb
+--- /dev/null
++++ b/example-app/app/analytics/events/book-search.ts
+@@ -0,0 +1,19 @@
++import { Event } from 'redux-beacon/targets/google-analytics';
++import { debounceEvent } from 'redux-beacon/utils';
++import { Search } from '../../books/actions/book';
++
++// An event definition to track when the user searches for a book.
++const bookSearch = (action: Search): Event => ({
++  hitType: 'event',
++  eventCategory: 'books',
++  eventAction: 'search',
++  eventLabel: action.payload,
++});
++
++// When a user searches for a book, an Action is dispatched at each
++// character input. Sending an analytics event at each character input
++// would be a bit much, so here we wait for the user to finish typing
++// before sending off an analytics event. Redux Beacon exposes a util
++// called debounceEvent that makes this easy. Here we debounce the
++// event by one second.
++export default debounceEvent(1000, bookSearch);
+diff --git a/example-app/app/analytics/events/collection-add-book.ts b/example-app/app/analytics/events/collection-add-book.ts
+new file mode 100644
+index 0000000..532b907
+--- /dev/null
++++ b/example-app/app/analytics/events/collection-add-book.ts
+@@ -0,0 +1,13 @@
++import { Event } from 'redux-beacon/targets/google-analytics';
++import { AddBookSuccess } from '../../books/actions/collection';
++
++// An event definition to track when the user adds a book to their
++// collection.
++const collectionAddBook = (action: AddBookSuccess): Event => ({
++  hitType: 'event',
++  eventCategory: 'collection',
++  eventAction: 'add-book',
++  eventLabel: action.payload.volumeInfo.title,
++});
++
++export default collectionAddBook;
+diff --git a/example-app/app/analytics/events/index.ts b/example-app/app/analytics/events/index.ts
+new file mode 100644
+index 0000000..3be07f2
+--- /dev/null
++++ b/example-app/app/analytics/events/index.ts
+@@ -0,0 +1,5 @@
++import pageView from './page-view';
++import bookSearch from './book-search';
++import collectionAddBook from './collection-add-book';
++
++export { pageView, bookSearch, collectionAddBook };
+diff --git a/example-app/app/analytics/events/page-view.ts b/example-app/app/analytics/events/page-view.ts
+new file mode 100644
+index 0000000..9cdb1b0
+--- /dev/null
++++ b/example-app/app/analytics/events/page-view.ts
+@@ -0,0 +1,13 @@
++import { PageView } from 'redux-beacon/targets/google-analytics';
++import { RouterNavigationAction } from '@ngrx/router-store';
++import { RouterStateSnapshot } from '@angular/router';
++
++// An event definition to track when the user goes to a different page.
++const pageView = (
++  action: RouterNavigationAction<RouterStateSnapshot>
++): PageView => ({
++  hitType: 'pageview',
++  page: action.payload.routerState.url,
++});
++
++export default pageView;
+diff --git a/example-app/app/analytics/index.ts b/example-app/app/analytics/index.ts
+new file mode 100644
+index 0000000..45f713c
+--- /dev/null
++++ b/example-app/app/analytics/index.ts
+@@ -0,0 +1,33 @@
++import { createMetaReducer } from 'redux-beacon';
++import { logger } from 'redux-beacon/extensions/logger';
++import { offlineWeb } from 'redux-beacon/extensions/offline-web';
++import { MetaReducer } from '@ngrx/store';
++
++import { State } from '../reducers';
++import {
++  GoogleAnalytics,
++  PageView,
++} from 'redux-beacon/targets/google-analytics';
++
++import eventsMap from './events-map';
++
++// This is a connectivity selector. It is used by the OfflineWeb
++// extension to determine whether or not the app is offline.
++const isConnected = (state: State): boolean => {
++  return state.connectivity.isConnected;
++};
++
++// This will allow us to track analyitcs events when/if the user loses
++// their connection.
++const offlineStorage = offlineWeb(isConnected);
++
++// This creates a meta reducer for Redux Beacon that is configured to
++// send events to Google Analytics. It is also configured with a
++// couple of optional extensions, one to log events to the console,
++// and the other to preserve analytics that occur when the user loses
++// their connection.
++const analyticsMetaReducer: MetaReducer<
++  State
++> = createMetaReducer(eventsMap, GoogleAnalytics(), { logger, offlineStorage });
++
++export default analyticsMetaReducer;
+diff --git a/example-app/app/core/actions/connectivity.ts b/example-app/app/core/actions/connectivity.ts
+new file mode 100644
+index 0000000..127b9de
+--- /dev/null
++++ b/example-app/app/core/actions/connectivity.ts
+@@ -0,0 +1,11 @@
++import { Action } from '@ngrx/store';
++
++export const UPDATE_CONNECTIVITY = '[Connectivity] Update Connectivity';
++
++// An Action to update the state with the current connection status.
++export class UpdateConnectivity implements Action {
++  readonly type = UPDATE_CONNECTIVITY;
++  constructor(public payload: boolean) {}
++}
++
++export type Actions = UpdateConnectivity;
+diff --git a/example-app/app/core/containers/app.ts b/example-app/app/core/containers/app.ts
+index 36e7f1d..5800121 100644
+--- a/example-app/app/core/containers/app.ts
++++ b/example-app/app/core/containers/app.ts
+@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
+ import * as fromRoot from '../../reducers';
+ import * as fromAuth from '../../auth/reducers';
+ import * as layout from '../actions/layout';
++import * as connectivity from '../actions/connectivity';
+ import * as Auth from '../../auth/actions/auth';
+ 
+ @Component({
+@@ -46,6 +47,19 @@ export class AppComponent {
+      */
+     this.showSidenav$ = this.store.select(fromRoot.getShowSidenav);
+     this.loggedIn$ = this.store.select(fromAuth.getLoggedIn);
++
++    /**
++     * The following event listeners help track whether or not the app is offline.
++     * This information is used by Redux Beacon to prevent analytics events from
++     * being lost when a user loses connection.
++     */
++    window.addEventListener('offline', () => {
++      this.store.dispatch(new connectivity.UpdateConnectivity(false));
++    });
++
++    window.addEventListener('online', () => {
++      this.store.dispatch(new connectivity.UpdateConnectivity(true));
++    });
+   }
+ 
+   closeSidenav() {
+diff --git a/example-app/app/core/reducers/connectivity.ts b/example-app/app/core/reducers/connectivity.ts
+new file mode 100644
+index 0000000..9656ef9
+--- /dev/null
++++ b/example-app/app/core/reducers/connectivity.ts
+@@ -0,0 +1,26 @@
++import * as connectivity from '../actions/connectivity';
++
++// A reducer to manage the connectivity status in state
++
++export interface State {
++  isConnected: boolean;
++}
++
++const initialState: State = {
++  isConnected: true,
++};
++
++export function reducer(
++  state = initialState,
++  action: connectivity.Actions
++): State {
++  switch (action.type) {
++    case connectivity.UPDATE_CONNECTIVITY:
++      return {
++        isConnected: action.payload,
++      };
++
++    default:
++      return state;
++  }
++}
+diff --git a/example-app/app/reducers/index.ts b/example-app/app/reducers/index.ts
+index 6f83242..704a631 100644
+--- a/example-app/app/reducers/index.ts
++++ b/example-app/app/reducers/index.ts
+@@ -9,6 +9,9 @@ import { environment } from '../../environments/environment';
+ import { RouterStateUrl } from '../shared/utils';
+ import * as fromRouter from '@ngrx/router-store';
+ 
++/* Redux Beacon's Meta Reducer */
++import storeAnalytics from '../analytics';
++
+ /**
+  * storeFreeze prevents state from being mutated. When mutation occurs, an
+  * exception will be thrown. This is useful during development mode to
+@@ -25,12 +28,15 @@ import { storeFreeze } from 'ngrx-store-freeze';
+ 
+ import * as fromLayout from '../core/reducers/layout';
+ 
++import * as fromConnectivity from '../core/reducers/connectivity';
++
+ /**
+  * As mentioned, we treat each reducer like a table in a database. This means
+  * our top level state interface is just a map of keys to inner state types.
+  */
+ export interface State {
+   layout: fromLayout.State;
++  connectivity: fromConnectivity.State;
+   routerReducer: fromRouter.RouterReducerState<RouterStateUrl>;
+ }
+ 
+@@ -41,6 +47,7 @@ export interface State {
+  */
+ export const reducers: ActionReducerMap<State> = {
+   layout: fromLayout.reducer,
++  connectivity: fromConnectivity.reducer,
+   routerReducer: fromRouter.routerReducer,
+ };
+ 
+@@ -60,8 +67,8 @@ export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
+  * that will be composed to form the root meta-reducer.
+  */
+ export const metaReducers: MetaReducer<State>[] = !environment.production
+-  ? [logger, storeFreeze]
+-  : [];
++  ? [logger, storeFreeze, storeAnalytics]
++  : [storeAnalytics];
+ 
+ /**
+  * Layout Reducers
+diff --git a/example-app/index.html b/example-app/index.html
+index 76331f1..1931969 100644
+--- a/example-app/index.html
++++ b/example-app/index.html
+@@ -5,6 +5,17 @@
+   <title>Book Collection</title>
+   <base href="/">
+ 
++  <!-- Google Analytics -->
++  <script>
++    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
++    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
++    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
++    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
++
++    ga('create', 'UA-XXXXX-Y', 'auto');
++  </script>
++  <!-- End Google Analytics -->
++
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="icon" type="image/x-icon" href="favicon.ico">
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+--
+2.14.1
+
