@@ -97,6 +97,7 @@ events off to a target. Read more about offline event collection in the
  - [Amplitude](https://rangle.github.io/redux-beacon/docs/targets/amplitude.html)
  - [_(React Native)_ Google Analytics](https://rangle.github.io/redux-beacon/docs/targets/react-native-google-analytics.html)
  - [_(React Native)_ Google Tag Manager](https://rangle.github.io/redux-beacon/docs/targets/react-native-google-tag-manager.html)
+ - [_(React Native)_ Amplitude with Expo](https://rangle.github.io/redux-beacon/docs/targets/react-native-amplitude-expo.html)
  - [_(Cordova)_ Google Analytics](https://rangle.github.io/redux-beacon/docs/targets/cordova-google-analytics.html)
 
 ## Docs

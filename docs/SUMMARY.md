@@ -15,6 +15,7 @@
   * [Amplitude](docs/targets/amplitude.md)
   * [(React Native) Google Analytics](docs/targets/react-native-google-analytics.md)
   * [(React Native) Google Tag Manager](docs/targets/react-native-google-tag-manager.md)
+  * [(React Native) Amplitude with Expo](docs/targets/react-native-amplitude-expo.md)
   * [(Cordova) Google Analytics](docs/targets/cordova-google-analytics.md)
 * [Extensions](docs/extensions/index.md)
   * [logger](docs/extensions/logger.md)
