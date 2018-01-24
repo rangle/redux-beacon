@@ -1,4 +1,4 @@
-From ebed28c93959d007e099fdb17beca2fccdac3436 Mon Sep 17 00:00:00 2001
+From f2943dd1abc04dc87a7fc8de2bf10cec0c361f81 Mon Sep 17 00:00:00 2001
 From: Thomas Marek <ttmarek@outlook.com>
 Date: Tue, 12 Dec 2017 23:50:30 -0500
 Subject: [PATCH] Redux Beacon integration
@@ -27,7 +27,7 @@ Subject: [PATCH] Redux Beacon integration
 
 diff --git a/example-app/app/analytics/events-map.ts b/example-app/app/analytics/events-map.ts
 new file mode 100644
-index 0000000..a02a289
+index 0000000..76a7a3b
 --- /dev/null
 +++ b/example-app/app/analytics/events-map.ts
 @@ -0,0 +1,20 @@
@@ -39,15 +39,15 @@ index 0000000..a02a289
 +
 +import { EventsMap } from 'redux-beacon';
 +import { ROUTER_NAVIGATION } from '@ngrx/router-store';
-+import { SEARCH } from '../books/actions/book';
-+import { ADD_BOOK_SUCCESS } from '../books/actions/collection';
++import { BookActionTypes } from '../books/actions/book';
++import { CollectionActionTypes } from '../books/actions/collection';
 +
 +import { pageView, bookSearch, collectionAddBook } from './events';
 +
 +const eventsMap: EventsMap = {
 +  [ROUTER_NAVIGATION]: pageView,
-+  [SEARCH]: bookSearch,
-+  [ADD_BOOK_SUCCESS]: collectionAddBook,
++  [BookActionTypes.Search]: bookSearch,
++  [CollectionActionTypes.AddBookSuccess]: collectionAddBook,
 +};
 +
 +export default eventsMap;
@@ -182,10 +182,10 @@ index 0000000..127b9de
 +
 +export type Actions = UpdateConnectivity;
 diff --git a/example-app/app/core/containers/app.ts b/example-app/app/core/containers/app.ts
-index 36e7f1d..5800121 100644
+index fe69ce5..7e96144 100644
 --- a/example-app/app/core/containers/app.ts
 +++ b/example-app/app/core/containers/app.ts
-@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
+@@ -5,6 +5,7 @@ import { Store, select } from '@ngrx/store';
  import * as fromRoot from '../../reducers';
  import * as fromAuth from '../../auth/reducers';
  import * as layout from '../actions/layout';
@@ -193,10 +193,10 @@ index 36e7f1d..5800121 100644
  import * as Auth from '../../auth/actions/auth';
  
  @Component({
-@@ -46,6 +47,19 @@ export class AppComponent {
+@@ -45,6 +46,19 @@ export class AppComponent {
       */
-     this.showSidenav$ = this.store.select(fromRoot.getShowSidenav);
-     this.loggedIn$ = this.store.select(fromAuth.getLoggedIn);
+     this.showSidenav$ = this.store.pipe(select(fromRoot.getShowSidenav));
+     this.loggedIn$ = this.store.pipe(select(fromAuth.getLoggedIn));
 +
 +    /**
 +     * The following event listeners help track whether or not the app is offline.
@@ -246,7 +246,7 @@ index 0000000..9656ef9
 +  }
 +}
 diff --git a/example-app/app/reducers/index.ts b/example-app/app/reducers/index.ts
-index 6f83242..704a631 100644
+index 9b5d698..26cff2b 100644
 --- a/example-app/app/reducers/index.ts
 +++ b/example-app/app/reducers/index.ts
 @@ -9,6 +9,9 @@ import { environment } from '../../environments/environment';
@@ -272,17 +272,17 @@ index 6f83242..704a631 100644
  export interface State {
    layout: fromLayout.State;
 +  connectivity: fromConnectivity.State;
-   routerReducer: fromRouter.RouterReducerState<RouterStateUrl>;
+   router: fromRouter.RouterReducerState<RouterStateUrl>;
  }
  
-@@ -41,6 +47,7 @@ export interface State {
-  */
+@@ -42,6 +48,7 @@ export interface State {
  export const reducers: ActionReducerMap<State> = {
    layout: fromLayout.reducer,
+   router: fromRouter.routerReducer,
 +  connectivity: fromConnectivity.reducer,
-   routerReducer: fromRouter.routerReducer,
  };
  
+ // console.log all actions
 @@ -60,8 +67,8 @@ export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
   * that will be composed to form the root meta-reducer.
   */
