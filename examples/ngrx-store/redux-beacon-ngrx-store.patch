@@ -1,21 +1,23 @@
-From f2943dd1abc04dc87a7fc8de2bf10cec0c361f81 Mon Sep 17 00:00:00 2001
+From 2ba776bebfca973910c559e63574519561d04a3e Mon Sep 17 00:00:00 2001
 From: Thomas Marek <ttmarek@outlook.com>
-Date: Tue, 12 Dec 2017 23:50:30 -0500
-Subject: [PATCH] Redux Beacon integration
+Date: Thu, 25 Jan 2018 22:08:53 -0500
+Subject: [PATCH] Redux Beacon Integration
 
 ---
  example-app/app/analytics/events-map.ts            | 20 +++++++++++++
- example-app/app/analytics/events/book-search.ts    | 19 +++++++++++++
- .../app/analytics/events/collection-add-book.ts    | 13 +++++++++
+ example-app/app/analytics/events/book-search.ts    | 19 ++++++++++++
+ .../app/analytics/events/collection-add-book.ts    | 13 ++++++++
  example-app/app/analytics/events/index.ts          |  5 ++++
- example-app/app/analytics/events/page-view.ts      | 13 +++++++++
- example-app/app/analytics/index.ts                 | 33 ++++++++++++++++++++++
- example-app/app/core/actions/connectivity.ts       | 11 ++++++++
+ example-app/app/analytics/events/page-view.ts      | 13 ++++++++
+ example-app/app/analytics/index.ts                 | 35 ++++++++++++++++++++++
+ example-app/app/core/actions/connectivity.ts       | 11 +++++++
  example-app/app/core/containers/app.ts             | 14 +++++++++
- example-app/app/core/reducers/connectivity.ts      | 26 +++++++++++++++++
- example-app/app/reducers/index.ts                  | 11 ++++++--
- example-app/index.html                             | 11 ++++++++
- 11 files changed, 174 insertions(+), 2 deletions(-)
+ example-app/app/core/reducers/connectivity.ts      | 26 ++++++++++++++++
+ example-app/app/reducers/index.ts                  | 11 +++++--
+ example-app/index.html                             | 11 +++++++
+ package.json                                       |  3 +-
+ yarn.lock                                          |  4 +++
+ 13 files changed, 182 insertions(+), 3 deletions(-)
  create mode 100644 example-app/app/analytics/events-map.ts
  create mode 100644 example-app/app/analytics/events/book-search.ts
  create mode 100644 example-app/app/analytics/events/collection-add-book.ts
@@ -127,10 +129,10 @@ index 0000000..9cdb1b0
 +export default pageView;
 diff --git a/example-app/app/analytics/index.ts b/example-app/app/analytics/index.ts
 new file mode 100644
-index 0000000..45f713c
+index 0000000..47b7bb1
 --- /dev/null
 +++ b/example-app/app/analytics/index.ts
-@@ -0,0 +1,33 @@
+@@ -0,0 +1,35 @@
 +import { createMetaReducer } from 'redux-beacon';
 +import { logger } from 'redux-beacon/extensions/logger';
 +import { offlineWeb } from 'redux-beacon/extensions/offline-web';
@@ -159,9 +161,11 @@ index 0000000..45f713c
 +// couple of optional extensions, one to log events to the console,
 +// and the other to preserve analytics that occur when the user loses
 +// their connection.
-+const analyticsMetaReducer: MetaReducer<
-+  State
-+> = createMetaReducer(eventsMap, GoogleAnalytics(), { logger, offlineStorage });
++const analyticsMetaReducer: MetaReducer<State> = createMetaReducer(
++  eventsMap,
++  GoogleAnalytics(),
++  { logger, offlineStorage }
++);
 +
 +export default analyticsMetaReducer;
 diff --git a/example-app/app/core/actions/connectivity.ts b/example-app/app/core/actions/connectivity.ts
@@ -316,6 +320,35 @@ index 76331f1..1931969 100644
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link rel="icon" type="image/x-icon" href="favicon.ico">
    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+diff --git a/package.json b/package.json
+index ac0e4f3..cc347eb 100644
+--- a/package.json
++++ b/package.json
+@@ -130,7 +130,8 @@
+   },
+   "dependencies": {
+     "@angular/cdk": "^2.0.0-beta.12",
+-    "opencollective": "^1.0.3"
++    "opencollective": "^1.0.3",
++    "redux-beacon": "^1.2.1"
+   },
+   "collective": {
+     "type": "opencollective",
+diff --git a/yarn.lock b/yarn.lock
+index bfd7265..b67675e 100644
+--- a/yarn.lock
++++ b/yarn.lock
+@@ -6464,6 +6464,10 @@ reduce-function-call@^1.0.1:
+   dependencies:
+     balanced-match "^0.4.2"
+ 
++redux-beacon@^1.2.1:
++  version "1.2.1"
++  resolved "https://registry.yarnpkg.com/redux-beacon/-/redux-beacon-1.2.1.tgz#4461005227b15861dba9340f502a9586e4a4983f"
++
+ reflect-metadata@^0.1.2, reflect-metadata@^0.1.9:
+   version "0.1.10"
+   resolved "https://registry.yarnpkg.com/reflect-metadata/-/reflect-metadata-0.1.10.tgz#b4f83704416acad89988c9b15635d47e03b9344a"
 --
 2.14.1
 
