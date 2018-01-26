@@ -9,7 +9,7 @@ export type EventDefinition = (
   action: Action,
   prevState: any,
   nextState: any
-) => any | Array<any>;
+) => any | Array<any> | Promise<any>;
 ```
 
 #### A Basic Event Definition
@@ -25,7 +25,7 @@ function (action, prevState, nextState) {
 ```
 
 #### Generate Multiple Events Per Action
-You can return an array of event objects in an event definition.
+You can return an array of event objects.
 ```js
 function (action, prevState) {
   return [
@@ -81,10 +81,20 @@ function (action, prevState) {
 }
 ```
 
-#### Validate Events Using Higher-Order Functions
-In previous versions, event definition's had an `eventSchema` property that was
-used to validate each property in a generated event. If a generated event didn't
-match the provided schema or shape then Redux Beacon wouldn't pass that event to
-the target. Now, we recommed using typed interfaces (Flow/Typescript) or
-higher-order functions to achieve the same result. Redux Beacon exposes a
-utility function to make this easier: [`ensure`](../utils/ensure.md).
+#### Create Asynchronous Events
+You can return a promise that resolves to an event object or array of event
+objects.
+```js
+function (action, prevState, nextState) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      return {
+        hitType: 'pageview',
+        route: action.payload.location.pathname,
+        referrer: prevState.currentRoute,
+        numUserActions: nextState.numUserActions,
+      };
+    }, 2000);
+  });
+}
+```
