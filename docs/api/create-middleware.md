@@ -1,9 +1,16 @@
-### `createMiddleware(eventDefinitionsMap, target, extensions?)`
+## `import { createMiddleware } from 'redux-beacon'`
 
-Returns [Redux middleware](http://redux.js.org/docs/advanced/Middleware.html#the-final-approach)
-that synchronizes actions to analytics events.
+### Syntax
+
+```js
+createMiddleware(eventsMap, target[, extensions]);
+```
 
 #### Parameters
- * `object` [eventDefinitionsMap](event-definitions-map.md)
- * `function` [target](../targets/index.md)
- * `object` *(optional)* [extensions](../extensions/index.md)
+
+ * `eventsMap`: [eventsMap](events-map.md)
+ * `target`: [target](../targets/index.md)
+ * `extensions` *(optional)*: [extensions](../extensions/index.md).
+
+#### Return value
+ * [Redux middleware](http://redux.js.org/docs/advanced/Middleware.html#the-final-approach)
