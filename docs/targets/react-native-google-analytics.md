@@ -25,5 +25,76 @@
    const analyticsMiddleware = createMiddleware(eventsMap, target);
    ```
 
+### Custom Dimensions
+
+In order to leverage custom dimensions defined in GA, you can use the `eventCustomDimensions` and `pageviewCustomDimensions` hit types in your `eventsMap` definition. This could look like so:
+
+  ```js
+  // Define an event
+  const pageView = action => ({
+    hitType: 'pageviewCustomDimensions',
+    page: action.payload,
+    customDimensionDict: {
+      '1': 'premium',
+      '5': 'foo'
+    }
+  }),
+
+  // Map the event to a Redux action
+  const eventsMap = {
+    LOCATION_CHANGE: pageView,
+  };
+
+  // Create the middleware
+  const middleware = createMiddleware(eventsMap, GoogleAnalytics);
+  ```
+`pageviewCustomDimensions` - Tracks a screen view with one or more customDimensionValues. See the [Google Analytics](https://developers.google.com/analytics/devguides/collection/ios/v3/customdimsmets) docs for more info.
+
+`eventCustomDimensions` - Tracks an event with one or more customDimensionValues. See the [Google Analytics](https://developers.google.com/analytics/devguides/collection/ios/v3/customdimsmets) docs for more info.
+
+### User ID
+
+In order to use the User ID Google Analytics feature, simply use the `user` hit type like so:
+
+  ```js
+  // Define an event
+  const setUser = action => ({
+    hitType: 'user',
+    userId: action.user_id
+  }),
+
+  // Map the event to a Redux action
+  const eventsMap = {
+    USER_LOG_IN: setUser,
+  };
+
+  // Create the middleware
+  const middleware = createMiddleware(eventsMap, GoogleAnalytics);
+  ```
+
+See the [Google Analytics](https://developers.google.com/analytics/devguides/collection/ios/v3/user-id) docs for more info.
+
+### Client ID
+
+In order to use the Client ID Google Analytics feature, simply use the `client` hit type like so:
+
+  ```js
+  // Define an event
+  const setClient = action => ({
+    hitType: 'client',
+    clientId: action.client_id
+  }),
+
+  // Map the event to a Redux action
+  const eventsMap = {
+    CLIENT: setClient,
+  };
+
+  // Create the middleware
+  const middleware = createMiddleware(eventsMap, GoogleAnalytics);
+  ```
+
+See the [Google Analytics](https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#clientId) docs for more info.
+
 ### Example
   * [Redux Beacon: React Native Google Analytics Example](https://github.com/johannalee/react-native-redux-example)
