@@ -22,8 +22,44 @@ export function GoogleAnalytics(trackingId, GoogleAnalyticsTracker) {
           break;
         }
 
+        case 'eventCustomDimensions': {
+          const options = {};
+
+          if (event.eventLabel !== undefined) {
+            options.label = event.eventLabel;
+          }
+          if (event.eventValue !== undefined) {
+            options.value = event.eventValue;
+          }
+
+          if (Object.keys(options).length > 0) {
+            tracker.trackEventWithCustomDimensionValues(
+              event.eventCategory,
+              event.eventAction,
+              options,
+              event.customDimensionDict,
+            );
+          } else {
+            tracker.trackEventWithCustomDimensionValues(
+              event.eventCategory,
+              event.eventAction,
+              {},
+              event.customDimensionDict,
+            );
+          }
+          break;
+        }
+
         case 'pageview': {
           tracker.trackScreenView(event.page);
+          break;
+        }
+
+        case 'pageviewCustomDimensions': {
+          tracker.trackScreenViewWithCustomDimensionValues(
+            event.page,
+            event.customDimensionDict,
+          );
           break;
         }
 
@@ -39,7 +75,7 @@ export function GoogleAnalytics(trackingId, GoogleAnalyticsTracker) {
             tracker.trackTiming(
               event.timingCategory,
               event.timingValue,
-              options
+              options,
             );
           } else {
             tracker.trackTiming(event.timingCategory, event.timingValue);
@@ -51,8 +87,18 @@ export function GoogleAnalytics(trackingId, GoogleAnalyticsTracker) {
           tracker.trackSocialInteraction(
             event.socialNetwork,
             event.socialAction,
-            event.socialTarget
+            event.socialTarget,
           );
+          break;
+        }
+
+        case 'user': {
+          tracker.setUser(event.userId);
+          break;
+        }
+
+        case 'client': {
+          tracker.setClient(event.clientId);
           break;
         }
 
