@@ -1,6 +1,8 @@
 # API Reference
 
-* [`createMiddleware(eventDefinitionsMap, target, extensions?)`](create-middleware.md)
-* [`createMetaReducer(eventDefinitionsMap, target, extensions?)`](create-meta-reducer.md)
-* [`EventsMap`](events-map.md)
-* [`EventDefinition`](event-definition.md)
+* [`import { createMiddleware } from 'redux-beacon'`](create-middleware.md)
+* [`import { createMetaReducer } from 'redux-beacon'`](create-meta-reducer.md)
+
+#### Types
+* [`import { EventsMap } from 'redux-beacon'`](events-map.md)
+* [`import { EventDefinition } from 'redux-beacon'`](event-definition.md)
