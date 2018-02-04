@@ -10,6 +10,7 @@ export interface PageView {
   page?: string;
   title?: string;
   location?: string;
+  tracker?: string;
 }
 
 export interface Event {
@@ -18,14 +19,16 @@ export interface Event {
   eventAction: string;
   eventLabel?: string;
   eventValue?: number;
+  tracker?: string;
 }
 
 export interface UserTiming {
-  hitType: 'timing',
+  hitType: 'timing';
   timingCategory: string;
   timingVar: string;
-  timingValue: number,
-  timingLabel?: string,
+  timingValue: number;
+  timingLabel?: string;
+  tracker? string;
 }
 
 export interface SocialInteraction {
@@ -33,12 +36,14 @@ export interface SocialInteraction {
   socialNetwork: string,
   socialAction: string,
   socialTarget: string,
+  tracker?: string,
 }
 
 export interface Exception {
   hitType: 'exception',
   exDescription?: string,
   exFatal?: boolean,
+  tracker?: string,
 }
 
 export interface EcommItem {
@@ -49,6 +54,7 @@ export interface EcommItem {
   category?: string,
   price?: number,
   quantity?: number,
+  tracker?: string,
 }
 
 export interface EcommTransaction {
@@ -58,9 +64,12 @@ export interface EcommTransaction {
   revenue?: number,
   shipping?: number,
   tax?: number,
+  tracker?: string,
 }
 
 export interface EcommImpression {
+  hitType: 'addImpression',
+  ecommType: 'enhanced',
   id: string,
   name: string,
   list?: string,
@@ -69,6 +78,7 @@ export interface EcommImpression {
   variant?: string,
   position?: number,
   currency?: number,
+  tracker?: string,
 }
 
 export interface EcommProduct {
@@ -81,6 +91,7 @@ export interface EcommProduct {
   quantity?: number,
   coupon?: string,
   position?: number,
+  tracker?: string,
 }
 
 export interface EcommPromotion {
@@ -88,6 +99,7 @@ export interface EcommPromotion {
   name: string,
   creative?: string,
   position?: string,
+  tracker?: string,
 }
 
 export interface EcommAction {
@@ -100,4 +112,5 @@ export interface EcommAction {
   list?: string,
   step?: number,
   option?: string,
+  tracker?: string,
 }

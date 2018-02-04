@@ -1,4 +1,4 @@
 # Utils
 
-* [`ensure(validator, eventDef)`](ensure.md)
-* [`debounceEvent(msDelay, eventDef)`](debounce-event.md)
+* [`debounceEvent`](debounce-event.md)
+* [`ensure`](ensure.md)

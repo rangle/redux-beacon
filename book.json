@@ -1,7 +1,15 @@
 {
   "title": "Redux Beacon Documentation",
-  "gitbook": "2.5.2",
-  "plugins": ["github", "-sharing", "ga"],
+  "gitbook": "3.2.2",
+  "plugins": [
+    "github",
+    "-sharing",
+    "prism",
+    "-highlight",
+    "ga",
+    "alerts",
+    "back-to-top-button"
+  ],
   "pluginsConfig": {
     "github": {
       "url": "https://github.com/rangle/redux-beacon"
@@ -9,8 +17,5 @@
     "ga": {
       "token": "UA-41067508-13"
     }
-  },
-  "structure": {
-    "summary": "docs/SUMMARY.md"
   }
 }
