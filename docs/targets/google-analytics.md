@@ -1,5 +1,11 @@
 # Google Analytics
 
+* [Setup](#setup)
+* [Usage](#usage)
+* [Event Definitions](#event-definitions)
+
+----
+
 ### Setup
 
 1. Sign up for Google Analytics and
@@ -15,7 +21,7 @@
     > [here](https://developers.google.com/analytics/devguides/collection/analyticsjs/debugging)
     > to enable it.
 
-#### Multiple Trackers Setup _(optional)_
+#### _Multiple Trackers Setup_
  * This target supports named trackers. Add the following line to the tracking
    snippet for each named tracker:
 
@@ -25,7 +31,7 @@
  * The tracker can be specified in each [event definition](#event-definitions)
    using the `tracker` property.
 
-#### Ecommerce Plugin Setup _(optional)_
+#### _Ecommerce Plugin Setup_
  * Add this line to the end of your tracking snippet: `ga('require',
    'ecommerce');`. This line must be added **after** you call `ga('create',
    'UA-XXXXX-Y')`.
@@ -36,7 +42,7 @@
     > **not** recommended to use GA's basic analytics plugin if you're also
     > going to use the enhanced ecommerce plugin.
 
-#### Enhanced Ecommerce Plugin Setup _(optional)_
+#### _Enhanced Ecommerce Plugin Setup_
  * Add this line to the end of your tracking snippet: `ga('require',
    'ec');`. This line must be added **after** you call `ga('create',
    'UA-XXXXX-Y')`.
@@ -67,6 +73,8 @@ const metaReducer = createMetaReducer(eventsMap, ga);
 * [`exception`](#exception)
 * [`ecommItem`](#ecommitem)
 * [`ecommTransaction`](#ecommtransaction)
+* [`ecommSend`](#ecommsend)
+* [`ecommClear`](#ecommclear)
 * [`ecommImpression`](#ecommimpression)
 * [`ecommProduct`](#ecommproduct)
 * [`ecommPromotion`](#ecommpromotion)
@@ -81,11 +89,11 @@ import { makePageView } from 'redux-beacon/targets/google-analytics';
 
 const pageView = makePageView((action, prevState, nextState) => {
  return {
-   page: // fill me in,
-   title: // (Optional) fill me in,
-   location: // (Optional) fill me in,
+   page: /* fill me in */,
+   title: /* (optional) */,
+   location: /* (optional) */,
  };
-});
+}, /* (optional) tracker name */ );
 ```
 
 > **[danger] Duplicate Page Views**
@@ -94,116 +102,135 @@ const pageView = makePageView((action, prevState, nextState) => {
 > tracking page views using Redux Beacon, be sure to remove this line so the
 > initial page load isn't recorded twice.
 
-##### Typescript Type Definition:
-
-```typescript
-import { PageView } from 'redux-beacon/targets/google-analytics';
-```
-
 <br>
+
 #### event
 ##### Docs:
 https://developers.google.com/analytics/devguides/collection/analyticsjs/events
 
 ```js
-const event = (action, prevState, nextState) => { // rename me
+import { makeEvent } from 'redux-beacon/targets/google-analytics';
+
+const event = makeEvent((action, prevState, nextState) => {
   return {
-    hitType: 'event',
-    eventCategory: // fill me in,
-    eventAction: // fill me in,
-    eventLabel: // (Optional) fill me in,
-    eventValue: // (Optional) fill me in,
+    eventCategory: /* fill me in */,
+    eventAction: /* fill me in */,
+    eventLabel: /* (optional) */,
+    eventValue: /* (optional) */,
   };
-};
-```
-
-##### Typescript Type Definition:
-
-```typescript
-import { Event } from 'redux-beacon/targets/google-analytics';
+}, /* (optional) tracker name */ );
 ```
 
 <br>
+
 #### userTiming
 ##### Docs:
 https://developers.google.com/analytics/devguides/collection/analyticsjs/user-timings
 
 ```js
-const userTiming = (action, prevState, nextState) => {
+import { makeUserTiming } from 'redux-beacon/targets/google-analytics';
+
+const userTiming = makeUserTiming((action, prevState, nextState) => {
   return {
-    hitType: 'timing',
-    timingCategory: // fill me in,
-    timingVar: // fill me in,
-    timingValue: // fill me in,
-    timingLabel: // (Optional) fill me in,
+    timingCategory: /* fill me in */,
+    timingVar: /* fill me in */,
+    timingValue: /* fill me in */,
+    timingLabel: /* (optional) */,
   };
-};
-```
-
-##### Typescript Type Definition:
-
-```typescript
-import { UserTiming } from 'redux-beacon/targets/google-analytics';
+}, /* (optional) tracker name */ );
 ```
 
 <br>
+
 #### socialInteraction
 ##### Docs:
 https://developers.google.com/analytics/devguides/collection/analyticsjs/social-interactions
 
 ```js
-const socialInteraction = (action, prevState, nextState) => {
+import { makeSocialInteraction } from 'redux-beacon/targets/google-analytics';
+
+const socialInteraction = makeSocialInteraction((action, prevState, nextState) => {
   return {
-    hitType: 'social',
-    socialNetwork: // fill me in,
-    socialAction: // fill me in,
-    socialTarget: // fill me in,
+    socialNetwork: /* fill me in */,
+    socialAction: /* fill me in */,
+    socialTarget: /* fill me in */,
   };
-};
-```
-
-##### Typescript Type Definition:
-
-```typescript
-import { SocialInteraction } from 'redux-beacon/targets/google-analytics';
+}, /* (optional) tracker name */ );
 ```
 
 <br>
+
 #### exception
 ##### Docs:
 https://developers.google.com/analytics/devguides/collection/analyticsjs/exceptions
 
 ```js
-const exception = (action, prevState, nextState) => {
+import { makeException } from 'redux-beacon/targets/google-analytics';
+
+const exception = makeException((action, prevState, nextState) => {
   return {
-    hitType: 'exception',
-    exDescription: // (Optional) fill me in,
-    exFatal: // (Optional) fill me in,
+    exDescription: /* (optional) */,
+    exFatal: /* (optional) */,
   };
-};
+}, /* (optional) tracker name */ );
 ```
 
-##### Typescript Type Definition:
+Don't need an `exDescription` or `exFatal`?
 
-```typescript
-import { Exception } from 'redux-beacon/targets/google-analytics';
+```js
+import { makeException } from 'redux-beacon/targets/google-analytics';
+import { noop } from 'redux-beacon/utils/noop';
+
+const exception = makeException(noop, /* (optional) tracker name */ );
 ```
 
 <br>
+
 #### ecommItem
 ##### Docs:
 https://developers.google.com/analytics/devguides/collection/analyticsjs/ecommerce
 ##### Requires:
 [Ecommerce Plugin Setup](#ecommerce-plugin-setup)
 
+```js
+import { makeEcommItem } from 'redux-beacon/targets/google-analytics';
+
+const ecommItem = makeEcommItem((action, prevState, nextState) => {
+  return {
+    id: /* fill me in */,
+    name: /* fill me in */,
+    sku: /* (optional) */,
+    category: /* (optional) */,
+    price: /* (optional) */,
+    quantity: /* (optional) */,
+  };
+}, /* (optional) tracker name */ );
+```
+
 <br>
+
 #### ecommTransaction
 ##### Docs:
 https://developers.google.com/analytics/devguides/collection/analyticsjs/ecommerce
 ##### Requires:
 [Ecommerce Plugin Setup](#ecommerce-plugin-setup)
 
+```js
+import { makeEcommTransaction } from 'redux-beacon/targets/google-analytics';
+
+const ecommTransaction = makeEcommTransaction((action, prevState, nextState) => {
+  return {
+    id: /* fill me in */,
+    affiliation: /* (optional) */,
+    revenue: /* (optional) */,
+    shipping: /* (optional) */,
+    tax: /* (optional) */,
+  };
+}, /* (optional) tracker name */ );
+```
+
 <br>
+
 #### ecommSend
 ##### Docs:
 https://developers.google.com/analytics/devguides/collection/analyticsjs/ecommerce
@@ -211,7 +238,14 @@ https://developers.google.com/analytics/devguides/collection/analyticsjs/ecommer
 [Ecommerce Plugin Setup](#ecommerce-plugin-setup) or
 [Enhanced Ecommerce Plugin Setup](#enhanced-ecommerce-plugin-setup)
 
+```js
+import { makeEcommSend } from 'redux-beacon/targets/google-analytics';
+
+const ecommSend = makeEcommSend(/* (optional) tracker name */);
+```
+
 <br>
+
 #### ecommClear
 ##### Docs:
 https://developers.google.com/analytics/devguides/collection/analyticsjs/ecommerce
@@ -219,113 +253,106 @@ https://developers.google.com/analytics/devguides/collection/analyticsjs/ecommer
 [Ecommerce Plugin Setup](#ecommerce-plugin-setup) or
 [Enhanced Ecommerce Plugin Setup](#enhanced-ecommerce-plugin-setup)
 
+```js
+import { makeEcommClear } from 'redux-beacon/targets/google-analytics';
+
+const ecommClear = makeEcommClear(/* (optional) tracker name */);
+```
+
 <br>
+
 #### ecommImpression
 ##### Docs:
 https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce
 ##### Requires:
 [Enhanced Ecommerce Plugin Setup](#enhanced-ecommerce-plugin-setup)
 
+```js
+import { makeEcommImpression } from 'redux-beacon/targets/google-analytics';
+
+const ecommImpression = makeEcommImpression((action, prevState, nextState) => {
+  return {
+    id: /* fill me in */,
+    name: /* fill me in */,
+    list: /* (optional) */,
+    brand: /* (optional) */,
+    category: /* (optional) */,
+    variant: /* (optional) */,
+    position: /* (optional) */,
+    price: /* (optional) */,
+  };
+}, /* (optional) tracker name */ );
+```
+
 <br>
+
 #### ecommProduct
 ##### Docs:
 https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce
 ##### Requires:
 [Enhanced Ecommerce Plugin Setup](#enhanced-ecommerce-plugin-setup)
 
+```js
+import { makeEcommProduct } from 'redux-beacon/targets/google-analytics';
+
+const ecommProduct = makeEcommProduct((action, prevState, nextState) => {
+  return {
+    id: /* fill me in */,
+    name: /* fill me in */,
+    brand: /* (optional) */,
+    category: /* (optional) */,
+    variant: /* (optional) */,
+    price: /* (optional) */,
+    quantity: /* (optional) */,
+    coupon: /* (optional) */,
+    position: /* (optional) */,
+  };
+}, /* (optional) tracker name */ );
+```
+
 <br>
+
 #### ecommPromotion
 ##### Docs:
 https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce
 ##### Requires:
 [Enhanced Ecommerce Plugin Setup](#enhanced-ecommerce-plugin-setup)
 
+```js
+import { makeEcommPromotion } from 'redux-beacon/targets/google-analytics';
+
+const ecommPromotion = makeEcommPromotion((action, prevState, nextState) => {
+  return {
+    id: /* fill me in */,
+    name: /* fill me in */,
+    creative: /* (optional) */,
+    position: /* (optional) */,
+  };
+}, /* (optional) tracker name */ );
+```
+
 <br>
+
 #### ecommAction
 ##### Docs:
 https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce
 ##### Requires:
 [Enhanced Ecommerce Plugin Setup](#enhanced-ecommerce-plugin-setup)
 
-
-### Google Analytics Ecommerce Plugin
-
-You must add the require **after** you call `ga('create', 'UA-XXXXX-Y')`.
-Once you've done this, you can use the ecommerce specific events to track
-transactions:
-
-- addTransaction
-- addItem
-- ecommSend
-- ecommClear
-
-You can also provide a `customTrackerId` field to your event object if you want
-to use a custom tracker object to track events. Ex:
-
 ```js
-  const events = [
-    {
-      hitType: 'addItem',
-      customTrackerId: 'myTracker',
-      ...
-    },
-  ];
+import { makeEcommAction } from 'redux-beacon/targets/google-analytics';
+
+const ecommAction = makeEcommAction((action, prevState, nextState) => {
+  return {
+    id: /* fill me in */,
+    affiliation: /* (optional) */,
+    revenue: /* (optional) */,
+    tax: /* (optional) */,
+    shipping: /* (optional) */,
+    coupon: /* (optional) */,
+    list: /* (optional) */,
+    step: /* (optional) */,
+    option: /* (optional) */,
+  };
+}, /* (optional) tracker name */ );
 ```
-
-**Note:**
-
-
-
-### Google Analytics Enhanced Ecommerce Plugin
-
-The Google Analytics target also has support for the enhanced ecommerce plugin.
-It should be noted that it isn't recommended to use both the enhanced plugin and
-basic plugin together without multiple trackers. Please refer to the [enhanced
-ecommerce plugin documentation here](https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce)
-
-To use the enhanced ecommerce plugin, first add this line to the end of your
-tracking snippet: `ga('require', 'ec');` Again, this must be added after the
-create call with your Google Analytics UA code.
-
-This allows you to use these enhanced ecommerce events:
-
-- addProduct
-- addImpression
-- addPromo
-- addAction
-
-The basic actions are used as well:
-
-- ecommSend
-- ecommClear
-- addItem
-- addTransaction
-
-In order to tell Redux Beacon which version of the ecommerce plugin you're using,
-your events should pass the `ecommType` key:
-
-```JavaScript
-const events = [
-  {
-    hitType: 'addImpression',
-    ecommType: 'enhanced',
-    // ...
-  },
-];
-```
-
-For adding custom actions, you can specify the type of action using the key `actionName`.
-
-```JavaScript
-const events = [
-  {
-    hitType: 'addAction',
-    ecommType: 'enhanced',
-    actionName: 'click',
-    // ...
-  },
-];
-```
-
-Everything else works the same as in the basic ecommerce plugin. Please see [the
-developer documentation for more information on how these events work.](https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce)
