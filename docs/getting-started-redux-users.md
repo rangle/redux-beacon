@@ -14,8 +14,8 @@ Choose a target, and follow the setup instructions.
    * [GoogleTagManager: Setup](targets/react-native-google-tag-manager.md#setup)
 
 <br>
-> **[info] Don't see the target you need?**
->
+> **[info]**
+> Don't see the target you need?
 > Follow the instructions [here](customize/create-own-target.md) to build your own.
 
 ### Step 2.
