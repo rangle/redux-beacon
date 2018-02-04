@@ -34,23 +34,24 @@ Decide what you want to track and pick out the corresponding event definition:
 ### Step 3.
 Match the event definition to a Redux action.
 
-For example, here's how you would match an event definition for a Google
-Analytics event to the `PLAY_VIDEO` action:
+For example, say you want to intercept a `PLAY_VIDEO` Redux action and track it
+as a Google Analytics event:
 
 ```js
 // Import your analytics target
 import { GoogleAnalytics } from 'redux-beacon/targets/google-analytics';
+// Import your event definition helper (if applicable)
+import { makeEvent } from 'redux-beacon/targets/google-analytics';
 
 // Copy & paste the event definition you chose in step 2:
-const event = (action, prevState, nextState) => { // rename me
+const event = makeEvent((action, prevState, nextState) => {
   return {
-    hitType: 'event',
-    eventCategory: // fill me in,
-    eventAction: // fill me in,
-    eventLabel: // fill me in (optional),
-    eventValue: // fill me in (optional),
+    eventCategory: /* fill me in */,
+    eventAction: /* fill me in */,
+    eventLabel: /* (optional) */,
+    eventValue: /* (optional) */,
   };
-};
+}, /* (optional) tracker name */ );
 
 // Match the event definition to a Redux action:
 const eventsMap = {
@@ -64,37 +65,36 @@ Complete the event definition by filling in the object properties, then create t
 middleware:
 
 ```js
-// Import your analytics target
 import { GoogleAnalytics } from 'redux-beacon/targets/google-analytics';
+import { makeEvent } from 'redux-beacon/targets/google-analytics';
 // Get Redux Beacon's middleware creator
 import { createMiddleware } from 'redux-beacon';
-// (Optional) Get Redux Beacon's logger so you can see the analytics
-// events in the console.
+// (optional)
 import { logger } from 'redux-beacon/extensions/logger';
 
+
 // Complete the event definition
-const emitVideoPlayed = (action) => {
-  return {
-    hitType: 'event',
-    eventCategory: 'Video',
-    eventAction: action.type,
-  };
-};
+const emitVideoPlayed = makeEvent((action) => ({
+  eventCategory: 'Video',
+  eventAction: action.type,
+}));
 
 const eventsMap = {
-  'PLAY_VIDEO': emitVideoPlayed,
+  'PLAY_VIDEO': emitVideoPlayed, // update if renamed
 };
 
+// Create the middleware
 const analyticsMiddleware = createMiddleware(
   eventsMap,
   GoogleAnalytics(),
-  { logger },
+  { logger }, // optional
 );
+
 ```
 
 ### Step 5.
-Follow the instructions [here](https://redux.js.org/docs/api/applyMiddleware.html) for
-applying the middleware to your store.
+Follow the instructions [here](https://redux.js.org/docs/api/applyMiddleware.html) to
+apply the middleware to your store.
 
 ### Next Steps.
  - Repeat steps [2](#step-2) and [3](#step-3) for every event you want to track:
