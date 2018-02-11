@@ -1,42 +1,65 @@
 # Google Tag Manager
 
-### Usage Instructions
+* [Setup](#setup)
+* [Usage](#usage)
+* [Event Definitions](#event-definitions)
 
-1. Sign up for Google Tag Manager if you haven't already, and
+----
+
+### Setup
+1. Sign up for Google Tag Manager and
    [create a new web container](https://support.google.com/tagmanager/answer/6103696?hl=en).
 
 2. Add the
    [Google Tag Manager container snippet](https://developers.google.com/tag-manager/quickstart)
    to your site.
 
-3. Import the target, then provide it when creating middleware or a meta reducer:
+    > **[info] Tip**
+    > during development and testing it is often helpful to use Google Tag
+    > Manager's Container Preview mode. Follow the instructions
+    > [here](https://support.google.com/tagmanager/answer/6107056?hl=en) to
+    > enable it.
 
-    ```js
-    import { GoogleTagManager } from 'redux-beacon/targets/google-tag-manager';
+### Usage
 
-    const middleware = createMiddleware(eventsMap, GoogleTagManager());
-    const metaReducer = createMetaReducer(eventsMap, GoogleTagManager());
-    ```
+```js
+import { GoogleTagManager } from 'redux-beacon/targets/google-tag-manager';
 
-> **Tip:**
-> During development and testing it is often helpful to use Google Tag
-> Manager's Container Preview mode. Follow the instructions
-> [here](https://support.google.com/tagmanager/answer/6107056?hl=en)
-> to enable it.
+// Create or import an events map.
+// See "getting started" pages for instructions.
 
-### Notes
+const gtm = GoogleTagManager();
 
-* This target will push all generated event objects to the `window.dataLayer` by default.
-  As detailed on [GTM docs](https://developers.google.com/tag-manager/devguide#renaming), it is possible to rename the data layer instance.
-  This is supported: You just need to pass to the target a `dataLayerName` in the `options` object.
+const gtmMiddleware = createMiddleware(eventsMap, gtm);
+const gtmMetaReducer = createMetaReducer(eventsMap, gtm);
+```
 
-  ```js
-  const options = {
-    dataLayerName: 'yourFancyNamedDataLayer',
+You may also provide an options object when creating the target:
+
+```js
+const options = {
+  dataLayerName: /* (optional) string */,
+};
+
+const gtmWithOptions = GoogleTagManager(options);
+```
+
+### Event Definitions
+
+```js
+const event = (action, prevState, nextState) => {
+  return {
+    event: /* fill me in */,
+    /* add any additional key/value pairs below */,
   };
+};
+```
 
-  GoogleTagManager(options);
-  ```
+#### Notes
+
+* This target will push all generated event objects to the `window.dataLayer` by
+  default.  As detailed in the
+  [GTM docs](https://developers.google.com/tag-manager/devguide#renaming).
 
 * Only event objects with an `event` property will trigger a Custom
   Event in Google Tag Manager.
@@ -61,6 +84,7 @@
     page: '/home',
   };
   ```
-  > **Tip:** This gives you the option to use the event interfaces
-  > exposed by the [Google Analytics target](./google-analytics.md) in
-  > your event definitions.
+
+  > **[info] Tip**
+  > This gives you the option to use the event definitions
+  > exposed by the [Google Analytics target](./google-analytics.md#event-definitions)
