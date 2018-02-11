@@ -1,100 +1,167 @@
 # React Native Google Analytics
 
-### Usage Instructions
+* [Setup](#setup)
+* [Usage](#usage)
+* [Event Definitions](#event-definitions)
 
-1. Sign up for Google Analytics if you haven't already, and
-   [create a new mobile property](https://support.google.com/analytics/answer/2587086#GA). Make
-   a note of your property's
-   [tracking Id](https://support.google.com/analytics/answer/1008080).
+----
 
-2. Install the npm package,
-   [GoogleAnalyticsBridge](https://www.npmjs.com/package/react-native-google-analytics-bridge),
-   in your project.
+### Setup
+
+1. Sign up for Google Analytics and
+   [create a new mobile property](https://support.google.com/analytics/answer/2587086#GA).
+
+2. Install the following npm package: [GoogleAnalyticsBridge](https://www.npmjs.com/package/react-native-google-analytics-bridge).
 
 3. For each mobile platform (Android or iOS), you need to follow
-   its corresponding [manual installation](https://github.com/idehub/react-native-google-analytics-bridge/wiki/Manual-installation)
-   for GoogleAnalyticsBridge usage.
+   its corresponding [manual installation](https://github.com/idehub/react-native-google-analytics-bridge/wiki/Manual-installation).
 
-4. Import the target, then provide it when creating the middleware:
+### Usage
 
-   ```js
-   import { GoogleAnalyticsTracker } from 'react-native-google-analytics-bridge';
-   import { GoogleAnalytics } from 'redux-beacon/targets/react-native';
+```js
+import { GoogleAnalyticsTracker } from 'react-native-google-analytics-bridge';
+import { GoogleAnalytics } from 'redux-beacon/targets/rn/google-analytics';
 
-   const target = GoogleAnalytics('UA-12345678-1', GoogleAnalyticsTracker);
-   const analyticsMiddleware = createMiddleware(eventsMap, target);
-   ```
+// Create or import an events map.
+// See "getting started" pages for instructions.
 
-### Custom Dimensions
+const trackingId = 'UA-12345678-1' // replace with your own
+const ga = GoogleAnalytics(trackingId, GoogleAnalyticsTracker);
 
-In order to leverage custom dimensions defined in GA, you can use the `eventCustomDimensions` and `pageviewCustomDimensions` hit types in your `eventsMap` definition. This could look like so:
+const gaMiddleware = createMiddleware(eventsMap, ga);
+```
 
-  ```js
-  // Define an event
-  const pageView = action => ({
-    hitType: 'pageviewCustomDimensions',
-    page: action.payload,
-    customDimensionDict: {
-      '1': 'premium',
-      '5': 'foo'
-    }
-  }),
+### Event Definitions
 
-  // Map the event to a Redux action
-  const eventsMap = {
-    LOCATION_CHANGE: pageView,
+* [`screenView`](#screenview)
+* [`event`](#event)
+* [`timing`](#timing)
+* [`socialInteraction`](#socialinteraction)
+* [`user`](#user)
+* [`client`](#client)
+* [`exception`](#exception)
+
+
+#### screenView
+##### Docs:
+ * https://developers.google.com/analytics/devguides/collection/ios/v3/screens
+ * https://developers.google.com/analytics/devguides/collection/ios/v3/customdimsmets
+
+```js
+import { trackScreenView } from 'redux-beacon/targets/rn/google-analtyics';
+
+const screenView = trackScreenView((action, prevState, nextState) => {
+  return {
+    screenName: /* fill me in */,
+    customDimensions: { /* (optional) */
+      [/* dimension index */]: /* dimension value */,
+    },
   };
+});
+```
+<br>
 
-  // Create the middleware
-  const middleware = createMiddleware(eventsMap, GoogleAnalytics);
-  ```
-`pageviewCustomDimensions` - Tracks a screen view with one or more customDimensionValues. See the [Google Analytics](https://developers.google.com/analytics/devguides/collection/ios/v3/customdimsmets) docs for more info.
+#### event
+##### Docs:
+ * https://developers.google.com/analytics/devguides/collection/ios/v3/events
+ * https://developers.google.com/analytics/devguides/collection/ios/v3/customdimsmets
 
-`eventCustomDimensions` - Tracks an event with one or more customDimensionValues. See the [Google Analytics](https://developers.google.com/analytics/devguides/collection/ios/v3/customdimsmets) docs for more info.
+```js
+import { trackEvent } from 'redux-beacon/targets/rn/google-analytics';
 
-### User ID
-
-In order to use the User ID Google Analytics feature, simply use the `user` hit type like so:
-
-  ```js
-  // Define an event
-  const setUser = action => ({
-    hitType: 'user',
-    userId: action.user_id
-  }),
-
-  // Map the event to a Redux action
-  const eventsMap = {
-    USER_LOG_IN: setUser,
+const someEvent = trackEvent((action, prevState, nextState) => {
+  return {
+    action: /* fill me in */,
+    category: /* fill me in */,
+    label: /* (optional) */,
+    value: /* (optional) */,
+    customDimensions: { /* (optional) */
+      [/* dimension index */]: /* dimension value */
+    },
   };
+});
+```
 
-  // Create the middleware
-  const middleware = createMiddleware(eventsMap, GoogleAnalytics);
-  ```
+<br>
 
-See the [Google Analytics](https://developers.google.com/analytics/devguides/collection/ios/v3/user-id) docs for more info.
+#### timing
+##### Docs:
+https://developers.google.com/analytics/devguides/collection/ios/v3/usertimings
 
-### Client ID
+```js
+import { trackTiming } from 'redux-beacon/targets/rn/google-analtyics';
 
-In order to use the Client ID Google Analytics feature, simply use the `client` hit type like so:
-
-  ```js
-  // Define an event
-  const setClient = action => ({
-    hitType: 'client',
-    clientId: action.client_id
-  }),
-
-  // Map the event to a Redux action
-  const eventsMap = {
-    CLIENT: setClient,
+const timingEvent = trackTiming((action, prevState, nextState) => {
+  return {
+    category: /* fill me in */,
+    value: /* fill me in */,
+    name: /* (optional) */,
+    label: /* (optional) (requires name if provided)*/,
   };
+});
+```
 
-  // Create the middleware
-  const middleware = createMiddleware(eventsMap, GoogleAnalytics);
-  ```
+<br>
 
-See the [Google Analytics](https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#clientId) docs for more info.
+#### socialInteraction
+##### Docs:
+https://developers.google.com/analytics/devguides/collection/ios/v3/social
 
-### Example
-  * [Redux Beacon: React Native Google Analytics Example](https://github.com/johannalee/react-native-redux-example)
+```js
+import { trackSocialInteraction } from 'redux-beacon/targets/rn/google-analytics';
+
+const socialInteraction = trackSocialInteraction((action, prevState, nextState) => {
+  return {
+    network: /* fill me in */,
+    action: /* fill me in */,
+    target: /* (optional) */,
+  };
+});
+```
+
+<br>
+
+#### user
+##### Docs:
+https://developers.google.com/analytics/devguides/collection/ios/v3/user-id
+
+```js
+import { setUser } from 'redux-beacon/targets/rn/google-analytics';
+
+const user = setUser((action, prevState, nextState) => {
+  const userId = /* fill me in */;
+  return userId;
+});
+```
+
+<br>
+
+#### client
+##### Docs:
+https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#clientId
+
+```js
+import { setClient } from 'redux-beacon/targets/rn/google-analytics';
+
+const client = setClient((action, prevState, nextState) => {
+  const clientId = /* fill me in */;
+  return clientId;
+});
+```
+
+<br>
+
+#### exception
+##### Docs:
+https://developers.google.com/analytics/devguides/collection/ios/v3/exceptions
+
+```js
+import { trackException } from 'redux-beacon/targets/rn/google-analytics';
+
+const exception = trackException((action, prevState, nextState) => {
+  return {
+    description: /* fill me in */,
+    isFatal: /* (optional) */,
+  };
+});
+```
