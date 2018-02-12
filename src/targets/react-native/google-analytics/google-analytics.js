@@ -37,14 +37,14 @@ export function GoogleAnalytics(trackingId, GoogleAnalyticsTracker) {
               event.eventCategory,
               event.eventAction,
               options,
-              event.customDimensionDict,
+              event.customDimensionDict
             );
           } else {
             tracker.trackEventWithCustomDimensionValues(
               event.eventCategory,
               event.eventAction,
               {},
-              event.customDimensionDict,
+              event.customDimensionDict
             );
           }
           break;
@@ -58,7 +58,7 @@ export function GoogleAnalytics(trackingId, GoogleAnalyticsTracker) {
         case 'pageviewCustomDimensions': {
           tracker.trackScreenViewWithCustomDimensionValues(
             event.page,
-            event.customDimensionDict,
+            event.customDimensionDict
           );
           break;
         }
@@ -75,7 +75,7 @@ export function GoogleAnalytics(trackingId, GoogleAnalyticsTracker) {
             tracker.trackTiming(
               event.timingCategory,
               event.timingValue,
-              options,
+              options
             );
           } else {
             tracker.trackTiming(event.timingCategory, event.timingValue);
@@ -87,7 +87,7 @@ export function GoogleAnalytics(trackingId, GoogleAnalyticsTracker) {
           tracker.trackSocialInteraction(
             event.socialNetwork,
             event.socialAction,
-            event.socialTarget,
+            event.socialTarget
           );
           break;
         }
@@ -99,6 +99,54 @@ export function GoogleAnalytics(trackingId, GoogleAnalyticsTracker) {
 
         case 'client': {
           tracker.setClient(event.clientId);
+          break;
+        }
+
+        case 'purchase': {
+          const productOptions = {};
+          const optionalProductOptions = [
+            'category',
+            'brand',
+            'variant',
+            'price',
+            'quantity',
+            'couponCode',
+          ];
+
+          const transactionOptions = {};
+          const optionalTransactionOptions = [
+            'affiliation',
+            'revenue',
+            'tax',
+            'shipping',
+            'couponCode',
+          ];
+
+          optionalProductOptions.forEach(option => {
+            if (event.product[option] !== undefined) {
+              productOptions[option] = event.product[option];
+            }
+          });
+
+          optionalTransactionOptions.forEach(option => {
+            if (event.transaction[option] !== undefined) {
+              transactionOptions[option] = event.transaction[option];
+            }
+          });
+
+          tracker.trackPurchaseEvent(
+            {
+              id: event.product.id, // required
+              name: event.product.name, // required
+              ...productOptions,
+            },
+            {
+              id: event.transaction.id, // required
+              ...transactionOptions,
+            },
+            event.eventCategory, // required
+            event.eventAction // required
+          );
           break;
         }
 

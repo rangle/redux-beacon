@@ -225,6 +225,34 @@ describe('Target: React Native Google Analytics', () => {
       );
     });
 
+    it('calls trackPurchaseEvent for purchase hitType', () => {
+      const events = [
+        {
+          hitType: 'purchase',
+          product: { id: '123', name: 'variable' },
+          transaction: { id: '123' },
+          eventCategory: 'ecommerce',
+          eventAction: 'purchase',
+        },
+      ];
+
+      const tracker = {
+        trackPurchaseEvent: jest.fn(),
+      };
+
+      const trackingId = 'UA-XXXXXX-Y';
+      const trackerConstructor = () => tracker;
+      const target = GoogleAnalytics(trackingId, trackerConstructor);
+      target(events);
+
+      expect(tracker.trackPurchaseEvent).toHaveBeenCalledWith(
+        events[0].product,
+        events[0].transaction,
+        events[0].eventCategory,
+        events[0].eventAction
+      );
+    });
+
     it('calls trackException for exception hitType', () => {
       const events = [
         {
