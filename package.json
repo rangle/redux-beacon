@@ -53,6 +53,10 @@
     "url": "https://github.com/rangle/redux-beacon.git"
   },
   "license": "MIT",
+  "dependencies": {
+    "flatten": "^1.0.2",
+    "repeat-string": "^1.6.1"
+  },
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-jest": "^21.2.0",
@@ -67,7 +71,7 @@
     "eslint-plugin-prettier": "^2.3.1",
     "fake-indexeddb": "^1.0.11",
     "fuzzy-equal": "^1.0.1",
-    "gitbook-cli": "^2.3.0",
+    "gitbook-cli": "2.3.2",
     "husky": "^0.14.3",
     "jest": "^21.2.1",
     "joi": "^10.5.2",
@@ -103,9 +107,5 @@
         "statements": 90
       }
     }
-  },
-  "dependencies": {
-    "flatten": "^1.0.2",
-    "repeat-string": "^1.6.1"
   }
 }

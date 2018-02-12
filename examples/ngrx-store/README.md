@@ -1,16 +1,37 @@
 # Redux Beacon & @ngrx/store Runnable Example
 
-Follow these steps to run the example:
+## Step 1
 
-Sign up for Google Analytics if you haven't already, and create a new web property. Make a note of your property's tracking Id.
+Paste the following script into a terminal of your choice and run it:
 
-In a terminal run:
+```sh
+(
+   git clone https://github.com/ngrx/platform.git
 
-git clone https://github.com/rangle/redux-beacon.git
+   cd platform
 
-cd redux-beacon/examples/ngrx-store
+   git checkout tags/v5.0.0
 
-npm install
-Open up redux-beacon/examples/google-analytics-ngrx/index.html in an editor and replace UA-XXXXXXXX-X with your property's tracking ID.
+   curl https://raw.githubusercontent.com/rangle/redux-beacon/master/examples/ngrx-store/redux-beacon-ngrx-store.patch | git apply
 
-Run npm start and head on over to http://localhost:8080/ in a modern browser.
+   npm install
+)
+```
+
+## Step 2
+
+Go into the `platform` directory and start the example app:
+
+```sh
+cd platform && npm run example:start
+```
+
+> **Warning:**
+> you might need to install [yarn](https://yarnpkg.com/en/docs/install) to
+> run the `example:start` script.
+
+## Step 3
+
+ - Open http://localhost:4200.
+ - The username is `test` and the password is `test`.
+ - Explore the app with an open console. Look out for the analytics logs.

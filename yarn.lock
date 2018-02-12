@@ -2218,7 +2218,7 @@ getpass@^0.1.1:
   dependencies:
     assert-plus "^1.0.0"
 
-gitbook-cli@^2.3.0:
+gitbook-cli@2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/gitbook-cli/-/gitbook-cli-2.3.2.tgz#5e893582e1f743f6fa920c3c3eb36b62ea4a31a0"
   dependencies:
