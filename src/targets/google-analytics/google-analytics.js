@@ -1,4 +1,4 @@
-import { filterEcommEvents, isEcommEvent } from '../../utils';
+import { filterEcommEvents, isEcommEvent } from './utils';
 
 export const GoogleAnalytics = () => events => {
   if (typeof window === 'undefined') {
