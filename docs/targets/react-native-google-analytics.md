@@ -35,6 +35,7 @@ const gaMiddleware = createMiddleware(eventsMap, ga);
 
 * [`screenView`](#screenview)
 * [`event`](#event)
+* [`purchase`](#purchase)
 * [`timing`](#timing)
 * [`socialInteraction`](#socialinteraction)
 * [`user`](#user)
@@ -78,6 +79,41 @@ const someEvent = trackEvent((action, prevState, nextState) => {
     customDimensions: { /* (optional) */
       [/* dimension index */]: /* dimension value */
     },
+  };
+});
+```
+
+<br>
+
+#### purchase
+##### Docs:
+ * https://developers.google.com/analytics/devguides/collection/ios/v3/ecommerce
+
+```js
+import { trackPurchase } from 'redux-beacon/targets/rn/google-analytics';
+
+const somePurchaseEvent = trackPurchase((action, prevState, nextState) => {
+  return {
+    product: { /* fill me in */
+      id: /* fill me in */,
+      name: /* fill me in */,
+      category: /* (optional) */,
+      brand: /* (optional) */,
+      variant: /* (optional) */,
+      price: /* (optional) */,
+      quantity: /* (optional) */,
+      couponCode: /* (optional) */,
+    },
+    transaction: { /* fill me in */
+      id: /* fill me in */,
+      affiliation: /* (optional) */,
+      revenue: /* (optional) */,
+      tax: /* (optional) */,
+      shipping: /* (optional) */,
+      couponCode: /* (optional) */,
+    },
+    action: /* fill me in */,
+    category: /* fill me in */,
   };
 });
 ```
