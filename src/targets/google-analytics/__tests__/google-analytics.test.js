@@ -154,7 +154,7 @@ describe('GoogleAnalytics(events)', () => {
         {
           hitType: 'addTransaction',
           id,
-          tracker: customTrackerId,
+          customTrackerId,
         },
       ];
 
