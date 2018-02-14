@@ -28,7 +28,7 @@ export interface UserTiming {
   timingVar: string;
   timingValue: number;
   timingLabel?: string;
-  tracker? string;
+  tracker?: string;
 }
 
 export interface SocialInteraction {
