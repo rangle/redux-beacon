@@ -1,11 +1,3 @@
-/* const pageView = trackPageView((action, prevState, nextState) => {
-  return {
-    page: /!* fill me in *!/,
-    title: /!* (optional) *!/,
-    location: /!* (optional) *!/,
-  };
-}, /!* (optional) tracker name *!/ ); */
-
 export const trackPageView = (eventDefinition, tracker) => (
   action,
   prevState,
@@ -90,8 +82,6 @@ export const trackException = (eventDefinition, tracker) => (
   };
 };
 
-/** */
-
 export const trackEcommItem = (eventDefinition, tracker) => (
   action,
   prevState,
@@ -118,50 +108,28 @@ export const trackEcommTransaction = (eventDefinition, tracker) => (
   nextState
 ) => {
   const event = eventDefinition(action, prevState, nextState);
-  const { network, target } = event;
+  const { id, affiliation, revenue, shipping, tax } = event;
 
   return {
     hitType: 'addTransaction',
     customTrackerId: tracker,
-    network,
-    action: event.action,
-    target,
+    id,
+    affiliation,
+    revenue,
+    shipping,
+    tax,
   };
 };
 
-export const ecommSend = (eventDefinition, tracker) => (
-  action,
-  prevState,
-  nextState
-) => {
-  const event = eventDefinition(action, prevState, nextState);
-  const { network, target } = event;
+export const ecommSend = tracker => ({
+  hitType: 'ecommSend',
+  customTrackerId: tracker,
+});
 
-  return {
-    hitType: 'ecommSend',
-    customTrackerId: tracker,
-    network,
-    action: event.action,
-    target,
-  };
-};
-
-export const ecommClear = (eventDefinition, tracker) => (
-  action,
-  prevState,
-  nextState
-) => {
-  const event = eventDefinition(action, prevState, nextState);
-  const { network, target } = event;
-
-  return {
-    hitType: 'ecommClear',
-    customTrackerId: tracker,
-    network,
-    action: event.action,
-    target,
-  };
-};
+export const ecommClear = tracker => ({
+  hitType: 'ecommClear',
+  customTrackerId: tracker,
+});
 
 export const trackEcommImpression = (eventDefinition, tracker) => (
   action,
@@ -169,14 +137,19 @@ export const trackEcommImpression = (eventDefinition, tracker) => (
   nextState
 ) => {
   const event = eventDefinition(action, prevState, nextState);
-  const { network, target } = event;
+  const { id, name, list, brand, category, variant, position, price } = event;
 
   return {
     hitType: 'addImpression',
     customTrackerId: tracker,
-    network,
-    action: event.action,
-    target,
+    id,
+    name,
+    list,
+    brand,
+    category,
+    variant,
+    position,
+    price,
   };
 };
 
@@ -186,14 +159,30 @@ export const trackEcommProduct = (eventDefinition, tracker) => (
   nextState
 ) => {
   const event = eventDefinition(action, prevState, nextState);
-  const { network, target } = event;
+  const {
+    id,
+    name,
+    brand,
+    category,
+    variant,
+    price,
+    quantity,
+    coupon,
+    position,
+  } = event;
 
   return {
     hitType: 'addProduct',
     customTrackerId: tracker,
-    network,
-    action: event.action,
-    target,
+    id,
+    name,
+    brand,
+    category,
+    variant,
+    price,
+    quantity,
+    coupon,
+    position,
   };
 };
 
@@ -203,14 +192,15 @@ export const trackEcommPromotion = (eventDefinition, tracker) => (
   nextState
 ) => {
   const event = eventDefinition(action, prevState, nextState);
-  const { network, target } = event;
+  const { id, name, creative, position } = event;
 
   return {
     hitType: 'addPromo',
     customTrackerId: tracker,
-    network,
-    action: event.action,
-    target,
+    id,
+    name,
+    creative,
+    position,
   };
 };
 
@@ -220,13 +210,29 @@ export const trackEcommAction = (eventDefinition, tracker) => (
   nextState
 ) => {
   const event = eventDefinition(action, prevState, nextState);
-  const { network, target } = event;
+  const {
+    id,
+    affiliation,
+    revenue,
+    tax,
+    shipping,
+    coupon,
+    list,
+    step,
+    option,
+  } = event;
 
   return {
     hitType: 'addAction',
     customTrackerId: tracker,
-    network,
-    action: event.action,
-    target,
+    id,
+    affiliation,
+    revenue,
+    tax,
+    shipping,
+    coupon,
+    list,
+    step,
+    option,
   };
 };
