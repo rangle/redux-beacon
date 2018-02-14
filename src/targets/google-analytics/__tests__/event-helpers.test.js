@@ -45,11 +45,11 @@ describe('Helpers should return correct hitTypes', () => {
     });
   });
 
-  describe(`ecommClear is observed`, () => {
+  test(`ecommClear is observed`, () => {
     expect(ecommClear().hitType).toBe('ecommClear');
   });
 
-  describe(`ecommSend is observed`, () => {
+  test(`ecommSend is observed`, () => {
     expect(ecommSend().hitType).toBe('ecommSend');
   });
 });
