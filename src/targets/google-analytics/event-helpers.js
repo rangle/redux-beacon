@@ -4,12 +4,14 @@ export const trackPageView = (eventDefinition, tracker) => (
   nextState
 ) => {
   const event = eventDefinition(action, prevState, nextState);
+  const { page, title, location } = event;
+
   return {
     hitType: 'pageview',
     customTrackerId: tracker,
-    page: event.page,
-    title: event.title,
-    location: event.location,
+    page,
+    title,
+    location,
   };
 };
 
@@ -58,7 +60,7 @@ export const trackSocialInteraction = (eventDefinition, tracker) => (
   const { network, target } = event;
 
   return {
-    hitType: 'socialInteraction',
+    hitType: 'social',
     customTrackerId: tracker,
     network,
     action: event.action,
