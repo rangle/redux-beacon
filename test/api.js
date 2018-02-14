@@ -10,7 +10,6 @@ const { check } = require('typings-tester');
   ['redux-beacon/targets/segment', 'Segment'],
   ['redux-beacon/targets/amplitude', 'Amplitude'],
   ['redux-beacon/targets/react-native', 'GoogleAnalytics', 'GoogleTagManager'],
-  ['redux-beacon/targets/cordova-google-analytics', 'CordovaGoogleAnalytics'],
   ['redux-beacon/extensions/logger', 'logger'],
   ['redux-beacon/extensions/offline-web', 'offlineWeb'],
   ['redux-beacon/extensions/offline-react-native', 'offlineReactNative'],

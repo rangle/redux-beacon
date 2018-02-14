@@ -7,7 +7,6 @@
   * [GoogleTagManager](docs/targets/google-tag-manager.md)
   * [Segment](docs/targets/segment.md)
   * [Amplitude](docs/targets/amplitude.md)
-  * [CordovaGoogleAnalytics](docs/targets/cordova-google-analytics.md)
   * [React Native: GoogleAnalytics](docs/targets/react-native-google-analytics.md)
   * [React Native: GoogleTagManager](docs/targets/react-native-google-tag-manager.md)
 * [API Reference](docs/api/index.md)

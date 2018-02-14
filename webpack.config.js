@@ -15,7 +15,6 @@ module.exports = {
     'targets/dist/segment': './src/targets/segment',
     'targets/dist/google-tag-manager': './src/targets/google-tag-manager',
     'targets/dist/google-analytics': './src/targets/google-analytics',
-    'targets/dist/cordova-google-analytics': './src/targets/cordova-google-analytics',
     'extensions/dist/logger': './src/extensions/logger',
     'extensions/dist/offline-web': './src/extensions/offline-web',
   },

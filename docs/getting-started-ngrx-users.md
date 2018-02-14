@@ -1,47 +1,91 @@
 # Getting Started (ngrx users)
 
-### Step 1.
+[Step 1](#step-1), [Step 2](#step-2), [Step 3](#step-3), [Step 4](#step-4), [Step 5](#step-5), [Next Steps](#next-steps)
+
+### Step 1
 Choose a target, and follow the setup instructions.
 
-**Set Up:**
- * [`GoogleAnalytics`](targets/google-analytics.md#set-up)
- * [`GoogleAnalyticsGtag`](targets/google-analytics-gtag.md#set-up)
- * [`GoogleTagManager`](targets/google-tag-manager.md#set-up)
- * [`Segment`](targets/segment.md#set-up)
- * [`Amplitude`](targets/amplitude.md#set-up)
- * [`CordovaGoogleAnalytics`](targets/cordova-google-analytics.md#set-up)
+ * [GoogleAnalytics: Setup](targets/google-analytics.md#setup)
+ * [GoogleAnalyticsGtag: Setup](targets/google-analytics-gtag.md#setup)
+ * [GoogleTagManager: Setup](targets/google-tag-manager.md#setup)
+ * [Segment: Setup](targets/segment.md#setup)
+ * [Amplitude: Setup](targets/amplitude.md#setup)
  * React Native:
-   * [`GoogleAnalytics`](targets/react-native-google-analytics.md#set-up)
-   * [`GoogleTagManager`](targets/react-native-google-tag-manager.md#set-up)
+   * [GoogleAnalytics: Setup](targets/react-native-google-analytics.md#setup)
+   * [GoogleTagManager: Setup](targets/react-native-google-tag-manager.md#setup)
 
 <br>
-> **[info] Don't see the target you need?**
->
+> **[info]**
+> Don't see the target you need?
 > Follow the instructions [here](customize/create-own-target.md) to build your own.
 
-### Step 2.
-Decide what you want to track, choose an event definition blueprint for it, and
-copy the blueprint to you clipboard.
+### Step 2
+Decide what you want to track and pick out the corresponding event definition:
 
-**Event Definition Blueprints:**
- * [`GoogleAnalytics`](targets/google-analytics.md#event-definition-blueprints)
- * [`GoogleAnalyticsGtag`](targets/google-analytics-gtag.md#event-definition-blueprints)
- * [`GoogleTagManager`](targets/google-tag-manager.md#event-definition-blueprints)
- * [`Segment`](targets/segment.md#event-definition-blueprints)
- * [`Amplitude`](targets/amplitude.md#event-definition-blueprints)
- * [`CordovaGoogleAnalytics`](targets/cordova-google-analytics.md#event-definition-blueprints)
+ * [GoogleAnalytics: Event Definitions](targets/google-analytics.md#event-definitions)
+ * [GoogleAnalyticsGtag: Event Definitions](targets/google-analytics-gtag.md#event-definitions)
+ * [GoogleTagManager: Event Definitions](targets/google-tag-manager.md#event-definitions)
+ * [Segment: Event Definitions](targets/segment.md#event-definitions)
+ * [Amplitude: Event Definitions](targets/amplitude.md#event-definitions)
  * React Native:
-   * [`GoogleAnalytics`](targets/react-native-google-analytics.md#event-definition-blueprints)
-   * [`GoogleTagManager`](targets/react-native-google-tag-manager.md#event-definition-blueprints)
+   * [GoogleAnalytics: Event Definitions](targets/react-native-google-analytics.md#event-definitions)
+   * [GoogleTagManager: Event Definitions](targets/react-native-google-tag-manager.md#event-definitions)
 
-### Step 3.
-Open the file where you
+### Step 3
+Match the event definition to a Redux action.
 
-Paste the event definition blueprint and match it to
+For example, say you want to intercept a `PLAY_VIDEO` Redux action and track it
+as a Google Analytics event:
 
+```typescript
+// TODO
+```
 
-### Step 4.
+### Step 4
 
+Complete the event definition by filling in the object properties, then create the
+middleware.
 
+A continuation of the previous example:
 
-### Next Steps.
+```typescript
+TODO
+```
+
+Follow your target's instructions to create it:
+
+ * [GoogleAnalytics: Usage](targets/google-analytics.md#usage)
+ * [GoogleAnalyticsGtag: Usage](targets/google-analytics-gtag.md#usage)
+ * [GoogleTagManager: Usage](targets/google-tag-manager.md#usage)
+ * [Segment: Usage](targets/segment.md#usage)
+ * [Amplitude: Usage](targets/amplitude.md#usage)
+ * React Native:
+   * [GoogleAnalytics: Usage](targets/react-native-google-analytics.md#usage)
+   * [GoogleTagManager: Usage](targets/react-native-google-tag-manager.md#usage)
+
+### Step 5
+Follow the instructions [here](https://redux.js.org/docs/api/applyMiddleware.html) to
+apply the middleware to your store.
+
+----
+
+### Next Steps
+
+##### Track More Events:
+Repeat steps [2](#step-2) and [3](#step-3) for every event you want to track. In a nutshell:
+  1. Find the event definition for the thing you want to track.
+  2. Match the event definition to a Redux action then complete the event definition.
+
+##### Decide Where to put Analytics Logic:
+As the number of events you track grows, it might make sense to move your event
+definitions and events map into their own files. Redux Beacon has no
+requirements on where these are kept. Have a discussion with your team on how
+you'd like to organize your app's analytics logic.
+
+##### Check Out the Recipes:
+We have a number of recipes to get you started with Redux Beacon. Check them
+out [here](recipes/index.md).
+
+##### Check Out the Extensions:
+We have extensions for logging and for buffering analytics events
+offline. Check them out [here](extensions/index.md).
