@@ -10,7 +10,6 @@ import { GoogleAnalytics } from 'redux-beacon/targets/google-analytics';
 import { GoogleTagManager } from 'redux-beacon/targets/google-tag-manager';
 import { Segment } from 'redux-beacon/targets/segment';
 import { Amplitude } from 'redux-beacon/targets/amplitude';
-import { CordovaGoogleAnalytics } from 'redux-beacon/targets/cordova-google-analytics';
 import {
   GoogleAnalytics as RNGA,
   GoogleTagManager as RNGTM,

@@ -9,7 +9,6 @@ Choose a target, and follow the setup instructions.
  * [GoogleTagManager: Setup](targets/google-tag-manager.md#setup)
  * [Segment: Setup](targets/segment.md#setup)
  * [Amplitude: Setup](targets/amplitude.md#setup)
- * [CordovaGoogleAnalytics: Setup](targets/cordova-google-analytics.md#setup)
  * React Native:
    * [GoogleAnalytics: Setup](targets/react-native-google-analytics.md#setup)
    * [GoogleTagManager: Setup](targets/react-native-google-tag-manager.md#setup)
@@ -27,7 +26,6 @@ Decide what you want to track and pick out the corresponding event definition:
  * [GoogleTagManager: Event Definitions](targets/google-tag-manager.md#event-definitions)
  * [Segment: Event Definitions](targets/segment.md#event-definitions)
  * [Amplitude: Event Definitions](targets/amplitude.md#event-definitions)
- * [CordovaGoogleAnalytics: Event Definitions](targets/cordova-google-analytics.md#event-definitions)
  * React Native:
    * [GoogleAnalytics: Event Definitions](targets/react-native-google-analytics.md#event-definitions)
    * [GoogleTagManager: Event Definitions](targets/react-native-google-tag-manager.md#event-definitions)
@@ -99,7 +97,6 @@ Follow your target's instructions to create it:
  * [GoogleTagManager: Usage](targets/google-tag-manager.md#usage)
  * [Segment: Usage](targets/segment.md#usage)
  * [Amplitude: Usage](targets/amplitude.md#usage)
- * [CordovaGoogleAnalytics: Usage](targets/cordova-google-analytics.md#usage)
  * React Native:
    * [GoogleAnalytics: Usage](targets/react-native-google-analytics.md#usage)
    * [GoogleTagManager: Usage](targets/react-native-google-tag-manager.md#usage)
