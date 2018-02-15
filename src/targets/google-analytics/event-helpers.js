@@ -21,15 +21,15 @@ export const trackEvent = (eventDefinition, tracker) => (
   nextState
 ) => {
   const event = eventDefinition(action, prevState, nextState);
-  const { eventCategory, eventAction, eventLabel, eventValue } = event;
+  const { category, label, value } = event;
 
   return {
     hitType: 'event',
     customTrackerId: tracker,
-    eventCategory,
-    eventAction,
-    eventLabel,
-    eventValue,
+    category,
+    action: event.action,
+    label,
+    value,
   };
 };
 
