@@ -26,10 +26,10 @@ export const trackEvent = (eventDefinition, tracker) => (
   return {
     hitType: 'event',
     customTrackerId: tracker,
-    category,
-    action: event.action,
-    label,
-    value,
+    eventCategory: category,
+    eventAction: event.action,
+    eventLabel: label,
+    eventValue: value,
   };
 };
 
