@@ -116,10 +116,10 @@ import { trackEvent } from 'redux-beacon/targets/google-analytics';
 
 const event = trackEvent((action, prevState, nextState) => {
   return {
-    eventCategory: /* fill me in */,
-    eventAction: /* fill me in */,
-    eventLabel: /* (optional) */,
-    eventValue: /* (optional) */,
+    category: /* fill me in */,
+    action: /* fill me in */,
+    label: /* (optional) */,
+    value: /* (optional) */,
   };
 }, /* (optional) tracker name */ );
 ```
