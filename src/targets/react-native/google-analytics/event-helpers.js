@@ -54,7 +54,6 @@ export const trackPurchase = eventDefinition => (
   nextState
 ) => {
   const event = eventDefinition(action, prevState, nextState);
-
   const { product, transaction, category } = event;
 
   return {
