@@ -5,7 +5,7 @@ export function GoogleAnalyticsGtag(gaTrackingId) {
 
   if (typeof window.gtag !== 'function') {
     throw new Error(
-      'window.gtag is not a function. Did you forget to include the Google Site Tag snippet?',
+      'window.gtag is not a function. Did you forget to include the Google Site Tag snippet?'
     );
   }
 

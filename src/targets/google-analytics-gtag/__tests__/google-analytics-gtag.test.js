@@ -55,7 +55,7 @@ describe('Page Tracking', () => {
     expect(window.gtag).toHaveBeenCalledWith(
       'config',
       'SOME_OTHER_GA_TRACKING_ID',
-      {},
+      {}
     );
   });
 
