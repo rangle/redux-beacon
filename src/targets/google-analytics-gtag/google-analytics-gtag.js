@@ -34,9 +34,9 @@ export function GoogleAnalyticsGtag(gaTrackingId) {
     });
 
     eventTracking.forEach(event => {
-      const { type, name, ...params } = event;
+      const { type, action, ...params } = event;
 
-      window.gtag('event', name, params);
+      window.gtag('event', action, params);
     });
   };
 }
