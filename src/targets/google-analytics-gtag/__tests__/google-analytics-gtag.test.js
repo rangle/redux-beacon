@@ -55,7 +55,7 @@ describe('Page Tracking', () => {
     expect(window.gtag).toHaveBeenCalledWith(
       'config',
       'SOME_OTHER_GA_TRACKING_ID',
-      {}
+      {},
     );
   });
 
@@ -77,8 +77,8 @@ describe('Page Tracking', () => {
 });
 
 describe('Event Tracking', () => {
-  test('given { type: "event", name: "click" }', () => {
-    const events = [{ type: 'event', name: 'click' }];
+  test('given { type: "event", action: "click" }', () => {
+    const events = [{ type: 'event', action: 'click' }];
     const target = GoogleAnalyticsGtag('GA_TRACKING_ID');
 
     target(events);
@@ -86,11 +86,11 @@ describe('Event Tracking', () => {
     expect(window.gtag).toHaveBeenCalledWith('event', 'click', {});
   });
 
-  test('given { type: "event", name: "click", ...event_props }', () => {
+  test('given { type: "event", action: "click", ...event_props }', () => {
     const events = [
       {
         type: 'event',
-        name: 'click',
+        action: 'click',
         event_category: 'engagement',
         event_action: 'login',
         event_label: 'article',

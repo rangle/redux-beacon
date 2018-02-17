@@ -5,7 +5,7 @@ export function GoogleAnalyticsGtag(gaTrackingId) {
 
   if (typeof window.gtag !== 'function') {
     throw new Error(
-      'window.gtag is not a function. Did you forget to include the Google Site Tag snippet?'
+      'window.gtag is not a function. Did you forget to include the Google Site Tag snippet?',
     );
   }
 
@@ -34,9 +34,9 @@ export function GoogleAnalyticsGtag(gaTrackingId) {
     });
 
     eventTracking.forEach(event => {
-      const { type, name, ...params } = event;
+      const { type, action, ...params } = event;
 
-      window.gtag('event', name, params);
+      window.gtag('event', action, params);
     });
   };
 }
