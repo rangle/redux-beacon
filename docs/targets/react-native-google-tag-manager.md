@@ -1,31 +1,74 @@
 # React Native Google Tag Manager
 
-### Usage Instructions
+* [Setup](#setup)
+* [Usage](#usage)
+* [Event Definitions](#event-definitions)
 
-1. Sign up for Google Tag Manager if you haven't already,
-   [create a mobile container](https://support.google.com/tagmanager/answer/6103696?hl=en#MobileContainers) for each of Android and iOS.
-   Select **Legacy** for SDK Version. Make
-   a note of your property's
+----
+
+### Setup
+
+1. Sign up for Google Tag Manager and
+   [create a mobile container](https://support.google.com/tagmanager/answer/6103696?hl=en#MobileContainers). Select
+   **Legacy** for SDK Version, and be sure to make a note of your property's
    [tracking Id](https://support.google.com/analytics/answer/1008080).
 
-2. Install the npm package,
-   [GoogleAnalyticsBridge](https://www.npmjs.com/package/react-native-google-analytics-bridge),
-   in your project.
+2. Install the following npm package,
+   [GoogleAnalyticsBridge](https://www.npmjs.com/package/react-native-google-analytics-bridge).
 
 3. For each mobile platform (Android or iOS), you need to follow
    its corresponding [manual installation](https://github.com/idehub/react-native-google-analytics-bridge/wiki/Manual-installation)
    for GoogleAnalyticsBridge usage.
 
-4. Import the target, then provide it when creating the middleware:
+### Usage
 
    ```js
    import { Platform } from 'react-native';
    import { GoogleTagManager as GTMBridge } from 'react-native-google-analytics-bridge';
    import { GoogleTagManager } from 'redux-beacon/targets/react-native';
 
+   // Create or import an events map.
+   // See "getting started" pages for instructions.
+
    const containerId = (Platform.OS === 'ios') ? 'GTM-IOSXXXX' : 'GTM-ANDROID';
-   const target = GoogleTagManager(containerId, GTMBridge);
-   const analyticsMiddleware = createMiddleware(eventsMap, target);
+
+   const gtm = GoogleTagManager(containerId, GTMBridge);
+   const gtmMiddleware = createMiddleware(eventsMap, gtm);
    ```
 
-   You need to detect the current platform and give a correct container ID for Google Tag Manager.
+### Event Definitions
+
+```js
+const event = (action, prevState, nextState) => {
+  return {
+    event: /* fill me in */,
+    /* add any additional key/value pairs below */,
+  };
+};
+```
+#### Notes
+
+* If an event object doesn't have an `event` property, but
+  has a `hitType` property, this target will create an `event`
+  property and set it to the `hitType` string. For example:
+
+  ```js
+  // Given the following event definition
+  const pageview = action => ({
+    hitType: 'pageview',
+    page: action.payload,
+  });
+
+  // Say the action is equal to
+  // { type: LOCATION_CHANGE, payload: '/home' }
+  // The following object will get pushed to the dataLayer
+  const dataLayerEvent = {
+    hitType: 'pageview',
+    event: 'pageview', // this is done automatically
+    page: '/home',
+  };
+  ```
+
+> **[info] Tip**
+> This gives you the option to use the event definitions
+> exposed by the [Google Analytics target](./google-analytics.md#event-definitions)
