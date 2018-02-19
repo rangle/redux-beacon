@@ -16,11 +16,17 @@
 3. For each mobile platform (Android or iOS), you need to follow
    its corresponding [manual installation](https://github.com/idehub/react-native-google-analytics-bridge/wiki/Manual-installation).
 
+4. Install the target:
+
+    ```bash
+    npm install --save @redux-beacon/react-native-google-analytics
+    ```
+
 ### Usage
 
 ```js
 import { GoogleAnalyticsTracker } from 'react-native-google-analytics-bridge';
-import { GoogleAnalytics } from 'redux-beacon/targets/rn/google-analytics';
+import GoogleAnalytics from '@redux-beacon/react-native-google-analytics';
 
 // Create or import an events map.
 // See "getting started" pages for instructions.
@@ -42,6 +48,11 @@ const gaMiddleware = createMiddleware(eventsMap, ga);
 * [`client`](#client)
 * [`exception`](#exception)
 
+Don't see your event listed? Please submit a pull request to
+the [Redux Beacon repository](https://github.com/rangle/redux-beacon) with the
+missing event. Use the source of the existing `event-helpers` to guide your
+work. If you need any support feel free to make the pull request with all you're
+able to do. We can fill in the gaps from there.
 
 #### screenView
 ##### Docs:
@@ -49,7 +60,7 @@ const gaMiddleware = createMiddleware(eventsMap, ga);
  * https://developers.google.com/analytics/devguides/collection/ios/v3/customdimsmets
 
 ```js
-import { trackScreenView } from 'redux-beacon/targets/rn/google-analtyics';
+import { trackScreenView } from '@redux-beacon/react-native-google-analytics';
 
 const screenView = trackScreenView((action, prevState, nextState) => {
   return {
@@ -68,7 +79,7 @@ const screenView = trackScreenView((action, prevState, nextState) => {
  * https://developers.google.com/analytics/devguides/collection/ios/v3/customdimsmets
 
 ```js
-import { trackEvent } from 'redux-beacon/targets/rn/google-analytics';
+import { trackEvent } from '@redux-beacon/react-native-google-analytics';
 
 const someEvent = trackEvent((action, prevState, nextState) => {
   return {
@@ -90,7 +101,7 @@ const someEvent = trackEvent((action, prevState, nextState) => {
  * https://developers.google.com/analytics/devguides/collection/ios/v3/ecommerce
 
 ```js
-import { trackPurchase } from 'redux-beacon/targets/rn/google-analytics';
+import { trackPurchase } from '@redux-beacon/react-native-google-analytics';
 
 const somePurchaseEvent = trackPurchase((action, prevState, nextState) => {
   return {
@@ -125,7 +136,7 @@ const somePurchaseEvent = trackPurchase((action, prevState, nextState) => {
 https://developers.google.com/analytics/devguides/collection/ios/v3/usertimings
 
 ```js
-import { trackTiming } from 'redux-beacon/targets/rn/google-analtyics';
+import { trackTiming } from '@redux-beacon/react-native-google-analytics';
 
 const timingEvent = trackTiming((action, prevState, nextState) => {
   return {
@@ -144,7 +155,7 @@ const timingEvent = trackTiming((action, prevState, nextState) => {
 https://developers.google.com/analytics/devguides/collection/ios/v3/social
 
 ```js
-import { trackSocialInteraction } from 'redux-beacon/targets/rn/google-analytics';
+import { trackSocialInteraction } from '@redux-beacon/react-native-google-analytics';
 
 const socialInteraction = trackSocialInteraction((action, prevState, nextState) => {
   return {
@@ -162,7 +173,7 @@ const socialInteraction = trackSocialInteraction((action, prevState, nextState) 
 https://developers.google.com/analytics/devguides/collection/ios/v3/user-id
 
 ```js
-import { setUser } from 'redux-beacon/targets/rn/google-analytics';
+import { setUser } from '@redux-beacon/react-native-google-analytics';
 
 const user = setUser((action, prevState, nextState) => {
   const userId = /* fill me in */;
@@ -177,7 +188,7 @@ const user = setUser((action, prevState, nextState) => {
 https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#clientId
 
 ```js
-import { setClient } from 'redux-beacon/targets/rn/google-analytics';
+import { setClient } from '@redux-beacon/react-native-google-analytics';
 
 const client = setClient((action, prevState, nextState) => {
   const clientId = /* fill me in */;
@@ -192,7 +203,7 @@ const client = setClient((action, prevState, nextState) => {
 https://developers.google.com/analytics/devguides/collection/ios/v3/exceptions
 
 ```js
-import { trackException } from 'redux-beacon/targets/rn/google-analytics';
+import { trackException } from '@redux-beacon/react-native-google-analytics';
 
 const exception = trackException((action, prevState, nextState) => {
   return {

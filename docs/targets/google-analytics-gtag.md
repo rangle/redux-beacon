@@ -13,10 +13,16 @@
 
 2. Add the [`gtag.js` tracking snippet](https://developers.google.com/analytics/devguides/collection/gtagjs/) to your site.
 
+3. Install the target:
+
+   ```bash
+   npm install --save @redux-beacon/google-analytics-gtag
+   ```
+
 ### Usage
 
 ```js
-import { GoogleAnalyticsGtag } from 'redux-beacon/targets/google-analytics-gtag';
+import GoogleAnalyticsGtag from '@redux-beacon/google-analytics-gtag';
 
 // Create or import an events map.
 // See "getting started" pages for instructions.
@@ -33,12 +39,18 @@ const gaMetaReducer = createMetaReducer(eventsMap, ga);
 * [`pageView`](#pageview)
 * [`event`](#event)
 
+Don't see your event listed? Please submit a pull request to
+the [Redux Beacon repository](https://github.com/rangle/redux-beacon) with the
+missing event. Use the source of the existing `event-helpers` to guide your
+work. If you need any support feel free to make the pull request with all you're
+able to do. We can fill in the gaps from there.
+
 #### pageView
 ##### Docs:
 https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 
 ```js
-import { trackPageView } from 'redux-beacon/targets/google-analytics-gtag';
+import { trackPageView } from '@redux-beacon/google-analytics-gtag';
 
 const pageView = trackPageView((action, prevState, nextState) => {
  return {
@@ -60,7 +72,7 @@ const pageView = trackPageView((action, prevState, nextState) => {
 https://developers.google.com/analytics/devguides/collection/gtagjs/events
 
 ```js
-import { trackEvent } from 'redux-beacon/targets/google-analytics-gtag';
+import { trackEvent } from '@redux-beacon/google-analytics-gtag';
 
 const event = trackEvent((action, prevState, nextState) => {
   return {

@@ -1,4 +1,4 @@
 # Utils
 
-* [`debounceEvent`](debounce-event.md)
-* [`ensure`](ensure.md)
+* [`debounceEvent()`](debounce-event.md)
+* [`ensure()`](ensure.md)

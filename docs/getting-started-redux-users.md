@@ -37,10 +37,7 @@ For example, say you want to intercept a `PLAY_VIDEO` Redux action and track it
 as a Google Analytics event:
 
 ```js
-// Import your analytics target
-import { GoogleAnalytics } from 'redux-beacon/targets/google-analytics';
-// Import your event definition helper (if applicable)
-import { makeEvent } from 'redux-beacon/targets/google-analytics';
+import GoogleAnalytics, { makeEvent } from '@redux-beacon/google-analytics';
 
 // Copy & paste the event definition you chose in step 2:
 const event = makeEvent((action, prevState, nextState) => {
@@ -66,13 +63,9 @@ middleware.
 A continuation of the previous example:
 
 ```js
-import { GoogleAnalytics } from 'redux-beacon/targets/google-analytics';
-import { makeEvent } from 'redux-beacon/targets/google-analytics';
-// Get Redux Beacon's middleware creator
 import { createMiddleware } from 'redux-beacon';
-// (optional)
-import { logger } from 'redux-beacon/extensions/logger';
-
+import logger from '@redux-beacon/logger'; // optional
+import GoogleAnalytics, { makeEvent } from '@redux-beacon/google-analytics';
 
 // Complete the event definition
 const emitVideoPlayed = makeEvent((action) => ({
@@ -87,7 +80,6 @@ const eventsMap = {
 // Create the middleware
 const ga = GoogleAnalytics();
 const gaMiddleware = createMiddleware(eventsMap, ga, { logger });
-
 ```
 
 Follow your target's instructions to create it:
