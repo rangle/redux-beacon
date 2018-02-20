@@ -16,17 +16,15 @@ export const setUserId = eventDefinition => (action, prevState, nextState) => {
   };
 };
 
-export const logout = () => () => {
-  return [
-    {
-      hitType: 'setUserId',
-      userId: null,
-    },
-    {
-      hitType: 'regenerateDevideId',
-    },
-  ];
-};
+export const logout = () => () => [
+  {
+    hitType: 'setUserId',
+    userId: null,
+  },
+  {
+    hitType: 'regenerateDevideId',
+  },
+];
 
 export const setUserProperties = eventDefinition => (
   action,
