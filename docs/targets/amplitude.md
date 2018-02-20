@@ -1,66 +1,108 @@
 # Amplitude
 
-### Usage Instructions
+* [Setup](#setup)
+* [Usage](#usage)
+* [Event Definitions](#event-definitions)
 
-1. Sign up for Amplitude at http://amplitude.com if you haven't
-   already, and make a note of your API key.
+----
 
-2. Paste the following snippet near the top of your app's `<head>`
-   tag, and replace `API_KEY_HERE` with your API key.
+### Setup
 
-    ```js
-    <script type="text/javascript">
-      (function(e,t){var n=e.amplitude||{_q:[],_iq:{}};var r=t.createElement("script");r.type="text/javascript";
-      r.async=true;r.src="https://d24n15hnbwhuhn.cloudfront.net/libs/amplitude-3.4.0-min.gz.js";
-      r.onload=function(){e.amplitude.runQueuedFunctions()};var i=t.getElementsByTagName("script")[0];
-      i.parentNode.insertBefore(r,i);function s(e,t){e.prototype[t]=function(){this._q.push([t].concat(Array.prototype.slice.call(arguments,0)));
-      return this}}var o=function(){this._q=[];return this};var a=["add","append","clearAll","prepend","set","setOnce","unset"];
-      for(var u=0;u<a.length;u++){s(o,a[u])}n.Identify=o;var c=function(){this._q=[];return this;
-      };var p=["setProductId","setQuantity","setPrice","setRevenueType","setEventProperties"];
-      for(var l=0;l<p.length;l++){s(c,p[l])}n.Revenue=c;var d=["init","logEvent","logRevenue","setUserId","setUserProperties","setOptOut","setVersionName","setDomain","setDeviceId","setGlobalUserProperties","identify","clearUserProperties","setGroup","logRevenueV2","regenerateDeviceId","logEventWithTimestamp","logEventWithGroups"];
-      function v(e){function t(t){e[t]=function(){e._q.push([t].concat(Array.prototype.slice.call(arguments,0)));
-      }}for(var n=0;n<d.length;n++){t(d[n])}}v(n);n.getInstance=function(e){e=(!e||e.length===0?"$default_instance":e).toLowerCase();
-      if(!n._iq.hasOwnProperty(e)){n._iq[e]={_q:[]};v(n._iq[e])}return n._iq[e]};e.amplitude=n;
-      })(window,document);
+1. Sign up for Amplitude at http://amplitude.com and make a note of your API key.
 
-      amplitude.getInstance().init("API_KEY_HERE");
-    </script>
+2. Install [amplitude-js](https://www.npmjs.com/package/amplitude-js): `npm install --save amplitude-js`.
+
+3. Install the target:
+
+    ```bash
+    npm install --save @redux-beacon/amplitude
     ```
 
-3. Import the target, then provide it when creating middleware or a meta reducer:
-
-   ```js
-   import { Amplitude } from 'redux-beacon/targets/amplitude';
-
-   const middleware = createMiddleware(eventsMap, Amplitude());
-   const metaReducer = createMetaReducer(eventsMap, Amplitude());
-   ```
-
-### For Typescript Users
-
-This target also exposes interfaces for common events:
+### Usage
 
 ```js
-import {
-  SetUserId,
-  SetUserProperties,
-  ClearUserProperties,
-  LogEvent,
-  SetGroup,
-  RegenerateDeviceId,
-  SetOptOut,
-  SetVersionName,
-  Identify,
-  LogRevenueV2,
-} from 'redux-beacon/targets/amplitude';
+import amplitude from 'amplitude-js';
+import Amplitude from '@redux-beacon/amplitude';
+
+// Create or import an events map.
+// See "getting started" pages for instructions.
+
+// initialise amplitude
+amplitude.getInstance().init('YOUR_API_KEY');
+
+const target = Amplitude({ instance: amplitude.getInstance('INSTANCE_NAME') });
+
+const amplitudeMiddleware = createMiddleware(eventsMap, target);
+const amplitudeMetaReducer = createMetaReducer(eventsMap, target);
 ```
 
-To use them, just specify the event type in your event definition:
+### Event Definitions
+
+* [`event`](#event)
+* [`userId`](#userid)
+* [`logout`](#logout)
+* [`userProperties`](#userproperties)
+
+Don't see your event listed? Please submit a pull request to
+the [Redux Beacon repository](https://github.com/rangle/redux-beacon) with the
+missing event. Use the source of the existing `event-helpers` to guide your
+work. If you need any support feel free to make the pull request with all you're
+able to do. We can fill in the gaps from there.
+
+#### event
+##### Docs:
+* https://amplitude.zendesk.com/hc/en-us/articles/115001361248#tracking-events
+* https://amplitude.zendesk.com/hc/en-us/articles/115001361248#setting-event-properties
 
 ```js
-const pageView = (action): LogEvent => ({
-  hitType: 'logEvent',
-  eventType: 'pageview',
-  eventProperties: { page: action.payload },
+import { logEvent } from '@redux-beacon/amplitude';
+
+const event = logEvent((action, prevState, nextState) => {
+  return {
+    type: /* fill me in */,
+    properties: /* (optional) */,
+  };
+});
+```
+
+<br>
+
+#### userId
+##### Docs:
+https://amplitude.zendesk.com/hc/en-us/articles/115001361248#setting-custom-user-ids
+
+```js
+import { setUserId } from '@redux-beacon/amplitude';
+
+const event = setUserId((action, prevState, nextState) => {
+  return /* (user Id) fill me in */
+});
+```
+
+<br>
+
+#### logout
+##### Docs:
+https://amplitude.zendesk.com/hc/en-us/articles/115001361248#logging-out-and-anonymous-users
+
+```js
+import { logout } from '@redux-beacon/amplitude';
+
+const event = logout();
+```
+
+<br>
+
+#### userProperties
+##### Docs:
+https://amplitude.zendesk.com/hc/en-us/articles/115001361248#setting-multiple-user-properties
+
+```js
+import { setUserProperties } from '@redux-beacon/amplitude';
+
+const event = setUserProperties((action, prevState, nextState) => {
+  return {
+   [/* property key */]: /* property value */,
+  };
 });
 ```

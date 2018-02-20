@@ -29,3 +29,7 @@ const eventsMap = {
 ```ts
 import { EventsMap } from 'redux-beacon';
 ```
+
+### Usage
+ * [Getting Started](../getting-started-redux-users.md)
+ * [Examples & Recipes](../recipes/index.md)

@@ -14,11 +14,11 @@ properties:
 ```
 
 Each property corresponds to a different type of extension that
-Redux-Beacon supports:
+Redux Beacon supports:
  - [`offlineStorage` extensions](#offlinestorage-extensions)
  - [`logger` extensions](#logger-extensions)
 
-As an added convenience Redux-Beacon exposes some prebuilt extension constructors:
+As an added convenience we maintain some prebuilt extension constructors:
 
 | Extension Type | Extension Constructor|
 | -------------- | -------------- |

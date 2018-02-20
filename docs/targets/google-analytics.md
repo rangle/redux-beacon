@@ -21,6 +21,12 @@
     > [here](https://developers.google.com/analytics/devguides/collection/analyticsjs/debugging)
     > to enable it.
 
+3. Install the target:
+
+    ```bash
+    npm install --save @redux-beacon/google-analytics
+    ```
+
 #### _Multiple Trackers Setup_
  * This target supports named trackers. Add the following line to the tracking
    snippet for each named tracker:
@@ -56,7 +62,7 @@
 ### Usage
 
 ```js
-import { GoogleAnalytics } from 'redux-beacon/targets/google-analytics';
+import GoogleAnalytics from '@redux-beacon/google-analytics';
 
 // Create or import an events map.
 // See "getting started" pages for instructions.
@@ -83,12 +89,18 @@ const gaMetaReducer = createMetaReducer(eventsMap, ga);
 * [`ecommPromotion`](#ecommpromotion)
 * [`ecommAction`](#ecomaction)
 
+Don't see your event listed? Please submit a pull request to
+the [Redux Beacon repository](https://github.com/rangle/redux-beacon) with the
+missing event. Use the source of the existing `event-helpers` to guide your
+work. If you need any support feel free to make the pull request with all you're
+able to do. We can fill in the gaps from there.
+
 #### pageView
 ##### Docs:
 https://developers.google.com/analytics/devguides/collection/analyticsjs/pages
 
 ```js
-import { trackPageView } from 'redux-beacon/targets/google-analytics';
+import { trackPageView } from '@redux-beacon/google-analytics';
 
 const pageView = trackPageView((action, prevState, nextState) => {
  return {
@@ -112,7 +124,7 @@ const pageView = trackPageView((action, prevState, nextState) => {
 https://developers.google.com/analytics/devguides/collection/analyticsjs/events
 
 ```js
-import { trackEvent } from 'redux-beacon/targets/google-analytics';
+import { trackEvent } from '@redux-beacon/google-analytics';
 
 const event = trackEvent((action, prevState, nextState) => {
   return {
@@ -131,7 +143,7 @@ const event = trackEvent((action, prevState, nextState) => {
 https://developers.google.com/analytics/devguides/collection/analyticsjs/user-timings
 
 ```js
-import { trackTiming } from 'redux-beacon/targets/google-analytics';
+import { trackTiming } from '@redux-beacon/google-analytics';
 
 const userTiming = trackTiming((action, prevState, nextState) => {
   return {
@@ -150,7 +162,7 @@ const userTiming = trackTiming((action, prevState, nextState) => {
 https://developers.google.com/analytics/devguides/collection/analyticsjs/social-interactions
 
 ```js
-import { trackSocialInteraction } from 'redux-beacon/targets/google-analytics';
+import { trackSocialInteraction } from '@redux-beacon/google-analytics';
 
 const socialInteraction = trackSocialInteraction((action, prevState, nextState) => {
   return {
@@ -168,7 +180,7 @@ const socialInteraction = trackSocialInteraction((action, prevState, nextState) 
 https://developers.google.com/analytics/devguides/collection/analyticsjs/exceptions
 
 ```js
-import { trackException } from 'redux-beacon/targets/google-analytics';
+import { trackException } from '@redux-beacon/google-analytics';
 
 const exception = trackException((action, prevState, nextState) => {
   return {
@@ -181,7 +193,7 @@ const exception = trackException((action, prevState, nextState) => {
 Don't need to track `description` or `isFatal`?
 
 ```js
-import { trackException } from 'redux-beacon/targets/google-analytics';
+import { trackException } from '@redux-beacon/google-analytics';
 
 const noop = () => {};
 const exception = trackException(noop, /* (optional) tracker name */ );
@@ -196,7 +208,7 @@ https://developers.google.com/analytics/devguides/collection/analyticsjs/ecommer
 [Ecommerce Plugin Setup](#ecommerce-plugin-setup)
 
 ```js
-import { trackEcommItem } from 'redux-beacon/targets/google-analytics';
+import { trackEcommItem } from '@redux-beacon/google-analytics';
 
 const ecommItem = trackEcommItem((action, prevState, nextState) => {
   return {
@@ -219,7 +231,7 @@ https://developers.google.com/analytics/devguides/collection/analyticsjs/ecommer
 [Ecommerce Plugin Setup](#ecommerce-plugin-setup)
 
 ```js
-import { trackEcommTransaction } from 'redux-beacon/targets/google-analytics';
+import { trackEcommTransaction } from '@redux-beacon/google-analytics';
 
 const ecommTransaction = trackEcommTransaction((action, prevState, nextState) => {
   return {
@@ -242,7 +254,7 @@ https://developers.google.com/analytics/devguides/collection/analyticsjs/ecommer
 [Enhanced Ecommerce Plugin Setup](#enhanced-ecommerce-plugin-setup)
 
 ```js
-import { ecommSend } from 'redux-beacon/targets/google-analytics';
+import { ecommSend } from '@redux-beacon/google-analytics';
 
 const ecommSendSignal = ecommSend(/* (optional) tracker name */);
 ```
@@ -257,7 +269,7 @@ https://developers.google.com/analytics/devguides/collection/analyticsjs/ecommer
 [Enhanced Ecommerce Plugin Setup](#enhanced-ecommerce-plugin-setup)
 
 ```js
-import { ecommClear } from 'redux-beacon/targets/google-analytics';
+import { ecommClear } from '@redux-beacon/google-analytics';
 
 const ecommClearSignal = ecommClear(/* (optional) tracker name */);
 ```
@@ -271,7 +283,7 @@ https://developers.google.com/analytics/devguides/collection/analyticsjs/enhance
 [Enhanced Ecommerce Plugin Setup](#enhanced-ecommerce-plugin-setup)
 
 ```js
-import { trackEcommImpression } from 'redux-beacon/targets/google-analytics';
+import { trackEcommImpression } from '@redux-beacon/google-analytics';
 
 const ecommImpression = trackEcommImpression((action, prevState, nextState) => {
   return {
@@ -296,7 +308,7 @@ https://developers.google.com/analytics/devguides/collection/analyticsjs/enhance
 [Enhanced Ecommerce Plugin Setup](#enhanced-ecommerce-plugin-setup)
 
 ```js
-import { trackEcommProduct } from 'redux-beacon/targets/google-analytics';
+import { trackEcommProduct } from '@redux-beacon/google-analytics';
 
 const ecommProduct = trackEcommProduct((action, prevState, nextState) => {
   return {
@@ -322,7 +334,7 @@ https://developers.google.com/analytics/devguides/collection/analyticsjs/enhance
 [Enhanced Ecommerce Plugin Setup](#enhanced-ecommerce-plugin-setup)
 
 ```js
-import { trackEcommPromotion } from 'redux-beacon/targets/google-analytics';
+import { trackEcommPromotion } from '@redux-beacon/google-analytics';
 
 const ecommPromotion = trackEcommPromotion((action, prevState, nextState) => {
   return {
@@ -343,7 +355,7 @@ https://developers.google.com/analytics/devguides/collection/analyticsjs/enhance
 [Enhanced Ecommerce Plugin Setup](#enhanced-ecommerce-plugin-setup)
 
 ```js
-import { trackEcommAction } from 'redux-beacon/targets/google-analytics';
+import { trackEcommAction } from '@redux-beacon/google-analytics';
 
 const ecommAction = trackEcommAction((action, prevState, nextState) => {
   return {

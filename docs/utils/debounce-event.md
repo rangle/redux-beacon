@@ -1,19 +1,34 @@
-### `debounceEvent(msDelay, eventDef)`
+## `debounceEvent()`
 
 If you have an event definition tied to a Redux action that fires too
 frequently, you can use this util to limit the frequency of analytics events
 (e.g. form input).
 
+### Import
+
+```js
+import debounceEvent from 'redux-beacon/utils/debounce-event'
+```
+
+### Syntax
+
+```js
+debounceEvent(msDelay, eventDef)
+```
+
 #### Parameters
- * `number` msDelay
-   * the time in milliseconds that needs to elapse between event definition
-   calls before the analytics event is dispatched to a target.
- * `function` [eventDef](../api/event-definition.md)
+
+* `msDelay`: [`number`](https://developer.mozilla.org/en-US/docs/Glossary/Number)
+  - The time in milliseconds that needs to elapse between event definition calls
+    before the analytics event is dispatched to a target.
+* `eventDef`: [`EventDefinition`](../api/event-definition.md)
+  - The event you want to debounce.
+
 
 #### Example
 
 ```js
-import { debounceEvent } from 'redux-beacon/utils';
+import debounceEvent from 'redux-beacon/utils/debounce-event';
 
 // A normal event definition
 const searchTerm = (action) => ({

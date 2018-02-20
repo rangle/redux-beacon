@@ -1,55 +1,150 @@
-# Segment.io
+# Segment
 
-### Usage Instructions
+* [Setup](#setup)
+* [Usage](#usage)
+* [Event Definitions](#event-definitions)
 
-1. [Sign up](https://segment.com/signup) for Segment.io if you haven't already, and create a Segment.io project for your web application!
+----
+
+### Setup
+
+1. [Sign up](https://segment.com/signup) for Segment.io and create a Segment.io project for your web application.
 
 2. Add the
    [JavaScript Tracking Snippet](https://segment.com/docs/sources/website/analytics.js/quickstart/)
    to your site.
 
-    > **Tip:**
+    > **[info] Tip**
     > during development and testing it is often helpful to use the debug
     > version of analytics.js. Follow the instructions
     > [here](https://segment.com/docs/sources/website/analytics.js/#debug)
     > to enable it.
 
-    > **<span style="color: #b51c1c">Warning:</span>**
-    > the last line of the tracking snippet `analytics.page();` hits Segment.io
-    > with a page view that matches the first loaded route. If you're tracking
-    > page views using Redux Beacon, be sure to remove this line so the initial
-    > page load isn't recorded twice.
+3. Install the target:
 
-3. Import the target, then provide it when creating middleware or a meta reducer:
+    ```bash
+    npm install --save @redux-beacon/segment
+    ```
 
-   ```js
-   import { Segment } from 'redux-beacon/targets/segment';
-
-   const middleware = createMiddleware(eventsMap, Segment());
-   const metaReducer = createMetaReducer(eventsMap, Segment());
-   ```
-
-
-
-### For Typescript Users
-
-This target also exposes interfaces for common Segment.io events:
+### Usage
 
 ```js
-import {
-  Event,
-  PageView,
-  Alias,
-  Group,
-  Identify
-} from 'redux-beacon/targets/segment';
+import Segment from '@redux-beacon/segment';
+
+// Create or import an events map.
+// See "getting started" pages for instructions.
+
+const segment = Segment();
+
+const segmentMiddleware = createMiddleware(eventsMap, segment);
+const segmentMetaReducer = createMetaReducer(eventsMap, segment);
 ```
 
-To use it, just specify the Segment.io event in your event definition:
+### Event Definitions
+
+* [`pageView`](#pageview)
+* [`event`](#event)
+* [`alias`](#alias)
+* [`group`](#group)
+* [`identify`](#identify)
+
+Don't see your event listed? Please submit a pull request to
+the [Redux Beacon repository](https://github.com/rangle/redux-beacon) with the
+missing event. Use the source of the existing `event-helpers` to guide your
+work. If you need any support feel free to make the pull request with all you're
+able to do. We can fill in the gaps from there.
+
+#### pageView
+##### Docs:
+https://segment.com/docs/sources/website/analytics.js/#page
 
 ```js
-const pageView = (action): PageView => ({
-  hitType: 'pageview',
-  page: action.payload,
+import { trackPageView } from '@redux-beacon/segment';
+
+const pageView = trackPageView((action, prevState, nextState) => {
+  return {
+    category: /* (optional) */
+    name: /* (optional) */
+    properties: /* (optional) */
+    options: /* (optional) */
+  };
+});
+```
+
+> **[danger] Duplicate Page Views**
+> the last line of the tracking snippet `analytics.page();` hits Segment.io
+> with a page view that matches the first loaded route. If you're tracking
+> page views using Redux Beacon, be sure to remove this line so the initial
+> page load isn't recorded twice.
+
+<br>
+
+#### event
+##### Docs:
+https://segment.com/docs/sources/website/analytics.js/#track
+
+```js
+import { trackEvent } from '@redux-beacon/segment';
+
+const event = trackEvent((action, prevState, nextState) => {
+  return {
+    name: /* fill me in */,
+    properties: /* (optional) */,
+    options: /* (optional) */,
+  };
+});
+```
+
+<br>
+
+#### alias
+##### Docs:
+https://segment.com/docs/sources/website/analytics.js/#alias
+
+```js
+import { setAlias } from '@redux-beacon/segment';
+
+const alias = setAlias((action, prevState, nextState) => {
+  return {
+    userId: /* fill me in */,
+    previousId: /* (optional) */,
+    options: /* (optional) */,
+  };
+});
+```
+
+<br>
+
+#### group
+##### Docs:
+https://segment.com/docs/sources/website/analytics.js/#group
+
+```js
+import { setGroup } from '@redux-beacon/segment';
+
+const group = setGroup((action, prevState, nextState) => {
+  return {
+    groupId: /* fill me in */,
+    traits: /* (optional) */,
+    options: /* (optional) */,
+  };
+});
+```
+
+<br>
+
+#### identify
+##### Docs:
+https://segment.com/docs/sources/website/analytics.js/#identify
+
+```js
+import { identifyUser } from '@redux-beacon/segment';
+
+const user = identifyUser((action, prevState, nextState) => {
+  return {
+    userId: /* (optional) */,
+    traits: /* (optional) */,
+    options: /* (optional) */,
+  };
 });
 ```

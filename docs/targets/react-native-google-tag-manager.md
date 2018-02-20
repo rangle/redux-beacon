@@ -20,12 +20,18 @@
    its corresponding [manual installation](https://github.com/idehub/react-native-google-analytics-bridge/wiki/Manual-installation)
    for GoogleAnalyticsBridge usage.
 
+4. Install the target:
+
+   ```bash
+   npm install --save @redux-beacon/react-native-google-tag-manager
+   ```
+
 ### Usage
 
    ```js
    import { Platform } from 'react-native';
    import { GoogleTagManager as GTMBridge } from 'react-native-google-analytics-bridge';
-   import { GoogleTagManager } from 'redux-beacon/targets/react-native';
+   import GoogleTagManager from '@redux-beacon/react-native-google-tag-manager';
 
    // Create or import an events map.
    // See "getting started" pages for instructions.

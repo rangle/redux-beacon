@@ -20,10 +20,16 @@
     > [here](https://support.google.com/tagmanager/answer/6107056?hl=en) to
     > enable it.
 
+3. Install the target:
+
+    ```bash
+    npm install --save @redux-beacon/google-tag-manager
+    ```
+
 ### Usage
 
 ```js
-import { GoogleTagManager } from 'redux-beacon/targets/google-tag-manager';
+import GoogleTagManager from '@redux-beacon/google-tag-manager';
 
 // Create or import an events map.
 // See "getting started" pages for instructions.

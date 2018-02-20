@@ -22,17 +22,6 @@ describe('Target: Segment.io', () => {
     });
   });
 
-  it('calls page service when hitType is pageview', () => {
-    const events = [
-      {
-        hitType: 'pageview',
-        page: 'random page',
-      },
-    ];
-    target(events);
-    expect(window.analytics.page).toHaveBeenCalledWith(events[0].page);
-  });
-
   it('calls track service when hitType is event', () => {
     const events = [
       {
@@ -45,45 +34,6 @@ describe('Target: Segment.io', () => {
       events[0].eventAction,
       events[0]
     );
-  });
-
-  it('calls identify service when hitType is identify', () => {
-    const events = [
-      {
-        hitType: 'identify',
-        userId: 'random user id',
-      },
-    ];
-    target(events);
-    expect(window.analytics.identify).toHaveBeenCalledWith(
-      events[0].userId,
-      events[0]
-    );
-  });
-
-  it('calls group service when hitType is group', () => {
-    const events = [
-      {
-        hitType: 'group',
-        groupId: 'random group id',
-      },
-    ];
-    target(events);
-    expect(window.analytics.group).toHaveBeenCalledWith(
-      events[0].groupId,
-      events[0]
-    );
-  });
-
-  it('calls alias service when hitType is alias', () => {
-    const events = [
-      {
-        hitType: 'alias',
-        userId: 'random user id',
-      },
-    ];
-    target(events);
-    expect(window.analytics.alias).toHaveBeenCalledWith(events[0].userId);
   });
 });
 

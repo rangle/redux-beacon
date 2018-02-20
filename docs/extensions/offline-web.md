@@ -1,6 +1,6 @@
-### `offlineWeb(connectivitySelector)`
+# OfflineWeb
 
-Returns an offline storage extension that records analytics events in
+An offline storage extension that records analytics events in
 [indexedDB](https://developer.mozilla.org/en/docs/Web/API/IndexedDB_API)
 when offline, and resyncs those events when back online. The extension
 adds a timestamp to each saved extension under the `timeSaved` key.
@@ -8,12 +8,25 @@ adds a timestamp to each saved extension under the `timeSaved` key.
 Like all offline storage extensions, this extension expects that
 you're already storing a connectivity flag in your app's state.
 
-----
+### Installation
 
-#### Usage
+```bash
+npm install --save @redux-beacon/offline-web
+```
 
-If you haven't already done so, the first step is to track the
-connection status in your state:
+### Import
+
+```js
+import OfflineWeb from '@redux-beacon/offline-web';
+```
+
+### Usage
+
+#### Step 1
+
+The first step is to track the connection status in your state. Here's an
+example of how you would do so using browser's in-built
+[offline and online events](https://developer.mozilla.org/en-US/docs/Web/API/NavigatorOnLine/Online_and_offline_events):
 
 ```js
 const initialState = {
@@ -37,6 +50,7 @@ window.addEventListener('offline', () => {
     payload: false,
   });
 });
+
 window.addEventListener('online', () => {
   store.dispatch({
     type: 'UPDATE_CONNECTIVITY',
@@ -45,33 +59,32 @@ window.addEventListener('online', () => {
 });
 ```
 
-> [MDN, offline/online event docs](https://developer.mozilla.org/en/docs/Online_and_offline_events)
+#### Step 2
 
-Next, create a connectivity selector that accepts the state, and
+Create a connectivity selector that accepts the state, and
 returns your app's connection status:
 
 ```js
 const isConnected = state => state.isConnected;
 ```
 
-> **<span style="color: #b51c1c">NB:</span>**
-> The connectivity selector should return a boolean - `true` when the
-> app is online, `false` if the app is offline.
+The connectivity selector should return a boolean:
+ - `true` when the app is online
+ - `false` when the app is offline
 
-Then, create the offline storage extension:
+#### Step 3
+
+Initialize the extension and provide it when creating a middleware or meta
+reducer:
 
 ```js
-import { offlineWeb } from 'redux-beacon/extensions/offline-web';
+import OfflineWeb from '@redux-beacon/offline-web';
 
-// pass in the connectivity selector as the first parameter
+// Pass the connectivity selector from Step 2 as the first parameter
 const offlineStorage = offlineWeb(isConnected);
-```
 
-Finally provide the offlineStorage extension when creating middleware
-or a meta reducer:
-
-```js
-...
+// Create or import an events map and target.
+// See "getting started" pages for instructions.
 
 const middleware = createMiddleware(eventsMap, target, { offlineStorage });
 const metaReducer = createMetaReducer(eventsMap, target, { offlineStorage });

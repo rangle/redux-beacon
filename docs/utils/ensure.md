@@ -1,20 +1,42 @@
-### `ensure(validator, eventDef)`
+## `ensure()`
 
 Returns a new event definition whose events will first go through the validator
 before being passed to their target. Events that don't pass the validator won't
 reach their targets.
 
+### Import
+
+```js
+import ensure from 'redux-beacon/utils/ensure'
+```
+
+### Syntax
+
+```js
+ensure(validator, eventDef)
+```
+
 #### Parameters
- * `function` validator(event)
-   * accepts an event as its sole argument.
-   * should return true if the event is valid, false otherwise.
- * `function` [eventDef](../api/event-definition.md)
+
+* `validator`: [`Validator`](#validator)
+ - The function used to validate the event.
+* `eventDef`: [`EventDefinition`](../api/event-definition.md)
+  - The event you want to validate.
+
+#### Validator
+
+```typescript
+type Validator = (event: any[]) => boolean;
+```
+ - Accepts an event or array of events as its sole argument.
+ - Returns `true` if the event is valid.
+ - Returns `false ` if the event is not valid.
 
 #### Example
 
 ```js
 import joi from 'joi';
-import { ensure } from 'redux-beacon/utils';
+import ensure from 'redux-beacon/utils/ensure'
 
 const pageview = (action, prevState) => ({
   hitType: 'pageview',
