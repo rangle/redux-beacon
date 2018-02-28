@@ -1,0 +1,19 @@
+{
+  "name": "@redux-beacon/debounce-event",
+  "version": "1.0.0",
+  "description": "Redux Beacon extension for debouncing events",
+  "main": "dist/index.js",
+  "typings": "./index.d.ts",
+  "engines": {
+    "node": ">= 6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rangle/redux-beacon.git"
+  },
+  "homepage": "https://rangle.github.io/redux-beacon/docs/extensions/debounce-event.html",
+  "license": "MIT",
+  "peerDependencies": {
+    "redux-beacon": "1.2.0"
+  }
+}

@@ -1,111 +1,40 @@
 {
-  "name": "redux-beacon",
-  "version": "1.2.0",
-  "description": "Analytics integration for Redux and ngrx/store",
-  "main": "lib/index.js",
-  "typings": "./index.d.ts",
-  "files": [
-    "dist",
-    "extensions",
-    "index.d.ts",
-    "lib",
-    "src",
-    "targets",
-    "utils"
+  "private": true,
+  "workspaces": [
+    "packages/*"
   ],
   "scripts": {
-    "precommit": "lint-staged",
-    "beautify": "prettier --single-quote --trailing-comma es5 --write \"{src,__{tests,mocks}__}/**/*.js\"",
-    "test:api": "node ./test/run-api-test.js",
-    "docs:prepare": "gitbook install",
-    "docs:watch": "yarn run docs:prepare && gitbook serve",
-    "docs:build": "yarn run docs:prepare && rm -rf _book && gitbook build",
-    "docs:publish": "yarn run docs:build && cd _book && git init && git commit --allow-empty -m 'Update docs' && git checkout -b gh-pages && git add . && git commit -am 'Update docs' && git push git@github.com:rangle/redux-beacon gh-pages --force",
-    "lint": "eslint src",
-    "jest": "jest",
-    "check": "jest && yarn lint",
-    "clean": "rm -rf lib dist extensions targets coverage utils _book",
-    "prebuild": "yarn run clean",
-    "build:cjs:main": "babel src/main --out-dir lib --ignore __tests__",
-    "build:cjs:utils": "babel src/utils --out-dir utils --copy-files --ignore __tests__",
-    "build:cjs:extensions": "babel src/extensions --out-dir extensions --copy-files --ignore __tests__",
-    "build:cjs:targets": "babel src/targets --out-dir targets --copy-files --ignore __tests__",
-    "build:cjs": "yarn run build:cjs:main && yarn run build:cjs:extensions && yarn run build:cjs:targets && yarn run build:cjs:utils",
-    "build:umd:dev": "webpack",
-    "build:umd:prod": "NODE_ENV=PRODUCTION webpack",
-    "build": "yarn run build:cjs && yarn run build:umd:prod && yarn run build:umd:dev",
-    "prepublish": "yarn run build"
-  },
-  "engines": {
-    "node": ">=6.2.0"
-  },
-  "keywords": [
-    "redux-beacon",
-    "redux",
-    "analytics",
-    "redux-analytics",
-    "redux-gtm",
-    "google tag manager",
-    "google analytics"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/rangle/redux-beacon.git"
-  },
-  "license": "MIT",
-  "dependencies": {
-    "flatten": "^1.0.2",
-    "repeat-string": "^1.6.1"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.18.0",
-    "babel-jest": "^21.2.0",
-    "babel-loader": "^6.2.9",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-stage-3": "^6.24.1",
-    "consolemock": "^1.0.1",
-    "eslint": "^4.9.0",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-config-prettier": "^2.6.0",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-prettier": "^2.3.1",
-    "fake-indexeddb": "^1.0.11",
-    "fuzzy-equal": "^1.0.1",
-    "gitbook-cli": "2.3.2",
-    "husky": "^0.14.3",
-    "jest": "^21.2.1",
-    "joi": "^10.5.2",
-    "lint-staged": "^4.3.0",
-    "moment": "^2.17.1",
-    "prettier": "^1.7.4",
-    "redux": "^3.6.0",
-    "typescript": "^2.0.3",
-    "typings-tester": "^0.2.2",
-    "webpack": "^1.14.0"
-  },
-  "lint-staged": {
-    "*.{js}": [
-      "beautify",
-      "git add"
-    ]
+    "test": "jest",
+    "build": "node ./scripts/build.js"
   },
   "jest": {
     "testPathIgnorePatterns": [
       "<rootDir>/_book/",
       "<rootDir>/node_modules/",
       "mocks.js",
+      "mock.js",
       "__snapshots__"
-    ],
-    "collectCoverageFrom": [
-      "src/**/*.js"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 90,
-        "functions": 90,
-        "lines": 90,
-        "statements": 90
-      }
-    }
+    ]
+  },
+  "devDependencies": {
+    "babel-core": "6.26.0",
+    "babel-jest": "22.2.0",
+    "babel-preset-env": "1.6.1",
+    "babel-preset-stage-3": "6.24.1",
+    "consolemock": "1.0.2",
+    "fake-indexeddb": "1.0.11",
+    "fuzzy-equal": "1.0.1",
+    "glob": "7.1.2",
+    "jest": "22.3.0",
+    "joi": "10.5.2",
+    "mkdirp": "0.5.1",
+    "moment": "2.17.1",
+    "prettier": "1.11.0",
+    "redux": "3.6.0",
+    "typescript": "2.0.3",
+    "typings-tester": "0.2.2"
+  },
+  "dependencies": {
+    "prettier": "^1.11.0"
   }
 }

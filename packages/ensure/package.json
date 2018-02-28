@@ -1,0 +1,19 @@
+{
+  "name": "@redux-beacon/ensure",
+  "version": "1.0.0",
+  "description": "Redux Beacon extension for validating events",
+  "main": "dist/index.js",
+  "typings": "./index.d.ts",
+  "engines": {
+    "node": ">= 6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rangle/redux-beacon.git"
+  },
+  "homepage": "https://rangle.github.io/redux-beacon/docs/extensions/ensure.html",
+  "license": "MIT",
+  "peerDependencies": {
+    "redux-beacon": "1.2.0"
+  }
+}

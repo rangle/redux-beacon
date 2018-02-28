@@ -1,0 +1,27 @@
+{
+  "name": "redux-beacon",
+  "version": "1.2.0",
+  "description": "Analytics integration for Redux and ngrx/store",
+  "main": "dist/index.js",
+  "typings": "./index.d.ts",
+  "engines": {
+    "node": ">= 6"
+  },
+  "keywords": [
+    "redux-beacon",
+    "redux",
+    "analytics",
+    "redux-analytics",
+    "redux-gtm",
+    "google tag manager",
+    "google analytics"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rangle/redux-beacon.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "flatten": "1.0.2"
+  }
+}
