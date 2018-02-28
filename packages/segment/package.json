@@ -1,0 +1,18 @@
+{
+  "name": "@redux-beacon/segment",
+  "version": "1.0.0",
+  "description": "Segment.io integration for Redux",
+  "main": "dist/index.js",
+  "engines": {
+    "node": ">= 6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rangle/redux-beacon.git"
+  },
+  "homepage": "https://rangle.github.io/redux-beacon/docs/targets/segment.html",
+  "license": "MIT",
+  "peerDependencies": {
+    "redux-beacon": "1.2.0"
+  }
+}
