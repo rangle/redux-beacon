@@ -1,17 +1,18 @@
 import createEvents from './create-events';
 import registerEvents from './register-events';
+import getEventsWithMatchingKey from './get-events-with-matching-key';
 
-function createMiddleware(eventDefinitionsMap, target, extensions = {}) {
+function createMiddleware(eventsMap, target, extensions = {}) {
   return store => next => action => {
     const prevState = store.getState();
     const result = next(action);
     const nextState = store.getState();
 
     const events = createEvents(
-      eventDefinitionsMap[action.type],
+      getEventsWithMatchingKey(eventsMap, action.type),
       prevState,
       action,
-      nextState
+      nextState,
     );
 
     registerEvents(events, target, extensions, prevState, action, nextState);

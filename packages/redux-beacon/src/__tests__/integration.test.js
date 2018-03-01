@@ -63,7 +63,7 @@ function runIntegrationTests(title, prepareStore) {
       it('only pushes valid events to the target', () => {
         const onlyEventsOfType = (...hitTypes) => eventDef => (...args) =>
           eventDef(...args).map(
-            event => ([...hitTypes].includes(event.hitType) ? event : null)
+            event => ([...hitTypes].includes(event.hitType) ? event : null),
           );
 
         const eventDef = () => [
@@ -88,13 +88,13 @@ function runIntegrationTests(title, prepareStore) {
 }
 
 runIntegrationTests(
-  'createMiddleware(eventDefinitionsMap, target, extensions?)',
+  'createMiddleware(eventsMap, target, extensions?)',
   (reducer, eventsMap, target) =>
-    createStore(reducer, applyMiddleware(createMiddleware(eventsMap, target)))
+    createStore(reducer, applyMiddleware(createMiddleware(eventsMap, target))),
 );
 
 runIntegrationTests(
-  'createMetaReducer(eventDefinitionsMap, target, extensions?)',
+  'createMetaReducer(eventsMap, target, extensions?)',
   (reducer, eventsMap, target) =>
-    createStore(createMetaReducer(eventsMap, target)(reducer))
+    createStore(createMetaReducer(eventsMap, target)(reducer)),
 );
