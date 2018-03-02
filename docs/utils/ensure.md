@@ -7,7 +7,7 @@ reach their targets.
 ### Import
 
 ```js
-import ensure from 'redux-beacon/utils/ensure'
+import ensure from '@redux-beacon/ensure';
 ```
 
 ### Syntax
@@ -32,7 +32,7 @@ type Validator = (event: any[]) => boolean;
  - Returns `true` if the event is valid.
  - Returns `false ` if the event is not valid.
 
-#### Example
+### Example
 
 ```js
 import joi from 'joi';

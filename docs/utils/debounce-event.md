@@ -7,7 +7,7 @@ frequently, you can use this util to limit the frequency of analytics events
 ### Import
 
 ```js
-import debounceEvent from 'redux-beacon/utils/debounce-event'
+import debounceEvent from '@redux-beacon/debounce-event';
 ```
 
 ### Syntax
@@ -25,7 +25,7 @@ debounceEvent(msDelay, eventDef)
   - The event you want to debounce.
 
 
-#### Example
+### Example
 
 ```js
 import debounceEvent from 'redux-beacon/utils/debounce-event';

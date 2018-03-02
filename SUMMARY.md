@@ -21,4 +21,5 @@
 * [Utils](docs/utils/index.md)
   * [debounceEvent](docs/utils/debounce-event.md)
   * [ensure](docs/utils/ensure.md)
+  * [combineEvents](docs/utils/combine-events.md)
 * [Notes on Offline Events](docs/notes-on-offline-events.md)

@@ -1,0 +1,22 @@
+{
+  "name": "@redux-beacon/combine-events",
+  "version": "1.0.0",
+  "description": "Redux Beacon extension for combining event definitions",
+  "main": "dist/index.js",
+  "typings": "./index.d.ts",
+  "engines": {
+    "node": ">= 6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rangle/redux-beacon.git"
+  },
+  "homepage": "https://rangle.github.io/redux-beacon/docs/utils/combine-events.html",
+  "license": "MIT",
+  "dependencies": {
+    "flatten": "1.0.2"
+  },
+  "peerDependencies": {
+    "redux-beacon": "1.2.0"
+  }
+}
