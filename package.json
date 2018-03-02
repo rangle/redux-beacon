@@ -5,7 +5,11 @@
   ],
   "scripts": {
     "test": "jest",
-    "build": "node ./scripts/build.js"
+    "build": "node ./scripts/build.js",
+    "docs:prepare": "gitbook install",
+    "docs:watch": "yarn run docs:prepare && gitbook serve",
+    "docs:build": "yarn run docs:prepare && rm -rf _book && gitbook build",
+    "docs:publish": "yarn run docs:build && cd _book && git init && git commit --allow-empty -m 'Update docs' && git checkout -b gh-pages && git add . && git commit -am 'Update docs' && git push git@github.com:rangle/redux-beacon gh-pages --force"
   },
   "jest": {
     "testPathIgnorePatterns": [
@@ -24,6 +28,7 @@
     "consolemock": "1.0.2",
     "fake-indexeddb": "1.0.11",
     "fuzzy-equal": "1.0.1",
+    "gitbook-cli": "2.3.2",
     "glob": "7.1.2",
     "jest": "22.3.0",
     "joi": "10.5.2",
