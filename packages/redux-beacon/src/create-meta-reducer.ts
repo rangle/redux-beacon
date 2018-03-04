@@ -1,8 +1,16 @@
 import createEvents from './create-events';
 import registerEvents from './register-events';
 import getEventsWithMatchingKey from './get-events-with-matching-key';
+import { EventsMap, Extensions, Target } from './types';
 
-function createMetaReducer(eventsMap, target, extensions = {}) {
+/**
+ * Create a meta reducer that synchronizes actions to analytics events.
+ */
+function createMetaReducer(
+  eventsMap: EventsMap,
+  target: Target,
+  extensions: Extensions = {}
+) {
   /* Why not arrow functions? AOT... */
   /* eslint-disable func-names */
   return function(reducer) {
@@ -12,7 +20,7 @@ function createMetaReducer(eventsMap, target, extensions = {}) {
         getEventsWithMatchingKey(eventsMap, action.type),
         prevState,
         action,
-        nextState,
+        nextState
       );
 
       registerEvents(events, target, extensions, prevState, action, nextState);

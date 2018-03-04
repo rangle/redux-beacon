@@ -13,6 +13,10 @@
   },
   "homepage": "https://rangle.github.io/redux-beacon/docs/extensions/ensure.html",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "build:watch": "tsc -p tsconfig.build.json -w"
+  },
   "peerDependencies": {
     "redux-beacon": "1.2.0"
   }

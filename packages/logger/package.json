@@ -13,7 +13,5 @@
   },
   "homepage": "https://rangle.github.io/redux-beacon/docs/extensions/logger.html",
   "license": "MIT",
-  "dependencies": {
-    "repeat-string": "1.6.1"
-  }
+  "dependencies": {}
 }

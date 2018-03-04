@@ -3,3 +3,10 @@ import createMetaReducer from './create-meta-reducer';
 import createEvents from './create-events';
 
 export { createMiddleware, createMetaReducer, createEvents };
+
+export {
+  EventDefinition,
+  EventsMap,
+  LoggerExtension,
+  OfflineStorageExtension,
+} from './types';

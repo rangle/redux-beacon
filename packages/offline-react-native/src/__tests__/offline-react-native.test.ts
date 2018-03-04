@@ -1,5 +1,3 @@
-import fuzzyEqual from 'fuzzy-equal';
-
 import { offlineReactNative } from '../';
 
 describe('When saving events:', () => {
@@ -19,12 +17,8 @@ describe('When saving events:', () => {
       expect(args[0]).toBe('EventsStore');
       // second argument
       const savedEvent = JSON.parse(args[1])[0];
-      const comparison = fuzzyEqual(sampleEvent, savedEvent);
-      expect(comparison.common_properties).toEqual({
-        hitType: true,
-        page: true,
-      });
-      expect(comparison.right_only).toEqual(['timeSaved']);
+      expect(savedEvent).toMatchObject(sampleEvent);
+      expect(savedEvent).toHaveProperty('timeSaved');
     });
   });
 

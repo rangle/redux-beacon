@@ -3,7 +3,7 @@
   "version": "1.2.0",
   "description": "Analytics integration for Redux and ngrx/store",
   "main": "dist/index.js",
-  "typings": "./index.d.ts",
+  "typings": "dist/index.d.ts",
   "engines": {
     "node": ">= 6"
   },
@@ -21,8 +21,11 @@
     "url": "https://github.com/rangle/redux-beacon.git"
   },
   "license": "MIT",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "build:watch": "tsc -p tsconfig.build.json -w"
+  },
   "dependencies": {
-    "flatten": "1.0.2",
-    "object-keys": "1.0.11"
+    "array-flatten": "2.1.1"
   }
 }

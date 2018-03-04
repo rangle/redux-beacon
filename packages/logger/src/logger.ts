@@ -1,6 +1,6 @@
-import repeat from 'repeat-string';
+import { LoggerExtension } from 'redux-beacon';
 
-export function getTimestamp(sinceEpoch) {
+export function getTimestamp(sinceEpoch: number): string {
   const date = new Date(sinceEpoch);
   return date
     .toTimeString()
@@ -23,13 +23,20 @@ const styles = {
   label: 'color: #93748A; font-weight: bold;',
 };
 
-/* eslint-disable no-console */
-export function logger(events, action, state, isSavedOffline, wasSavedOffline) {
+export const logger: LoggerExtension = (
+  events,
+  action,
+  state,
+  isSavedOffline,
+  wasSavedOffline
+) => {
   const timestamp = getTimestamp(Date.now());
   const title = `Analytics events @ ${timestamp} ${action ? action.type : ''}`;
 
   const groups = [];
-  const hr = repeat('-', 80);
+
+  const hr =
+    '--------------------------------------------------------------------------------';
 
   if (!console.group) {
     console.group = function logGroupStart(label) {
@@ -76,4 +83,4 @@ export function logger(events, action, state, isSavedOffline, wasSavedOffline) {
       console.groupEnd();
     }
   }
-}
+};

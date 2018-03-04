@@ -1,8 +1,7 @@
-import makeConsoleMock from 'consolemock';
+import * as makeConsoleMock from 'consolemock';
 import { logger, getTimestamp } from '../';
 
 beforeAll(() => {
-  /* eslint-disable no-global-assign */
   console = makeConsoleMock(console);
 });
 

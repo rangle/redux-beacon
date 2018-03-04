@@ -1,4 +1,4 @@
-import joi from 'joi';
+import * as joi from 'joi';
 import ensure from '../ensure';
 
 const hasShape = (event, shape) =>

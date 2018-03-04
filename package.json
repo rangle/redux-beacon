@@ -5,8 +5,8 @@
   ],
   "scripts": {
     "test": "jest",
-    "build": "node ./scripts/build.js",
-    "try": "lerna run --parallel compile",
+    "build": "lerna run --parallel build",
+    "build:watch": "lerna run --parallel build:watch",
     "build:clean": "rimraf packages/**/dist",
     "docs:prepare": "gitbook install",
     "docs:watch": "yarn run docs:prepare && gitbook serve",
@@ -18,24 +18,29 @@
       "^.+\\.ts$": "ts-jest"
     },
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(js|ts)$",
-    "moduleFileExtensions": ["js", "json", "ts"],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
     "testPathIgnorePatterns": [
       "<rootDir>/_book/",
       "<rootDir>/node_modules/",
       "mocks.ts",
       "mock.ts",
+      "dist",
       "__snapshots__"
     ]
   },
   "devDependencies": {
     "@types/jest": "22.1.4",
+    "@types/joi": "^13.0.5",
     "babel-core": "6.26.0",
     "babel-jest": "22.2.0",
     "babel-preset-env": "1.6.1",
     "babel-preset-stage-3": "6.24.1",
-    "consolemock": "1.0.2",
-    "fake-indexeddb": "1.0.11",
-    "fuzzy-equal": "1.0.1",
+    "consolemock": "1.0.4",
+    "fake-indexeddb": "2.0.4",
     "gitbook-cli": "2.3.2",
     "glob": "7.1.2",
     "jest": "22.3.0",

@@ -1,31 +1,37 @@
-import flatten from 'flatten';
+import * as flatten from 'array-flatten';
 import isPromise from './is-promise';
+import { Target, Extensions, LoggerExtension } from './types';
 
 function registerEvents(
-  events,
-  target,
-  extensions = {},
+  events: Array<any>,
+  target: Target,
+  extensions: Extensions = {},
   prevState = {},
   action = {},
   nextState = {}
 ) {
   const { logger, offlineStorage } = extensions;
 
-  const ifLoggerLog = (...args) => {
+  const ifLoggerLog: LoggerExtension = (
+    events,
+    action,
+    state,
+    ...rest: any[]
+  ) => {
     if (typeof logger === 'function') {
-      logger(...args);
+      logger(events, action, state, ...rest);
     }
   };
 
-  const isEmptyArray = e => Array.isArray(e) && e.length === 0;
+  const isEmptyArray = (arr: any[]) => Array.isArray(arr) && arr.length === 0;
 
-  const passEventsToTarget = e => {
+  const passEventsToTarget = (e: any[]) => {
     if (!isEmptyArray(e)) {
       target(e);
     }
   };
 
-  const handleEvents = e => {
+  const handleEvents = (e: any[]) => {
     if (offlineStorage === undefined) {
       passEventsToTarget(e);
       ifLoggerLog(e, action, prevState);
