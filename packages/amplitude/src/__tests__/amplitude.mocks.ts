@@ -35,18 +35,15 @@ const amplitudeSDKMock = {
 };
 
 export function resetAllMocks() {
-  [
-    instanceMock,
-    identityMock,
-    revenueMock,
-    amplitudeSDKMock,
-  ].forEach(mockObj => {
-    Object.keys(mockObj).forEach(key => {
-      if (typeof mockObj[key].mockReset === 'function') {
-        mockObj[key].mockReset();
-      }
-    });
-  });
+  [instanceMock, identityMock, revenueMock, amplitudeSDKMock].forEach(
+    (mockObj: any) => {
+      Object.keys(mockObj).forEach(key => {
+        if (typeof mockObj[key].mockReset === 'function') {
+          mockObj[key].mockReset();
+        }
+      });
+    }
+  );
 }
 
 export default amplitudeSDKMock;

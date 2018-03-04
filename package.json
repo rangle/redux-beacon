@@ -6,21 +6,29 @@
   "scripts": {
     "test": "jest",
     "build": "node ./scripts/build.js",
+    "try": "lerna run --parallel compile",
+    "build:clean": "rimraf packages/**/dist",
     "docs:prepare": "gitbook install",
     "docs:watch": "yarn run docs:prepare && gitbook serve",
     "docs:build": "yarn run docs:prepare && rm -rf _book && gitbook build",
     "docs:publish": "yarn run docs:build && cd _book && git init && git commit --allow-empty -m 'Update docs' && git checkout -b gh-pages && git add . && git commit -am 'Update docs' && git push git@github.com:rangle/redux-beacon gh-pages --force"
   },
   "jest": {
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(js|ts)$",
+    "moduleFileExtensions": ["js", "json", "ts"],
     "testPathIgnorePatterns": [
       "<rootDir>/_book/",
       "<rootDir>/node_modules/",
-      "mocks.js",
-      "mock.js",
+      "mocks.ts",
+      "mock.ts",
       "__snapshots__"
     ]
   },
   "devDependencies": {
+    "@types/jest": "22.1.4",
     "babel-core": "6.26.0",
     "babel-jest": "22.2.0",
     "babel-preset-env": "1.6.1",
@@ -32,14 +40,13 @@
     "glob": "7.1.2",
     "jest": "22.3.0",
     "joi": "10.5.2",
+    "lerna": "2.9.0",
     "mkdirp": "0.5.1",
     "moment": "2.17.1",
     "prettier": "1.11.0",
     "redux": "3.6.0",
-    "typescript": "2.0.3",
-    "typings-tester": "0.2.2"
-  },
-  "dependencies": {
-    "prettier": "^1.11.0"
+    "rimraf": "2.6.2",
+    "ts-jest": "22.4.1",
+    "typescript": "2.7.2"
   }
 }

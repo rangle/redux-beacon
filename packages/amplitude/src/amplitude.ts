@@ -1,11 +1,18 @@
-export const Amplitude = ({ instance } = {}) => events => {
-  if (!window || !window.amplitude) {
+import { AmplitudeOptions } from './types';
+
+/**
+ * Creates the Amplitude target
+ */
+const Amplitude = (options?: AmplitudeOptions) => (events: Array<any>) => {
+  if (!window || !(<any>window).amplitude) {
     return;
   }
 
-  const app = instance || window.amplitude.getInstance();
-  let identity;
-  let revenue;
+  const app =
+    (options && options.instance) || (<any>window).amplitude.getInstance();
+
+  let identity: any;
+  let revenue: any;
 
   events.forEach(event => {
     switch (event.hitType) {
@@ -34,7 +41,7 @@ export const Amplitude = ({ instance } = {}) => events => {
         app.setVersionName(event.versionName);
         break;
       case 'identify':
-        identity = new window.amplitude.Identify();
+        identity = new (<any>window).amplitude.Identify();
 
         Object.keys(event).forEach(op => {
           const args = event[op];
@@ -55,7 +62,7 @@ export const Amplitude = ({ instance } = {}) => events => {
               });
               break;
             case 'unset':
-              args.forEach(key => {
+              args.forEach((key: string) => {
                 identity.unset(key);
               });
               break;
@@ -88,7 +95,7 @@ export const Amplitude = ({ instance } = {}) => events => {
         app.identify(identity);
         break;
       case 'logRevenueV2':
-        revenue = new window.amplitude.Revenue();
+        revenue = new (<any>window).amplitude.Revenue();
 
         Object.keys(event).forEach(attr => {
           const val = event[attr];
@@ -121,3 +128,5 @@ export const Amplitude = ({ instance } = {}) => events => {
     }
   });
 };
+
+export default Amplitude;

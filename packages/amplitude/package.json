@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Amplitude integration for Redux",
   "main": "dist/index.js",
-  "typings": "./index.d.ts",
+  "typings": "dist/index.d.ts",
   "engines": {
     "node": ">= 6"
   },
@@ -13,6 +13,9 @@
   },
   "homepage": "https://rangle.github.io/redux-beacon/docs/targets/amplitude.html",
   "license": "MIT",
+  "scripts": {
+    "compile": "tsc -p tsconfig.build.json -w"
+  },
   "peerDependencies": {
     "redux-beacon": "1.2.0"
   }
