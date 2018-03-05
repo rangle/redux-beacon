@@ -1,6 +1,7 @@
 import { filterEcommEvents, isEcommEvent } from './utils';
+import { Target } from 'redux-beacon';
 
-export const GoogleAnalytics = () => events => {
+const GoogleAnalytics = (): Target => events => {
   if (typeof window === 'undefined') {
     return;
   }
@@ -64,3 +65,5 @@ export const GoogleAnalytics = () => events => {
     }
   });
 };
+
+export default GoogleAnalytics;

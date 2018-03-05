@@ -4,13 +4,13 @@ export type Target = (events: any[]) => void;
  * Used by Redux Beacon to generate an event or series of
  * events for a given Redux action. An event definition receives the
  * associated action object and the state of the application (before
- * and after the action).
+ * and after the action)
  */
-export type EventDefinition = (
+export type EventDefinition<E = any> = (
   action: { [key: string]: any },
   prevState: any,
   nextState: any
-) => any | Array<any> | Promise<any>;
+) => E;
 
 /**
  * A map between your actions and your analytics events.  Each key

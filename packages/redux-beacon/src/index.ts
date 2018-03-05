@@ -9,4 +9,5 @@ export {
   EventsMap,
   LoggerExtension,
   OfflineStorageExtension,
+  Target,
 } from './types';

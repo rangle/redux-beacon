@@ -2,7 +2,7 @@
  * @jest-environment node
  */
 
-import { GoogleAnalytics } from '../';
+import GoogleAnalytics from '../';
 
 const target = GoogleAnalytics();
 

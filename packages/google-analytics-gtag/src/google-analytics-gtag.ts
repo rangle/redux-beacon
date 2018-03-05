@@ -1,4 +1,6 @@
-export function GoogleAnalyticsGtag(gaTrackingId) {
+import { Target } from 'redux-beacon';
+
+function GoogleAnalyticsGtag(gaTrackingId: string): Target {
   if (typeof window === 'undefined') {
     return () => {};
   }
@@ -40,3 +42,5 @@ export function GoogleAnalyticsGtag(gaTrackingId) {
     });
   };
 }
+
+export default GoogleAnalyticsGtag;

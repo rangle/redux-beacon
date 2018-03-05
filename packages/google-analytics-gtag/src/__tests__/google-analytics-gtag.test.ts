@@ -1,4 +1,4 @@
-import { GoogleAnalyticsGtag } from '../';
+import GoogleAnalyticsGtag from '../';
 
 beforeEach(() => {
   window.gtag = jest.fn();

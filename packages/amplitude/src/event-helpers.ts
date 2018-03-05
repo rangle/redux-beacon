@@ -1,12 +1,13 @@
-import { EventHelperInput, AmplitudeProp } from './types';
+import { EventDefinition } from 'redux-beacon';
+import { AmplitudeProp } from './types';
 
 export const logEvent = (
-  eventDef: EventHelperInput<{
+  eventDef: EventDefinition<{
     type: string;
     properties?: { [key: string]: AmplitudeProp };
   }>
-) => (...args: any[]) => {
-  const event = eventDef(...args);
+): EventDefinition => (action, prevState, nextState) => {
+  const event = eventDef(action, prevState, nextState);
 
   if (event === null) return null;
 
@@ -17,11 +18,9 @@ export const logEvent = (
   };
 };
 
-export const setUserId = (eventDef: EventHelperInput<string>) => (
-  action: any,
-  prevState: any,
-  nextState: any
-) => {
+export const setUserId = (
+  eventDef: EventDefinition<string>
+): EventDefinition => (action, prevState, nextState) => {
   const userId = eventDef(action, prevState, nextState);
 
   return {
@@ -30,7 +29,7 @@ export const setUserId = (eventDef: EventHelperInput<string>) => (
   };
 };
 
-export const logout = () => () => [
+export const logout = (): EventDefinition => () => [
   {
     hitType: 'setUserId',
     userId: null,
@@ -41,8 +40,8 @@ export const logout = () => () => [
 ];
 
 export const setUserProperties = (
-  eventDef: EventHelperInput<{ [key: string]: AmplitudeProp | AmplitudeProp[] }>
-) => (action: any, prevState: any, nextState: any) => {
+  eventDef: EventDefinition<{ [key: string]: AmplitudeProp | AmplitudeProp[] }>
+): EventDefinition => (action, prevState, nextState) => {
   const userProperties = eventDef(action, prevState, nextState);
 
   return {

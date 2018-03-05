@@ -1,4 +1,4 @@
-export { GoogleAnalytics } from './google-analytics';
+import GoogleAnalytics from './google-analytics';
 export {
   trackPageView,
   trackEvent,
@@ -14,3 +14,5 @@ export {
   trackEcommPromotion,
   trackEcommAction,
 } from './event-helpers';
+
+export default GoogleAnalytics;

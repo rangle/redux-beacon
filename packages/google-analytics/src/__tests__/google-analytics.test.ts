@@ -1,4 +1,4 @@
-import { GoogleAnalytics } from '../';
+import GoogleAnalytics from '../';
 
 beforeEach(() => {
   window.ga = undefined;
@@ -159,11 +159,12 @@ describe('GoogleAnalytics(events)', () => {
       ];
 
       target(events);
-      expect(
-        window.ga
-      ).toHaveBeenCalledWith(`${customTrackerId}.ecommerce:addTransaction`, {
-        id,
-      });
+      expect(window.ga).toHaveBeenCalledWith(
+        `${customTrackerId}.ecommerce:addTransaction`,
+        {
+          id,
+        }
+      );
     });
 
     it('sends current cart state when send is called', () => {

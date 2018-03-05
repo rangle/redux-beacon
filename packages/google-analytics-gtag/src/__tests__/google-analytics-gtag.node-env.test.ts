@@ -2,7 +2,7 @@
  * @jest-environment node
  */
 
-import { GoogleAnalyticsGtag } from '../';
+import GoogleAnalyticsGtag from '../';
 
 const target = GoogleAnalyticsGtag('GA_TRACKING_ID');
 
