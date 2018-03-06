@@ -13,5 +13,8 @@
   },
   "homepage": "https://rangle.github.io/redux-beacon/docs/extensions/logger.html",
   "license": "MIT",
-  "dependencies": {}
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "build:watch": "tsc -p tsconfig.build.json -w"
+  }
 }

@@ -1,6 +1,6 @@
-export function GoogleTagManager(trackingId, GTMBridge) {
+export function GoogleTagManager(trackingId: string, GTMBridge) {
   GTMBridge.openContainerWithId(trackingId);
-  return function GoogleTagManagerTarget(events) {
+  return function GoogleTagManagerTarget(events: any[]) {
     events.forEach(event => {
       const eventToPush = (() => {
         if (event.event === undefined && event.hitType !== undefined) {

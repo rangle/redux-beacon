@@ -10,4 +10,6 @@ export {
   LoggerExtension,
   OfflineStorageExtension,
   Target,
+  ConnectivitySelector,
+  PurgedEventsHandler,
 } from './types';

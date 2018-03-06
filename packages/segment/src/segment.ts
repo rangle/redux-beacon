@@ -1,4 +1,6 @@
-export const Segment = () => events => {
+import { Target } from 'redux-beacon';
+
+const Segment = (): Target => events => {
   if (!window) return;
   if (!window.analytics) {
     throw new Error(
@@ -32,3 +34,5 @@ export const Segment = () => events => {
     }
   });
 };
+
+export default Segment;
