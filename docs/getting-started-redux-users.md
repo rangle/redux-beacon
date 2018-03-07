@@ -16,7 +16,7 @@ Choose a target, and follow the setup instructions.
 <br>
 > **[info]**
 > Don't see the target you need?
-> Follow the instructions [here](customize/create-own-target.md) to build your own.
+> Follow the instructions [here](examples-and-recipes.md#how-to-create-own-target.md) to build your own.
 
 ### Step 2
 Decide what you want to track and pick out the corresponding event definition:

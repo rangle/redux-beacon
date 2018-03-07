@@ -1,6 +1,6 @@
 * [Getting Started (Redux users)](docs/getting-started-redux-users.md)
 * [Getting Started (ngrx users)](docs/getting-started-ngrx-users.md)
-* [Examples & Recipes](docs/recipes/index.md)
+* [Examples & Recipes](docs/examples-and-recipes.md)
 * [Targets](docs/targets/index.md)
   * [GoogleAnalytics](docs/targets/google-analytics.md)
   * [GoogleAnalyticsGtag](docs/targets/google-analytics-gtag.md)
