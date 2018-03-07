@@ -10,3 +10,4 @@ node_modules
 /extensions
 /utils
 yarn-error.log
+lerna-debug.log

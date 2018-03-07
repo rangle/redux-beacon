@@ -1,1 +1,3 @@
-export { GoogleTagManager } from './google-tag-manager';
+import GoogleTagManager from './google-tag-manager';
+
+export default GoogleTagManager;

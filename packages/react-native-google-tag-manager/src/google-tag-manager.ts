@@ -1,4 +1,6 @@
-export function GoogleTagManager(trackingId: string, GTMBridge) {
+import { Target } from 'redux-beacon';
+
+function GoogleTagManager(trackingId: string, GTMBridge: any): Target {
   GTMBridge.openContainerWithId(trackingId);
   return function GoogleTagManagerTarget(events: any[]) {
     events.forEach(event => {
@@ -12,3 +14,5 @@ export function GoogleTagManager(trackingId: string, GTMBridge) {
     });
   };
 }
+
+export default GoogleTagManager;

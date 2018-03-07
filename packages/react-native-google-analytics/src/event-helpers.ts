@@ -1,9 +1,12 @@
-export const trackScreenView = eventDefinition => (
-  action,
-  prevState,
-  nextState
-) => {
-  const event = eventDefinition(action, prevState, nextState);
+import { EventDefinition } from 'redux-beacon';
+
+export const trackScreenView = (
+  eventDef: EventDefinition<{
+    screenName: string;
+    customDimensions?: object;
+  }>
+): EventDefinition => (action, prevState, nextState) => {
+  const event = eventDef(action, prevState, nextState);
   const { screenName, customDimensions } = event;
 
   const shouldSendCustomDimensionsEvent = Boolean(customDimensions);
@@ -22,8 +25,16 @@ export const trackScreenView = eventDefinition => (
   };
 };
 
-export const trackEvent = eventDefinition => (action, prevState, nextState) => {
-  const event = eventDefinition(action, prevState, nextState);
+export const trackEvent = (
+  eventDef: EventDefinition<{
+    action: string;
+    category: string;
+    label?: string;
+    value?: number;
+    customDimensions?: object;
+  }>
+): EventDefinition => (action, prevState, nextState) => {
+  const event = eventDef(action, prevState, nextState);
   const { category, label, value, customDimensions } = event;
 
   const shouldSendCustomDimensionsEvent = Boolean(customDimensions);
@@ -48,12 +59,30 @@ export const trackEvent = eventDefinition => (action, prevState, nextState) => {
   };
 };
 
-export const trackPurchase = eventDefinition => (
-  action,
-  prevState,
-  nextState
-) => {
-  const event = eventDefinition(action, prevState, nextState);
+export const trackPurchase = (
+  eventDef: EventDefinition<{
+    product: {
+      id: string;
+      name: string;
+      category?: string;
+      brand?: string;
+      variant?: string;
+      price?: number;
+      quantity?: number;
+      couponCode?: string;
+    };
+    transaction: {
+      id: string;
+      affiliation?: string;
+      revenue?: number;
+      tax?: number;
+      shipping?: number;
+    };
+    action: string;
+    category: string;
+  }>
+): EventDefinition => (action, prevState, nextState) => {
+  const event = eventDef(action, prevState, nextState);
   const { product, transaction, category } = event;
 
   return {
@@ -65,12 +94,15 @@ export const trackPurchase = eventDefinition => (
   };
 };
 
-export const trackTiming = eventDefinition => (
-  action,
-  prevState,
-  nextState
-) => {
-  const event = eventDefinition(action, prevState, nextState);
+export const trackTiming = (
+  eventDef: EventDefinition<{
+    category: string;
+    value: number;
+    name?: string;
+    label?: string;
+  }>
+): EventDefinition => (action, prevState, nextState) => {
+  const event = eventDef(action, prevState, nextState);
   const { category, value, label, name } = event;
 
   return {
@@ -82,12 +114,14 @@ export const trackTiming = eventDefinition => (
   };
 };
 
-export const trackSocialInteraction = eventDefinition => (
-  action,
-  prevState,
-  nextState
-) => {
-  const event = eventDefinition(action, prevState, nextState);
+export const trackSocialInteraction = (
+  eventDef: EventDefinition<{
+    network: string;
+    action: string;
+    target?: string;
+  }>
+): EventDefinition => (action, prevState, nextState) => {
+  const event = eventDef(action, prevState, nextState);
   const { network, target } = event;
 
   return {
@@ -98,8 +132,12 @@ export const trackSocialInteraction = eventDefinition => (
   };
 };
 
-export const setUser = eventDefinition => (action, prevState, nextState) => {
-  const userId = eventDefinition(action, prevState, nextState);
+export const setUser = (eventDef: EventDefinition<string>): EventDefinition => (
+  action,
+  prevState,
+  nextState
+) => {
+  const userId = eventDef(action, prevState, nextState);
 
   return {
     hitType: 'user',
@@ -107,8 +145,10 @@ export const setUser = eventDefinition => (action, prevState, nextState) => {
   };
 };
 
-export const setClient = eventDefinition => (action, prevState, nextState) => {
-  const clientId = eventDefinition(action, prevState, nextState);
+export const setClient = (
+  eventDef: EventDefinition<string>
+): EventDefinition => (action, prevState, nextState) => {
+  const clientId = eventDef(action, prevState, nextState);
 
   return {
     hitType: 'client',
@@ -116,12 +156,13 @@ export const setClient = eventDefinition => (action, prevState, nextState) => {
   };
 };
 
-export const trackException = eventDefinition => (
-  action,
-  prevState,
-  nextState
-) => {
-  const event = eventDefinition(action, prevState, nextState);
+export const trackException = (
+  eventDef: EventDefinition<{
+    description: string;
+    isFatal?: boolean;
+  }>
+): EventDefinition => (action, prevState, nextState) => {
+  const event = eventDef(action, prevState, nextState);
   const { description, isFatal } = event;
 
   return {

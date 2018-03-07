@@ -6,8 +6,7 @@
   "scripts": {
     "test": "jest",
     "build": "lerna run --parallel build",
-    "build:watch": "lerna run --parallel build:watch",
-    "build:clean": "rimraf packages/**/dist",
+    "build:clean": "rimraf packages/**/dist packages/**/yarn-error.log",
     "docs:prepare": "gitbook install",
     "docs:watch": "yarn run docs:prepare && gitbook serve",
     "docs:build": "yarn run docs:prepare && rm -rf _book && gitbook build",

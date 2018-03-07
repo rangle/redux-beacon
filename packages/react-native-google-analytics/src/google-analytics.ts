@@ -1,4 +1,9 @@
-export function GoogleAnalytics(trackingId, GoogleAnalyticsTracker) {
+import { Target } from 'redux-beacon';
+
+export function GoogleAnalytics(
+  trackingId: string,
+  GoogleAnalyticsTracker: any
+): Target {
   const tracker = new GoogleAnalyticsTracker(trackingId);
 
   function target(events) {

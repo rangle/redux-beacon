@@ -1,4 +1,5 @@
-export { GoogleAnalytics } from './google-analytics';
+import GoogleAnalytics from './google-analytics';
+
 export {
   trackScreenView,
   trackEvent,
@@ -9,3 +10,5 @@ export {
   setClient,
   trackException,
 } from './event-helpers';
+
+export default GoogleAnalytics;
