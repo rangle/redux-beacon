@@ -1,4 +1,4 @@
-import { Segment } from '../';
+import Segment from '../';
 
 window.analytics = {
   identify: jest.fn(),

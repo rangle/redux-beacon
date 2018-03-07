@@ -1,4 +1,4 @@
-import { GoogleAnalytics } from '../';
+import GoogleAnalytics from '../';
 
 describe('Target: React Native Google Analytics', () => {
   describe('GoogleAnalytics(trackingId, trackerConstructor)', () => {

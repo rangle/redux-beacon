@@ -1,6 +1,6 @@
 import { Target } from 'redux-beacon';
 
-export function GoogleAnalytics(
+function GoogleAnalytics(
   trackingId: string,
   GoogleAnalyticsTracker: any
 ): Target {
@@ -167,3 +167,5 @@ export function GoogleAnalytics(
 
   return target;
 }
+
+export default GoogleAnalytics;
