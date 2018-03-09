@@ -10,4 +10,4 @@ dependencies:
     - ~/.cache/yarn
 test:
   override:
-    - yarn run test
+    - yarn run check

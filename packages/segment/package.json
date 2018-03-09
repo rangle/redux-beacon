@@ -18,5 +18,8 @@
   },
   "peerDependencies": {
     "redux-beacon": "1.2.0"
+  },
+  "devDependencies": {
+    "@types/segment-analytics": "^0.0.28"
   }
 }

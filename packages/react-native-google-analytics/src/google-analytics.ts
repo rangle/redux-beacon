@@ -10,7 +10,7 @@ function GoogleAnalytics(
     events.forEach(event => {
       switch (event.hitType) {
         case 'event': {
-          const options = {};
+          const options: any = {};
 
           if (event.eventLabel !== undefined) {
             options.label = event.eventLabel;
@@ -28,7 +28,7 @@ function GoogleAnalytics(
         }
 
         case 'eventCustomDimensions': {
-          const options = {};
+          const options: any = {};
 
           if (event.eventLabel !== undefined) {
             options.label = event.eventLabel;
@@ -71,7 +71,7 @@ function GoogleAnalytics(
         case 'timing': {
           // timingVar is always required for timingLabel
           if (event.timingVar !== undefined) {
-            const options = { name: event.timingVar };
+            const options: any = { name: event.timingVar };
 
             if (event.timingLabel !== undefined) {
               options.label = event.timingLabel;

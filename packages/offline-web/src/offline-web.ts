@@ -13,28 +13,27 @@ function addTimestamp(events: any[]) {
 const DB_NAME = 'AnalyticsEvents';
 const DB_VERSION = 1;
 
-function openDB(dbName: string, version: number) {
+function openDB(dbName: string, version: number): Promise<IDBDatabase> {
   return new Promise((resolve, reject) => {
     const request = window.indexedDB.open(dbName, version);
 
     request.onsuccess = event => {
-      // TODO: change to request.result once fakeIndexeddb has
       // Typescript support and the tests are once again working
-      const db = event.target.result;
+      const db = request.result;
       resolve(db);
     };
     request.onupgradeneeded = event => {
       /* Runs if the db hasn't been created yet, or if the requested db
        * version is greater than the existing db version.  This will run
        * before onsuccess */
-      const db = event.target.result;
+      const db = request.result;
       db.createObjectStore('EventsStore', { autoIncrement: true });
     };
     request.onerror = reject;
   });
 }
 
-function save(events: any[], db: IDBDatabase) {
+function save(events: any[], db: IDBDatabase): Promise<any[]> {
   return new Promise((resolve, reject) => {
     const transaction = db.transaction(['EventsStore'], 'readwrite');
     const objectStore = transaction.objectStore('EventsStore');
@@ -53,7 +52,7 @@ function purge(db: IDBDatabase) {
 
     let oldEvents: any[] = [];
     openCursor.onsuccess = event => {
-      const cursor: IDBCursorWithValue = event.target.result;
+      const cursor: IDBCursorWithValue = openCursor.result;
       if (cursor) {
         oldEvents = oldEvents.concat(cursor.value);
         objectStore.delete(cursor.key);

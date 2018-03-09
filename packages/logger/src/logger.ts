@@ -56,7 +56,7 @@ export const logger: LoggerExtension = (
       events.forEach((event, index) => {
         console.log(`%c (${index + 1})`, styles.label, event);
       });
-      console.groupEnd('Events');
+      console.groupEnd();
     } else if (events.length === 1) {
       console.log('%c Event:', styles.label, events[0]);
     }
