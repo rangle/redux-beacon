@@ -5,7 +5,8 @@ machine:
     PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
 dependencies:
   override:
-    - yarn
+    - yarn install
+    - yarn lerna:bootstrap
   cache_directories:
     - ~/.cache/yarn
 test:

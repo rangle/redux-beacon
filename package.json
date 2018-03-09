@@ -7,6 +7,7 @@
     "test": "jest",
     "build": "lerna run --parallel build",
     "build:clean": "rimraf packages/**/dist packages/**/yarn-error.log",
+    "lerna:bootstrap": "lerna bootstrap",
     "check": "yarn run test && yarn run build",
     "docs:prepare": "gitbook install",
     "docs:watch": "yarn run docs:prepare && gitbook serve",
