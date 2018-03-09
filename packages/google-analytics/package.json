@@ -19,5 +19,8 @@
   },
   "peerDependencies": {
     "redux-beacon": "1.2.0"
+  },
+  "devDependencies": {
+    "@types/google.analytics": "0.0.38"
   }
 }

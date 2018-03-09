@@ -5,7 +5,7 @@ const GoogleAnalytics = (): Target => events => {
   if (typeof window === 'undefined') {
     return;
   }
-  if (typeof window.ga !== 'function') {
+  if (typeof (<any>window).ga !== 'function') {
     throw new Error(
       'window.ga is not defined, Have you forgotten to include Google Analytics?'
     );
@@ -22,46 +22,46 @@ const GoogleAnalytics = (): Target => events => {
       const callEvent = type =>
         ({
           addItem: () =>
-            window.ga(
+            ga(
               `${trackerId}${ecommPluginType}:addItem`,
               filterEcommEvents(event)
             ),
           addTransaction: () =>
-            window.ga(
+            ga(
               `${trackerId}${ecommPluginType}:addTransaction`,
               filterEcommEvents(event)
             ),
           addImpression: () =>
-            window.ga(
+            ga(
               `${trackerId}${ecommPluginType}:addImpression`,
               filterEcommEvents(event)
             ),
           addProduct: () =>
-            window.ga(
+            ga(
               `${trackerId}${ecommPluginType}:addProduct`,
               filterEcommEvents(event)
             ),
           addPromo: () =>
-            window.ga(
+            ga(
               `${trackerId}${ecommPluginType}:addPromo`,
               filterEcommEvents(event)
             ),
           addAction: () =>
-            window.ga(
+            ga(
               `${trackerId}${ecommPluginType}:addAction`,
               event.actionName,
               filterEcommEvents(event)
             ),
-          ecommClear: () => window.ga(`${trackerId}${ecommPluginType}:clear`),
-          ecommSend: () => window.ga(`${trackerId}${ecommPluginType}:send`),
+          ecommClear: () => ga(`${trackerId}${ecommPluginType}:clear`),
+          ecommSend: () => ga(`${trackerId}${ecommPluginType}:send`),
         }[type]());
 
       callEvent(event.hitType);
     } else {
       if (event.hitType === 'pageview') {
-        window.ga(`${trackerId}set`, 'page', event.page);
+        ga(`${trackerId}set`, 'page', event.page);
       }
-      window.ga(`${trackerId}send`, event);
+      ga(`${trackerId}send`, event);
     }
   });
 };
