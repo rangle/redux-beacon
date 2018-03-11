@@ -1,17 +1,19 @@
 import { Target } from 'redux-beacon';
 
+declare let gtag: any;
+
 function GoogleAnalyticsGtag(gaTrackingId: string): Target {
   if (typeof window === 'undefined') {
     return () => {};
   }
 
-  if (typeof window.gtag !== 'function') {
+  if (typeof (<any>window).gtag !== 'function') {
     throw new Error(
       'window.gtag is not a function. Did you forget to include the Google Site Tag snippet?'
     );
   }
 
-  window.gtag('config', gaTrackingId, { send_page_view: false });
+  gtag('config', gaTrackingId, { send_page_view: false });
 
   return function target(events) {
     const pageTracking = events.filter(event => event.type === 'page');
@@ -31,14 +33,14 @@ function GoogleAnalyticsGtag(gaTrackingId: string): Target {
       }
 
       trackingIds.forEach(id => {
-        window.gtag('config', id, params);
+        gtag('config', id, params);
       });
     });
 
     eventTracking.forEach(event => {
       const { type, action, ...params } = event;
 
-      window.gtag('event', action, params);
+      gtag('event', action, params);
     });
   };
 }

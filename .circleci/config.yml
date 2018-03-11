@@ -1,0 +1,16 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8.10.0
+    steps:
+      - checkout
+      - run:
+          name: Check Yarn Version
+          command: yarn --version
+      - run:
+          name: Install and Link Packages
+          command: yarn install
+      - run:
+          name: Run Tests and Typecheck
+          command: yarn run check

@@ -1,5 +1,7 @@
 import { AmplitudeOptions } from './types';
 
+declare let amplitude: any;
+
 /**
  * Creates the Amplitude target
  */
@@ -8,8 +10,7 @@ const Amplitude = (options?: AmplitudeOptions) => (events: Array<any>) => {
     return;
   }
 
-  const app =
-    (options && options.instance) || (<any>window).amplitude.getInstance();
+  const app = (options && options.instance) || amplitude.getInstance();
 
   let identity: any;
   let revenue: any;
@@ -41,7 +42,7 @@ const Amplitude = (options?: AmplitudeOptions) => (events: Array<any>) => {
         app.setVersionName(event.versionName);
         break;
       case 'identify':
-        identity = new (<any>window).amplitude.Identify();
+        identity = new amplitude.Identify();
 
         Object.keys(event).forEach(op => {
           const args = event[op];
@@ -95,7 +96,7 @@ const Amplitude = (options?: AmplitudeOptions) => (events: Array<any>) => {
         app.identify(identity);
         break;
       case 'logRevenueV2':
-        revenue = new (<any>window).amplitude.Revenue();
+        revenue = new amplitude.Revenue();
 
         Object.keys(event).forEach(attr => {
           const val = event[attr];
