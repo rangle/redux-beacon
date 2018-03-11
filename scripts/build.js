@@ -1,48 +1,30 @@
-/**
- * This script
- *   loops through each package
- *   transpiles the files under src/
- *   places the transpiled files in a newly created dist/ directory
- */
-
 'use strict';
 
-const babel = require('babel-core');
+const child_process = require('child_process');
 const fs = require('fs');
-const glob = require('glob');
 const path = require('path');
-const mkdirp = require('mkdirp');
 
-const BABEL_CONFIG = path.resolve(__dirname, '../.babelrc');
-const BUILD_DIR = 'dist';
-const IGNORE_PATTERN = '**/__{tests,mocks}__/**';
-const JS_FILES_PATTERN = '**/*.js';
-const PACKAGES_DIR = path.resolve(__dirname, '../packages');
-const SRC_DIR = 'src';
+const REDUX_BEACON = 'redux-beacon';
+const PATH_PACKAGES = path.resolve(__dirname, '../packages');
+const PATH_REDUX_BEACON = path.resolve(PATH_PACKAGES, REDUX_BEACON);
 
-const babelConfig = JSON.parse(fs.readFileSync(BABEL_CONFIG, 'utf8'));
+const runBuildScript = packagePath => {
+  console.log(`...building ${path.basename(packagePath)}`);
 
-const packages = fs
-  .readdirSync(PACKAGES_DIR)
-  .map(dirName => path.resolve(PACKAGES_DIR, dirName));
-
-packages.forEach(packagePath => {
-  const buildDir = path.resolve(packagePath, BUILD_DIR);
-  mkdirp.sync(buildDir);
-
-  const filesToTransformGlob = path.resolve(
-    packagePath,
-    SRC_DIR,
-    JS_FILES_PATTERN,
-  );
-
-  const filesToTransform = glob.sync(filesToTransformGlob, {
-    ignore: IGNORE_PATTERN,
+  const buildProcess = child_process.spawnSync('yarn', ['build'], {
+    cwd: packagePath,
+    stdio: 'inherit',
   });
 
-  filesToTransform.forEach(filePath => {
-    const transformedFile = babel.transformFileSync(filePath, babelConfig).code;
-    const newPath = path.resolve(buildDir, path.basename(filePath));
-    fs.writeFileSync(newPath, transformedFile);
-  });
-});
+  if (buildProcess.status > 0) {
+    process.exit(buildProcess.status);
+  }
+};
+
+runBuildScript(PATH_REDUX_BEACON);
+
+fs
+  .readdirSync(PATH_PACKAGES)
+  .filter(dirName => dirName !== REDUX_BEACON)
+  .map(dirName => path.resolve(PATH_PACKAGES, dirName))
+  .forEach(runBuildScript);

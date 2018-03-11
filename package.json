@@ -5,8 +5,8 @@
   ],
   "scripts": {
     "test": "jest",
-    "build": "lerna run --parallel build",
-    "build:clean": "rimraf packages/**/dist packages/**/yarn-error.log",
+    "build": "node scripts/build.js",
+    "clean": "rimraf packages/**/dist packages/**/yarn-error.log _book yarn-error.log lerna-debug.log",
     "check": "yarn run test && yarn run build",
     "docs:prepare": "gitbook install",
     "docs:watch": "yarn run docs:prepare && gitbook serve",
@@ -34,11 +34,7 @@
   },
   "devDependencies": {
     "@types/jest": "22.1.4",
-    "@types/joi": "^13.0.5",
-    "babel-core": "6.26.0",
-    "babel-jest": "22.2.0",
-    "babel-preset-env": "1.6.1",
-    "babel-preset-stage-3": "6.24.1",
+    "@types/joi": "13.0.5",
     "consolemock": "1.0.4",
     "fake-indexeddb": "2.0.4",
     "gitbook-cli": "2.3.2",

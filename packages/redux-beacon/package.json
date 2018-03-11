@@ -22,8 +22,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
-    "build:watch": "tsc -p tsconfig.build.json -w"
+    "build": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
     "array-flatten": "2.1.1"
