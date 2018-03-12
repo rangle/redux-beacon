@@ -1,7 +1,7 @@
 This is a...
 ----
  - [] Bug Report
- - [] Feature Request
+ - [] Feature/Documentation Request
 
 **Note:** for support questions, please use [stackoverflow](https://stackoverflow.com/questions/tagged/redux-beacon) with the `redux-beacon` tag. This repository's issues are reserved for feature requests and bug reports.
 
@@ -38,9 +38,9 @@ _(If this is a feature request feel free to delete the [Bug] sections, and likew
 
 [Feature] What's missing from Redux Beacon that you'd like to add?
 ----
- ...Describe the feature you wish you had.
+ ...Describe the feature or documentation you wish you had.
 
-[Feature] Can you help out?
+Can you help out?
 ----
  - [] :star2: I am a legend and can get started on a pull request right away given the go-ahead.
  - [] :star: I am a superstar and would like to help out given some guidance.
