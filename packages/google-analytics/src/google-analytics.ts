@@ -1,11 +1,11 @@
-import { filterEcommEvents, isEcommEvent } from './utils';
 import { Target } from 'redux-beacon';
+import { filterEcommEvents, isEcommEvent } from './utils';
 
 const GoogleAnalytics = (): Target => events => {
   if (typeof window === 'undefined') {
     return;
   }
-  if (typeof (<any>window).ga !== 'function') {
+  if (typeof (window as any).ga !== 'function') {
     throw new Error(
       'window.ga is not defined, Have you forgotten to include Google Analytics?'
     );

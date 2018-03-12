@@ -1,9 +1,9 @@
 import * as flatten from 'array-flatten';
 import isPromise from './is-promise';
-import { Target, Extensions, LoggerExtension } from './types';
+import { Extensions, LoggerExtension, Target } from './types';
 
 function registerEvents(
-  events: Array<any>,
+  events: any[],
   target: Target,
   extensions: Extensions = {},
   prevState = {},
@@ -13,13 +13,13 @@ function registerEvents(
   const { logger, offlineStorage } = extensions;
 
   const ifLoggerLog: LoggerExtension = (
-    events,
-    action,
-    state,
+    eventsToLog,
+    actionToLog,
+    stateToLog,
     ...rest: any[]
   ) => {
     if (typeof logger === 'function') {
-      logger(events, action, state, ...rest);
+      logger(eventsToLog, actionToLog, stateToLog, ...rest);
     }
   };
 

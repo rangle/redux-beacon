@@ -1,6 +1,6 @@
 import {
-  OfflineStorageExtension,
   ConnectivitySelector,
+  OfflineStorageExtension,
   PurgedEventsHandler,
 } from 'redux-beacon';
 

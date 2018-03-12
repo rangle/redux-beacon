@@ -1,11 +1,11 @@
 import * as makeConsoleMock from 'consolemock';
-import { logger, getTimestamp } from '../';
+import { getTimestamp, logger } from '../';
 
 beforeAll(() => {
   console = makeConsoleMock(console);
 });
 
-/* eslint-disable no-console */
+/* tslint:disable: no-console */
 afterEach(() => {
   console.clearHistory();
 });

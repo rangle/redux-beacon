@@ -1,14 +1,14 @@
 import Amplitude from '../';
 import amplitudeSDKMock, { resetAllMocks } from './amplitude.mocks';
 
-(<any>window).amplitude = amplitudeSDKMock;
+(window as any).amplitude = amplitudeSDKMock;
 
 afterEach(() => {
   resetAllMocks();
 });
 
 it('does not call any service when hitType is undefined', () => {
-  const app = (<any>window).amplitude.getInstance();
+  const app = (window as any).amplitude.getInstance();
 
   const events = [
     {
@@ -24,7 +24,7 @@ it('does not call any service when hitType is undefined', () => {
 });
 
 it('sets a user id when the setUserId hitType is specified', () => {
-  const app = (<any>window).amplitude.getInstance();
+  const app = (window as any).amplitude.getInstance();
 
   const events = [
     {
@@ -39,7 +39,7 @@ it('sets a user id when the setUserId hitType is specified', () => {
 });
 
 it('sets user props when the setUserProperties hitType is specified', () => {
-  const app = (<any>window).amplitude.getInstance();
+  const app = (window as any).amplitude.getInstance();
 
   const events = [
     {
@@ -56,7 +56,7 @@ it('sets user props when the setUserProperties hitType is specified', () => {
 });
 
 it('clears props when the clearUserProperties hitType is specified', () => {
-  const app = (<any>window).amplitude.getInstance();
+  const app = (window as any).amplitude.getInstance();
 
   const events = [
     {
@@ -70,7 +70,7 @@ it('clears props when the clearUserProperties hitType is specified', () => {
 });
 
 it('logs an event when the logEvent hitType is specified', () => {
-  const app = (<any>window).amplitude.getInstance();
+  const app = (window as any).amplitude.getInstance();
 
   const events = [
     {
@@ -98,7 +98,7 @@ it('logs an event when the logEvent hitType is specified', () => {
 });
 
 it('sets group info when the setGroup hitType is specified', () => {
-  const app = (<any>window).amplitude.getInstance();
+  const app = (window as any).amplitude.getInstance();
 
   const events = [
     {
@@ -117,7 +117,7 @@ it('sets group info when the setGroup hitType is specified', () => {
 });
 
 it('resets deviceId when the regenerateDeviceId hitType is specified', () => {
-  const app = (<any>window).amplitude.getInstance();
+  const app = (window as any).amplitude.getInstance();
 
   const events = [
     {
@@ -131,7 +131,7 @@ it('resets deviceId when the regenerateDeviceId hitType is specified', () => {
 });
 
 it('stops tracking when the setOptOut hitType is specified', () => {
-  const app = (<any>window).amplitude.getInstance();
+  const app = (window as any).amplitude.getInstance();
 
   const events = [
     {
@@ -145,7 +145,7 @@ it('stops tracking when the setOptOut hitType is specified', () => {
 });
 
 it('sets version name when the setVersionName hitType is specified', () => {
-  const app = (<any>window).amplitude.getInstance();
+  const app = (window as any).amplitude.getInstance();
 
   const events = [
     {
@@ -160,8 +160,8 @@ it('sets version name when the setVersionName hitType is specified', () => {
 });
 
 it('builds an identity when the identify hitType is specified', () => {
-  const app = (<any>window).amplitude.getInstance();
-  const identity = new (<any>window).amplitude.Identify();
+  const app = (window as any).amplitude.getInstance();
+  const identity = new (window as any).amplitude.Identify();
 
   const events: any[] = [
     {
@@ -211,8 +211,8 @@ it('builds an identity when the identify hitType is specified', () => {
 });
 
 it('tracks revenue when the logRevenueV2 hitType is specified', () => {
-  const app = (<any>window).amplitude.getInstance();
-  const revenue = new (<any>window).amplitude.Revenue();
+  const app = (window as any).amplitude.getInstance();
+  const revenue = new (window as any).amplitude.Revenue();
 
   const events = [
     {
@@ -240,7 +240,7 @@ it('tracks revenue when the logRevenueV2 hitType is specified', () => {
 });
 
 it('uses options.instance when provided', () => {
-  const app = (<any>window).amplitude.getInstance();
+  const app = (window as any).amplitude.getInstance();
 
   const instance: any = {
     setUserId: jest.fn(),

@@ -7,7 +7,8 @@
     "test": "jest",
     "build": "node scripts/build.js",
     "clean": "rimraf packages/**/dist packages/**/yarn-error.log _book yarn-error.log lerna-debug.log",
-    "check": "yarn run test && yarn run build",
+    "lint": "tslint 'packages/**/*.ts' -e 'packages/**/dist/*'",
+    "check": "yarn test && yarn build && yarn lint",
     "docs:prepare": "gitbook install",
     "docs:watch": "yarn run docs:prepare && gitbook serve",
     "docs:build": "yarn run docs:prepare && rm -rf _book && gitbook build",
@@ -48,6 +49,8 @@
     "redux": "3.6.0",
     "rimraf": "2.6.2",
     "ts-jest": "22.4.1",
+    "tslint": "5.9.1",
+    "tslint-config-prettier": "1.9.0",
     "typescript": "2.7.2"
   }
 }

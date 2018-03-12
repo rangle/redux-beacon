@@ -1,6 +1,6 @@
 import createEvents from './create-events';
-import registerEvents from './register-events';
 import getEventsWithMatchingKey from './get-events-with-matching-key';
+import registerEvents from './register-events';
 import { EventsMap, Extensions, Target } from './types';
 
 /**
@@ -12,7 +12,7 @@ function createMetaReducer(
   extensions: Extensions = {}
 ) {
   /* Why not arrow functions? AOT... */
-  /* eslint-disable func-names */
+  /* tslint:disable: only-arrow-functions */
   return function(reducer) {
     return function(prevState, action) {
       const nextState = reducer(prevState, action);

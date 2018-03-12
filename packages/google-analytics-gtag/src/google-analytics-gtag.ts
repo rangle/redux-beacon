@@ -7,7 +7,7 @@ function GoogleAnalyticsGtag(gaTrackingId: string): Target {
     return () => {};
   }
 
-  if (typeof (<any>window).gtag !== 'function') {
+  if (typeof (window as any).gtag !== 'function') {
     throw new Error(
       'window.gtag is not a function. Did you forget to include the Google Site Tag snippet?'
     );

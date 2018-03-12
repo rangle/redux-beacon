@@ -1,4 +1,4 @@
-import { EventsMap, EventDefinition } from './types';
+import { EventDefinition, EventsMap } from './types';
 
 function getEventsWithMatchingKey(
   eventsMap: EventsMap,
