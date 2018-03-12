@@ -4,15 +4,17 @@
     "packages/*"
   ],
   "scripts": {
-    "test": "jest",
     "build": "node scripts/build.js",
-    "clean": "rimraf packages/**/dist packages/**/yarn-error.log _book yarn-error.log lerna-debug.log",
-    "lint": "tslint 'packages/**/*.ts' -e 'packages/**/dist/*'",
     "check": "yarn test && yarn build && yarn lint",
-    "docs:prepare": "gitbook install",
-    "docs:watch": "yarn run docs:prepare && gitbook serve",
+    "clean": "rimraf packages/**/dist packages/**/yarn-error.log _book yarn-error.log lerna-debug.log",
     "docs:build": "yarn run docs:prepare && rm -rf _book && gitbook build",
-    "docs:publish": "yarn run docs:build && cd _book && git init && git commit --allow-empty -m 'Update docs' && git checkout -b gh-pages && git add . && git commit -am 'Update docs' && git push git@github.com:rangle/redux-beacon gh-pages --force"
+    "docs:prepare": "gitbook install",
+    "docs:publish": "yarn run docs:build && cd _book && git init && git commit --allow-empty -m 'Update docs' && git checkout -b gh-pages && git add . && git commit -am 'Update docs' && git push git@github.com:rangle/redux-beacon gh-pages --force",
+    "docs:watch": "yarn run docs:prepare && gitbook serve",
+    "lint": "tslint 'packages/**/*.ts' -e 'packages/**/dist/*'",
+    "precommit": "lint-staged",
+    "prettier": "prettier --write",
+    "test": "jest"
   },
   "jest": {
     "transform": {
@@ -33,6 +35,9 @@
       "__snapshots__"
     ]
   },
+  "lint-staged": {
+    "*.ts": ["yarn prettier", "git add"]
+  },
   "devDependencies": {
     "@types/jest": "22.1.4",
     "@types/joi": "13.0.5",
@@ -40,9 +45,11 @@
     "fake-indexeddb": "2.0.4",
     "gitbook-cli": "2.3.2",
     "glob": "7.1.2",
+    "husky": "0.14.3",
     "jest": "22.4.2",
     "joi": "10.5.2",
     "lerna": "2.9.0",
+    "lint-staged": "7.0.0",
     "mkdirp": "0.5.1",
     "moment": "2.21.0",
     "prettier": "1.11.0",
