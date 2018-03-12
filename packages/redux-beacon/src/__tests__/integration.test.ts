@@ -1,5 +1,5 @@
-import { createStore, applyMiddleware } from 'redux';
-import { createMiddleware, createMetaReducer } from '../';
+import { applyMiddleware, createStore } from 'redux';
+import { createMetaReducer, createMiddleware } from '../';
 
 function runIntegrationTests(title, prepareStore) {
   describe(title, () => {
@@ -61,9 +61,10 @@ function runIntegrationTests(title, prepareStore) {
 
     describe('When an event definition is validated', () => {
       it('only pushes valid events to the target', () => {
+        /* tslint:disable-next-line */
         const onlyEventsOfType = (...hitTypes) => eventDef => (...args) =>
           eventDef(...args).map(
-            event => ([...hitTypes].includes(event.hitType) ? event : null),
+            event => ([...hitTypes].includes(event.hitType) ? event : null)
           );
 
         const eventDef = () => [
@@ -90,11 +91,11 @@ function runIntegrationTests(title, prepareStore) {
 runIntegrationTests(
   'createMiddleware(eventsMap, target, extensions?)',
   (reducer, eventsMap, target) =>
-    createStore(reducer, applyMiddleware(createMiddleware(eventsMap, target))),
+    createStore(reducer, applyMiddleware(createMiddleware(eventsMap, target)))
 );
 
 runIntegrationTests(
   'createMetaReducer(eventsMap, target, extensions?)',
   (reducer, eventsMap, target) =>
-    createStore(createMetaReducer(eventsMap, target)(reducer)),
+    createStore(createMetaReducer(eventsMap, target)(reducer))
 );

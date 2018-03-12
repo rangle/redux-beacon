@@ -1,6 +1,6 @@
 import createEvents from './create-events';
-import registerEvents from './register-events';
 import getEventsWithMatchingKey from './get-events-with-matching-key';
+import registerEvents from './register-events';
 import { EventsMap, Extensions, Target } from './types';
 
 /**

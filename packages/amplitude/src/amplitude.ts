@@ -5,8 +5,8 @@ declare let amplitude: any;
 /**
  * Creates the Amplitude target
  */
-const Amplitude = (options?: AmplitudeOptions) => (events: Array<any>) => {
-  if (!window || !(<any>window).amplitude) {
+const Amplitude = (options?: AmplitudeOptions) => (events: any[]) => {
+  if (!window || !(window as any).amplitude) {
     return;
   }
 

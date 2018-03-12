@@ -31,13 +31,13 @@ export type LoggerExtension = (
 
 export type ConnectivitySelector = (state: any) => boolean;
 export type PurgedEventsHandler = (events: any[]) => void;
-export type OfflineStorageExtension = {
+export interface OfflineStorageExtension {
   saveEvents: (events: any[]) => Promise<any[]>;
   purgeEvents: (handlePurgedEvents: PurgedEventsHandler) => Promise<void>;
   isConnected: ConnectivitySelector;
-};
+}
 
-export type Extensions = {
+export interface Extensions {
   logger?: LoggerExtension;
   offlineStorage?: OfflineStorageExtension;
-};
+}

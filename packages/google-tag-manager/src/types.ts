@@ -1,3 +1,3 @@
-export type Options = {
+export interface Options {
   dataLayerName?: string;
-};
+}

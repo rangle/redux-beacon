@@ -23,6 +23,7 @@ const styles = {
   label: 'color: #93748A; font-weight: bold;',
 };
 
+/* tslint:disable: no-console */
 export const logger: LoggerExtension = (
   events,
   action,

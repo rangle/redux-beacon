@@ -1,4 +1,4 @@
-export type Traits = {
+export interface Traits {
   address?: {
     city?: string;
     country?: string;
@@ -17,4 +17,4 @@ export type Traits = {
   phone?: string;
   website?: string;
   plan?: string;
-};
+}

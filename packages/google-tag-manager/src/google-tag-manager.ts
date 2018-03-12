@@ -8,8 +8,8 @@ export const GoogleTagManager = ({
     return;
   }
   if (
-    !(<any>window)[dataLayerName] ||
-    typeof (<any>window)[dataLayerName].push !== 'function'
+    !(window as any)[dataLayerName] ||
+    typeof (window as any)[dataLayerName].push !== 'function'
   ) {
     throw new Error(
       `redux-beacon error: window.${dataLayerName} is not defined. Have you forgotten to include Google Tag Manager and dataLayer?`
@@ -22,6 +22,6 @@ export const GoogleTagManager = ({
       }
       return event;
     })();
-    (<any>window)[dataLayerName].push(eventToPush);
+    (window as any)[dataLayerName].push(eventToPush);
   });
 };

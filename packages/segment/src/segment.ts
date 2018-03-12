@@ -1,8 +1,8 @@
 import { Target } from 'redux-beacon';
 
 const Segment = (): Target => events => {
-  if (!window) return;
-  if (!(<any>window).analytics) {
+  if (!window) { return; }
+  if (!(window as any).analytics) {
     throw new Error(
       'window.analytics is not defined, Have you forgotten to include the Segment tracking snippet?'
     );

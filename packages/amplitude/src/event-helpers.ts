@@ -9,7 +9,7 @@ export const logEvent = (
 ): EventDefinition => (action, prevState, nextState) => {
   const event = eventDef(action, prevState, nextState);
 
-  if (event === null) return null;
+  if (event === null) { return null; }
 
   return {
     hitType: 'logEvent',
