@@ -15,4 +15,8 @@ _...Describe the fix you made, the feature you built, or the documentation you a
 
 Associated Issues
 ----
- - _list any associated issue number here_
+ - _list any associated issue numbers here_
+
+:heart: Thanks
+----
+Thanks for taking the time to help out with the project, it's much appreciated :slightly-smiley-face:!
