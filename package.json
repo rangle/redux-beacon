@@ -6,7 +6,7 @@
   "scripts": {
     "build": "node scripts/build.js",
     "check": "yarn test && yarn build && yarn lint",
-    "clean": "rimraf packages/**/dist packages/**/yarn-error.log _book yarn-error.log lerna-debug.log",
+    "clean": "rimraf packages/**/dist packages/**/yarn-error.log _book yarn-error.log",
     "docs:build": "yarn run docs:prepare && rm -rf _book && gitbook build",
     "docs:prepare": "gitbook install",
     "docs:publish": "yarn run docs:build && cd _book && git init && git commit --allow-empty -m 'Update docs' && git checkout -b gh-pages && git add . && git commit -am 'Update docs' && git push git@github.com:rangle/redux-beacon gh-pages --force",
@@ -36,7 +36,10 @@
     ]
   },
   "lint-staged": {
-    "*.ts": ["yarn prettier", "git add"]
+    "*.ts": [
+      "yarn prettier",
+      "git add"
+    ]
   },
   "devDependencies": {
     "@types/jest": "22.1.4",
@@ -48,7 +51,6 @@
     "husky": "0.14.3",
     "jest": "22.4.2",
     "joi": "10.5.2",
-    "lerna": "2.9.0",
     "lint-staged": "7.0.0",
     "mkdirp": "0.5.1",
     "moment": "2.21.0",
