@@ -19,4 +19,4 @@ Associated Issues
 
 :heart: Thanks
 ----
-Thanks for taking the time to help out with the project, it's much appreciated :slightly-smiley-face:!
+Thanks for taking the time to help out with the project, it's much appreciated :slightly_smiling_face:!
