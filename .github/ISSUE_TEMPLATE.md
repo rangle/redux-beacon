@@ -33,15 +33,15 @@ delete the :beetle: sections)_
 
 :beetle:  What did you expect to happen?
 ----
- ...Describe what you expected to happen.
+ _...Describe what you expected to happen._
 
 :beetle: What happened instead?
 ----
- ...Describe what happened instead.
+ _...Describe what happened instead._
 
 :rocket: :scroll: What's missing from Redux Beacon that you'd like to add?
 ----
- ...Describe the feature or documentation you wish you had.
+ _...Describe the feature or documentation you wish you had._
 
 Can you help out?
 ----
