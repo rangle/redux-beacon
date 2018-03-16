@@ -14,6 +14,7 @@
   "homepage": "https://rangle.github.io/redux-beacon/docs/targets/google-tag-manager.html",
   "license": "MIT",
   "scripts": {
+    "prepublishOnly": "yarn run build",
     "build": "tsc -p tsconfig.build.json"
   },
   "peerDependencies": {
