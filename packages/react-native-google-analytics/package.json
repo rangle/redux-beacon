@@ -13,6 +13,7 @@
   "homepage": "https://rangle.github.io/redux-beacon/docs/targets/react-native-google-analytics.html",
   "license": "MIT",
   "scripts": {
+    "prepublishOnly": "yarn run build",
     "build": "tsc -p tsconfig.build.json"
   },
   "peerDependencies": {

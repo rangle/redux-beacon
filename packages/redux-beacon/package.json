@@ -22,6 +22,7 @@
   },
   "license": "MIT",
   "scripts": {
+    "prepublishOnly": "yarn run build",
     "build": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
