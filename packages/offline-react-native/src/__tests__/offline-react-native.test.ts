@@ -1,4 +1,4 @@
-import { offlineReactNative } from '../';
+import offlineReactNative from '../';
 
 describe('When saving events:', () => {
   it('calls AsyncStorage.setItem correctly', () => {

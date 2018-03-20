@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Google Analytics integration for Redux",
   "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "engines": {
     "node": ">= 6"
   },
@@ -17,6 +18,6 @@
     "build": "tsc -p tsconfig.build.json"
   },
   "peerDependencies": {
-    "redux-beacon": "1.2.0"
+    "redux-beacon": "2.x"
   }
 }

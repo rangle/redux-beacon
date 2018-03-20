@@ -12,7 +12,7 @@ function addTimestamp(events: any[]) {
 
 const STORE_KEY = 'EventsStore';
 
-export function offlineReactNative(
+function offlineReactNative(
   AsyncStorage: any,
   isConnected: ConnectivitySelector
 ): OfflineStorageExtension {
@@ -38,3 +38,5 @@ export function offlineReactNative(
     purgeEvents,
   };
 }
+
+export default offlineReactNative;

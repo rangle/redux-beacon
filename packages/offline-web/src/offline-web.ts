@@ -65,7 +65,7 @@ function purge(db: IDBDatabase) {
   });
 }
 
-export function offlineWeb(
+function offlineWeb(
   isConnected: ConnectivitySelector
 ): OfflineStorageExtension {
   return {
@@ -80,3 +80,5 @@ export function offlineWeb(
     isConnected,
   };
 }
+
+export default offlineWeb;
