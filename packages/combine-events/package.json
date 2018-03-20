@@ -21,6 +21,6 @@
     "array-flatten": "2.1.1"
   },
   "peerDependencies": {
-    "redux-beacon": "1.2.0"
+    "redux-beacon": "2.x"
   }
 }

@@ -24,7 +24,7 @@ const styles = {
 };
 
 /* tslint:disable: no-console */
-export const logger: LoggerExtension = (
+const logger: LoggerExtension = (
   events,
   action,
   state,
@@ -85,3 +85,5 @@ export const logger: LoggerExtension = (
     }
   }
 };
+
+export default logger;

@@ -19,6 +19,6 @@
   },
   "peerDependencies": {
     "amplitude-js": "^4.1.0",
-    "redux-beacon": "1.2.0"
+    "redux-beacon": "2.x"
   }
 }

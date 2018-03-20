@@ -1,7 +1,7 @@
 import { Target } from 'redux-beacon';
 import { Options } from './types';
 
-export const GoogleTagManager = ({
+const GoogleTagManager = ({
   dataLayerName = 'dataLayer',
 }: Options = {}): Target => events => {
   if (typeof window === 'undefined') {
@@ -25,3 +25,5 @@ export const GoogleTagManager = ({
     (window as any)[dataLayerName].push(eventToPush);
   });
 };
+
+export default GoogleTagManager;

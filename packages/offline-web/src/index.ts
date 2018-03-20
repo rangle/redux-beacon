@@ -1,1 +1,3 @@
-export { offlineWeb } from './offline-web';
+import offlineWeb from './offline-web';
+
+export default offlineWeb;

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Logger extension for Redux Beacon",
   "main": "dist/index.js",
-  "typings": "./index.d.ts",
+  "typings": "dist/index.d.ts",
   "engines": {
     "node": ">= 6"
   },
@@ -18,6 +18,6 @@
     "build": "tsc -p tsconfig.build.json"
   },
   "peerDependencies": {
-    "redux-beacon": "1.2.0"
+    "redux-beacon": "2.x"
   }
 }

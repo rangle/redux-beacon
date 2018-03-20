@@ -5,7 +5,7 @@
   ],
   "scripts": {
     "build": "node scripts/build.js",
-    "check": "yarn test && yarn build && yarn lint",
+    "check": "yarn build && yarn lint && yarn test",
     "clean": "rimraf packages/**/dist packages/**/yarn-error.log _book yarn-error.log",
     "docs:build": "yarn run docs:prepare && rm -rf _book && gitbook build",
     "docs:prepare": "gitbook install",

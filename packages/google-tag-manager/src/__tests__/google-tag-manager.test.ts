@@ -1,4 +1,4 @@
-import { GoogleTagManager } from '../';
+import GoogleTagManager from '../';
 
 beforeEach(() => {
   window.dataLayer = undefined;

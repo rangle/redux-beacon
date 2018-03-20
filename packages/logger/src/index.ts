@@ -1,1 +1,3 @@
-export { logger, getTimestamp } from './logger';
+import logger from './logger';
+
+export default logger;

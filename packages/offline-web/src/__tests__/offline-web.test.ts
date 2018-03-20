@@ -1,6 +1,6 @@
 // import fakeIndexedDB from 'fake-indexeddb';
 
-import { offlineWeb } from '../';
+import offlineWeb from '../';
 
 describe.skip('offlineWeb', () => {
   window.indexedDB = fakeIndexedDB;

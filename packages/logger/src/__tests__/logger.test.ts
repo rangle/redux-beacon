@@ -1,5 +1,5 @@
 import * as makeConsoleMock from 'consolemock';
-import { getTimestamp, logger } from '../';
+import logger, { getTimestamp } from '../logger';
 
 beforeAll(() => {
   console = makeConsoleMock(console);
