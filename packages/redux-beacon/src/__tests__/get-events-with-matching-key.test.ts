@@ -22,64 +22,32 @@ import getEventsWithMatchingKey from '../get-events-with-matching-key';
     expected: [],
   },
   {
-    title: 'action type matches a key pattern',
+    title: 'action type matches "*"',
     eventsMap: {
-      '@@ROUTER@@': 'eventDefRouter',
+      '*': 'eventDefAll',
       ACTION_TYPE_A: 'eventDefAA',
       ACTION_TYPE_B: 'eventDefB',
     },
     actionType: '@@ROUTER@@/some/path',
-    expected: ['eventDefRouter'],
+    expected: ['eventDefAll'],
   },
   {
-    title: 'action type matches a key pattern and has exact match',
+    title: 'action type matches "*" and a key',
     eventsMap: {
-      ACTION_TYPE_A: 'eventDefA',
+      '*': 'eventDefAll',
       ACTION_TYPE_AA: 'eventDefAA',
       ACTION_TYPE_BB: 'eventDefBB',
     },
     actionType: 'ACTION_TYPE_AA',
-    expected: ['eventDefA', 'eventDefAA'],
+    expected: ['eventDefAll', 'eventDefAA'],
   },
   {
-    title: 'action type matches multiple key patterns',
+    title: 'action type has square braces',
     eventsMap: {
-      ACTION_TYPE: 'eventDefX',
-      ACTION_TYPE_A: 'eventDefA',
-      ACTION_TYPE_B: 'eventDefB',
+      '[Collection] Add Book Success': 'eventDefAddBookSuccess',
     },
-    actionType: 'ACTION_TYPE_AA',
-    expected: ['eventDefX', 'eventDefA'],
-  },
-  {
-    title: 'action type matches .* pattern',
-    eventsMap: {
-      '.*': 'eventDefAll',
-      ACTION_TYPE_A: 'eventDefA',
-      ACTION_TYPE_B: 'eventDefB',
-    },
-    actionType: 'ANY_ACTION_TYPE',
-    expected: ['eventDefAll'],
-  },
-  {
-    title: 'action type matches .* pattern and key pattern',
-    eventsMap: {
-      '.*': 'eventDefAll',
-      ACTION_TYPE: 'eventDefAny',
-      ACTION_TYPE_B: 'eventDefB',
-    },
-    actionType: 'ACTION_TYPE_Z',
-    expected: ['eventDefAll', 'eventDefAny'],
-  },
-  {
-    title: 'action type matches .* pattern and has exact match',
-    eventsMap: {
-      '.*': 'eventDefAll',
-      ACTION_TYPE_Z: 'eventDefZ',
-      ACTION_TYPE_B: 'eventDefB',
-    },
-    actionType: 'ACTION_TYPE_Z',
-    expected: ['eventDefAll', 'eventDefZ'],
+    actionType: '[Collection] Add Book Success',
+    expected: ['eventDefAddBookSuccess'],
   },
 ].forEach((scenario, index) => {
   const { title, eventsMap, actionType, expected, only } = scenario;

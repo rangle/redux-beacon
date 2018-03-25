@@ -5,7 +5,7 @@ function getEventsWithMatchingKey(
   actionType: string
 ): EventDefinition[] {
   return Object.keys(eventsMap)
-    .filter(key => RegExp(key).test(actionType))
+    .filter(key => key === '*' || key === actionType)
     .map(matchingKey => eventsMap[matchingKey]);
 }
 
