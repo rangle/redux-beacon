@@ -38,7 +38,52 @@ const gaMetaReducer = createMetaReducer(eventsMap, GoogleAnalytics());
 ## How to Create Your Own Target
 
 Both createMiddleware and createMetaReducer require a target as their second
-parameter. A target is simply a function that Redux Beacon calls with an array
-of generated analytics events. What a target does with the array of generated
+parameter. A target is a function that Redux Beacon calls with an array of
+generated analytics events. What a target does with the array of generated
 events is up to the target's author, although the assumption is that the target
 will send those events to an external analytics service.
+
+```js
+function myCustomTarget(events) {
+ // - do something with the events.
+ // - an event is usually an Object ({}), but doesn't have to be.
+ // - an event should be serializable.
+ // - events are what's returned from event definitions that you pair to action types.
+ }
+```
+
+Most targets leverage an existing JavaScript sdk from an analytics service
+(e.g. Google Analytics), but some might post their own server requests.
+
+```js
+// import an sdk, or install it as a global module
+function myCustomTarget(events) {
+  events.forEach(event => {
+    switch (event.type) {
+      case 'some_event_type_you_define':
+        window.mySDK.someMethod(event.paramA, event.paramB);
+        break;
+      case 'some_other_event_type':
+        window.mySDK.someOtherMethod(event.paramA);
+        break;
+      case 'yet_another_event_type':
+        fetch('https://my-domain.com/my/analytics/endpoint', {
+          method: 'POST',
+          body: JSON.stringify(event.data),
+          headers: new Headers({
+            'Content-Type': 'application/json',
+          }),
+        });
+        break;
+      default:
+        break;
+    }
+  });
+}
+```
+
+If your target relies on an SDK attached to `window`, it is good practice to
+first check that `window` exists to avoid issues during server side rendering.
+
+If you decide to publish your target, please let us know so we can link to it in
+our docs.
