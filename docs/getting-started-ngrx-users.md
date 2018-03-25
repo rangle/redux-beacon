@@ -95,8 +95,8 @@ Follow your target's instructions to create it:
    * [GoogleTagManager: Usage](targets/react-native-google-tag-manager.md#usage)
 
 ### Step 5
-Follow the instructions [here](https://redux.js.org/docs/api/applyMiddleware.html) to
-apply the middleware to your store.
+Follow the instructions [here](https://github.com/ngrx/platform/blob/master/docs/store/api.md#meta-reducers) to
+apply the meta reducer to your store.
 
 ----
 
