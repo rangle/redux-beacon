@@ -35,6 +35,38 @@ const gaMetaReducer = createMetaReducer(eventsMap, GoogleAnalytics());
 
 ## How to Send Analytics to Multiple Targets
 
+There is no limit to the number of middlewares or meta reducers you can create
+and use. So, to send analytics to multiple targets, create a middleware or a
+meta reducer for each target:
+
+```js
+import { createMiddleware } from 'redux-beacon';
+import Amplitude from '@redux-beacon/amplitude';
+import GoogleAnalytics from '@redux-beacon/google-analytics';
+
+import { amplitudeEvents, gaEvents } from './my-event-definitions';
+
+const amplitudeMiddleware = createMiddleware(amplitudeEvents, Amplitude());
+const gaMiddleware = createMiddleware(gaEvents, GoogleAnalytics());
+
+// Apply both middlewares to the store
+```
+
+Likewise, for `createMetaReducer`:
+
+```js
+import { createMetaReducer } from 'redux-beacon';
+import Amplitude from '@redux-beacon/amplitude';
+import GoogleAnalytics from '@redux-beacon/google-analytics';
+
+import { amplitudeEvents, gaEvents } from './my-event-definitions';
+
+const amplitudeMetaReducer = createMetaReducer(amplitudeEvents, Amplitude());
+const gaMetaReducer = createMetaReducer(gaEvents, GoogleAnalytics());
+
+// Add both meta reducers to the store
+```
+
 ## How to Create Your Own Target
 
 Both createMiddleware and createMetaReducer require a target as their second
