@@ -7,15 +7,15 @@ to [eventDefinitions](./event-definition.md).
 
 ```js
 import {
-  someEventDefinition,
-  someOtherEventDefinition,
-  anotherEventDefinition,
+  eventForActionA,
+  eventForActionB,
+  eventForAllActions,
 } from './event-definitions';
 
 const eventsMap = {
-  'SOME_ACTION_TYPE': someEventDefinition,
-  'SOME_OTHER_ACTION_TYPE': someOtherEventDefinition,
-  'ANOTHER_ACTION_TYPE': anotherEventDefinition,
+  'ACTION_A': eventForActionA,
+  'ACTION_B': eventForActionB,
+  '*': eventForAllActions,
 };
 ```
 
@@ -23,6 +23,7 @@ const eventsMap = {
  - Each key in the eventsMap must correspond to an action type.
  - Each property in the eventsMap must be a valid
    [eventDefinition](./event-definition.md).
+ - The `"*"` key is special and can be used to match any action type.
 
 ### Typescript Type
 
