@@ -38,18 +38,49 @@ For example, say you want to intercept a `PLAY_VIDEO` Redux action and track it
 as a Google Analytics event:
 
 ```typescript
-// TODO
+import { EventsMap } from 'redux-beacon';
+import GoogleAnalytics, { trackEvent } from '@redux-beacon/google-analytics';
+
+// Copy & paste the event definition you chose in step 2:
+const event = trackEvent((action, prevState, nextState) => {
+  return {
+    category: /* fill me in */,
+    action: /* fill me in */,
+    label: /* (optional) */,
+    value: /* (optional) */,
+  };
+}, /* (optional) tracker name */ );
+
+// Match the event definition to a Redux action:
+const eventsMap: EventsMap = {
+  'PLAY_VIDEO': emitEvent,
+};
 ```
 
 ### Step 4
 
-Complete the event definition by filling in the object properties, then create the
-middleware.
+Complete the event definition by filling in the object properties, then create the meta reducer.
 
 A continuation of the previous example:
 
 ```typescript
-TODO
+import { createMetaReducer, EventsMap } from 'redux-beacon';
+import logger from '@redux-beacon/logger'; // optional
+import GoogleAnalytics, { trackEvent } from '@redux-beacon/google-analytics';
+
+// Complete the event definition
+const emitVideoPlayed = trackEvent((action) => ({
+  eventCategory: 'Video',
+  eventAction: action.type,
+}));
+
+const eventsMap: EventsMap = {
+  'PLAY_VIDEO': emitVideoPlayed, // update if renamed
+};
+
+// Create the meta reducer
+const ga = GoogleAnalytics();
+const gaMetaReducer = createMetaReducer(eventsMap, ga, { logger });
 ```
 
 Follow your target's instructions to create it:

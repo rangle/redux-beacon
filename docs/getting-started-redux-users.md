@@ -37,17 +37,18 @@ For example, say you want to intercept a `PLAY_VIDEO` Redux action and track it
 as a Google Analytics event:
 
 ```js
-import GoogleAnalytics, { makeEvent } from '@redux-beacon/google-analytics';
+import GoogleAnalytics, { trackEvent } from '@redux-beacon/google-analytics';
 
 // Copy & paste the event definition you chose in step 2:
-const event = makeEvent((action, prevState, nextState) => {
+const event = trackEvent((action, prevState, nextState) => {
   return {
-    eventCategory: /* fill me in */,
-    eventAction: /* fill me in */,
-    eventLabel: /* (optional) */,
-    eventValue: /* (optional) */,
+    category: /* fill me in */,
+    action: /* fill me in */,
+    label: /* (optional) */,
+    value: /* (optional) */,
   };
 }, /* (optional) tracker name */ );
+
 
 // Match the event definition to a Redux action:
 const eventsMap = {
@@ -65,10 +66,10 @@ A continuation of the previous example:
 ```js
 import { createMiddleware } from 'redux-beacon';
 import logger from '@redux-beacon/logger'; // optional
-import GoogleAnalytics, { makeEvent } from '@redux-beacon/google-analytics';
+import GoogleAnalytics, { trackEvent } from '@redux-beacon/google-analytics';
 
 // Complete the event definition
-const emitVideoPlayed = makeEvent((action) => ({
+const emitVideoPlayed = trackEvent((action) => ({
   eventCategory: 'Video',
   eventAction: action.type,
 }));
