@@ -1,81 +1,77 @@
 # Getting Started (ngrx users)
+[Step 1](#step-1), [Step 2](#step-2), [Step 3](#step-3), [Step 4](#step-4), [Next Steps](#next-steps)
 
-[Step 1](#step-1), [Step 2](#step-2), [Step 3](#step-3), [Step 4](#step-4), [Step 5](#step-5), [Next Steps](#next-steps)
+In a nutshell: for each analytics event, pick out an event definition (listed in
+each target's docs) and map it to an action. The map should be an object with
+the action type as a key, and event definition as the value. Then, you simply
+provide your target and the events map to Redux Beacon's `createMetaReducer`
+function.
 
 ### Step 1
 Choose a target, and follow the setup instructions.
 
- * [GoogleAnalytics: Setup](targets/google-analytics.md#setup)
- * [GoogleAnalyticsGtag: Setup](targets/google-analytics-gtag.md#setup)
- * [GoogleTagManager: Setup](targets/google-tag-manager.md#setup)
- * [Segment: Setup](targets/segment.md#setup)
- * [Amplitude: Setup](targets/amplitude.md#setup)
- * React Native:
-   * [GoogleAnalytics: Setup](targets/react-native-google-analytics.md#setup)
-   * [GoogleTagManager: Setup](targets/react-native-google-tag-manager.md#setup)
+<details>
+  <summary style="cursor:pointer">Click here for a list of targets and their setup docs.</summary>
+  <ul>
+    <li><a href="targets/google-analytics.html#setup">GoogleAnalytics: Setup</a></li>
+    <li><a href="targets/google-analytics-gtag.html#setup">GoogleAnalyticsGtag: Setup</a></li>
+    <li><a href="targets/google-tag-manager.html#setup">GoogleTagManager: Setup</a></li>
+    <li><a href="targets/segment.html#setup">Segment: Setup</a></li>
+    <li><a href="targets/amplitude.html#setup">Amplitude: Setup</a></li>
+    <li>React Native:<ul>
+        <li><a href="targets/react-native-google-analytics.html#setup">GoogleAnalytics: Setup</a></li>
+        <li><a href="targets/react-native-google-tag-manager.html#setup">GoogleTagManager: Setup</a></li>
+      </ul>
+    </li>
+  </ul>
+</details>
 
 <br>
 > **[info]**
 > Don't see the target you need?
-> Follow the instructions [here](how-to-create-own-target.md) to build your own.
+> Follow the instructions [here](examples-and-recipes.md#how-to-create-own-target.md) to build your own.
 
 ### Step 2
 Decide what you want to track and pick out the corresponding event definition:
 
- * [GoogleAnalytics: Event Definitions](targets/google-analytics.md#event-definitions)
- * [GoogleAnalyticsGtag: Event Definitions](targets/google-analytics-gtag.md#event-definitions)
- * [GoogleTagManager: Event Definitions](targets/google-tag-manager.md#event-definitions)
- * [Segment: Event Definitions](targets/segment.md#event-definitions)
- * [Amplitude: Event Definitions](targets/amplitude.md#event-definitions)
- * React Native:
-   * [GoogleAnalytics: Event Definitions](targets/react-native-google-analytics.md#event-definitions)
-   * [GoogleTagManager: Event Definitions](targets/react-native-google-tag-manager.md#event-definitions)
+<details>
+  <summary style="cursor:pointer">Click here for a list of available event definitions</summary>
+  <ul>
+    <li><a href="targets/google-analytics.html#event-definitions">GoogleAnalytics: Event Definitions</a></li>
+    <li><a href="targets/google-analytics-gtag.html#event-definitions">GoogleAnalyticsGtag: Event Definitions</a></li>
+    <li><a href="targets/google-tag-manager.html#event-definitions">GoogleTagManager: Event Definitions</a></li>
+    <li><a href="targets/segment.html#event-definitions">Segment: Event Definitions</a></li>
+    <li><a href="targets/amplitude.html#event-definitions">Amplitude: Event Definitions</a></li>
+    <li>React Native:<ul>
+        <li><a href="targets/react-native-google-analytics.html#event-definitions">GoogleAnalytics: Event Definitions</a></li>
+        <li><a href="targets/react-native-google-tag-manager.html#event-definitions">GoogleTagManager: Event Definitions</a></li>
+      </ul>
+    </li>
+  </ul>
+</details>
 
 ### Step 3
-Match the event definition to a Redux action.
+Complete the event definition by filling in the object properties, and match it
+to an action.
 
-For example, say you want to intercept a `PLAY_VIDEO` Redux action and track it
+For example, say you want to intercept a `PLAY_VIDEO` action and track it
 as a Google Analytics event:
 
-```typescript
-import { EventsMap } from 'redux-beacon';
-import GoogleAnalytics, { trackEvent } from '@redux-beacon/google-analytics';
-
-// Copy & paste the event definition you chose in step 2:
-const event = trackEvent((action, prevState, nextState) => {
-  return {
-    category: /* fill me in */,
-    action: /* fill me in */,
-    label: /* (optional) */,
-    value: /* (optional) */,
-  };
-}, /* (optional) tracker name */ );
-
-// Match the event definition to a Redux action:
-const eventsMap: EventsMap = {
-  'PLAY_VIDEO': emitEvent,
-};
-```
-
-### Step 4
-
-Complete the event definition by filling in the object properties, then create the meta reducer.
-
-A continuation of the previous example:
-
-```typescript
+```js
 import { createMetaReducer, EventsMap } from 'redux-beacon';
-import logger from '@redux-beacon/logger'; // optional
 import GoogleAnalytics, { trackEvent } from '@redux-beacon/google-analytics';
 
-// Complete the event definition
-const emitVideoPlayed = trackEvent((action) => ({
+import logger from '@redux-beacon/logger'; // optional
+
+// Copy & paste the event definition you chose in step 2, then fill it in.
+const emitVideoPlayed = trackEvent(action => ({
   eventCategory: 'Video',
   eventAction: action.type,
 }));
 
+// Match the event definition to a Redux action:
 const eventsMap: EventsMap = {
-  'PLAY_VIDEO': emitVideoPlayed, // update if renamed
+  'PLAY_VIDEO': emitVideoPlayed,
 };
 
 // Create the meta reducer
@@ -83,18 +79,23 @@ const ga = GoogleAnalytics();
 const gaMetaReducer = createMetaReducer(eventsMap, ga, { logger });
 ```
 
-Follow your target's instructions to create it:
+<details>
+  <summary style="cursor:pointer">Click here for each target's usage instructions.</summary>
+  <ul>
+    <li><a href="targets/google-analytics.html#usage">GoogleAnalytics: Usage</a></li>
+    <li><a href="targets/google-analytics-gtag.html#usage">GoogleAnalyticsGtag: Usage</a></li>
+    <li><a href="targets/google-tag-manager.html#usage">GoogleTagManager: Usage</a></li>
+    <li><a href="targets/segment.html#usage">Segment: Usage</a></li>
+    <li><a href="targets/amplitude.html#usage">Amplitude: Usage</a></li>
+    <li>React Native:<ul>
+        <li><a href="targets/react-native-google-analytics.html#usage">GoogleAnalytics: Usage</a></li>
+        <li><a href="targets/react-native-google-tag-manager.html#usage">GoogleTagManager: Usage</a></li>
+      </ul>
+    </li>
+  </ul>
+</details>
 
- * [GoogleAnalytics: Usage](targets/google-analytics.md#usage)
- * [GoogleAnalyticsGtag: Usage](targets/google-analytics-gtag.md#usage)
- * [GoogleTagManager: Usage](targets/google-tag-manager.md#usage)
- * [Segment: Usage](targets/segment.md#usage)
- * [Amplitude: Usage](targets/amplitude.md#usage)
- * React Native:
-   * [GoogleAnalytics: Usage](targets/react-native-google-analytics.md#usage)
-   * [GoogleTagManager: Usage](targets/react-native-google-tag-manager.md#usage)
-
-### Step 5
+### Step 4
 Follow the instructions [here](https://github.com/ngrx/platform/blob/master/docs/store/api.md#meta-reducers) to
 apply the meta reducer to your store.
 
@@ -115,7 +116,7 @@ you'd like to organize your app's analytics logic.
 
 ##### Check Out the Recipes:
 We have a number of recipes to get you started with Redux Beacon. Check them
-out [here](recipes/index.md).
+out [here](examples-and-recipes.md).
 
 ##### Check Out the Extensions:
 We have extensions for logging and for buffering analytics events
