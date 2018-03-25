@@ -22,4 +22,5 @@
   * [debounceEvent](docs/utils/debounce-event.md)
   * [ensure](docs/utils/ensure.md)
   * [combineEvents](docs/utils/combine-events.md)
+* [FAQ](docs/faq.md)
 * [Notes on Offline Events](docs/notes-on-offline-events.md)
