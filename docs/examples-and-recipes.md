@@ -12,6 +12,27 @@
 
 ## How to Track Pageviews in a React-Redux app
 
+The following example shows how you can use Redux Beacon to track page views in
+an React app that uses Redux for state management, and React Router for
+navigation.
+
+```js
+import { LOCATION_CHANGE } from 'react-router-redux';
+import { createMiddleware } from 'redux-beacon';
+import GoogleAnalytics, { trackPageView } from '@redux-beacon/google-analytics';
+
+const eventsMap = {
+  [LOCATION_CHANGE]: trackPageView(action => ({
+    page: action.payload.pathname,
+  })),
+};
+
+const gaMiddleware = createMiddleware(eventsMap, GoogleAnalytics());
+```
+ - Click [here](https://redux.js.org/docs/api/applyMiddleware.html) for instructions on how to apply the middleware to your store.
+ - Click [here](https://codesandbox.io/s/4xkkp8n419) for a runnable example.
+
+
 ## How to Track Pageviews in an Angular-ngrx app
 
 The following example shows how you can use Redux Beacon to track page views in
