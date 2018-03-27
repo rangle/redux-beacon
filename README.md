@@ -89,15 +89,25 @@ connectivity. These extensions place events in a persistent store when offline
 events off to a target. Read more about offline event collection in the
 [docs](https://rangle.github.io/redux-beacon/docs/extensions/offline-web.html).
 
-## Built-In Targets
 
- - [Google Analytics](https://rangle.github.io/redux-beacon/docs/targets/google-analytics.html)
- - [Google Tag Manager](https://rangle.github.io/redux-beacon/docs/targets/google-tag-manager.html)
- - [Segment.io](https://rangle.github.io/redux-beacon/docs/targets/segment.html)
- - [Amplitude](https://rangle.github.io/redux-beacon/docs/targets/amplitude.html)
- - [_(React Native)_ Google Analytics](https://rangle.github.io/redux-beacon/docs/targets/react-native-google-analytics.html)
- - [_(React Native)_ Google Tag Manager](https://rangle.github.io/redux-beacon/docs/targets/react-native-google-tag-manager.html)
- - [_(Cordova)_ Google Analytics](https://rangle.github.io/redux-beacon/docs/targets/cordova-google-analytics.html)
+## Packages
+
+|                                                             | Version                                                                                                                                                                                 | Package                                                                                                                      |
+|-------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
+|                                                             | [![npm](https://img.shields.io/npm/v/redux-beacon.svg?style=flat-square)](https://www.npmjs.com/package/redux-beacon)                                                                   | [redux-beacon](https://www.npmjs.com/package/redux-beacon)                                                                   |
+| <img src="https://www.google.com/favicon.ico" width="25" /> | [![npm](https://img.shields.io/npm/v/@redux-beacon/google-analytics.svg?style=flat-square)](https://www.npmjs.com/package/@redux-beacon/google-analytics)                               | [@redux-beacon/google-analytics](https://www.npmjs.com/package/@redux-beacon/google-analytics)                               |
+| <img src="https://www.google.com/favicon.ico" width="25" /> | [![npm](https://img.shields.io/npm/v/@redux-beacon/google-analytics-gtag.svg?style=flat-square)](https://www.npmjs.com/package/@redux-beacon/google-analytics-gtag)                     | [@redux-beacon/google-analytics-gtag](https://www.npmjs.com/package/@redux-beacon/google-analytics-gtag)                     |
+| <img src="https://www.google.com/favicon.ico" width="25" /> | [![npm](https://img.shields.io/npm/v/@redux-beacon/google-tag-manager.svg?style=flat-square)](https://www.npmjs.com/package/@redux-beacon/google-tag-manager)                           | [@redux-beacon/google-tag-manager](https://www.npmjs.com/package/@redux-beacon/google-tag-manager)                           |
+| <img src="https://www.google.com/favicon.ico" width="25" /> | [![npm](https://img.shields.io/npm/v/@redux-beacon/react-native-google-analytics.svg?style=flat-square)](https://www.npmjs.com/package/@redux-beacon/react-native-google-analytics)     | [@redux-beacon/react-native-google-analytics](https://www.npmjs.com/package/@redux-beacon/react-native-google-analytics)     |
+| <img src="https://www.google.com/favicon.ico" width="25" /> | [![npm](https://img.shields.io/npm/v/@redux-beacon/react-native-google-tag-manager.svg?style=flat-square)](https://www.npmjs.com/package/@redux-beacon/react-native-google-tag-manager) | [@redux-beacon/react-native-google-tag-manager](https://www.npmjs.com/package/@redux-beacon/react-native-google-tag-manager) |
+| <img src="https://amplitude.com/favicon.ico" width="25" />  | [![npm](https://img.shields.io/npm/v/@redux-beacon/amplitude.svg?style=flat-square)](https://www.npmjs.com/package/@redux-beacon/amplitude)                                             | [@redux-beacon/amplitude](https://www.npmjs.com/package/@redux-beacon/amplitude)                                             |
+| <img src="https://segment.com/favicon.ico" width="25" />    | [![npm](https://img.shields.io/npm/v/@redux-beacon/segment.svg?style=flat-square)](https://www.npmjs.com/package/@redux-beacon/segment)                                                 | [@redux-beacon/segment](https://www.npmjs.com/package/@redux-beacon/segment)                                                 |
+| &#128268;                                                   | [![npm](https://img.shields.io/npm/v/@redux-beacon/logger.svg?style=flat-square)](https://www.npmjs.com/package/@redux-beacon/logger)                                                   | [@redux-beacon/logger](https://www.npmjs.com/package/@redux-beacon/logger)                                                   |
+| &#128295;                                                   | [![npm](https://img.shields.io/npm/v/@redux-beacon/combine-events.svg?style=flat-square)](https://www.npmjs.com/package/@redux-beacon/combine-events)                                   | [@redux-beacon/combine-events](https://www.npmjs.com/package/@redux-beacon/combine-events)                                   |
+| &#128295;                                                   | [![npm](https://img.shields.io/npm/v/@redux-beacon/ensure.svg?style=flat-square)](https://www.npmjs.com/package/@redux-beacon/ensure)                                                   | [@redux-beacon/ensure](https://www.npmjs.com/package/@redux-beacon/ensure)                                                   |
+| &#128268;                                                   | [![npm](https://img.shields.io/npm/v/@redux-beacon/offline-web.svg?style=flat-square)](https://www.npmjs.com/package/@redux-beacon/offline-web)                                         | [@redux-beacon/offline-web](https://www.npmjs.com/package/@redux-beacon/offline-web)                                         |
+| &#128268;                                                   | [![npm](https://img.shields.io/npm/v/@redux-beacon/offline-react-native.svg?style=flat-square)](https://www.npmjs.com/package/@redux-beacon/offline-react-native)                       | [@redux-beacon/offline-react-native](https://www.npmjs.com/package/@redux-beacon/offline-react-native)                       |
+
 
 ## Docs
 Check out the [project site](https://rangle.github.io/redux-beacon/)
