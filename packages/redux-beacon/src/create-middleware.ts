@@ -1,23 +1,28 @@
 import createEvents from './create-events';
 import getEventsWithMatchingKey from './get-events-with-matching-key';
 import registerEvents from './register-events';
-import { EventsMap, Extensions, Target } from './types';
+import { EventsFunction, EventsMap, Extensions, Target } from './types';
 
 /**
  * Create Redux middleware that synchronizes actions to analytics events.
  */
 function createMiddleware(
-  eventsMap: EventsMap,
+  eventsMap: EventsMap | EventsFunction,
   target: Target,
   extensions: Extensions = {}
 ) {
+  const getEvents =
+    typeof eventsMap === 'function'
+      ? action => eventsMap(action)
+      : action => getEventsWithMatchingKey(eventsMap, action.type);
+
   return store => next => action => {
     const prevState = store.getState();
     const result = next(action);
     const nextState = store.getState();
 
     const events = createEvents(
-      getEventsWithMatchingKey(eventsMap, action.type),
+      getEvents(action),
       prevState,
       action,
       nextState
