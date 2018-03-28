@@ -7,6 +7,7 @@ export { createMiddleware, createMetaReducer, createEvents };
 export {
   EventDefinition,
   EventsMap,
+  EventsFunction,
   LoggerExtension,
   OfflineStorageExtension,
   Target,

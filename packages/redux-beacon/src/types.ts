@@ -12,6 +12,10 @@ export type EventDefinition<E = any> = (
   nextState: any
 ) => E;
 
+export type EventsFunction = (
+  action: { [key: string]: any }
+) => EventDefinition[];
+
 /**
  * A map between your actions and your analytics events.  Each key
  * must be an action type. Each property must be a valid

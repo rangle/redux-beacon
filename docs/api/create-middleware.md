@@ -8,7 +8,7 @@ createMiddleware(eventsMap, target[, extensions]);
 
 #### Parameters
 
- * `eventsMap`: [eventsMap](events-map.md)
+ * `eventsMap | eventsFunction`: [eventsMap](events-map.md)
  * `target`: [target](../targets/index.md)
  * `extensions` *(optional)*: [extensions](../extensions/index.md).
 
