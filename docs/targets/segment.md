@@ -15,7 +15,7 @@
    to your site.
 
     {% hint style='info' %}
-    during development and testing it is often helpful to use the debug
+    During development and testing it is often helpful to use the debug
     version of analytics.js. Follow the instructions
     [here](https://segment.com/docs/sources/website/analytics.js/#debug)
     to enable it.

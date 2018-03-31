@@ -12,7 +12,7 @@ export type EventDefinition<E = any> = (
   nextState: any
 ) => E;
 
-export type EventsFunction = (
+export type EventsMapper = (
   action: { [key: string]: any }
 ) => EventDefinition[];
 

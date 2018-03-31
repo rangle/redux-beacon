@@ -14,6 +14,7 @@
   * [createMetaReducer](api/create-meta-reducer.md)
   * [EventDefinition](api/event-definition.md)
   * [EventsMap](api/events-map.md)
+  * [EventsMapper](api/events-mapper.md)
 * [Extensions](extensions/index.md)
   * [logger](extensions/logger.md)
   * [OfflineWeb](extensions/offline-web.md)
