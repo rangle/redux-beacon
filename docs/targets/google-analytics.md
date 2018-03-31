@@ -16,7 +16,7 @@
    to your site. Update the tracking snippet with your [tracking Id](https://support.google.com/analytics/answer/1008080).
 
     {% hint style='info' %}
-    during development and testing it is often helpful to use the debug
+    During development and testing it is often helpful to use the debug
     version of analytics.js. Follow the instructions
     [here](https://developers.google.com/analytics/devguides/collection/analyticsjs/debugging)
     to enable it.

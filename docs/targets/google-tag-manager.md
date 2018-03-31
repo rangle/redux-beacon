@@ -15,10 +15,11 @@
    to your site.
 
     {% hint style='info' %}
-    > during development and testing it is often helpful to use Google Tag
-    > Manager's Container Preview mode. Follow the instructions
-    > [here](https://support.google.com/tagmanager/answer/6107056?hl=en) to
-    > enable it.
+    During development and testing it is often helpful to use Google Tag
+    Manager's Container Preview mode. Follow the instructions
+    [here](https://support.google.com/tagmanager/answer/6107056?hl=en) to
+    enable it.
+    {% endhint %}
 
 3. Install the target:
 

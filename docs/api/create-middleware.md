@@ -3,12 +3,12 @@
 ### Syntax
 
 ```js
-createMiddleware(eventsMap, target[, extensions]);
+createMiddleware([eventsMap | eventsMapper], target[, extensions]);
 ```
 
 #### Parameters
 
- * `eventsMap | eventsFunction`: [eventsMap](events-map.md)
+ * `eventsMap | eventsMapper`: [eventsMap](events-map.md) | [eventsMapper](events-mapper.md)
  * `target`: [target](../targets/index.md)
  * `extensions` *(optional)*: [extensions](../extensions/index.md).
 
