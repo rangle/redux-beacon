@@ -26,9 +26,10 @@ Go into the `platform` directory and start the example app:
 cd platform && npm run example:start
 ```
 
-> **Warning:**
-> you might need to install [yarn](https://yarnpkg.com/en/docs/install) to
-> run the `example:start` script.
+{% hint style='warning' %}
+You might need to install [yarn](https://yarnpkg.com/en/docs/install) to
+run the `example:start` script.
+{% endhint %}
 
 ## Step 3
 

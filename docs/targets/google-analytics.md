@@ -15,11 +15,12 @@
    [JavaScript Tracking Snippet](https://developers.google.com/analytics/devguides/collection/analyticsjs/)
    to your site. Update the tracking snippet with your [tracking Id](https://support.google.com/analytics/answer/1008080).
 
-    > **[info] Tip**
-    > during development and testing it is often helpful to use the debug
-    > version of analytics.js. Follow the instructions
-    > [here](https://developers.google.com/analytics/devguides/collection/analyticsjs/debugging)
-    > to enable it.
+    {% hint style='info' %}
+    during development and testing it is often helpful to use the debug
+    version of analytics.js. Follow the instructions
+    [here](https://developers.google.com/analytics/devguides/collection/analyticsjs/debugging)
+    to enable it.
+    {% endhint %}
 
 3. Install the target:
 
@@ -42,22 +43,24 @@
    'ecommerce');`. This line must be added **after** you call `ga('create',
    'UA-XXXXX-Y')`.
 
-    > **[warning]**
-    > Google Analytics will _fail silently_ if you try to use these events
-    > without adding the require call in your initial tracking code. It is also
-    > **not** recommended to use GA's basic analytics plugin if you're also
-    > going to use the enhanced ecommerce plugin.
+    {% hint style='warning' %}
+    Google Analytics will _fail silently_ if you try to use these events
+    without adding the require call in your initial tracking code. It is also
+    **not** recommended to use GA's basic analytics plugin if you're also
+    going to use the enhanced ecommerce plugin.
+    {% endhint %}
 
 #### _Enhanced Ecommerce Plugin Setup_
  * Add this line to the end of your tracking snippet: `ga('require',
    'ec');`. This line must be added **after** you call `ga('create',
    'UA-XXXXX-Y')`.
 
-    > **[warning]**
-    > Google Analytics will _fail silently_ if you try to use these events
-    > without adding the require call in your initial tracking code. It is also
-    > **not** recommended to use GA's basic analytics plugin if you're also
-    > going to use the basic ecommerce plugin.
+    {% hint style='warning' %}
+    Google Analytics will _fail silently_ if you try to use these events
+    without adding the require call in your initial tracking code. It is also
+    **not** recommended to use GA's basic analytics plugin if you're also
+    going to use the basic ecommerce plugin.
+   {% endhint %}
 
 ### Usage
 
@@ -111,13 +114,13 @@ const pageView = trackPageView((action, prevState, nextState) => {
 }, /* (optional) tracker name */ );
 ```
 
-> **[danger] Duplicate Page Views**
-> the last line of the tracking snippet `ga('send', 'pageview')` hits Google
-> Analytics with a page view that matches the first loaded route. If you're
-> tracking page views using Redux Beacon, be sure to remove this line so the
-> initial page load isn't recorded twice.
+{% hint style='danger' %}
+The last line of the tracking snippet `ga('send', 'pageview')` hits Google
+Analytics with a page view that matches the first loaded route. If you're
+tracking page views using Redux Beacon, be sure to remove this line so the
+initial page load isn't recorded twice.
+{% endhint %}
 
-<br>
 
 #### event
 ##### Docs:
@@ -136,7 +139,7 @@ const event = trackEvent((action, prevState, nextState) => {
 }, /* (optional) tracker name */ );
 ```
 
-<br>
+
 
 #### timing
 ##### Docs:
@@ -155,7 +158,7 @@ const userTiming = trackTiming((action, prevState, nextState) => {
 }, /* (optional) tracker name */ );
 ```
 
-<br>
+
 
 #### socialInteraction
 ##### Docs:
@@ -173,7 +176,7 @@ const socialInteraction = trackSocialInteraction((action, prevState, nextState) 
 }, /* (optional) tracker name */ );
 ```
 
-<br>
+
 
 #### exception
 ##### Docs:
@@ -199,7 +202,7 @@ const noop = () => {};
 const exception = trackException(noop, /* (optional) tracker name */ );
 ```
 
-<br>
+
 
 #### ecommItem
 ##### Docs:
@@ -222,7 +225,7 @@ const ecommItem = trackEcommItem((action, prevState, nextState) => {
 }, /* (optional) tracker name */ );
 ```
 
-<br>
+
 
 #### ecommTransaction
 ##### Docs:
@@ -244,7 +247,7 @@ const ecommTransaction = trackEcommTransaction((action, prevState, nextState) =>
 }, /* (optional) tracker name */ );
 ```
 
-<br>
+
 
 #### ecommSend
 ##### Docs:
@@ -259,7 +262,7 @@ import { ecommSend } from '@redux-beacon/google-analytics';
 const ecommSendSignal = ecommSend(/* (optional) tracker name */);
 ```
 
-<br>
+
 
 #### ecommClear
 ##### Docs:
@@ -274,7 +277,7 @@ import { ecommClear } from '@redux-beacon/google-analytics';
 const ecommClearSignal = ecommClear(/* (optional) tracker name */);
 ```
 
-<br>
+
 
 #### ecommImpression
 ##### Docs:
@@ -299,7 +302,7 @@ const ecommImpression = trackEcommImpression((action, prevState, nextState) => {
 }, /* (optional) tracker name */ );
 ```
 
-<br>
+
 
 #### ecommProduct
 ##### Docs:
@@ -325,7 +328,7 @@ const ecommProduct = trackEcommProduct((action, prevState, nextState) => {
 }, /* (optional) tracker name */ );
 ```
 
-<br>
+
 
 #### ecommPromotion
 ##### Docs:
@@ -346,7 +349,7 @@ const ecommPromotion = trackEcommPromotion((action, prevState, nextState) => {
 }, /* (optional) tracker name */ );
 ```
 
-<br>
+
 
 #### ecommAction
 ##### Docs:

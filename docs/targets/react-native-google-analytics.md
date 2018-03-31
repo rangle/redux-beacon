@@ -71,7 +71,7 @@ const screenView = trackScreenView((action, prevState, nextState) => {
   };
 });
 ```
-<br>
+
 
 #### event
 ##### Docs:
@@ -94,7 +94,7 @@ const someEvent = trackEvent((action, prevState, nextState) => {
 });
 ```
 
-<br>
+
 
 #### purchase
 ##### Docs:
@@ -129,7 +129,7 @@ const somePurchaseEvent = trackPurchase((action, prevState, nextState) => {
 });
 ```
 
-<br>
+
 
 #### timing
 ##### Docs:
@@ -148,7 +148,7 @@ const timingEvent = trackTiming((action, prevState, nextState) => {
 });
 ```
 
-<br>
+
 
 #### socialInteraction
 ##### Docs:
@@ -166,7 +166,7 @@ const socialInteraction = trackSocialInteraction((action, prevState, nextState) 
 });
 ```
 
-<br>
+
 
 #### user
 ##### Docs:
@@ -181,7 +181,7 @@ const user = setUser((action, prevState, nextState) => {
 });
 ```
 
-<br>
+
 
 #### client
 ##### Docs:
@@ -196,7 +196,7 @@ const client = setClient((action, prevState, nextState) => {
 });
 ```
 
-<br>
+
 
 #### exception
 ##### Docs:

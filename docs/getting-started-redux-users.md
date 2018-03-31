@@ -1,6 +1,4 @@
 # Getting Started (Redux Users)
-[Step 1](#step-1), [Step 2](#step-2), [Step 3](#step-3), [Step 4](#step-4), [Next Steps](#next-steps)
-
 
 In a nutshell: for each analytics event, pick out an event definition (listed in
 each target's docs) and map it to an action. The map should be an object with
@@ -11,45 +9,31 @@ function.
 ### Step 1
 Choose a target, and follow the setup instructions.
 
-<details>
-  <summary style="cursor:pointer">Click here for a list of targets and their setup docs.</summary>
-  <ul>
-    <li><a href="targets/google-analytics.html#setup">GoogleAnalytics: Setup</a></li>
-    <li><a href="targets/google-analytics-gtag.html#setup">GoogleAnalyticsGtag: Setup</a></li>
-    <li><a href="targets/google-tag-manager.html#setup">GoogleTagManager: Setup</a></li>
-    <li><a href="targets/segment.html#setup">Segment: Setup</a></li>
-    <li><a href="targets/amplitude.html#setup">Amplitude: Setup</a></li>
-    <li>React Native:<ul>
-        <li><a href="targets/react-native-google-analytics.html#setup">GoogleAnalytics: Setup</a></li>
-        <li><a href="targets/react-native-google-tag-manager.html#setup">GoogleTagManager: Setup</a></li>
-      </ul>
-    </li>
-  </ul>
-</details>
+* [GoogleAnalytics: Setup](targets/google-analytics.html#setup)
+* [GoogleAnalyticsGtag: Setup](targets/google-analytics-gtag.html#setup)
+* [GoogleTagManager: Setup](targets/google-tag-manager.html#setup)
+* [Segment: Setup](targets/segment.html#setup)
+* [Amplitude: Setup](targets/amplitude.html#setup)
+* React Native:
+  * [GoogleAnalytics: Setup](targets/react-native-google-analytics.html#setup)
+  * [GoogleTagManager: Setup](targets/react-native-google-tag-manager.html#setup)
 
-<br>
-> **[info]**
-> Don't see the target you need?
-> Follow the instructions [here](examples-and-recipes.md#how-to-create-own-target.md) to build your own.
+{% hint style='info' %}
+Don't see the target you need?
+Follow the instructions [here](examples-and-recipes.md#how-to-create-own-target.md) to build your own.
+{% endhint %}
 
 ### Step 2
 Decide what you want to track and pick out the corresponding event definition:
 
-<details>
-  <summary style="cursor:pointer">Click here for a list of available event definitions</summary>
-  <ul>
-    <li><a href="targets/google-analytics.html#event-definitions">GoogleAnalytics: Event Definitions</a></li>
-    <li><a href="targets/google-analytics-gtag.html#event-definitions">GoogleAnalyticsGtag: Event Definitions</a></li>
-    <li><a href="targets/google-tag-manager.html#event-definitions">GoogleTagManager: Event Definitions</a></li>
-    <li><a href="targets/segment.html#event-definitions">Segment: Event Definitions</a></li>
-    <li><a href="targets/amplitude.html#event-definitions">Amplitude: Event Definitions</a></li>
-    <li>React Native:<ul>
-        <li><a href="targets/react-native-google-analytics.html#event-definitions">GoogleAnalytics: Event Definitions</a></li>
-        <li><a href="targets/react-native-google-tag-manager.html#event-definitions">GoogleTagManager: Event Definitions</a></li>
-      </ul>
-    </li>
-  </ul>
-</details>
+* [GoogleAnalytics: Event Definitions](targets/google-analytics.html#event-definitions)
+* [GoogleAnalyticsGtag: Event Definitions](targets/google-analytics-gtag.html#event-definitions)
+* [GoogleTagManager: Event Definitions](targets/google-tag-manager.html#event-definitions)
+* [Segment: Event Definitions](targets/segment.html#event-definitions)
+* [Amplitude: Event Definitions](targets/amplitude.html#event-definitions)
+* React Native:
+  * [GoogleAnalytics: Event Definitions](targets/react-native-google-analytics.html#event-definitions)
+  * [GoogleTagManager: Event Definitions](targets/react-native-google-tag-manager.html#event-definitions)
 
 ### Step 3
 Complete the event definition by filling in the object properties, and match it
@@ -80,21 +64,14 @@ const ga = GoogleAnalytics();
 const gaMiddleware = createMiddleware(eventsMap, ga, { logger });
 ```
 
-<details>
-  <summary style="cursor:pointer">Click here for each target's usage instructions.</summary>
-  <ul>
-    <li><a href="targets/google-analytics.html#usage">GoogleAnalytics: Usage</a></li>
-    <li><a href="targets/google-analytics-gtag.html#usage">GoogleAnalyticsGtag: Usage</a></li>
-    <li><a href="targets/google-tag-manager.html#usage">GoogleTagManager: Usage</a></li>
-    <li><a href="targets/segment.html#usage">Segment: Usage</a></li>
-    <li><a href="targets/amplitude.html#usage">Amplitude: Usage</a></li>
-    <li>React Native:<ul>
-        <li><a href="targets/react-native-google-analytics.html#usage">GoogleAnalytics: Usage</a></li>
-        <li><a href="targets/react-native-google-tag-manager.html#usage">GoogleTagManager: Usage</a></li>
-      </ul>
-    </li>
-  </ul>
-</details>
+* [GoogleAnalytics: Usage](targets/google-analytics.html#usage)
+* [GoogleAnalyticsGtag: Usage](targets/google-analytics-gtag.html#usage)
+* [GoogleTagManager: Usage](targets/google-tag-manager.html#usage)
+* [Segment: Usage](targets/segment.html#usage)
+* [Amplitude: Usage](targets/amplitude.html#usage)
+* React Native:
+  * [GoogleAnalytics: Usage](targets/react-native-google-analytics.html#usage)
+  * [GoogleTagManager: Usage](targets/react-native-google-tag-manager.html#usage)
 
 ### Step 4
 Follow the instructions [here](https://redux.js.org/docs/api/applyMiddleware.html) to

@@ -14,11 +14,12 @@
    [JavaScript Tracking Snippet](https://segment.com/docs/sources/website/analytics.js/quickstart/)
    to your site.
 
-    > **[info] Tip**
-    > during development and testing it is often helpful to use the debug
-    > version of analytics.js. Follow the instructions
-    > [here](https://segment.com/docs/sources/website/analytics.js/#debug)
-    > to enable it.
+    {% hint style='info' %}
+    during development and testing it is often helpful to use the debug
+    version of analytics.js. Follow the instructions
+    [here](https://segment.com/docs/sources/website/analytics.js/#debug)
+    to enable it.
+    {% endhint %}
 
 3. Install the target:
 
@@ -71,13 +72,12 @@ const pageView = trackPageView((action, prevState, nextState) => {
 });
 ```
 
-> **[danger] Duplicate Page Views**
-> the last line of the tracking snippet `analytics.page();` hits Segment.io
-> with a page view that matches the first loaded route. If you're tracking
-> page views using Redux Beacon, be sure to remove this line so the initial
-> page load isn't recorded twice.
-
-<br>
+{% hint style='danger' %}
+The last line of the tracking snippet `analytics.page();` hits Segment.io
+with a page view that matches the first loaded route. If you're tracking
+page views using Redux Beacon, be sure to remove this line so the initial
+page load isn't recorded twice.
+{% endhint %}
 
 #### event
 ##### Docs:
@@ -95,7 +95,7 @@ const event = trackEvent((action, prevState, nextState) => {
 });
 ```
 
-<br>
+
 
 #### alias
 ##### Docs:
@@ -113,7 +113,7 @@ const alias = setAlias((action, prevState, nextState) => {
 });
 ```
 
-<br>
+
 
 #### group
 ##### Docs:
@@ -131,7 +131,7 @@ const group = setGroup((action, prevState, nextState) => {
 });
 ```
 
-<br>
+
 
 #### identify
 ##### Docs:

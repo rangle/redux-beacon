@@ -61,11 +61,12 @@ const pageView = trackPageView((action, prevState, nextState) => {
 }, /* (optional) tracking Id */, /* (optional) tracking Id */, ...);
 ```
 
-> **[danger] Duplicate Page Views**
-> the last line of the tracking snippet `gtag('config', 'GA_TRACKING_ID');` hits Google
-> Analytics with a page view that matches the first loaded route. If you're
-> tracking page views using Redux Beacon, be sure to remove this line so the
-> initial page load isn't recorded twice.
+{% hint style='danger' %}
+The last line of the tracking snippet `gtag('config', 'GA_TRACKING_ID');` hits Google
+Analytics with a page view that matches the first loaded route. If you're
+tracking page views using Redux Beacon, be sure to remove this line so the
+initial page load isn't recorded twice.
+{% endhint %}
 
 #### event
 ##### Docs:
