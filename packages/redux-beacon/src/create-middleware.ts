@@ -1,7 +1,7 @@
 import createEvents from './create-events';
 import getEventsWithMatchingKey from './get-events-with-matching-key';
 import registerEvents from './register-events';
-import { EventsMapper, EventsMap, Extensions, Target } from './types';
+import { EventsMap, EventsMapper, Extensions, Target } from './types';
 
 /**
  * Create Redux middleware that synchronizes actions to analytics events.
