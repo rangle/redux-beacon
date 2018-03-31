@@ -9,14 +9,14 @@ function.
 ### Step 1
 Choose a target, and follow the setup instructions.
 
-* [GoogleAnalytics: Setup](targets/google-analytics.html#setup)
-* [GoogleAnalyticsGtag: Setup](targets/google-analytics-gtag.html#setup)
-* [GoogleTagManager: Setup](targets/google-tag-manager.html#setup)
-* [Segment: Setup](targets/segment.html#setup)
-* [Amplitude: Setup](targets/amplitude.html#setup)
+* [GoogleAnalytics: Setup](targets/google-analytics.md#setup)
+* [GoogleAnalyticsGtag: Setup](targets/google-analytics-gtag.md#setup)
+* [GoogleTagManager: Setup](targets/google-tag-manager.md#setup)
+* [Segment: Setup](targets/segment.md#setup)
+* [Amplitude: Setup](targets/amplitude.md#setup)
 * React Native:
-  * [GoogleAnalytics: Setup](targets/react-native-google-analytics.html#setup)
-  * [GoogleTagManager: Setup](targets/react-native-google-tag-manager.html#setup)
+  * [GoogleAnalytics: Setup](targets/react-native-google-analytics.md#setup)
+  * [GoogleTagManager: Setup](targets/react-native-google-tag-manager.md#setup)
 
 {% hint style='info' %}
 Don't see the target you need?
@@ -26,14 +26,14 @@ Follow the instructions [here](examples-and-recipes.md#how-to-create-own-target.
 ### Step 2
 Decide what you want to track and pick out the corresponding event definition:
 
-* [GoogleAnalytics: Event Definitions](targets/google-analytics.html#event-definitions)
-* [GoogleAnalyticsGtag: Event Definitions](targets/google-analytics-gtag.html#event-definitions)
-* [GoogleTagManager: Event Definitions](targets/google-tag-manager.html#event-definitions)
-* [Segment: Event Definitions](targets/segment.html#event-definitions)
-* [Amplitude: Event Definitions](targets/amplitude.html#event-definitions)
+* [GoogleAnalytics: Event Definitions](targets/google-analytics.md#event-definitions)
+* [GoogleAnalyticsGtag: Event Definitions](targets/google-analytics-gtag.md#event-definitions)
+* [GoogleTagManager: Event Definitions](targets/google-tag-manager.md#event-definitions)
+* [Segment: Event Definitions](targets/segment.md#event-definitions)
+* [Amplitude: Event Definitions](targets/amplitude.md#event-definitions)
 * React Native:
-  * [GoogleAnalytics: Event Definitions](targets/react-native-google-analytics.html#event-definitions)
-  * [GoogleTagManager: Event Definitions](targets/react-native-google-tag-manager.html#event-definitions)
+  * [GoogleAnalytics: Event Definitions](targets/react-native-google-analytics.md#event-definitions)
+  * [GoogleTagManager: Event Definitions](targets/react-native-google-tag-manager.md#event-definitions)
 
 ### Step 3
 Complete the event definition by filling in the object properties, and match it
@@ -50,8 +50,8 @@ import logger from '@redux-beacon/logger'; // optional
 
 // Copy & paste the event definition you chose in step 2, then fill it in.
 const emitVideoPlayed = trackEvent(action => ({
-  eventCategory: 'Video',
-  eventAction: action.type,
+  category: 'Videos',
+  action: action.type,
 }));
 
 // Match the event definition to a Redux action:
@@ -64,14 +64,14 @@ const ga = GoogleAnalytics();
 const gaMetaReducer = createMetaReducer(eventsMap, ga, { logger });
 ```
 
-* [GoogleAnalytics: Usage](targets/google-analytics.html#usage)
-* [GoogleAnalyticsGtag: Usage](targets/google-analytics-gtag.html#usage)
-* [GoogleTagManager: Usage](targets/google-tag-manager.html#usage)
-* [Segment: Usage](targets/segment.html#usage)
-* [Amplitude: Usage](targets/amplitude.html#usage)
+* [GoogleAnalytics: Usage](targets/google-analytics.md#usage)
+* [GoogleAnalyticsGtag: Usage](targets/google-analytics-gtag.md#usage)
+* [GoogleTagManager: Usage](targets/google-tag-manager.md#usage)
+* [Segment: Usage](targets/segment.md#usage)
+* [Amplitude: Usage](targets/amplitude.md#usage)
 * React Native:
-  * [GoogleAnalytics: Usage](targets/react-native-google-analytics.html#usage)
-  * [GoogleTagManager: Usage](targets/react-native-google-tag-manager.html#usage)
+  * [GoogleAnalytics: Usage](targets/react-native-google-analytics.md#usage)
+  * [GoogleTagManager: Usage](targets/react-native-google-tag-manager.md#usage)
 
 ### Step 4
 Follow the instructions [here](https://github.com/ngrx/platform/blob/master/docs/store/api.md#meta-reducers) to

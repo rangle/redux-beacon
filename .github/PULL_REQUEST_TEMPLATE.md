@@ -5,7 +5,6 @@ _Put an x in the boxes that apply. You can also fill these out after creating th
 
  - [ ] I have added tests that prove my fix is effective or that my feature works.
  - [ ] I have added all necessary documentation (if appropriate)
- - [ ] I have updated the [CHANGELOG](https://github.com/rangle/redux-beacon/blob/master/CHANGELOG.md)
 
 What was done
 ----

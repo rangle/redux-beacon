@@ -4,3 +4,4 @@
 * [`createMetaReducer`](create-meta-reducer.md)
 * [`EventDefinition`](event-definition.md)
 * [`EventsMap`](events-map.md)
+* [`EventsMapper`](events-mapper.md)
