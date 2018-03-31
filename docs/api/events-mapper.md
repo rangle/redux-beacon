@@ -1,7 +1,7 @@
 ## `EventsMapper`
 
 A `Function` you provide to Redux Beacon to map actions
-to Arrays of [eventDefinitions](./event-definition.md).
+to [eventDefinitions](./event-definition.md).
 
 ### Syntax
 
@@ -9,15 +9,15 @@ to Arrays of [eventDefinitions](./event-definition.md).
 import {
   eventForActionA,
   eventForActionB,
-  eventForAllActions,
+  eventForActionB2,
 } from './event-definitions';
 
-const eventsFunction = (action) => {
-  switch(action.type){
+const eventsMapper = (action) => {
+  switch(action.type) {
     case 'ACTION_A':
-      return [eventForActionA];
+      return eventForActionA;
     case 'ACTION_B':
-      return [eventForActionB];
+      return [eventForActionB, eventForActionB2];
     default:
       return [];
   };

@@ -1,8 +1,25 @@
 # Contributing
 
+When contributing to this repository, please first discuss the change you wish
+to make via issue, email, or any other method with the owners of this repository
+before making a change.
+
+Please note we have a code of conduct, please follow it in all your interactions
+with the project.
+
 ## How to Make a Pull Request
 
-Not sure how to make a pull request? Watch the following free series on egghead.io:
+We follow the "fork-and-pull" Git workflow.
+
+ 1. Fork the repo on GitHub
+ 2. Clone the project to your own machine
+ 3. Commit changes to your own branch
+ 4. Push your work back up to your fork
+ 5. Submit a Pull request so that we can review your changes
+
+NOTE: Be sure to merge the latest from "upstream" before making a pull request!
+
+Stil not sure how to make a pull request? Watch the following free series on egghead.io:
 [How to Contribute to an Open Source Project on GitHub](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)
 
 ## How to Make Updates to the Ngrx/Store Example Integration
