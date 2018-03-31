@@ -75,6 +75,7 @@ const event = (action, prevState, nextState) => {
   };
   ```
 
-> **[info] Tip**
-> This gives you the option to use the event definitions
-> exposed by the [Google Analytics target](./google-analytics.md#event-definitions)
+{% hint style='info' %}
+This gives you the option to use the event definitions
+exposed by the [Google Analytics target](./google-analytics.md#event-definitions)
+{% endhint %}

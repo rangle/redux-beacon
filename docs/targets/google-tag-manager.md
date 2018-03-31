@@ -14,7 +14,7 @@
    [Google Tag Manager container snippet](https://developers.google.com/tag-manager/quickstart)
    to your site.
 
-    > **[info] Tip**
+    {% hint style='info' %}
     > during development and testing it is often helpful to use Google Tag
     > Manager's Container Preview mode. Follow the instructions
     > [here](https://support.google.com/tagmanager/answer/6107056?hl=en) to
@@ -91,6 +91,7 @@ const event = (action, prevState, nextState) => {
   };
   ```
 
-  > **[info] Tip**
-  > This gives you the option to use the event definitions
-  > exposed by the [Google Analytics target](./google-analytics.md#event-definitions)
+{% hint style='info' %}
+This gives you the option to use the event definitions
+exposed by the [Google Analytics target](./google-analytics.md#event-definitions)
+{% endhint %}

@@ -65,7 +65,7 @@ const event = logEvent((action, prevState, nextState) => {
 });
 ```
 
-<br>
+
 
 #### userId
 ##### Docs:
@@ -79,7 +79,7 @@ const event = setUserId((action, prevState, nextState) => {
 });
 ```
 
-<br>
+
 
 #### logout
 ##### Docs:
@@ -91,7 +91,7 @@ import { logout } from '@redux-beacon/amplitude';
 const event = logout();
 ```
 
-<br>
+
 
 #### userProperties
 ##### Docs:
