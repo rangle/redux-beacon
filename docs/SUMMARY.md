@@ -1,5 +1,5 @@
-* [Getting Started (Redux users)](getting-started-redux-users.md)
-* [Getting Started (ngrx users)](getting-started-ngrx-users.md)
+* [Getting Started (Redux)](getting-started-redux-users.md)
+* [Getting Started (ngrx)](getting-started-ngrx-users.md)
 * [Examples & Recipes](examples-and-recipes.md)
 * [Targets](targets/index.md)
   * [GoogleAnalytics](targets/google-analytics.md)
