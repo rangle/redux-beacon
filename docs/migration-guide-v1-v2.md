@@ -1,4 +1,4 @@
-# What's New in v.2?
+# What's New in v2?
 
 For the most part most of your existing setup shouldn't have to change. There
 are breaking changes to the way targets, utils, and extensions are imported (and
@@ -52,10 +52,10 @@ import ensure from '@redux-beacon/ensure';
 Before, a breaking change to a single target, extension, or util would result in
 a major version bump for the entire package. Since most users stick to one
 target this could lead to confusion as there might be many version bumps without
-any real impact to some users.
+any real impact to a user.
 
-Another hope for this change is continuous, frequent, releases. Going forward the goal
-will be to have a npm release with each new commit to `master`. Contributors
+Another hope for this change is continuous frequent releases. Going forward the
+goal is to have an npm release with each new commit to `master`. Contributors
 should no longer have to wait for weeks or months for another major release to
 see their changes.
 
@@ -89,7 +89,7 @@ major version bump.
 ### New Docs Site
 
 There's a new [Examples & Recipes](https://rangle.gitbook.io/redux-beacon/examples-and-recipes) page,
-revised [Targets](https://rangle.gitbook.io/redux-beacon/targets), revised Getting Started docs ([Redux](https://rangle.gitbook.io/redux-beacon/getting-started-redux) &
+revised [Targets](https://rangle.gitbook.io/redux-beacon/targets) docs, revised Getting Started docs ([Redux](https://rangle.gitbook.io/redux-beacon/getting-started-redux) &
 [ngrx](https://rangle.gitbook.io/redux-beacon/getting-started-ngrx)), two new
 runnable examples
 ([Redux](https://codesandbox.io/s/4xkkp8n419) &
@@ -99,8 +99,8 @@ and more. Take a look around!
 ### Event Helpers
 
 In v1 it wasn't always clear what you could and couldn't track. Now, each
-target's documentation has an `Event Definitions` section that lists out all the
-events you can track.
+target's docs has an `Event Definitions` section that lists out all the events
+you can track.
 
 Going forward, each time you want to track something, you:
 
@@ -186,4 +186,4 @@ const eventsMapper = (action) => {
  - Events that are saved offline, are now purged _as soon_ as the app regains connection ([#168](https://github.com/rangle/redux-beacon/pull/168))
  - The React Native Google Analytics target now supports custom dimensions ([#181](https://github.com/rangle/redux-beacon/pull/181))
  - The React Native Google Analytics target now supports purchase events ([#189](https://github.com/rangle/redux-beacon/pull/189))
- - The Cordova Google Analytics target is no longer being maintained by us ([#192](https://github.com/rangle/redux-beacon/pull/192))
+ - The Cordova Google Analytics target is no longer being maintained ([#192](https://github.com/rangle/redux-beacon/pull/192))
