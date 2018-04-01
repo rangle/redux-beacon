@@ -54,7 +54,7 @@ a major version bump for the entire package. Since most users stick to one
 target this could lead to confusion as there might be many version bumps without
 any real impact to a user.
 
-Another hope for this change is continuous frequent releases. Going forward the
+Another hope for this change is continuous frequent releases. Going forward, the
 goal is to have an npm release with each new commit to `master`. Contributors
 should no longer have to wait for weeks or months for another major release to
 see their changes.
@@ -102,7 +102,7 @@ In v1 it wasn't always clear what you could and couldn't track. Now, each
 target's docs has an `Event Definitions` section that lists out all the events
 you can track.
 
-Going forward, each time you want to track something, you:
+Each time you want to track something, you:
 
   1. Find the event definition for the thing you want to track.
   2. Match the event definition to an action then fill in the event
@@ -130,9 +130,8 @@ const event = trackEvent((action) => ({
 
 ### Async Event Definitions
 
-You can now return a Promise that resolves to events from an event
-definition. Here's an example of one way you could use this feature with the new
-`debounceEvent` util:
+You can now return a Promise from an event definition. Here's an example of one
+way you could use this feature with the new `debounceEvent` util:
 
 ```js
 const videoSearched = debounceEvent(300,
