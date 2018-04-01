@@ -3,12 +3,12 @@
 ### Syntax
 
 ```js
-createMetaReducer(eventsMap, target[, extensions]);
+createMetaReducer([eventsMap | eventsMapper], target[, extensions]);
 ```
 
 #### Parameters
 
- * `eventsMap`: [eventsMap](events-map.md)
+ * `eventsMap | eventsMapper`: [eventsMap](events-map.md) | [eventsMapper](events-mapper.md)
  * `target`: [target](../targets/index.md)
  * `extensions` *(optional)*: [extensions](../extensions/index.md).
 

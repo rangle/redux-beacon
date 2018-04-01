@@ -113,7 +113,7 @@ own set of `eventDefinitions` that you can use and customize. In a nutshell,
 each time you want to track something:
 
   1. Find the event definition for the thing you want to track.
-  2. Match the event definition to a Redux action then fill in the event
+  2. Match the event definition to an action then fill in the event
      definition.
 
 If the `eventsMap` object doesn't meet your needs you can also use an

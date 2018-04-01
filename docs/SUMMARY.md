@@ -24,4 +24,5 @@
   * [ensure](utils/ensure.md)
   * [combineEvents](utils/combine-events.md)
 * [FAQ](faq.md)
+* [Migration Guide (v1 to v2)](migration-guide-v1-v2.md)
 * [Notes on Offline Events](notes-on-offline-events.md)
