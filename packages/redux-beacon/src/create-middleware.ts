@@ -1,7 +1,15 @@
+import * as flatten from 'array-flatten';
+
 import createEvents from './create-events';
 import getEventsWithMatchingKey from './get-events-with-matching-key';
 import registerEvents from './register-events';
-import { EventsMap, EventsMapper, Extensions, Target } from './types';
+import {
+  EventDefinition,
+  EventsMap,
+  EventsMapper,
+  Extensions,
+  Target,
+} from './types';
 
 /**
  * Create Redux middleware that synchronizes actions to analytics events.
@@ -13,7 +21,7 @@ function createMiddleware(
 ) {
   const getEvents =
     typeof eventsMap === 'function'
-      ? action => eventsMap(action)
+      ? action => flatten<EventDefinition>([eventsMap(action)])
       : action => getEventsWithMatchingKey(eventsMap, action.type);
 
   return store => next => action => {

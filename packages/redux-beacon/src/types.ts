@@ -14,7 +14,7 @@ export type EventDefinition<E = any> = (
 
 export type EventsMapper = (
   action: { [key: string]: any }
-) => EventDefinition[];
+) => EventDefinition | EventDefinition[];
 
 /**
  * A map between your actions and your analytics events.  Each key

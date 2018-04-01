@@ -85,17 +85,57 @@ function runIntegrationTests(title, prepareStore) {
         expect(target).toHaveBeenCalledWith([{ hitType: 'pageview' }]);
       });
     });
+
+    describe('When given an eventsMapper instead of an eventsMap', () => {
+      it('correctly maps dispatched actions to event definitions', () => {
+        const eventsMapper = action => {
+          switch (action.type) {
+            case 'ACTION_A':
+              return [
+                () => ({ event: 'ACTION_A_EVENT_1' }),
+                () => ({ event: 'ACTION_A_EVENT_2' }),
+              ];
+            case 'ACTION_C':
+              return () => ({ event: 'ACTION_C_EVENT' });
+            default:
+              return [];
+          }
+        };
+
+        const target = jest.fn();
+
+        const reducer = state => state;
+        const store = prepareStore(reducer, eventsMapper, target);
+
+        // dispatch an action with an associated event definition:
+        store.dispatch({ type: 'ACTION_A' });
+        // dispatch an action with no associated event definition:
+        store.dispatch({ type: 'ACTION_B' });
+        // dispatch an action with an associated event definition:
+        store.dispatch({ type: 'ACTION_C' });
+
+        expect(target).toHaveBeenCalledWith([
+          { event: 'ACTION_A_EVENT_1' },
+          { event: 'ACTION_A_EVENT_2' },
+        ]);
+
+        expect(target).toHaveBeenCalledWith([{ event: 'ACTION_C_EVENT' }]);
+      });
+    });
   });
 }
 
 runIntegrationTests(
-  'createMiddleware(eventsMap, target, extensions?)',
-  (reducer, eventsMap, target) =>
-    createStore(reducer, applyMiddleware(createMiddleware(eventsMap, target)))
+  'createMiddleware(eventsMap | eventsMapper, target, extensions?)',
+  (reducer, eventsMapOrMapper, target) =>
+    createStore(
+      reducer,
+      applyMiddleware(createMiddleware(eventsMapOrMapper, target))
+    )
 );
 
 runIntegrationTests(
-  'createMetaReducer(eventsMap, target, extensions?)',
+  'createMetaReducer(eventsMap | eventsMapper, target, extensions?)',
   (reducer, eventsMap, target) =>
     createStore(createMetaReducer(eventsMap, target)(reducer))
 );
