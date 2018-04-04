@@ -52,6 +52,7 @@ your entire global state life-cycle becomes trackable.
    [docs](https://rangle.gitbook.io/redux-beacon/extensions/offlineweb).
 
 ## Packages
+
 |                                                                                                                          | Version                                                                                                                                                                                 | Package                                                                                                                      |
 |--------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
 |                                                                                                                          | [![npm](https://img.shields.io/npm/v/redux-beacon.svg?style=flat-square)](https://www.npmjs.com/package/redux-beacon)                                                                   | [redux-beacon](https://rangle.gitbook.io/redux-beacon/api-reference)                                                                   |
@@ -68,10 +69,16 @@ your entire global state life-cycle becomes trackable.
 | 🔌                                                                                                                       | [![npm](https://img.shields.io/npm/v/@redux-beacon/offline-web.svg?style=flat-square)](https://www.npmjs.com/package/@redux-beacon/offline-web)                                         | [@redux-beacon/offline-web](https://rangle.gitbook.io/redux-beacon/extensions/offlineweb)                                         |
 | 🔌                                                                                                                       | [![npm](https://img.shields.io/npm/v/@redux-beacon/offline-react-native.svg?style=flat-square)](https://www.npmjs.com/package/@redux-beacon/offline-react-native)                       | [@redux-beacon/offline-react-native](https://rangle.gitbook.io/redux-beacon/extensions/offlinereactnative)                       |
 
-## API Overview
 
-When using Redux Beacon the bulk of your work will be in an `eventsMap` which is
-an object that maps action types to analytics events.
+## Usage
+
+ - **Step 1.** Pick out a target _(see above)_
+
+ - **Step 2.** Pick out some events you want to track from your target's Event Definitions section
+
+ - **Step 3.** Match the events to action types _(see below)_
+
+### Examples
 
 _Track a page view on each `ROUTE_CHANGED` action_
 ```js
@@ -140,12 +147,7 @@ const eventsMap = {
 The `trackPageView`, `trackEvent`, and `trackTiming` functions used above are
 called `eventDefinitions` and are what you use to create events that are
 consumable by an analytics service (a.k.a "target"). Each target will have its
-own set of `eventDefinitions` that you can use and customize. In a nutshell,
-each time you want to track something:
-
-  1. Find the event definition for the thing you want to track.
-  2. Match the event definition to an action then fill in the event
-     definition.
+own set of `eventDefinitions` that you can use and customize.
 
 **Don't like the idea of using an object to map actions?**
 
@@ -178,7 +180,7 @@ const eventsMapper = (action) => {
 }
 ```
 
-## Examples & Recipes
+## More Examples & Recipes
  - [How to Track Pageviews in a React-Redux app](https://rangle.gitbook.io/redux-beacon/examples-and-recipes#how-to-track-pageviews-in-a-react-redux-app)
  - [How to Track Pageviews in an Angular-ngrx app](https://rangle.gitbook.io/redux-beacon/examples-and-recipes#how-to-track-pageviews-in-an-angular-ngrx-app)
  - [How to Track Analytics Offline (Web)](https://rangle.gitbook.io/redux-beacon/extensions/offlineweb)
