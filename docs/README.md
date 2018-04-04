@@ -3,31 +3,27 @@ Redux Beacon to tap into your dispatched actions and map them to events that are
 consumable by an analytics service (e.g. Google Analytics). With Redux Beacon
 your entire global state life-cycle becomes trackable.
 
-#### ✓ _Redux Beacon is Lightweight_
+<p align="center">
+  <img alt="Redux Beacon Diagram" src="https://user-images.githubusercontent.com/7446702/38284923-bf9e2b56-378b-11e8-99b0-0416b1efab46.gif">
+</p>
 
-[![npm bundle size (minified + gzip)](https://img.shields.io/bundlephobia/minzip/redux-beacon@next.svg?style=social)](https://bundlephobia.com/result?p=redux-beacon@2.0.0-rc.2)
+ - **Redux Beacon is lightweight**. The core Redux Beacon module is tiny (~ 1KB), and each target, extension, and
+   util, is either around the same size or smaller.
 
-The core Redux Beacon module is tiny (~ 1KB), and each target, extension, and util,
-is either around the same size or smaller.
+ - **You can use Redux Beacon with any framework**. Redux Beacon doesn't depend on any
+   framework, you can use Redux Beacon with React, Angular, React Native, Vue or
+   just plain JavaScript.
 
-#### ✓ _Redux Beacon is Framework Agnostic_
+ - **You can send analytics anywhere**. We have prebuilt targets for the most
+   popular analytics services, you can also build your own custom targets if you
+   need to.
 
-Redux Beacon doesn't depend on any framework, you can use Redux Beacon with React,
-Angular, React Native, Vue or just plain JavaScript.
-
-#### ✓ _Redux Beacon Can Send Analytics Anywhere_
-
-With Redux Beacon you can send analytics events anywhere. We have prebuilt
-targets for the most popular analytics services, you can also build your own
-custom targets if you need to.
-
-#### ✓ _Redux Beacon Can Track Analytics Offline_
-
-Redux Beacon provides extensions for tracking analytics during intermittent
-outages in connectivity. These extensions save events in a persistent store when
-offline (e.g indexedDB). When back online, the extensions purge the store and
-pass the events off to a target. Read more about offline event collection in the
-[docs](https://rangle.gitbook.io/redux-beacon/extensions/offlineweb).
+ - **You can track analytics offline**. Redux Beacon provides
+   extensions for tracking analytics during intermittent outages in
+   connectivity. These extensions save events in a persistent store when offline
+   (e.g indexedDB). When back online, the extensions purge the store and pass
+   the events off to a target. Read more about offline event collection in the
+   [docs](https://rangle.gitbook.io/redux-beacon/extensions/offlineweb).
 
 ## Packages
 |                                                                                                                          | Version                                                                                                                                                                                 | Package                                                                                                                      |
@@ -49,37 +45,44 @@ pass the events off to a target. Read more about offline event collection in the
 ## API Overview
 
 When using Redux Beacon the bulk of your work will be in an `eventsMap` which is
-an object that maps action types to analytics events. Here's what an `eventsMap`
-might look like:
+an object that maps action types to analytics events.
 
+_Track a page view on each `ROUTE_CHANGED` action_
 ```js
 const eventsMap = {
-
-  // Track a page view on each 'ROUTE_CHANGED' action
   'ROUTE_CHANGED': trackPageView(action => ({
     page: action.payload.routerState.url,
   })),
+}
+```
 
-
-  // Track an event on each 'VIDEO_SELECTED' action, use the state before
-  // the action and the state after the action to hydrate the analytics event
+_Track an event on each `VIDEO_SELECTED` action, use the state before the action
+and the state after the action to hydrate the analytics event_
+```js
+const eventsMap = {
   'VIDEO_SELECTED': trackEvent((action, prevState, nextState) => ({
     category: 'Videos',
     action: action.type,
     label: prevState.videos.currentCampaign,
     value: nextState.videos.numVideosSelected,
   }))
+}
+```
 
-
-  // Track an event on _every_ action with the special '*' key
+_Track an event on _every_ action using the special '*' key_
+```js
+const eventsMap = {
   '*': trackEvent(action => ({
     category: 'redux',
     action: action.type,
   })),
+}
+```
 
+_Track multiple events on each `VIDEO_PLAYED` action using the `combineEvents` util_
 
-  // Track multiple events on each 'VIDEO_PLAYED' action with the
-  // combineEvents util
+```js
+const eventsMap = {
   'VIDEO_PLAYED': combineEvents(
     trackTiming(action => ({
       category: 'Videos',
@@ -91,10 +94,13 @@ const eventsMap = {
       action: 'play'
     })),
   ),
+}
+```
 
+_Track an event on each 'VIDEO_SEARCHED' action, but throttle it with the debounceEvent util so it doesn't fire as often_
 
-  // Track an event on each 'VIDEO_SEARCHED' action, but throttle it with
-  // the debounceEvent util so it doesn't fire as often
+```js
+const eventsMap = {
   'VIDEO_SEARCHED': debounceEvent(300,
      trackEvent(action => ({
        category: 'Videos',
@@ -102,8 +108,7 @@ const eventsMap = {
        label: action.payload.searchTerm,
      }))
    ),
-
-};
+}
 ```
 
 The `trackPageView`, `trackEvent`, and `trackTiming` functions used above are
@@ -116,9 +121,9 @@ each time you want to track something:
   2. Match the event definition to an action then fill in the event
      definition.
 
-If the `eventsMap` object doesn't meet your needs you can also use an
-`eventsMapper` function to map action types to event definitions:
+**Don't like the idea of using an object to map actions?**
 
+_You can use a function..._
 ```js
 const pageView = trackPageView(action => ({
   page: action.payload.routerState.url,
