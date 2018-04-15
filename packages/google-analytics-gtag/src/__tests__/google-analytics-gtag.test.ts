@@ -74,6 +74,24 @@ describe('Page Tracking', () => {
     expect(window.gtag).toHaveBeenCalledWith('config', 'GA_TRACKING_ID_1', {});
     expect(window.gtag).toHaveBeenCalledWith('config', 'GA_TRACKING_ID_2', {});
   });
+
+  test('given { type: "page", trackingId: [] } (empty trackPageView)', () => {
+    const events = [
+      {
+        type: 'page',
+        trackingId: [],
+        page_path: '/topics',
+      },
+    ];
+
+    const target = GoogleAnalyticsGtag('GA_TRACKING_ID');
+
+    target(events);
+
+    expect(window.gtag).toHaveBeenCalledWith('config', 'GA_TRACKING_ID', {
+      page_path: '/topics',
+    });
+  });
 });
 
 describe('Event Tracking', () => {

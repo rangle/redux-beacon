@@ -2,7 +2,7 @@ import { Target } from 'redux-beacon';
 
 declare let gtag: any;
 
-function GoogleAnalyticsGtag(gaTrackingId: string): Target {
+function GoogleAnalyticsGtag(defaultTrackingId: string): Target {
   if (typeof window === 'undefined') {
     return () => {};
   }
@@ -13,7 +13,7 @@ function GoogleAnalyticsGtag(gaTrackingId: string): Target {
     );
   }
 
-  gtag('config', gaTrackingId, { send_page_view: false });
+  gtag('config', defaultTrackingId, { send_page_view: false });
 
   return function target(events) {
     const pageTracking = events.filter(event => event.type === 'page');
@@ -22,13 +22,13 @@ function GoogleAnalyticsGtag(gaTrackingId: string): Target {
     pageTracking.forEach(event => {
       const { type, trackingId, ...params } = event;
 
-      let trackingIds = [gaTrackingId];
+      let trackingIds = [defaultTrackingId];
 
       if (typeof trackingId === 'string') {
         trackingIds = [trackingId];
       }
 
-      if (Array.isArray(trackingId)) {
+      if (Array.isArray(trackingId) && trackingId.length > 0) {
         trackingIds = trackingId;
       }
 
