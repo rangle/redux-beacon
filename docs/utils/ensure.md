@@ -36,7 +36,7 @@ type Validator = (event: any[]) => boolean;
 
 ```js
 import joi from 'joi';
-import ensure from 'redux-beacon/utils/ensure'
+import ensure from '@redux-beacon/ensure'
 
 const pageview = (action, prevState) => ({
   hitType: 'pageview',

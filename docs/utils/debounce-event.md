@@ -28,7 +28,7 @@ debounceEvent(msDelay, eventDef)
 ### Example
 
 ```js
-import debounceEvent from 'redux-beacon/utils/debounce-event';
+import debounceEvent from '@redux-beacon/debounce-event';
 
 // A normal event definition
 const searchTerm = (action) => ({
