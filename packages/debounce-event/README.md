@@ -5,7 +5,7 @@ Use with [Redux Beacon](https://www.npmjs.com/package/redux-beacon) to limit the
 ### Example
 
 ```js
-import debounceEvent from 'redux-beacon/utils/debounce-event';
+import debounceEvent from '@redux-beacon/debounce-event';
 
 // A normal event definition
 const searchTerm = (action) => ({
