@@ -176,6 +176,7 @@ export const trackEcommImpression = (
   const { id, name, list, brand, category, variant, position, price } = event;
 
   return {
+    ecommType: 'enhanced',
     hitType: 'addImpression',
     customTrackerId: tracker,
     id,
@@ -217,6 +218,7 @@ export const trackEcommProduct = (
   } = event;
 
   return {
+    ecommType: 'enhanced',
     hitType: 'addProduct',
     customTrackerId: tracker,
     id,
@@ -244,6 +246,7 @@ export const trackEcommPromotion = (
   const { id, name, creative, position } = event;
 
   return {
+    ecommType: 'enhanced',
     hitType: 'addPromo',
     customTrackerId: tracker,
     id,
@@ -281,6 +284,7 @@ export const trackEcommAction = (
   } = event;
 
   return {
+    ecommType: 'enhanced',
     hitType: 'addAction',
     customTrackerId: tracker,
     id,
