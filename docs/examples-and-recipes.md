@@ -1,7 +1,8 @@
 # Examples & Recipes
 
-1. [How to Track Pageviews in a React-Redux app](#how-to-track-pageviews-in-a-react-redux-app)
-2. [How to Track Pageviews in an Angular-ngrx app](#how-to-track-pageviews-in-an-angular-ngrx-app)
+1. [How to Track Pageviews with GA in a React-Redux app](#how-to-track-pageviews-in-a-react-redux-app)
+2. [How to Track Pageviews with GTM in a React-Redux app](#how-to-track-pageviews-with-GTM-in-a-react-redux-app)
+3. [How to Track Pageviews in an Angular-ngrx app](#how-to-track-pageviews-in-an-angular-ngrx-app)
 4. [How to Emit Multiple Analytics Events per Redux Action](./utils/combine-events.md)
 5. [How to Debounce Analytics Events](./utils/debounce-event.md)
 6. [How to Validate Analytics Events](./utils/ensure.md)
@@ -15,7 +16,7 @@
 
 ## How to Track Pageviews in a React-Redux app
 
-The following example shows how you can use Redux Beacon to track page views in
+The following example shows how you can use Redux Beacon to track page views with Google Analytics in
 an React app that uses Redux for state management, and React Router for
 navigation.
 
@@ -35,7 +36,32 @@ const gaMiddleware = createMiddleware(eventsMap, GoogleAnalytics());
  - Click [here](https://redux.js.org/docs/api/applyMiddleware.html) for instructions on how to apply the middleware to your store.
  - Click [here](https://codesandbox.io/s/4xkkp8n419) for a runnable example.
 
+## How to Track Pageviews with GTM in a React-Redux app
+The following example shows how you can use Redux Beacon to track page views with Google Tag Manger in
+an React app that uses Redux for state management, and React Router for
+navigation.
 
+```js
+import { LOCATION_CHANGE } from 'react-router-redux';
+import { createMiddleware } from 'redux-beacon';
+import GoogleTagManager from '@redux-beacon/google-tag-manager';
+
+const gtm = GoogleTagManager();
+
+const pageView = action => ({
+  event: 'pageview',
+  hitType: 'pageview',
+  page: action.payload.pathname
+});
+
+const eventsMap = {
+  [LOCATION_CHANGE]: pageView
+};
+
+export const gtmMiddleware = createMiddleware(eventsMap, gtm);
+
+```
+ - Click [here](https://redux.js.org/docs/api/applyMiddleware.html) for instructions on how to apply the middleware to your store.
 
 
 ## How to Track Pageviews in an Angular-ngrx app
