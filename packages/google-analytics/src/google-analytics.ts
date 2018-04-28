@@ -48,7 +48,7 @@ const GoogleAnalytics = (): Target => events => {
             ),
           addAction: () =>
             ga(
-              `${trackerId}${ecommPluginType}:addAction`,
+              `${trackerId}${ecommPluginType}:setAction`,
               event.actionName,
               filterEcommEvents(event)
             ),

@@ -362,6 +362,7 @@ import { trackEcommAction } from '@redux-beacon/google-analytics';
 
 const ecommAction = trackEcommAction((action, prevState, nextState) => {
   return {
+    actionName: /* fill me in */
     id: /* fill me in */,
     affiliation: /* (optional) */,
     revenue: /* (optional) */,
