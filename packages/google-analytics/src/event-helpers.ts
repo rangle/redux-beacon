@@ -258,6 +258,7 @@ export const trackEcommPromotion = (
 
 export const trackEcommAction = (
   eventDef: EventDefinition<{
+    actionName: string;
     id: string;
     affiliation?: string;
     revenue?: string;
@@ -272,6 +273,7 @@ export const trackEcommAction = (
 ): EventDefinition => (action, prevState, nextState) => {
   const event = eventDef(action, prevState, nextState);
   const {
+    actionName,
     id,
     affiliation,
     revenue,
@@ -287,6 +289,7 @@ export const trackEcommAction = (
     ecommType: 'enhanced',
     hitType: 'addAction',
     customTrackerId: tracker,
+    actionName,
     id,
     affiliation,
     revenue,

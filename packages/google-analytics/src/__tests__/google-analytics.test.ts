@@ -219,7 +219,7 @@ describe('GoogleAnalytics(events)', () => {
       ];
 
       target(events);
-      expect(window.ga).toHaveBeenCalledWith('ec:addAction', 'click', {});
+      expect(window.ga).toHaveBeenCalledWith('ec:setAction', 'click', {});
     });
   });
 });
