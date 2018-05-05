@@ -13,8 +13,8 @@ The solution is to wrap the exported meta reducer in another meta reducer that i
 ```typescript
 const targetMetaReducer = createMetaReducer(eventsMap, MyTarget());
 
-export function analyticsMetaReducer(state: any, action: any) {
-  return targetMetaReducer(state, action);
+export function analyticsMetaReducer(reducer) {
+  return targetMetaReducer(reducer);
 }
 ```
 
