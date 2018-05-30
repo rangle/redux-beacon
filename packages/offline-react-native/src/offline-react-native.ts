@@ -30,6 +30,7 @@ function offlineReactNative(
   const purgeEvents = (handlePurgedEvents: PurgedEventsHandler) =>
     AsyncStorage.getItem(STORE_KEY, () => AsyncStorage.removeItem(STORE_KEY))
       .then(JSON.parse)
+      .then((oldEvents: any[]) => oldEvents || [])
       .then(handlePurgedEvents);
 
   return {
