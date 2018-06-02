@@ -46,4 +46,37 @@ describe('When saving events:', () => {
       });
     });
   });
+
+  describe('When purging events', () => {
+    it('returns an empty array when there are no items to be purged', () => {
+      const AsyncStorage = {
+        getItem: () => Promise.resolve(null),
+      };
+      const isConnected = () => {};
+      const purgeEventCallback = oldEvents => oldEvents;
+
+      const extension = offlineReactNative(AsyncStorage, isConnected);
+
+      return extension.purgeEvents(purgeEventCallback).then(oldEvents => {
+        expect(Array.isArray(oldEvents)).toBe(true);
+        expect(oldEvents.length).toBe(0);
+      });
+    });
+    it('returns array of items when there are items to be purged', () => {
+      const sampleEvent = { hitType: 'pageview', page: '/whatever' };
+      const AsyncStorage = {
+        getItem: () => Promise.resolve(JSON.stringify([sampleEvent])),
+      };
+      const isConnected = () => {};
+      const purgeEventCallback = oldEvents => oldEvents;
+
+      const extension = offlineReactNative(AsyncStorage, isConnected);
+
+      return extension.purgeEvents(purgeEventCallback).then(oldEvents => {
+        expect(Array.isArray(oldEvents)).toBe(true);
+        expect(oldEvents.length).toBe(1);
+        expect(oldEvents[0]).toEqual(sampleEvent);
+      });
+    });
+  });
 });
