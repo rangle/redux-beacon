@@ -155,6 +155,11 @@ function GoogleAnalytics(
           break;
         }
 
+        case 'idfa': {
+          tracker.allowIDFA(event.allowIDFA);
+          break;
+        }
+
         case 'exception': {
           tracker.trackException(event.exDescription, event.exFatal);
           break;

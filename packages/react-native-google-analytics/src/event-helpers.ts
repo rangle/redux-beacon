@@ -156,6 +156,17 @@ export const setClient = (
   };
 };
 
+export const allowIDFA = (
+  eventDef: EventDefinition<boolean>
+): EventDefinition => (action, prevState, nextState) => {
+  const allowIDFA = eventDef(action, prevState, nextState);
+
+  return {
+    hitType: 'idfa',
+    allowIDFA,
+  };
+};
+
 export const trackException = (
   eventDef: EventDefinition<{
     description: string;
