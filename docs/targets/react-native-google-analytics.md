@@ -3,8 +3,6 @@
 * [Setup](#setup)
 * [Usage](#usage)
 * [Event Definitions](#event-definitions)
-* [Additional Settings](#additional-settings)
-
 ----
 
 ### Setup
@@ -36,6 +34,26 @@ const trackingId = 'UA-12345678-1' // replace with your own
 const ga = GoogleAnalytics(trackingId, GoogleAnalyticsTracker);
 
 const gaMiddleware = createMiddleware(eventsMap, ga);
+```
+
+#### Additional Settings
+
+You also have access to some [additional settings](https://github.com/idehub/react-native-google-analytics-bridge#googleanalyticssettings-api) from the underlying `react-native-google-analytics-bridge`. These settings can be used to:
+
+* Disable your app from sending events to Google Analytics
+* Disable your app from tracking events altogether - this can be used to give your users control over opting in/out from analytics.
+
+These settings can be applied as follows:
+
+```js
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge';
+import GoogleAnalytics from '@redux-beacon/react-native-google-analytics';
+
+const trackingId = 'UA-12345678-1' // replace with your own
+const ga = GoogleAnalytics(trackingId, GoogleAnalyticsTracker);
+
+GoogleAnalyticsSettings.setDryRun(true);
+GoogleAnalyticsSettings.setOptOut(true);
 ```
 
 ### Event Definitions
@@ -212,25 +230,4 @@ const exception = trackException((action, prevState, nextState) => {
     isFatal: /* (optional) */,
   };
 });
-```
-
-
-### Additional Settings
-
-When using this package, you also have access to some [additional settings](https://github.com/idehub/react-native-google-analytics-bridge#googleanalyticssettings-api) from the underlying `react-native-google-analytics-bridge`. These settings can be used to:
-
-* Disable your app from sending events to Google Analytics
-* Disable your app from tracking events altogether - this can be used to give your users control over opting in/out from analytics.
-
-These settings can be applied as follows:
-
-```js
-import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge';
-import GoogleAnalytics from '@redux-beacon/react-native-google-analytics';
-
-const trackingId = 'UA-12345678-1' // replace with your own
-const ga = GoogleAnalytics(trackingId, GoogleAnalyticsTracker);
-
-GoogleAnalyticsSettings.setDryRun(true);
-GoogleAnalyticsSettings.setOptOut(true);
 ```
