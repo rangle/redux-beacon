@@ -8,7 +8,7 @@ function GoogleAnalytics(
   const tracker = new GoogleAnalyticsTracker(trackingId);
 
   if (settings != null) {
-    if (settings.allowIdfa !== null) tracker.allowIDFA(settings.allowIdfa);
+    if (settings.allowIdfa != null) tracker.allowIDFA(settings.allowIdfa);
   }
 
   function target(events) {
