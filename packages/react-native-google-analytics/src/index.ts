@@ -8,7 +8,6 @@ export {
   trackSocialInteraction,
   setUser,
   setClient,
-  allowIDFA,
   trackException,
 } from './event-helpers';
 
