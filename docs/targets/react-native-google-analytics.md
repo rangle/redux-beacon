@@ -80,7 +80,6 @@ GoogleAnalyticsSettings.setOptOut(true);
 * [`socialInteraction`](#socialinteraction)
 * [`user`](#user)
 * [`client`](#client)
-* [`IDFA`](#idfa)
 * [`exception`](#exception)
 
 Don't see your event listed? Please submit a pull request to
@@ -228,23 +227,6 @@ import { setClient } from '@redux-beacon/react-native-google-analytics';
 const client = setClient((action, prevState, nextState) => {
   const clientId = /* fill me in */;
   return clientId;
-});
-```
-
-
-
-#### idfa
-##### Docs:
-https://developers.google.com/analytics/devguides/collection/ios/v3/campaigns#ios-install
-
-*Important:* For iOS you can only use this method if you have done the optional step 6 from the `react-native-google-analytics-bridge` installation guide](https://github.com/idehub/react-native-google-analytics-bridge/wiki/Manual-installation). Only enable this (and link the appropriate libraries) if you plan to use advertising features or advertising click attribution in your app, else your app may get rejected from the App Store.
-
-```js
-import { allowIDFA } from '@redux-beacon/react-native-google-analytics';
-
-const idfa = allowIDFA((action, prevState, nextState) => {
-  const allowIDFA = /* fill me in */;
-  return allowIDFA;
 });
 ```
 
