@@ -6,11 +6,16 @@ declare let amplitude: any;
  * Creates the Amplitude target
  */
 const Amplitude = (options?: AmplitudeOptions) => (events: any[]) => {
-  if (!window || !(window as any).amplitude) {
+  if (!window) {
     return;
   }
 
-  const app = (options && options.instance) || amplitude.getInstance();
+  const app =
+    (options && options.instance) || (amplitude && amplitude.getInstance());
+
+  if (!app) {
+    return;
+  }
 
   let identity: any;
   let revenue: any;
