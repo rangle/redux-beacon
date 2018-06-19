@@ -1,7 +1,9 @@
 import Amplitude from '../';
 import amplitudeSDKMock, { resetAllMocks } from './amplitude.mocks';
 
-(window as any).amplitude = amplitudeSDKMock;
+beforeEach(() => {
+  (window as any).amplitude = amplitudeSDKMock;
+});
 
 afterEach(() => {
   resetAllMocks();
@@ -239,10 +241,10 @@ it('tracks revenue when the logRevenueV2 hitType is specified', () => {
   expect(app.logRevenueV2).toHaveBeenCalled();
 });
 
-it('uses options.instance when provided', () => {
-  const app = (window as any).amplitude.getInstance();
+it("uses options.instance when provided (and there's no amplitude instance on the window object)", () => {
+  (window as any).amplitude = undefined;
 
-  const instance: any = {
+  const instance = {
     setUserId: jest.fn(),
     setUserProperties: jest.fn(),
     clearUserProperties: jest.fn(),
@@ -270,8 +272,23 @@ it('uses options.instance when provided', () => {
   Object.keys(instance).forEach(key => {
     expect(instance[key]).toHaveBeenCalled();
   });
+});
 
-  Object.keys(app).forEach(key => {
-    expect(app[key]).not.toHaveBeenCalled();
-  });
+it("does nothing if an amplitude instance isn't provided (either on window or as an option)", () => {
+  (window as any).amplitude = undefined;
+
+  const events = [
+    { hitType: 'setUserId' },
+    { hitType: 'setUserProperties' },
+    { hitType: 'logEvent' },
+    { hitType: 'clearUserProperties' },
+    { hitType: 'setGroup' },
+    { hitType: 'regenerateDeviceId' },
+    { hitType: 'setOptOut' },
+    { hitType: 'setVersionName' },
+  ];
+
+  const target = Amplitude();
+
+  expect(() => target(events)).not.toThrow();
 });
