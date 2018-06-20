@@ -30,7 +30,7 @@ import Amplitude from '@redux-beacon/amplitude';
 // initialise amplitude
 amplitude.getInstance().init('YOUR_API_KEY');
 
-const target = Amplitude({ instance: amplitude.getInstance('INSTANCE_NAME') });
+const target = Amplitude({ instance: amplitude.getInstance() });
 
 const amplitudeMiddleware = createMiddleware(eventsMap, target);
 const amplitudeMetaReducer = createMetaReducer(eventsMap, target);
