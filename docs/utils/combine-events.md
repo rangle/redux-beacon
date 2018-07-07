@@ -6,7 +6,7 @@ multiple analytics events for a single action.
 ### Import
 
 ```js
-import combineEvents from '@redux-beacon/track-multiple';
+import combineEvents from '@redux-beacon/combine-events';
 ```
 
 ### Syntax
