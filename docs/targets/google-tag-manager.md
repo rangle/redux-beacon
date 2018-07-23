@@ -3,6 +3,7 @@
 * [Setup](#setup)
 * [Usage](#usage)
 * [Event Definitions](#event-definitions)
+* [Variables](#variables)
 
 ----
 
@@ -58,6 +59,16 @@ const event = (action, prevState, nextState) => {
   return {
     event: /* fill me in */,
     /* add any additional key/value pairs below */,
+  };
+};
+```
+
+### Variables
+
+```js
+const variable = (action, prevState, nextState) => {
+  return {
+    variableName: /* your variable value */,
   };
 };
 ```
