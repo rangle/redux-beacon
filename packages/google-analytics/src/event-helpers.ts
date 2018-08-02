@@ -57,10 +57,10 @@ export const trackTiming = (
   return {
     hitType: 'timing',
     customTrackerId: tracker,
-    category,
-    var: event.var,
-    value,
-    label,
+    timingCategory: category,
+    timingVar: event.var,
+    timingValue: value,
+    timingLabel: label,
   };
 };
 
