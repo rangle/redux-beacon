@@ -27,12 +27,18 @@ describe('Target: Segment.io', () => {
       {
         hitType: 'event',
         eventAction: 'random event action',
+        properties: {
+          data: 'example',
+        },
       },
     ];
     target(events);
     expect(window.analytics.track).toHaveBeenCalledWith(
       events[0].eventAction,
-      events[0]
+      {
+        data: 'example',
+      },
+      undefined
     );
   });
 });
