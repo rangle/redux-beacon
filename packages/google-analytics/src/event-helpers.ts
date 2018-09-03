@@ -161,8 +161,8 @@ export const ecommClear = (tracker?: string) => ({
 
 export const trackEcommImpression = (
   eventDef: EventDefinition<{
-    id: string;
-    name: string;
+    id?: string;
+    name?: string;
     list?: string;
     brand?: string;
     category?: string;
@@ -174,6 +174,12 @@ export const trackEcommImpression = (
 ): EventDefinition => (action, prevState, nextState) => {
   const event = eventDef(action, prevState, nextState);
   const { id, name, list, brand, category, variant, position, price } = event;
+
+  if (!id && !name) {
+    throw new Error(
+      'You must provide an "id" or "name" to track impression data.'
+    );
+  }
 
   return {
     ecommType: 'enhanced',
@@ -192,8 +198,8 @@ export const trackEcommImpression = (
 
 export const trackEcommProduct = (
   eventDef: EventDefinition<{
-    id: string;
-    name: string;
+    id?: string;
+    name?: string;
     brand?: string;
     category?: string;
     variant?: string;
@@ -217,6 +223,11 @@ export const trackEcommProduct = (
     position,
   } = event;
 
+  if (!id && !name) {
+    throw new Error(
+      'You must provide an "id" or "name" to track product data.'
+    );
+  }
   return {
     ecommType: 'enhanced',
     hitType: 'addProduct',
@@ -235,8 +246,8 @@ export const trackEcommProduct = (
 
 export const trackEcommPromotion = (
   eventDef: EventDefinition<{
-    id: string;
-    name: string;
+    id?: string;
+    name?: string;
     creative?: string;
     position?: string;
   }>,
@@ -245,6 +256,11 @@ export const trackEcommPromotion = (
   const event = eventDef(action, prevState, nextState);
   const { id, name, creative, position } = event;
 
+  if (!id && !name) {
+    throw new Error(
+      'You must provide an "id" or "name" to track promotion data.'
+    );
+  }
   return {
     ecommType: 'enhanced',
     hitType: 'addPromo',
@@ -259,7 +275,7 @@ export const trackEcommPromotion = (
 export const trackEcommAction = (
   eventDef: EventDefinition<{
     actionName: string;
-    id: string;
+    id?: string;
     affiliation?: string;
     revenue?: string;
     tax?: string;
@@ -284,6 +300,12 @@ export const trackEcommAction = (
     step,
     option,
   } = event;
+
+  if ((actionName === 'purchase' || actionName === 'refund') && !id) {
+    throw new Error(
+      'You must provide an "id" when tracking a "purchase" or "refund".'
+    );
+  }
 
   return {
     ecommType: 'enhanced',
