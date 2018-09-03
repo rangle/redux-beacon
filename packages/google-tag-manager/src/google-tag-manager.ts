@@ -1,5 +1,6 @@
 import { Target } from 'redux-beacon';
 import { Options } from './types';
+import { convertFromGoogleAnalyticsEventIfNeeded } from './utils';
 
 const GoogleTagManager = ({
   dataLayerName = 'dataLayer',
@@ -7,6 +8,7 @@ const GoogleTagManager = ({
   if (typeof window === 'undefined') {
     return;
   }
+
   if (
     !(window as any)[dataLayerName] ||
     typeof (window as any)[dataLayerName].push !== 'function'
@@ -15,14 +17,13 @@ const GoogleTagManager = ({
       `redux-beacon error: window.${dataLayerName} is not defined. Have you forgotten to include Google Tag Manager and dataLayer?`
     );
   }
+
   events.forEach(event => {
-    const eventToPush = (() => {
-      if (event.event === undefined && event.hitType !== undefined) {
-        return Object.assign({}, event, { event: event.hitType });
-      }
-      return event;
-    })();
-    (window as any)[dataLayerName].push(eventToPush);
+    if (typeof event === 'object') {
+      (window as any)[dataLayerName].push(
+        convertFromGoogleAnalyticsEventIfNeeded(event)
+      );
+    }
   });
 };
 
