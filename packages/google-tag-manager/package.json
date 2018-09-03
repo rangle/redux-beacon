@@ -1,6 +1,6 @@
 {
   "name": "@redux-beacon/google-tag-manager",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Google Tag Manager integration for Redux",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
