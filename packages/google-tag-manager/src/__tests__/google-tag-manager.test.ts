@@ -18,6 +18,24 @@ describe('GoogleTagManager({...options})(events)', () => {
     });
   });
 
+  describe('When given an event that is undefined', () => {
+    it('does not throw an error', () => {
+      const events = [undefined];
+
+      window.dataLayer = { push: jest.fn() };
+
+      expect(() => GoogleTagManager()(events)).not.toThrow();
+    });
+    it('does not push anything to the dataLayer', () => {
+      const events = [undefined];
+
+      window.dataLayer = { push: jest.fn() };
+      GoogleTagManager()(events);
+
+      expect(window.dataLayer.push).not.toHaveBeenCalled();
+    });
+  });
+
   describe('When options has dataLayerName: iAmADataLayer', () => {
     it('pushes events to iAmADataLayer data layer', () => {
       const options = {
@@ -46,7 +64,6 @@ describe('GoogleTagManager({...options})(events)', () => {
 
       const expected = {
         event: 'pageview',
-        hitType: 'pageview',
       };
       expect(window.dataLayer.push).toHaveBeenCalledWith(expected);
     });
