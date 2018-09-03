@@ -17,7 +17,7 @@ const GoogleTagManager = ({
   }
   events.forEach(event => {
     const eventToPush = (() => {
-      if (event.event === undefined && event.hitType !== undefined) {
+      if (typeof event === 'object' && event.event === undefined && event.hitType !== undefined) {
         return Object.assign({}, event, { event: event.hitType });
       }
       return event;

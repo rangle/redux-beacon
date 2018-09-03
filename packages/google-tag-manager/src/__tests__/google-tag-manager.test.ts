@@ -8,13 +8,14 @@ beforeEach(() => {
 describe('GoogleTagManager({...options})(events)', () => {
   describe('When given an array of events', () => {
     it('pushes those events to the data layer', () => {
-      const events = [{ event: 'some-event' }, { event: 'some-other-event' }];
+      const events = [{ event: 'some-event' }, { event: 'some-other-event' }, undefined];
 
       window.dataLayer = { push: jest.fn() };
       GoogleTagManager()(events);
 
       expect(window.dataLayer.push).toHaveBeenCalledWith(events[0]);
       expect(window.dataLayer.push).toHaveBeenCalledWith(events[1]);
+      expect(window.dataLayer.push).not.toHaveBeenCalledWith(events[2]);
     });
   });
 
