@@ -1,8 +1,8 @@
 import {
+  trackEcommAction,
   trackEcommImpression,
   trackEcommProduct,
   trackEcommPromotion,
-  trackEcommAction,
 } from '../event-helpers';
 
 describe('trackEcommImpression', () => {
