@@ -82,9 +82,11 @@ const variable = (action, prevState, nextState) => {
 * Only event objects with an `event` property will trigger a Custom
   Event in Google Tag Manager.
 
-* If an event object doesn't have an `event` property, but
-  has a `hitType` property, this target will create an `event`
-  property and set it to the `hitType` string. For example:
+* If an event object doesn't have an `event` property, but has a `hitType`
+  property, this target will create an `event` property and set it to the
+  `hitType` string. This feature allows you to use the event definitions exposed
+  by the [Google Analytics target](./google-analytics.md#event-definitions) For
+  example:
 
   ```js
   // Given the following event definition
@@ -102,8 +104,6 @@ const variable = (action, prevState, nextState) => {
     page: '/home',
   };
   ```
-
-{% hint style='info' %}
-This gives you the option to use the event definitions
-exposed by the [Google Analytics target](./google-analytics.md#event-definitions)
-{% endhint %}
+ * If you return anything but an object from an event definition
+   (e.g. undefined, null) then the target will skip over that event and won't
+   push anything to `window.dataLayer`.
