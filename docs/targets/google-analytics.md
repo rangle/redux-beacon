@@ -290,8 +290,8 @@ import { trackEcommImpression } from '@redux-beacon/google-analytics';
 
 const ecommImpression = trackEcommImpression((action, prevState, nextState) => {
   return {
-    id: /* fill me in */,
-    name: /* fill me in */,
+    id: /* either this or the name field has to be filled */,
+    name: /* either this or the id field has to be filled */,
     list: /* (optional) */,
     brand: /* (optional) */,
     category: /* (optional) */,
@@ -315,8 +315,8 @@ import { trackEcommProduct } from '@redux-beacon/google-analytics';
 
 const ecommProduct = trackEcommProduct((action, prevState, nextState) => {
   return {
-    id: /* fill me in */,
-    name: /* fill me in */,
+    id: /* either this or the name field has to be filled */,
+    name: /* either this or the id field has to be filled */,
     brand: /* (optional) */,
     category: /* (optional) */,
     variant: /* (optional) */,
@@ -341,8 +341,8 @@ import { trackEcommPromotion } from '@redux-beacon/google-analytics';
 
 const ecommPromotion = trackEcommPromotion((action, prevState, nextState) => {
   return {
-    id: /* fill me in */,
-    name: /* fill me in */,
+    id: /* either this or the name field has to be filled */,
+    name: /* either this or the id field has to be filled */,
     creative: /* (optional) */,
     position: /* (optional) */,
   };
@@ -363,7 +363,7 @@ import { trackEcommAction } from '@redux-beacon/google-analytics';
 const ecommAction = trackEcommAction((action, prevState, nextState) => {
   return {
     actionName: /* fill me in */
-    id: /* fill me in */,
+    id: /* fill me in if the actionName is "purchase" or "refund" */,
     affiliation: /* (optional) */,
     revenue: /* (optional) */,
     tax: /* (optional) */,
