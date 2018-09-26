@@ -11,58 +11,64 @@ const GoogleAnalytics = (): Target => events => {
     );
   }
   events.forEach(event => {
-    const customTrackerId = event.customTrackerId || event.tracker;
-    const trackerId =
-      !!customTrackerId && !!customTrackerId.trim()
-        ? `${customTrackerId}.`
-        : '';
+    const customTrackers = event.customTrackerId || event.tracker;
+    const trackerIdsRaw = Array.isArray(customTrackers)
+      ? customTrackers
+      : [customTrackers];
+
+    const trackerIds = trackerIdsRaw.map(
+      trackerId => (!!trackerId && !!trackerId.trim() ? `${trackerId}.` : '')
+    );
+
     const ecommPluginType = event.ecommType === 'enhanced' ? 'ec' : 'ecommerce';
 
-    if (isEcommEvent(event)) {
-      const callEvent = type =>
-        ({
-          addItem: () =>
-            ga(
-              `${trackerId}${ecommPluginType}:addItem`,
-              filterEcommEvents(event)
-            ),
-          addTransaction: () =>
-            ga(
-              `${trackerId}${ecommPluginType}:addTransaction`,
-              filterEcommEvents(event)
-            ),
-          addImpression: () =>
-            ga(
-              `${trackerId}${ecommPluginType}:addImpression`,
-              filterEcommEvents(event)
-            ),
-          addProduct: () =>
-            ga(
-              `${trackerId}${ecommPluginType}:addProduct`,
-              filterEcommEvents(event)
-            ),
-          addPromo: () =>
-            ga(
-              `${trackerId}${ecommPluginType}:addPromo`,
-              filterEcommEvents(event)
-            ),
-          addAction: () =>
-            ga(
-              `${trackerId}${ecommPluginType}:setAction`,
-              event.actionName,
-              filterEcommEvents(event)
-            ),
-          ecommClear: () => ga(`${trackerId}${ecommPluginType}:clear`),
-          ecommSend: () => ga(`${trackerId}${ecommPluginType}:send`),
-        }[type]());
+    trackerIds.forEach(trackerId => {
+      if (isEcommEvent(event)) {
+        const callEvent = type =>
+          ({
+            addItem: () =>
+              ga(
+                `${trackerId}${ecommPluginType}:addItem`,
+                filterEcommEvents(event)
+              ),
+            addTransaction: () =>
+              ga(
+                `${trackerId}${ecommPluginType}:addTransaction`,
+                filterEcommEvents(event)
+              ),
+            addImpression: () =>
+              ga(
+                `${trackerId}${ecommPluginType}:addImpression`,
+                filterEcommEvents(event)
+              ),
+            addProduct: () =>
+              ga(
+                `${trackerId}${ecommPluginType}:addProduct`,
+                filterEcommEvents(event)
+              ),
+            addPromo: () =>
+              ga(
+                `${trackerId}${ecommPluginType}:addPromo`,
+                filterEcommEvents(event)
+              ),
+            addAction: () =>
+              ga(
+                `${trackerId}${ecommPluginType}:setAction`,
+                event.actionName,
+                filterEcommEvents(event)
+              ),
+            ecommClear: () => ga(`${trackerId}${ecommPluginType}:clear`),
+            ecommSend: () => ga(`${trackerId}${ecommPluginType}:send`),
+          }[type]());
 
-      callEvent(event.hitType);
-    } else {
-      if (event.hitType === 'pageview') {
-        ga(`${trackerId}set`, 'page', event.page);
+        callEvent(event.hitType);
+      } else {
+        if (event.hitType === 'pageview') {
+          ga(`${trackerId}set`, 'page', event.page);
+        }
+        ga(`${trackerId}send`, event);
       }
-      ga(`${trackerId}send`, event);
-    }
+    });
   });
 };
 

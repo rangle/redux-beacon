@@ -136,7 +136,7 @@ const event = trackEvent((action, prevState, nextState) => {
     label: /* (optional) */,
     value: /* (optional) */,
   };
-}, /* (optional) tracker name */ );
+}, /* (optional) tracker names array or tracker name string */ );
 ```
 
 

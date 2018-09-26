@@ -64,6 +64,26 @@ describe('GoogleAnalytics(events)', () => {
     });
   });
 
+  describe('with an event that has multiple trackers', () => {
+    it('calls window.ga("<tracker>:send", <event>) for each event', () => {
+      const events = [
+        {
+          hitType: 'pageview',
+          page: '/home',
+          title: 'homepage',
+          location: 'https://some.site/home',
+          tracker: ['testHub', 'customApp'],
+        },
+      ];
+
+      window.ga = jest.fn();
+      target(events);
+
+      expect(window.ga).toHaveBeenCalledWith('testHub.send', events[0]);
+      expect(window.ga).toHaveBeenCalledWith('customApp.send', events[0]);
+    });
+  });
+
   describe('on a page view hit', () => {
     it('updates the tracker window.ga("set", "page", ...)', () => {
       const events = [
