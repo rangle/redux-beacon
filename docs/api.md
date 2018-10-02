@@ -63,7 +63,7 @@ A `function` that you provide to Redux Beacon for each Redux or ngrx/store actio
 #### Syntax
 
 ```js
-function eventDef(action, prevState, action) {
+function eventDef(action, prevState, nextState) {
   // Return:
   //   - an event object, or
   //   - an array of event objects, or
