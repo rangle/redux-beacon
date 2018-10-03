@@ -6,7 +6,7 @@ export const trackPageView = (
     title?: string;
     location?: string;
   }>,
-  tracker?: string
+  tracker?: string[] | string
 ): EventDefinition => (action, prevState, nextState) => {
   const event = eventDef(action, prevState, nextState);
   const { page, title, location } = event;
@@ -27,7 +27,7 @@ export const trackEvent = (
     label?: string;
     value?: number;
   }>,
-  tracker?: string
+  tracker?: string[] | string
 ): EventDefinition => (action, prevState, nextState) => {
   const event = eventDef(action, prevState, nextState);
   const { category, label, value } = event;
@@ -49,7 +49,7 @@ export const trackTiming = (
     value: number;
     label?: string;
   }>,
-  tracker?: string
+  tracker?: string[] | string
 ): EventDefinition => (action, prevState, nextState) => {
   const event = eventDef(action, prevState, nextState);
   const { category, value, label } = event;
@@ -70,7 +70,7 @@ export const trackSocialInteraction = (
     action: string;
     target: string;
   }>,
-  tracker?: string
+  tracker?: string[] | string
 ): EventDefinition => (action, prevState, nextState) => {
   const event = eventDef(action, prevState, nextState);
   const { network, target } = event;
@@ -86,7 +86,7 @@ export const trackSocialInteraction = (
 
 export const trackException = (
   eventDef: EventDefinition<{ description?: string; isFatal?: boolean }>,
-  tracker?: string
+  tracker?: string[] | string
 ): EventDefinition => (action, prevState, nextState) => {
   const event = eventDef(action, prevState, nextState);
   const { description, isFatal } = event;
@@ -108,7 +108,7 @@ export const trackEcommItem = (
     price?: string;
     quantity?: number;
   }>,
-  tracker?: string
+  tracker?: string[] | string
 ): EventDefinition => (action, prevState, nextState) => {
   const event = eventDef(action, prevState, nextState);
   const { id, name, sku, category, price, quantity } = event;
@@ -133,7 +133,7 @@ export const trackEcommTransaction = (
     shipping?: string;
     tax?: string;
   }>,
-  tracker?: string
+  tracker?: string[] | string
 ): EventDefinition => (action, prevState, nextState) => {
   const event = eventDef(action, prevState, nextState);
   const { id, affiliation, revenue, shipping, tax } = event;
@@ -149,12 +149,12 @@ export const trackEcommTransaction = (
   };
 };
 
-export const ecommSend = (tracker?: string) => ({
+export const ecommSend = (tracker?: string[] | string) => ({
   hitType: 'ecommSend',
   customTrackerId: tracker,
 });
 
-export const ecommClear = (tracker?: string) => ({
+export const ecommClear = (tracker?: string[] | string) => ({
   hitType: 'ecommClear',
   customTrackerId: tracker,
 });
@@ -170,7 +170,7 @@ export const trackEcommImpression = (
     position?: number;
     price?: string;
   }>,
-  tracker?: string
+  tracker?: string[] | string
 ): EventDefinition => (action, prevState, nextState) => {
   const event = eventDef(action, prevState, nextState);
   const { id, name, list, brand, category, variant, position, price } = event;
@@ -208,7 +208,7 @@ export const trackEcommProduct = (
     coupon?: string;
     position?: number;
   }>,
-  tracker?: string
+  tracker?: string[] | string
 ): EventDefinition => (action, prevState, nextState) => {
   const event = eventDef(action, prevState, nextState);
   const {
@@ -251,7 +251,7 @@ export const trackEcommPromotion = (
     creative?: string;
     position?: string;
   }>,
-  tracker?: string
+  tracker?: string[] | string
 ): EventDefinition => (action, prevState, nextState) => {
   const event = eventDef(action, prevState, nextState);
   const { id, name, creative, position } = event;
@@ -285,7 +285,7 @@ export const trackEcommAction = (
     step?: number;
     option?: string;
   }>,
-  tracker?: string
+  tracker?: string[] | string
 ): EventDefinition => (action, prevState, nextState) => {
   const event = eventDef(action, prevState, nextState);
   const {
