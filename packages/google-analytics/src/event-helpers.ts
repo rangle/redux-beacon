@@ -85,17 +85,17 @@ export const trackSocialInteraction = (
 };
 
 export const trackException = (
-  eventDef: EventDefinition<{ description?: string; isFatal?: boolean }>,
+  eventDef: EventDefinition<{ exDescription?: string; exFatal?: boolean }>,
   tracker?: string[] | string
 ): EventDefinition => (action, prevState, nextState) => {
   const event = eventDef(action, prevState, nextState);
-  const { description, isFatal } = event;
+  const { exDescription, exFatal } = event;
 
   return {
     hitType: 'exception',
     customTrackerId: tracker,
-    description,
-    isFatal,
+    exDescription,
+    exFatal,
   };
 };
 
