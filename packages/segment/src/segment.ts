@@ -5,9 +5,7 @@ const Segment = (): Target => events => {
     return;
   }
   if (!(window as any).analytics) {
-    throw new Error(
-      'window.analytics is not defined, Have you forgotten to include the Segment tracking snippet?'
-    );
+    console.warn('window.analytics is not defined, Have you forgotten to include the Segment tracking snippet?');
   }
   events.forEach(event => {
     switch (event.hitType) {
