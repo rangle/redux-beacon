@@ -8,6 +8,7 @@
 ----
 
 ### Setup
+
 1. Sign up for Google Tag Manager and
    [create a new web container](https://support.google.com/tagmanager/answer/6103696?hl=en).
 
