@@ -6,10 +6,10 @@ export type Target = (events: any[]) => void;
  * associated action object and the state of the application (before
  * and after the action)
  */
-export type EventDefinition<E = any> = (
-  action: { [key: string]: any },
-  prevState: any,
-  nextState: any
+export type EventDefinition<E = any, A = { [key: string]: any }, S = any> = (
+  action: A,
+  prevState: S,
+  nextState: S
 ) => E;
 
 export type EventsMapper = (
