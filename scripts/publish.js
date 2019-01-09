@@ -102,7 +102,6 @@ const GH_EMAIL = process.env.GH_EMAIL;
 
   const ghAuthorizedUrl = `https://${GH_TOKEN}@github.com/rangle/redux-beacon.git`;
 
-  // Push quietly to prevent showing the token in the log
   await execa('git', ['push', ghAuthorizedUrl, CIRCLE_BRANCH]);
   await execa('git', ['push', ghAuthorizedUrl, tagName]);
 
