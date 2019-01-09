@@ -1,9 +1,12 @@
 const path = require('path');
 const execa = require('execa');
 const log = require('logalot');
+const writeFile = require('write');
 
 const CIRCLE_SHA1 = process.env.CIRCLE_SHA1;
 const CIRCLE_BRANCH = process.env.CIRCLE_BRANCH;
+const NPM_TOKEN = process.env.NPM_TOKEN;
+const GH_TOKEN = process.env.GH_TOKEN;
 
 // This script is in charge of publishing redux-beacon
 // packages based on commands found in commit messages.
@@ -33,7 +36,7 @@ const CIRCLE_BRANCH = process.env.CIRCLE_BRANCH;
 
   // ---------------------------------------------------------------------------
 
-  log.info(`Bump package to the next version`);
+  log.info('Bump package to the next version');
 
   const newVersion = await execa.stdout('npm', ['version', versionType], {
     cwd: packagePath,
@@ -43,15 +46,26 @@ const CIRCLE_BRANCH = process.env.CIRCLE_BRANCH;
 
   // ---------------------------------------------------------------------------
 
-  log.info(`Publish package to npm`);
+  log.info('Register token to authenticate for npm publish');
 
-  await execa('npm', ['publish'], { cwd: packagePath });
+  const npmrcPath = path.resolve(packagePath, '.npmrc');
+  const npmAuth = `//registry.npmjs.org/:_authToken=${NPM_TOKEN}`;
 
-  log.success(`published!`);
+  await writeFile(npmrcPath, npmAuth);
+
+  log.success('Authenticated!');
 
   // ---------------------------------------------------------------------------
 
-  log.info(`Committing the changes to the package's package.json`);
+  log.info('Publish package to npm');
+
+  await execa('npm', ['publish'], { cwd: packagePath });
+
+  log.success('published!');
+
+  // ---------------------------------------------------------------------------
+
+  log.info("Committing the changes to the package's package.json");
 
   await execa('git', ['add', path.resolve(packagePath, 'package.json')]);
 
@@ -75,7 +89,10 @@ const CIRCLE_BRANCH = process.env.CIRCLE_BRANCH;
 
   log.info('Push changes to remote');
 
-  await execa('git', ['push', 'origin', tagName]);
+  const ghAuthorizedUrl = `https://${GH_TOKEN}@github.com/rangle/redux-beacon.git`;
+
+  await execa('git', ['push', ghAuthorizedUrl, CIRCLE_BRANCH]);
+  await execa('git', ['push', ghAuthorizedUrl, tagName]);
 
   log.success('The remote repository is up to date!');
 })();
