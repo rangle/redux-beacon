@@ -14,3 +14,6 @@ jobs:
       - run:
           name: Run Tests and Typecheck
           command: yarn run check
+      - run:
+          name: Publish to Npm If Requested
+          command: node scripts/publish.js
