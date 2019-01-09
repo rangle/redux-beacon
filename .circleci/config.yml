@@ -15,8 +15,5 @@ jobs:
           name: Run Tests and Typecheck
           command: yarn run check
       - run:
-          name: Authenticate with registry
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
-      - run:
           name: Publish to Npm If Requested
           command: node scripts/publish.js
