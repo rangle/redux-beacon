@@ -8,3 +8,4 @@
  * React Native:
    * [`GoogleAnalytics`](react-native-google-analytics.md)
    * [`GoogleTagManager`](react-native-google-tag-manager.md)
+   * [`Segment`](react-native-segment.md)

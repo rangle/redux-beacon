@@ -19,6 +19,7 @@ Which target(s) are you using?
  - [ ] React Native Google Tag Manager
  - [ ] Amplitude
  - [ ] Segment
+ - [ ] React Native Segment
  - [ ] Other/Third Party: ...(please specify here)
 
 _(If this is a bug report, feel free to delete the :scroll: and :rocket:

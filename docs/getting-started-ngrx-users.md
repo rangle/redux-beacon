@@ -17,6 +17,7 @@ Choose a target, and follow the setup instructions.
 * React Native:
   * [GoogleAnalytics: Setup](targets/react-native-google-analytics.md#setup)
   * [GoogleTagManager: Setup](targets/react-native-google-tag-manager.md#setup)
+  * [Segment: Setup](targets/react-native-segment.md#setup)
 
 {% hint style='info' %}
 Don't see the target you need?
@@ -34,6 +35,7 @@ Decide what you want to track and pick out the corresponding event definition:
 * React Native:
   * [GoogleAnalytics: Event Definitions](targets/react-native-google-analytics.md#event-definitions)
   * [GoogleTagManager: Event Definitions](targets/react-native-google-tag-manager.md#event-definitions)
+  * [Segment: Event Definitions](targets/react-native-segment.md#event-definitions)
 
 ### Step 3
 Complete the event definition by filling in the object properties, and match it
@@ -72,6 +74,7 @@ const gaMetaReducer = createMetaReducer(eventsMap, ga, { logger });
 * React Native:
   * [GoogleAnalytics: Usage](targets/react-native-google-analytics.md#usage)
   * [GoogleTagManager: Usage](targets/react-native-google-tag-manager.md#usage)
+  * [Segment: Usage](targets/react-native-segment.md#usage)
 
 ### Step 4
 Follow the instructions [here](https://github.com/ngrx/platform/blob/master/docs/store/api.md#meta-reducers) to

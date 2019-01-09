@@ -9,6 +9,7 @@
   * [Amplitude](targets/amplitude.md)
   * [React Native: GoogleAnalytics](targets/react-native-google-analytics.md)
   * [React Native: GoogleTagManager](targets/react-native-google-tag-manager.md)
+  * [React Native: Segment](targets/react-native-segment.md)
 * [API Reference](api/index.md)
   * [createMiddleware](api/create-middleware.md)
   * [createMetaReducer](api/create-meta-reducer.md)
