@@ -150,6 +150,7 @@ const user = identifyUser((action, prevState, nextState) => {
 ```
 
 
+
 #### reset
 ##### Docs:
 https://segment.com/docs/sources/website/analytics.js/#reset-logout
