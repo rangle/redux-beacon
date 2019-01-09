@@ -7,6 +7,8 @@ const CIRCLE_SHA1 = process.env.CIRCLE_SHA1;
 const CIRCLE_BRANCH = process.env.CIRCLE_BRANCH;
 const NPM_TOKEN = process.env.NPM_TOKEN;
 const GH_TOKEN = process.env.GH_TOKEN;
+const GH_NAME = process.env.GH_NAME;
+const GH_EMAIL = process.env.GH_EMAIL;
 
 // This script is in charge of publishing redux-beacon
 // packages based on commands found in commit messages.
@@ -62,6 +64,15 @@ const GH_TOKEN = process.env.GH_TOKEN;
   await execa('npm', ['publish'], { cwd: packagePath });
 
   log.success('published!');
+
+  // ---------------------------------------------------------------------------
+
+  log.info('Set Github username and email');
+
+  await execa('git', ['config', 'user.email', GH_EMAIL]);
+  await execa('git', ['config', 'user.name', GH_NAME]);
+
+  log.success('Github user set!');
 
   // ---------------------------------------------------------------------------
 
