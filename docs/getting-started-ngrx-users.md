@@ -11,7 +11,7 @@ Choose a target, and follow the setup instructions.
 
 * [GoogleAnalytics: Setup](targets/google-analytics.md#setup)
 * [GoogleAnalyticsGtag: Setup](targets/google-analytics-gtag.md#setup)
-* [GoogleTagManager: Setup](targets/google-tag-manager.md#setup)
+* [GoogleTagManager: Setup](https://rangle.gitbook.io/redux-beacon/index/google-tag-manager#setup)
 * [Segment: Setup](targets/segment.md#setup)
 * [Amplitude: Setup](targets/amplitude.md#setup)
 * React Native:
@@ -28,7 +28,7 @@ Decide what you want to track and pick out the corresponding event definition:
 
 * [GoogleAnalytics: Event Definitions](targets/google-analytics.md#event-definitions)
 * [GoogleAnalyticsGtag: Event Definitions](targets/google-analytics-gtag.md#event-definitions)
-* [GoogleTagManager: Event Definitions](targets/google-tag-manager.md#event-definitions)
+* [GoogleTagManager: Event Definitions](https://rangle.gitbook.io/redux-beacon/index/google-tag-manager#event-definitions)
 * [Segment: Event Definitions](targets/segment.md#event-definitions)
 * [Amplitude: Event Definitions](targets/amplitude.md#event-definitions)
 * React Native:
@@ -66,7 +66,7 @@ const gaMetaReducer = createMetaReducer(eventsMap, ga, { logger });
 
 * [GoogleAnalytics: Usage](targets/google-analytics.md#usage)
 * [GoogleAnalyticsGtag: Usage](targets/google-analytics-gtag.md#usage)
-* [GoogleTagManager: Usage](targets/google-tag-manager.md#usage)
+* [GoogleTagManager: Usage](https://rangle.gitbook.io/redux-beacon/index/google-tag-manager#usage)
 * [Segment: Usage](targets/segment.md#usage)
 * [Amplitude: Usage](targets/amplitude.md#usage)
 * React Native:

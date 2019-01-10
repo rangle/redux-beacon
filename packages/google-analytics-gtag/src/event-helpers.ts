@@ -24,7 +24,7 @@ export const trackEvent = (
     category: string;
     action: string;
     label?: string;
-    value?: string;
+    value?: number;
   }>
 ): EventDefinition => (action, prevState, nextState) => {
   const event = eventDef(action, prevState, nextState);
