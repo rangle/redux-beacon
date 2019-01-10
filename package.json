@@ -47,12 +47,14 @@
     "@types/jest": "22.1.4",
     "@types/joi": "13.0.5",
     "consolemock": "1.0.4",
+    "execa": "1.0.0",
     "fake-indexeddb": "2.0.4",
     "glob": "7.1.2",
     "husky": "0.14.3",
     "jest": "22.4.2",
     "joi": "10.5.2",
     "lint-staged": "7.0.0",
+    "logalot": "2.1.0",
     "mkdirp": "0.5.1",
     "moment": "2.21.0",
     "prettier": "1.11.0",
@@ -61,6 +63,7 @@
     "ts-jest": "22.4.1",
     "tslint": "5.9.1",
     "tslint-config-prettier": "1.9.0",
-    "typescript": "2.7.2"
+    "typescript": "2.7.2",
+    "write": "1.0.3"
   }
 }
