@@ -10,11 +10,13 @@ const GH_TOKEN = process.env.GH_TOKEN;
 const GH_NAME = process.env.GH_NAME;
 const GH_EMAIL = process.env.GH_EMAIL;
 
+const isPrBuild = Boolean(process.env.CIRCLE_PULL_REQUEST);
+
 // This script is in charge of publishing redux-beacon
 // packages based on commands found in commit messages.
 // ---------------------------------------------------------------------------
 (async () => {
-  if (CIRCLE_BRANCH !== 'master') return;
+  if (CIRCLE_BRANCH !== 'master' || isPrBuild) return;
 
   // e.g. '[redux-beacon.patch] Testing automated deploys'
   const lastCommitMessage = await getCommitMessage(CIRCLE_SHA1);
