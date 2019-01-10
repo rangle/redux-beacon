@@ -158,5 +158,5 @@ https://segment.com/docs/sources/website/analytics.js/#reset-logout
 ```js
 import { reset } from '@redux-beacon/segment';
 
-reset(() => ({}));
+const resetRequest = reset();
 ```

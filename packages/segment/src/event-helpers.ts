@@ -88,12 +88,6 @@ export const identifyUser = (
   };
 };
 
-export const reset = (
-  eventDef: EventDefinition
-): EventDefinition => (action, prevState, nextState) => {
-  eventDef(action, prevState, nextState);
-
-  return {
-    hitType: 'reset',
-  };
-};
+export const reset = (): EventDefinition => () => ({
+  hitType: 'reset',
+});
