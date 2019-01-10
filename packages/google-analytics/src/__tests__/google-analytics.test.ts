@@ -1,4 +1,5 @@
 import GoogleAnalytics from '../';
+import { trackEvent, trackPageView } from '../event-helpers';
 
 beforeEach(() => {
   window.ga = undefined;
@@ -240,6 +241,57 @@ describe('GoogleAnalytics(events)', () => {
 
       target(events);
       expect(window.ga).toHaveBeenCalledWith('ec:setAction', 'click', {});
+    });
+  });
+  describe('When you pass the target an event with a fieldsObject', () => {
+    test('the properties in the field object are included in the ga event hit', () => {
+      const events = [
+        trackEvent(() => ({
+          category: 'event-category',
+          action: 'event-action',
+          label: 'event-label',
+          value: 0,
+          fieldsObject: {
+            dimension1: 'dimension1',
+            metric1: 'metric1',
+            dimension2: 'dimension2',
+          },
+        }))(null, null, null),
+      ];
+
+      window.ga = jest.fn();
+      target(events);
+
+      expect(window.ga.mock.calls[0][1]).toMatchObject({
+        dimension1: 'dimension1',
+        metric1: 'metric1',
+        dimension2: 'dimension2',
+      });
+    });
+  });
+  describe('When you pass the target a pageview with a fieldsObject', () => {
+    test('the properties in the field object are included in the ga pageview hit', () => {
+      const events = [
+        trackPageView(() => ({
+          page: 'page-name',
+          title: 'page-title',
+          location: 'page-url',
+          fieldsObject: {
+            dimension1: 'dimension1',
+            metric1: 'metric1',
+            dimension2: 'dimension2',
+          },
+        }))(null, null, null),
+      ];
+
+      window.ga = jest.fn();
+      target(events);
+
+      expect(window.ga.mock.calls[1][1]).toMatchObject({
+        dimension1: 'dimension1',
+        metric1: 'metric1',
+        dimension2: 'dimension2',
+      });
     });
   });
 });
