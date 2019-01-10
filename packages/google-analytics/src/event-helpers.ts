@@ -1,13 +1,13 @@
 import { EventDefinition } from 'redux-beacon';
 
-export const trackPageView = (
+export const trackPageView = <A = { [key: string]: any }, S = any>(
   eventDef: EventDefinition<{
     page: string;
     title?: string;
     location?: string;
-  }>,
+  }, A, S>,
   tracker?: string[] | string
-): EventDefinition => (action, prevState, nextState) => {
+): EventDefinition<any, A, S> => (action, prevState, nextState) => {
   const event = eventDef(action, prevState, nextState);
   const { page, title, location } = event;
 
@@ -20,15 +20,15 @@ export const trackPageView = (
   };
 };
 
-export const trackEvent = (
+export const trackEvent = <A = { [key: string]: any }, S = any>(
   eventDef: EventDefinition<{
     category: string;
     action: string;
     label?: string;
     value?: number;
-  }>,
+  }, A, S>,
   tracker?: string[] | string
-): EventDefinition => (action, prevState, nextState) => {
+): EventDefinition<any, A, S> => (action, prevState, nextState) => {
   const event = eventDef(action, prevState, nextState);
   const { category, label, value } = event;
 
@@ -42,15 +42,15 @@ export const trackEvent = (
   };
 };
 
-export const trackTiming = (
+export const trackTiming = <A = { [key: string]: any }, S = any>(
   eventDef: EventDefinition<{
     category: string;
     var: string;
     value: number;
     label?: string;
-  }>,
+  }, A, S>,
   tracker?: string[] | string
-): EventDefinition => (action, prevState, nextState) => {
+): EventDefinition<any, A, S> => (action, prevState, nextState) => {
   const event = eventDef(action, prevState, nextState);
   const { category, value, label } = event;
 
@@ -64,14 +64,14 @@ export const trackTiming = (
   };
 };
 
-export const trackSocialInteraction = (
+export const trackSocialInteraction = <A = { [key: string]: any }, S = any>(
   eventDef: EventDefinition<{
     network: string;
     action: string;
     target: string;
-  }>,
+  }, A, S>,
   tracker?: string[] | string
-): EventDefinition => (action, prevState, nextState) => {
+): EventDefinition<any, A, S> => (action, prevState, nextState) => {
   const event = eventDef(action, prevState, nextState);
   const { network, target } = event;
 
@@ -84,10 +84,10 @@ export const trackSocialInteraction = (
   };
 };
 
-export const trackException = (
-  eventDef: EventDefinition<{ exDescription?: string; exFatal?: boolean }>,
+export const trackException = <A = { [key: string]: any }, S = any>(
+  eventDef: EventDefinition<{ exDescription?: string; exFatal?: boolean }, A, S>,
   tracker?: string[] | string
-): EventDefinition => (action, prevState, nextState) => {
+): EventDefinition<any, A, S> => (action, prevState, nextState) => {
   const event = eventDef(action, prevState, nextState);
   const { exDescription, exFatal } = event;
 
@@ -99,7 +99,7 @@ export const trackException = (
   };
 };
 
-export const trackEcommItem = (
+export const trackEcommItem = <A = { [key: string]: any }, S = any>(
   eventDef: EventDefinition<{
     id: string;
     name: string;
@@ -107,9 +107,9 @@ export const trackEcommItem = (
     category?: string;
     price?: string;
     quantity?: number;
-  }>,
+  }, A, S>,
   tracker?: string[] | string
-): EventDefinition => (action, prevState, nextState) => {
+): EventDefinition<any, A, S> => (action, prevState, nextState) => {
   const event = eventDef(action, prevState, nextState);
   const { id, name, sku, category, price, quantity } = event;
 
@@ -125,16 +125,16 @@ export const trackEcommItem = (
   };
 };
 
-export const trackEcommTransaction = (
+export const trackEcommTransaction = <A = { [key: string]: any }, S = any>(
   eventDef: EventDefinition<{
     id: string;
     affiliation?: string;
     revenue?: string;
     shipping?: string;
     tax?: string;
-  }>,
+  }, A, S>,
   tracker?: string[] | string
-): EventDefinition => (action, prevState, nextState) => {
+): EventDefinition<any, A, S> => (action, prevState, nextState) => {
   const event = eventDef(action, prevState, nextState);
   const { id, affiliation, revenue, shipping, tax } = event;
 
@@ -159,7 +159,7 @@ export const ecommClear = (tracker?: string[] | string) => ({
   customTrackerId: tracker,
 });
 
-export const trackEcommImpression = (
+export const trackEcommImpression = <A = { [key: string]: any }, S = any>(
   eventDef: EventDefinition<{
     id?: string;
     name?: string;
@@ -169,9 +169,9 @@ export const trackEcommImpression = (
     variant?: string;
     position?: number;
     price?: string;
-  }>,
+  }, A, S>,
   tracker?: string[] | string
-): EventDefinition => (action, prevState, nextState) => {
+): EventDefinition<any, A, S> => (action, prevState, nextState) => {
   const event = eventDef(action, prevState, nextState);
   const { id, name, list, brand, category, variant, position, price } = event;
 
@@ -196,7 +196,7 @@ export const trackEcommImpression = (
   };
 };
 
-export const trackEcommProduct = (
+export const trackEcommProduct = <A = { [key: string]: any }, S = any>(
   eventDef: EventDefinition<{
     id?: string;
     name?: string;
@@ -207,9 +207,9 @@ export const trackEcommProduct = (
     quantity?: number;
     coupon?: string;
     position?: number;
-  }>,
+  }, A, S>,
   tracker?: string[] | string
-): EventDefinition => (action, prevState, nextState) => {
+): EventDefinition<any, A, S> => (action, prevState, nextState) => {
   const event = eventDef(action, prevState, nextState);
   const {
     id,
@@ -244,15 +244,15 @@ export const trackEcommProduct = (
   };
 };
 
-export const trackEcommPromotion = (
+export const trackEcommPromotion = <A = { [key: string]: any }, S = any>(
   eventDef: EventDefinition<{
     id?: string;
     name?: string;
     creative?: string;
     position?: string;
-  }>,
+  }, A, S>,
   tracker?: string[] | string
-): EventDefinition => (action, prevState, nextState) => {
+): EventDefinition<any, A, S> => (action, prevState, nextState) => {
   const event = eventDef(action, prevState, nextState);
   const { id, name, creative, position } = event;
 
@@ -272,7 +272,7 @@ export const trackEcommPromotion = (
   };
 };
 
-export const trackEcommAction = (
+export const trackEcommAction = <A = { [key: string]: any }, S = any>(
   eventDef: EventDefinition<{
     actionName: string;
     id?: string;
@@ -284,9 +284,9 @@ export const trackEcommAction = (
     list?: string;
     step?: number;
     option?: string;
-  }>,
+  }, A, S>,
   tracker?: string[] | string
-): EventDefinition => (action, prevState, nextState) => {
+): EventDefinition<any, A, S> => (action, prevState, nextState) => {
   const event = eventDef(action, prevState, nextState);
   const {
     actionName,
