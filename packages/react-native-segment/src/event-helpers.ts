@@ -8,11 +8,7 @@ export const trackPageView = (
     properties?: any;
   }>
 ): EventDefinition => (action, prevState, nextState) => {
-  const { name, properties } = eventDef(
-    action,
-    prevState,
-    nextState
-  );
+  const { name, properties } = eventDef(action, prevState, nextState);
 
   return {
     hitType: 'pageview',
@@ -38,11 +34,7 @@ export const setAlias = (
     userId: string;
   }>
 ): EventDefinition => (action, prevState, nextState) => {
-  const { userId } = eventDef(
-    action,
-    prevState,
-    nextState
-  );
+  const { userId } = eventDef(action, prevState, nextState);
 
   return {
     hitType: 'alias',
@@ -77,12 +69,6 @@ export const identifyUser = (
   };
 };
 
-export const reset = (
-  eventDef: EventDefinition
-): EventDefinition => (action, prevState, nextState) => {
-  eventDef(action, prevState, nextState);
-
-  return {
-    hitType: 'reset',
-  };
-};
+export const reset = (): EventDefinition => () => ({
+  hitType: 'reset',
+});

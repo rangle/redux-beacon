@@ -140,5 +140,5 @@ https://segment.com/docs/sources/mobile/react-native/#reset
 ```js
 import { reset } from '@redux-beacon/react-native-segment';
 
-reset(() => ({}));
+const resetRequest = reset();
 ```
