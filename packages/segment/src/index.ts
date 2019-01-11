@@ -6,6 +6,7 @@ export {
   setAlias,
   setGroup,
   identifyUser,
+  reset,
 } from './event-helpers';
 
 export default Segment;

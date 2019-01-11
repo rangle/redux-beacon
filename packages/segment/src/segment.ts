@@ -26,6 +26,9 @@ const Segment = (): Target => events => {
       case 'alias':
         analytics.alias(event.userId, event.previousId, event.options);
         break;
+      case 'reset':
+        analytics.reset();
+        break;
       default:
         break;
     }

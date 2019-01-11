@@ -87,3 +87,7 @@ export const identifyUser = (
     options,
   };
 };
+
+export const reset = (): EventDefinition => () => ({
+  hitType: 'reset',
+});
