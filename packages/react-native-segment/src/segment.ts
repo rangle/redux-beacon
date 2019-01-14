@@ -7,16 +7,16 @@ function Segment(SegmentAnalytics: any): Target {
     events.forEach(event => {
       switch (event.hitType) {
         case 'identify':
-          SegmentAnalytics.identify(event.userId, event.traits);
+          SegmentAnalytics.identify(event.userId, event.traits || {});
           break;
         case 'group':
-          SegmentAnalytics.group(event.groupId, event.traits);
+          SegmentAnalytics.group(event.groupId, event.traits || {});
           break;
         case 'pageview':
-          SegmentAnalytics.screen(event.name, event.properties);
+          SegmentAnalytics.screen(event.name, event.properties || {});
           break;
         case 'event':
-          SegmentAnalytics.track(event.eventAction, event.properties);
+          SegmentAnalytics.track(event.eventAction, event.properties || {});
           break;
         case 'alias':
           SegmentAnalytics.alias(event.userId);
