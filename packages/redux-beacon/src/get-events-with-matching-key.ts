@@ -4,7 +4,11 @@ function getEventsWithMatchingKey(
   eventsMap: EventsMap,
   actionType: string
 ): EventDefinition[] {
-  return Object.keys(eventsMap)
+  const objectKeys = Object.keys(eventsMap);
+  const symbolKeys = Object.getOwnPropertySymbols
+    ? Object.getOwnPropertySymbols(eventsMap)
+    : [];
+  return [...objectKeys, ...symbolKeys]
     .filter(key => key === '*' || key === actionType)
     .map(matchingKey => eventsMap[matchingKey]);
 }
