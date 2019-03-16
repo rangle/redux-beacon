@@ -1,7 +1,17 @@
+import * as makeConsoleMock from 'consolemock';
 import GoogleAnalyticsGtag from '../';
+
+beforeAll(() => {
+  console = makeConsoleMock(console);
+});
 
 beforeEach(() => {
   window.gtag = jest.fn();
+});
+
+/* tslint:disable: no-console */
+afterEach(() => {
+  console.clearHistory();
 });
 
 it('configures the Google Analytics property with the tracking ID', () => {
@@ -150,9 +160,24 @@ describe('Undefined Event Type', () => {
 });
 
 describe('When window.gtag is not defined', () => {
-  it('throws an error informing the developer', () => {
+  it('does not throw an error', () => {
     window.gtag = undefined;
 
-    expect(() => GoogleAnalyticsGtag('GA_TRACKING_ID')).toThrow();
+    expect(() => GoogleAnalyticsGtag('GA_TRACKING_ID')).not.toThrow();
+  });
+  it('does nothing when events are pushed to the target', () => {
+    window.gtag = undefined;
+
+    const events = [{ type: 'event', action: 'click' }];
+    const target = GoogleAnalyticsGtag('GA_TRACKING_ID');
+
+    expect(() => target(events)).not.toThrow();
+  });
+  it('logs an error informing the developer that no analytics are being tracked', () => {
+    window.gtag = undefined;
+
+    GoogleAnalyticsGtag('GA_TRACKING_ID');
+
+    expect(console.printHistory()).toMatchSnapshot();
   });
 });

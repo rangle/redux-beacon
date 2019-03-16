@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`When window.gtag is not defined logs an error informing the developer that no analytics are being tracked 1`] = `
+"
+WARN 
+    [@redux-beacon/google-analytics-gtag] Analytics are not being tracked, window.gtag 
+    is not a function. Please include the Google Site Tag snippet:
+    https://developers.google.com/analytics/devguides/collection/gtagjs/
+    "
+`;
