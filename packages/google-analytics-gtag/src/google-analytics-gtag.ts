@@ -8,6 +8,7 @@ function GoogleAnalyticsGtag(defaultTrackingId: string): Target {
   }
 
   if (typeof (window as any).gtag !== 'function') {
+    /* tslint:disable: no-console */
     console.warn(`
     [@redux-beacon/google-analytics-gtag] Analytics are not being tracked, window.gtag 
     is not a function. Please include the Google Site Tag snippet:
