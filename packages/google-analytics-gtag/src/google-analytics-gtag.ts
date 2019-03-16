@@ -8,9 +8,13 @@ function GoogleAnalyticsGtag(defaultTrackingId: string): Target {
   }
 
   if (typeof (window as any).gtag !== 'function') {
-    throw new Error(
-      'window.gtag is not a function. Did you forget to include the Google Site Tag snippet?'
-    );
+    /* tslint:disable: no-console */
+    console.warn(`
+    [@redux-beacon/google-analytics-gtag] Analytics are not being tracked, window.gtag 
+    is not a function. Please include the Google Site Tag snippet:
+    https://developers.google.com/analytics/devguides/collection/gtagjs/
+    `);
+    return () => {};
   }
 
   gtag('config', defaultTrackingId, { send_page_view: false });
