@@ -149,12 +149,16 @@ export const trackEcommTransaction = <A = { [key: string]: any }, S = any>(
   };
 };
 
-export const ecommSend = (tracker?: string[] | string) => ({
+export const ecommSend = (
+  tracker?: string[] | string
+): EventDefinition => () => ({
   hitType: 'ecommSend',
   customTrackerId: tracker,
 });
 
-export const ecommClear = (tracker?: string[] | string) => ({
+export const ecommClear = (
+  tracker?: string[] | string
+): EventDefinition => () => ({
   hitType: 'ecommClear',
   customTrackerId: tracker,
 });
