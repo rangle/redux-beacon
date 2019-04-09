@@ -111,7 +111,7 @@ const pageView = trackPageView((action, prevState, nextState) => {
    title: /* (optional) */,
    location: /* (optional) */,
  };
-}, /* (optional) tracker name */ );
+}, /* (optional) tracker names array or tracker name string */ );
 ```
 
 {% hint style='danger' %}
@@ -155,7 +155,7 @@ const userTiming = trackTiming((action, prevState, nextState) => {
     value: /* fill me in */,
     label: /* (optional) */,
   };
-}, /* (optional) tracker name */ );
+}, /* (optional) tracker names array or tracker name string */ );
 ```
 
 
@@ -173,7 +173,7 @@ const socialInteraction = trackSocialInteraction((action, prevState, nextState) 
     action: /* fill me in */,
     target: /* fill me in */,
   };
-}, /* (optional) tracker name */ );
+}, /* (optional) tracker names array or tracker name string */ );
 ```
 
 
@@ -190,7 +190,7 @@ const exception = trackException((action, prevState, nextState) => {
     description: /* (optional) */,
     isFatal: /* (optional) */,
   };
-}, /* (optional) tracker name */ );
+}, /* (optional) tracker names array or tracker name string */ );
 ```
 
 Don't need to track `description` or `isFatal`?
@@ -199,7 +199,7 @@ Don't need to track `description` or `isFatal`?
 import { trackException } from '@redux-beacon/google-analytics';
 
 const noop = () => {};
-const exception = trackException(noop, /* (optional) tracker name */ );
+const exception = trackException(noop, /* (optional) tracker names array or tracker name string */ );
 ```
 
 
@@ -222,7 +222,7 @@ const ecommItem = trackEcommItem((action, prevState, nextState) => {
     price: /* (optional) */,
     quantity: /* (optional) */,
   };
-}, /* (optional) tracker name */ );
+}, /* (optional) tracker names array or tracker name string */ );
 ```
 
 
@@ -244,7 +244,7 @@ const ecommTransaction = trackEcommTransaction((action, prevState, nextState) =>
     shipping: /* (optional) */,
     tax: /* (optional) */,
   };
-}, /* (optional) tracker name */ );
+}, /* (optional) tracker names array or tracker name string */ );
 ```
 
 
@@ -259,7 +259,7 @@ https://developers.google.com/analytics/devguides/collection/analyticsjs/ecommer
 ```js
 import { ecommSend } from '@redux-beacon/google-analytics';
 
-const ecommSendSignal = ecommSend(/* (optional) tracker name */);
+const ecommSendSignal = ecommSend(/* (optional) tracker names array or tracker name string */);
 ```
 
 
@@ -274,7 +274,7 @@ https://developers.google.com/analytics/devguides/collection/analyticsjs/ecommer
 ```js
 import { ecommClear } from '@redux-beacon/google-analytics';
 
-const ecommClearSignal = ecommClear(/* (optional) tracker name */);
+const ecommClearSignal = ecommClear(/* (optional) tracker names array or tracker name string */);
 ```
 
 
@@ -299,7 +299,7 @@ const ecommImpression = trackEcommImpression((action, prevState, nextState) => {
     position: /* (optional) */,
     price: /* (optional) */,
   };
-}, /* (optional) tracker name */ );
+}, /* (optional) tracker names array or tracker name string */ );
 ```
 
 
@@ -325,7 +325,7 @@ const ecommProduct = trackEcommProduct((action, prevState, nextState) => {
     coupon: /* (optional) */,
     position: /* (optional) */,
   };
-}, /* (optional) tracker name */ );
+}, /* (optional) tracker names array or tracker name string */ );
 ```
 
 
@@ -346,7 +346,7 @@ const ecommPromotion = trackEcommPromotion((action, prevState, nextState) => {
     creative: /* (optional) */,
     position: /* (optional) */,
   };
-}, /* (optional) tracker name */ );
+}, /* (optional) tracker names array or tracker name string */ );
 ```
 
 
@@ -373,5 +373,5 @@ const ecommAction = trackEcommAction((action, prevState, nextState) => {
     step: /* (optional) */,
     option: /* (optional) */,
   };
-}, /* (optional) tracker name */ );
+}, /* (optional) tracker names array or tracker name string */ );
 ```
