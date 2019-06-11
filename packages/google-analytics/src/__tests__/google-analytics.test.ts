@@ -98,6 +98,25 @@ describe('GoogleAnalytics(events)', () => {
 
       expect(window.ga).toHaveBeenCalledWith('set', 'page', '/home');
     });
+
+    it('does not pass along the customerTrackerId when used with an event-helper', () => {
+      const events = [
+        {
+          hitType: 'pageview',
+          customTrackerId: undefined,
+          page: 'foo-page',
+          title: 'foo-title',
+          location: 'foo-location',
+        },
+      ];
+
+      window.ga = jest.fn();
+      target(events);
+
+      const hit = window.ga.mock.calls[1][1];
+
+      expect(Object.keys(hit)).not.toContain('customTrackerId');
+    });
   });
 
   describe('When ga is not defined', () => {

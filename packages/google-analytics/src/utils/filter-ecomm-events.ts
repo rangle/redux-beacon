@@ -1,12 +1,13 @@
-const filterEcommEvents = obj => {
-  const newObj = {};
-  const invalidKeys = ['hitType', 'customTrackerId', 'ecommType', 'actionName'];
-  Object.keys(obj).forEach(key => {
-    if (invalidKeys.indexOf(key) === -1) {
-      newObj[key] = obj[key];
-    }
-  });
-  return newObj;
-};
+import { removeKeys } from './remove-keys';
+
+const filterEcommEvents = (ecommEvent: {
+  [key: string]: any;
+}): { [key: string]: any } =>
+  removeKeys(ecommEvent, [
+    'hitType',
+    'customTrackerId',
+    'ecommType',
+    'actionName',
+  ]);
 
 export default filterEcommEvents;
