@@ -75,6 +75,12 @@ your entire global state life-cycle becomes trackable.
 
 If you don't see your analytics target listed it might be worth a shot doing a quick search on npmjs.org. If all else fails you can always [build and provide your own custom Targets](https://rangle.gitbook.io/redux-beacon/examples-and-recipes#how-to-create-your-own-target)!
 
+## Integrations
+
+| Integration                                                                                  | Integrates with                                                | Description                                                                                                                                                                                                    |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [redux-dynamic-modules-beacon](https://github.com/dbartholomae/redux-dynamic-modules-beacon) | [redux-dynamic-modules](https://redux-dynamic-modules.js.org/) | Redux Dynamic Modules is a library that allows to modularize redux code. With help of this extension events do not have to be defined in one central location but can be defined for each module individually. |
+
 ## Usage
 
  - **Step 1.** Pick out a target _(see above)_
