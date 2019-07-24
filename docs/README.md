@@ -159,3 +159,20 @@ const eventsMapper = (action) => {
   }
 }
 ```
+
+## More Examples & Recipes
+ - [How to Track Pageviews in a React-Redux app](https://rangle.gitbook.io/redux-beacon/examples-and-recipes#how-to-track-pageviews-in-a-react-redux-app)
+ - [How to Track Pageviews in an Angular-ngrx app](https://rangle.gitbook.io/redux-beacon/examples-and-recipes#how-to-track-pageviews-in-an-angular-ngrx-app)
+ - [How to Track Analytics Offline (Web)](https://rangle.gitbook.io/redux-beacon/extensions/offlineweb)
+ - [How to Track Analytics Offline (React Native)](https://rangle.gitbook.io/redux-beacon/extensions/offlinereactnative)
+
+## Extensions & Plugins
+
+|     | Version                                                                                                                                                           | Package                                                                                                   |
+| --- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| 🔌  | [![npm](https://img.shields.io/npm/v/@redux-beacon/logger.svg?style=flat-square)](https://www.npmjs.com/package/@redux-beacon/logger)                             | [@redux-beacon/logger](https://rangle.gitbook.io/redux-beacon/index-2/logger)                             |
+| 🔧  | [![npm](https://img.shields.io/npm/v/@redux-beacon/combine-events.svg?style=flat-square)](https://www.npmjs.com/package/@redux-beacon/combine-events)             | [@redux-beacon/combine-events](https://rangle.gitbook.io/redux-beacon/index-3/combine-events)             |
+| 🔧  | [![npm](https://img.shields.io/npm/v/@redux-beacon/ensure.svg?style=flat-square)](https://www.npmjs.com/package/@redux-beacon/ensure)                             | [@redux-beacon/ensure](https://rangle.gitbook.io/redux-beacon/index-3/ensure)                             |
+| 🔧  | [![npm](https://img.shields.io/npm/v/@redux-beacon/debounce-event.svg?style=flat-square)](https://www.npmjs.com/package/@redux-beacon/debounce-event)             | [@redux-beacon/debounce-event](https://rangle.gitbook.io/redux-beacon/index-3/debounce-event)             |
+| 🔌  | [![npm](https://img.shields.io/npm/v/@redux-beacon/offline-web.svg?style=flat-square)](https://www.npmjs.com/package/@redux-beacon/offline-web)                   | [@redux-beacon/offline-web](https://rangle.gitbook.io/redux-beacon/index-2/offline-web)                   |
+| 🔌  | [![npm](https://img.shields.io/npm/v/@redux-beacon/offline-react-native.svg?style=flat-square)](https://www.npmjs.com/package/@redux-beacon/offline-react-native) | [@redux-beacon/offline-react-native](https://rangle.gitbook.io/redux-beacon/index-2/offline-react-native) |
