@@ -1,5 +1,7 @@
 import getEventsWithMatchingKey from '../get-events-with-matching-key';
 
+const actionSymbolString = 'actionSymbol';
+const actionSymbol = Symbol('actionSymbol');
 [
   {
     title: 'action type matches a key exactly',
@@ -48,6 +50,16 @@ import getEventsWithMatchingKey from '../get-events-with-matching-key';
     },
     actionType: '[Collection] Add Book Success',
     expected: ['eventDefAddBookSuccess'],
+  },
+  {
+    title: 'action type can be a Symbol',
+    eventsMap: {
+      [actionSymbol]: 'eventDefSymbol',
+      [actionSymbolString]: 'eventDefString',
+      [`Symbol(${actionSymbolString})`]: 'eventDefString',
+    },
+    actionType: actionSymbol,
+    expected: ['eventDefSymbol'],
   },
 ].forEach((scenario, index) => {
   const { title, eventsMap, actionType, expected, only } = scenario;

@@ -1,5 +1,5 @@
 import { Target } from 'redux-beacon';
-import { filterEcommEvents, isEcommEvent } from './utils';
+import { filterEcommEvents, isEcommEvent, removeKeys } from './utils';
 
 const GoogleAnalytics = (): Target => events => {
   if (typeof window === 'undefined') {
@@ -66,7 +66,7 @@ const GoogleAnalytics = (): Target => events => {
         if (event.hitType === 'pageview') {
           ga(`${trackerId}set`, 'page', event.page);
         }
-        ga(`${trackerId}send`, event);
+        ga(`${trackerId}send`, removeKeys(event, ['customTrackerId']));
       }
     });
   });
