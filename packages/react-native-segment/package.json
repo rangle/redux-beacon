@@ -1,0 +1,23 @@
+{
+  "name": "@redux-beacon/react-native-segment",
+  "version": "0.1.0",
+  "description": "Segment.io integration for Redux with React Native",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "engines": {
+    "node": ">= 6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rangle/redux-beacon.git"
+  },
+  "homepage": "https://rangle.github.io/redux-beacon/docs/targets/react-native-segment.html",
+  "license": "MIT",
+  "scripts": {
+    "prepublishOnly": "yarn run build",
+    "build": "tsc -p tsconfig.build.json"
+  },
+  "peerDependencies": {
+    "redux-beacon": "2.x"
+  }
+}
