@@ -6,9 +6,10 @@ const GoogleAnalytics = (): Target => events => {
     return;
   }
   if (typeof (window as any).ga !== 'function') {
-    throw new Error(
+    console.warn(
       'window.ga is not defined, Have you forgotten to include Google Analytics?'
     );
+    return;
   }
   events.forEach(event => {
     const customTrackers = event.customTrackerId || event.tracker;
