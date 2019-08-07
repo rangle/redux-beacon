@@ -139,12 +139,11 @@ describe('GoogleAnalytics(events)', () => {
       window.ga = undefined;
 
       const events = [{ type: 'event', action: 'click' }];
-      const target = GoogleAnalytics('GA_TRACKING_ID');
 
-      expect(() => target(events)).not.toThrow();
+      expect(() => GoogleAnalytics('GA_TRACKING_ID')(events)).not.toThrow();
     });
     it('logs an error informing the developer that no analytics are being tracked', () => {
-      window.gtag = undefined;
+      window.ga = undefined;
 
       GoogleAnalytics('GA_TRACKING_ID');
 
