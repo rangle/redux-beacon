@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GoogleAnalytics(events) When window.ga is not defined logs an error informing the developer that no analytics are being tracked 1`] = `""`;
