@@ -6,9 +6,12 @@ const GoogleAnalytics = (): Target => events => {
     return;
   }
   if (typeof (window as any).ga !== 'function') {
-    console.warn(
-      'window.ga is not defined, Have you forgotten to include Google Analytics?'
-    );
+    /* tslint:disable: no-console */
+    console.warn(`
+    [@redux-beacon/google-analytics] Analytics are not being tracked, window.ga 
+    is not a function. Please include the Analytics Tag snippet:
+    https://support.google.com/analytics/answer/1008080    
+    `);
     return;
   }
   events.forEach(event => {
