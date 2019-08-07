@@ -1,7 +1,17 @@
+import * as makeConsoleMock from 'consolemock';
 import GoogleAnalytics from '../';
+
+beforeAll(() => {
+  console = makeConsoleMock(console);
+});
 
 beforeEach(() => {
   window.ga = undefined;
+});
+
+/* tslint:disable: no-console */
+afterEach(() => {
+  console.clearHistory();
 });
 
 const target = GoogleAnalytics();
@@ -119,20 +129,29 @@ describe('GoogleAnalytics(events)', () => {
     });
   });
 
-  describe('When ga is not defined', () => {
-    it('should throw an error informing the user.', () => {
-      const events = [
-        {
-          hitType: 'pageview',
-          page: '/home',
-        },
-      ];
-      expect(() => target(events)).toThrow(
-        'window.ga is not defined, Have you forgotten to include Google Analytics?'
-      );
+  describe('When window.ga is not defined', () => {
+    it('does not throw an error', () => {
+      window.ga = undefined;
+
+      expect(() => GoogleAnalytics('GA_TRACKING_ID')).not.toThrow();
+    });
+    it('does nothing when events are pushed to the target', () => {
+      window.ga = undefined;
+
+      const events = [{ type: 'event', action: 'click' }];
+      const target = GoogleAnalytics('GA_TRACKING_ID');
+
+      expect(() => target(events)).not.toThrow();
+    });
+    it('logs an error informing the developer that no analytics are being tracked', () => {
+      window.gtag = undefined;
+
+      GoogleAnalytics('GA_TRACKING_ID');
+
+      expect(console.printHistory()).toMatchSnapshot();
     });
   });
-
+  
   describe('when ga:ecommerce is being used', () => {
     beforeEach(() => {
       window.ga = jest.fn();
