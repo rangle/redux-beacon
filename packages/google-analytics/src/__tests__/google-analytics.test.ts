@@ -1,13 +1,21 @@
+import * as makeConsoleMock from 'consolemock';
 import GoogleAnalytics from '../';
+
+beforeAll(() => {
+  console = makeConsoleMock(console);
+});
 
 beforeEach(() => {
   window.ga = undefined;
 });
 
-const target = GoogleAnalytics();
+/* tslint:disable: no-console */
+afterEach(() => {
+  console.clearHistory();
+});
 
 describe('GoogleAnalytics(events)', () => {
-  it('calls window.ga("send", <event>) for each event', () => {
+  it.only('calls window.ga("send", <event>) for each event', () => {
     const events = [
       {
         hitType: 'pageview',
@@ -25,6 +33,9 @@ describe('GoogleAnalytics(events)', () => {
     ];
 
     window.ga = jest.fn();
+
+    const target = GoogleAnalytics();
+
     target(events);
 
     expect(window.ga).toHaveBeenCalledWith('send', events[0]);
@@ -52,6 +63,9 @@ describe('GoogleAnalytics(events)', () => {
       ];
 
       window.ga = jest.fn();
+
+      const target = GoogleAnalytics();
+
       target(events);
 
       expect(window.ga).toHaveBeenCalledWith(
@@ -77,6 +91,9 @@ describe('GoogleAnalytics(events)', () => {
       ];
 
       window.ga = jest.fn();
+
+      const target = GoogleAnalytics();
+
       target(events);
 
       expect(window.ga).toHaveBeenCalledWith('testHub.send', events[0]);
@@ -94,6 +111,9 @@ describe('GoogleAnalytics(events)', () => {
       ];
 
       window.ga = jest.fn();
+
+      const target = GoogleAnalytics();
+
       target(events);
 
       expect(window.ga).toHaveBeenCalledWith('set', 'page', '/home');
@@ -111,6 +131,9 @@ describe('GoogleAnalytics(events)', () => {
       ];
 
       window.ga = jest.fn();
+
+      const target = GoogleAnalytics();
+
       target(events);
 
       const hit = window.ga.mock.calls[1][1];
@@ -119,17 +142,25 @@ describe('GoogleAnalytics(events)', () => {
     });
   });
 
-  describe('When ga is not defined', () => {
-    it('should throw an error informing the user.', () => {
-      const events = [
-        {
-          hitType: 'pageview',
-          page: '/home',
-        },
-      ];
-      expect(() => target(events)).toThrow(
-        'window.ga is not defined, Have you forgotten to include Google Analytics?'
-      );
+  describe('When window.ga is not defined', () => {
+    it('does not throw an error', () => {
+      window.ga = undefined;
+
+      expect(() => GoogleAnalytics('GA_TRACKING_ID')).not.toThrow();
+    });
+    it('does nothing when events are pushed to the target', () => {
+      window.ga = undefined;
+
+      const events = [{ type: 'event', action: 'click' }];
+
+      expect(() => GoogleAnalytics('GA_TRACKING_ID')(events)).not.toThrow();
+    });
+    it('logs an error informing the developer that no analytics are being tracked', () => {
+      window.ga = undefined;
+
+      GoogleAnalytics('GA_TRACKING_ID');
+
+      expect(console.printHistory()).toMatchSnapshot();
     });
   });
 
@@ -148,6 +179,8 @@ describe('GoogleAnalytics(events)', () => {
           name: itemName,
         },
       ];
+
+      const target = GoogleAnalytics();
 
       target(events);
 
@@ -168,7 +201,10 @@ describe('GoogleAnalytics(events)', () => {
         },
       ];
 
+      const target = GoogleAnalytics();
+
       target(events);
+
       expect(window.ga).toHaveBeenCalledWith('ecommerce:addTransaction', {
         id,
         revenue,
@@ -182,7 +218,10 @@ describe('GoogleAnalytics(events)', () => {
         },
       ];
 
+      const target = GoogleAnalytics();
+
       target(events);
+
       expect(window.ga).toHaveBeenCalledWith('ecommerce:clear');
     });
 
@@ -197,7 +236,10 @@ describe('GoogleAnalytics(events)', () => {
         },
       ];
 
+      const target = GoogleAnalytics();
+
       target(events);
+
       expect(window.ga).toHaveBeenCalledWith(
         `${customTrackerId}.ecommerce:addTransaction`,
         {
@@ -213,7 +255,10 @@ describe('GoogleAnalytics(events)', () => {
         },
       ];
 
+      const target = GoogleAnalytics();
+
       target(events);
+
       expect(window.ga).toHaveBeenCalledWith('ecommerce:send');
     });
   });
@@ -231,7 +276,10 @@ describe('GoogleAnalytics(events)', () => {
         },
       ];
 
+      const target = GoogleAnalytics();
+
       target(events);
+
       expect(window.ga).toHaveBeenCalledWith('ec:clear');
     });
 
@@ -243,7 +291,11 @@ describe('GoogleAnalytics(events)', () => {
             ecommType: 'enhanced',
           },
         ];
+
+        const target = GoogleAnalytics();
+
         target(events);
+
         expect(window.ga).toHaveBeenCalledWith(`ec:${hitType}`, {});
       });
     });
@@ -257,7 +309,10 @@ describe('GoogleAnalytics(events)', () => {
         },
       ];
 
+      const target = GoogleAnalytics();
+
       target(events);
+
       expect(window.ga).toHaveBeenCalledWith('ec:setAction', 'click', {});
     });
   });
