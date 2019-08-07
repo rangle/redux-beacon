@@ -1,3 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`GoogleAnalytics(events) When window.ga is not defined logs an error informing the developer that no analytics are being tracked 1`] = `""`;
+exports[`GoogleAnalytics(events) When window.ga is not defined logs an error informing the developer that no analytics are being tracked 1`] = `
+"
+WARN 
+    [@redux-beacon/google-analytics] Analytics are not being tracked, window.ga 
+    is not a function. Please include the Analytics Tag snippet:
+    https://support.google.com/analytics/answer/1008080    
+    "
+`;

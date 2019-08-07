@@ -14,10 +14,8 @@ afterEach(() => {
   console.clearHistory();
 });
 
-const target = GoogleAnalytics();
-
 describe('GoogleAnalytics(events)', () => {
-  it('calls window.ga("send", <event>) for each event', () => {
+  it.only('calls window.ga("send", <event>) for each event', () => {
     const events = [
       {
         hitType: 'pageview',
@@ -35,6 +33,9 @@ describe('GoogleAnalytics(events)', () => {
     ];
 
     window.ga = jest.fn();
+
+    const target = GoogleAnalytics();
+
     target(events);
 
     expect(window.ga).toHaveBeenCalledWith('send', events[0]);
@@ -62,6 +63,9 @@ describe('GoogleAnalytics(events)', () => {
       ];
 
       window.ga = jest.fn();
+
+      const target = GoogleAnalytics();
+
       target(events);
 
       expect(window.ga).toHaveBeenCalledWith(
@@ -87,6 +91,9 @@ describe('GoogleAnalytics(events)', () => {
       ];
 
       window.ga = jest.fn();
+
+      const target = GoogleAnalytics();
+
       target(events);
 
       expect(window.ga).toHaveBeenCalledWith('testHub.send', events[0]);
@@ -104,6 +111,9 @@ describe('GoogleAnalytics(events)', () => {
       ];
 
       window.ga = jest.fn();
+
+      const target = GoogleAnalytics();
+
       target(events);
 
       expect(window.ga).toHaveBeenCalledWith('set', 'page', '/home');
@@ -121,6 +131,9 @@ describe('GoogleAnalytics(events)', () => {
       ];
 
       window.ga = jest.fn();
+
+      const target = GoogleAnalytics();
+
       target(events);
 
       const hit = window.ga.mock.calls[1][1];
@@ -150,7 +163,7 @@ describe('GoogleAnalytics(events)', () => {
       expect(console.printHistory()).toMatchSnapshot();
     });
   });
-  
+
   describe('when ga:ecommerce is being used', () => {
     beforeEach(() => {
       window.ga = jest.fn();
@@ -166,6 +179,8 @@ describe('GoogleAnalytics(events)', () => {
           name: itemName,
         },
       ];
+
+      const target = GoogleAnalytics();
 
       target(events);
 
@@ -186,7 +201,10 @@ describe('GoogleAnalytics(events)', () => {
         },
       ];
 
+      const target = GoogleAnalytics();
+
       target(events);
+
       expect(window.ga).toHaveBeenCalledWith('ecommerce:addTransaction', {
         id,
         revenue,
@@ -200,7 +218,10 @@ describe('GoogleAnalytics(events)', () => {
         },
       ];
 
+      const target = GoogleAnalytics();
+
       target(events);
+
       expect(window.ga).toHaveBeenCalledWith('ecommerce:clear');
     });
 
@@ -215,7 +236,10 @@ describe('GoogleAnalytics(events)', () => {
         },
       ];
 
+      const target = GoogleAnalytics();
+
       target(events);
+
       expect(window.ga).toHaveBeenCalledWith(
         `${customTrackerId}.ecommerce:addTransaction`,
         {
@@ -231,7 +255,10 @@ describe('GoogleAnalytics(events)', () => {
         },
       ];
 
+      const target = GoogleAnalytics();
+
       target(events);
+
       expect(window.ga).toHaveBeenCalledWith('ecommerce:send');
     });
   });
@@ -249,7 +276,10 @@ describe('GoogleAnalytics(events)', () => {
         },
       ];
 
+      const target = GoogleAnalytics();
+
       target(events);
+
       expect(window.ga).toHaveBeenCalledWith('ec:clear');
     });
 
@@ -261,7 +291,11 @@ describe('GoogleAnalytics(events)', () => {
             ecommType: 'enhanced',
           },
         ];
+
+        const target = GoogleAnalytics();
+
         target(events);
+
         expect(window.ga).toHaveBeenCalledWith(`ec:${hitType}`, {});
       });
     });
@@ -275,7 +309,10 @@ describe('GoogleAnalytics(events)', () => {
         },
       ];
 
+      const target = GoogleAnalytics();
+
       target(events);
+
       expect(window.ga).toHaveBeenCalledWith('ec:setAction', 'click', {});
     });
   });
