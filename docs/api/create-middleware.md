@@ -13,7 +13,7 @@ createMiddleware([eventsMap | eventsMapper], target[, extensions]);
  * `extensions` *(optional)*: [extensions](../extensions/index.md).
 
 #### Return value
- * [Redux middleware](http://redux.js.org/docs/advanced/Middleware.html#the-final-approach)
+ * [Redux middleware](https://redux.js.org/advanced/middleware#the-final-approach)
 
 ### Usage
  * [Getting Started](../getting-started-redux-users.md)

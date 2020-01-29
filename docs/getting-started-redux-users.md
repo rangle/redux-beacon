@@ -77,7 +77,7 @@ const gaMiddleware = createMiddleware(eventsMap, ga, { logger });
   * [Segment: Setup](targets/react-native-segment.md#setup)
 
 ### Step 4
-Follow the instructions [here](https://redux.js.org/docs/api/applyMiddleware.html) to
+Follow the instructions [here](https://redux.js.org/api/applymiddleware/) to
 apply the middleware to your store.
 
 ----

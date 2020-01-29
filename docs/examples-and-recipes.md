@@ -32,7 +32,7 @@ const eventsMap = {
 
 const gaMiddleware = createMiddleware(eventsMap, GoogleAnalytics());
 ```
- - Click [here](https://redux.js.org/docs/api/applyMiddleware.html) for instructions on how to apply the middleware to your store.
+ - Click [here](https://redux.js.org/api/applymiddleware/) for instructions on how to apply the middleware to your store.
  - Click [here](https://codesandbox.io/s/4xkkp8n419) for a runnable example.
 
 
