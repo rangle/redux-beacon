@@ -57,6 +57,9 @@ const pageView = trackPageView((action, prevState, nextState) => {
    title: /* (optional) */,
    location: /* (optional) */,
    path: /* (optional) */,
+   fieldsObject: { /* (optional) */
+     [ /* dimension | metric */]: /* value */,
+   },
  };
 }, /* (optional) tracking Id */, /* (optional) tracking Id */, ...);
 ```
@@ -81,6 +84,9 @@ const event = trackEvent((action, prevState, nextState) => {
     action: /* fill me in */,
     label: /* (optional) */,
     value: /* (optional) */,
+    fieldsObject: { /* (optional) */
+      [ /* dimension | metric */]: /* value */,
+    },
   };
 });
 ```

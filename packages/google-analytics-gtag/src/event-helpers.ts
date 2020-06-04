@@ -5,17 +5,21 @@ export const trackPageView = (
     title?: string;
     location?: string;
     path?: string;
+    fieldsObject?: {
+      [key: string]: any;
+    };
   }>,
   ...trackers: string[]
 ): EventDefinition => (action, prevState, nextState) => {
   const event = eventDef(action, prevState, nextState);
-
+  const { title, location, path, fieldsObject = {} } = event;
   return {
     type: 'page',
     trackingId: trackers,
-    page_title: event.title,
-    page_location: event.location,
-    page_path: event.path,
+    page_title: title,
+    page_location: location,
+    page_path: path,
+    ...fieldsObject,
   };
 };
 
@@ -25,15 +29,20 @@ export const trackEvent = (
     action: string;
     label?: string;
     value?: number;
+    fieldsObject?: {
+      [ket: string]: any;
+    };
   }>
 ): EventDefinition => (action, prevState, nextState) => {
   const event = eventDef(action, prevState, nextState);
+  const { category, label, value, fieldsObject = {} } = event;
 
   return {
     type: 'event',
     action: event.action,
-    event_category: event.category,
-    event_label: event.label,
-    value: event.value,
+    event_category: category,
+    event_label: label,
+    value,
+    ...fieldsObject,
   };
 };
