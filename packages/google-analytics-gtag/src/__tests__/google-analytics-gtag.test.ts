@@ -1,5 +1,6 @@
 import * as makeConsoleMock from 'consolemock';
 import GoogleAnalyticsGtag from '../';
+import { trackEvent, trackPageView } from '../event-helpers';
 
 beforeAll(() => {
   console = makeConsoleMock(console);
@@ -102,6 +103,30 @@ describe('Page Tracking', () => {
       page_path: '/topics',
     });
   });
+
+  describe('When you pass the target a pageView with a fieldsObject', () => {
+    it('includes the properties in the fieldsObject in the gtag event hit', () => {
+      const events = [
+        trackPageView(() => ({
+          title: 'event-title',
+          location: 'event-location',
+          path: 'event-path',
+          fieldsObject: {
+            dimension1: 'dimension1',
+            metric1: 'metric1',
+          },
+        }))(null, null, null),
+      ];
+
+      const target = GoogleAnalyticsGtag('GA_TRACKING_ID');
+      target(events);
+
+      expect(window.gtag.mock.calls[1][2]).toMatchObject({
+        dimension1: 'dimension1',
+        metric1: 'metric1',
+      });
+    });
+  });
 });
 
 describe('Event Tracking', () => {
@@ -156,6 +181,31 @@ describe('Undefined Event Type', () => {
     target(events);
 
     expect(window.gtag).not.toHaveBeenCalled();
+  });
+});
+
+describe('When you pass the target an event with a fieldsObject', () => {
+  it('includes the properties in the fieldsObject in the gtag event hit', () => {
+    const events = [
+      trackEvent(() => ({
+        category: 'event-category',
+        action: 'event-action',
+        label: 'event-label',
+        value: 0,
+        fieldsObject: {
+          dimension1: 'dimension1',
+          metric1: 'metric1',
+        },
+      }))(null, null, null),
+    ];
+
+    const target = GoogleAnalyticsGtag('GA_TRACKING_ID');
+    target(events);
+
+    expect(window.gtag.mock.calls[1][2]).toMatchObject({
+      dimension1: 'dimension1',
+      metric1: 'metric1',
+    });
   });
 });
 
