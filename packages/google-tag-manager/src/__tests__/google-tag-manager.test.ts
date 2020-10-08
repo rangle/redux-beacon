@@ -1,8 +1,18 @@
+import * as makeConsoleMock from 'consolemock';
 import GoogleTagManager from '../';
+
+beforeAll(() => {
+  console = makeConsoleMock(console);
+});
 
 beforeEach(() => {
   window.dataLayer = undefined;
   window.iAmADataLayer = undefined;
+});
+
+/* tslint:disable: no-console */
+afterEach(() => {
+  console.clearHistory();
 });
 
 describe('GoogleTagManager({...options})(events)', () => {
@@ -70,23 +80,36 @@ describe('GoogleTagManager({...options})(events)', () => {
   });
 
   describe('When default dataLayer is not defined', () => {
-    it('should throw an error informing the user.', () => {
+    it('does not throw an error', () => {
+      window.dataLayer = undefined;
+
+      expect(() => GoogleTagManager()).not.toThrow();
+    });
+    it('does nothing when events are pushed to the target', () => {
+      window.dataLayer = undefined;
+
       const events = [{ hitType: 'pageview' }];
-      expect(() => GoogleTagManager()(events)).toThrow(
-        'window.dataLayer is not defined. Have you forgotten to include Google Tag Manager and dataLayer?'
-      );
+      const target = GoogleTagManager();
+
+      expect(() => target(events)).not.toThrow();
+    });
+    it('logs an error informing the developer that no events are being tracked', () => {
+      window.dataLayer = undefined;
+
+      const events = [{ hitType: 'pageview' }];
+      GoogleTagManager()(events);
+
+      expect(console.printHistory()).toMatchSnapshot();
     });
   });
 
   describe('When iAmADataLayer custom named dataLayer is not defined', () => {
-    it('should throw an error informing the user.', () => {
+    it('should log a warning to console informing the user.', () => {
       const options = {
         dataLayerName: 'iAmADataLayer',
       };
       const events = [{ hitType: 'pageview' }];
-      expect(() => GoogleTagManager(options)(events)).toThrow(
-        'window.iAmADataLayer is not defined. Have you forgotten to include Google Tag Manager and dataLayer?'
-      );
+      expect(console.printHistory()).toMatchSnapshot();
     });
   });
 });
