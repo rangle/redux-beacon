@@ -35,7 +35,7 @@ export const logout = (): EventDefinition => () => [
     userId: null,
   },
   {
-    hitType: 'regenerateDevideId',
+    hitType: 'regenerateDeviceId',
   },
 ];
 
