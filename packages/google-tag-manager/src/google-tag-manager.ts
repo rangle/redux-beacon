@@ -13,9 +13,14 @@ const GoogleTagManager = ({
     !(window as any)[dataLayerName] ||
     typeof (window as any)[dataLayerName].push !== 'function'
   ) {
-    throw new Error(
-      `redux-beacon error: window.${dataLayerName} is not defined. Have you forgotten to include Google Tag Manager and dataLayer?`
-    );
+    /* tslint:disable: no-console */
+    console.warn(`
+    [@redux-beacon/google-tag-manager] Events are not being tracked, window.${dataLayerName}
+    is not a function. Please include the Google Tag Manager snippet:
+    https://developers.google.com/tag-manager/quickstart
+    `);
+
+    return;
   }
 
   events.forEach(event => {
