@@ -26,6 +26,6 @@
     "build": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
-    "array-flatten": "2.1.1"
+    "array-flatten": "2.1.2"
   }
 }
