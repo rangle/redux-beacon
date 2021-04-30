@@ -47,3 +47,9 @@ const eventsMap = {
 
 // provide the events map when creating your middleware or meta reducer...
 ```
+
+### Note
+
+The debounceEvent event does not currently support asynchronous events (see [comment](https://github.com/rangle/redux-beacon/issues/286#issuecomment-423023024)).
+
+This means that it is not possible to use `debounceEvent` with [`ensure`](./ensure.md) for the same [`EventDefinition`](../api/event-definition.md) (or the other way around).

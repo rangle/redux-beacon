@@ -57,3 +57,9 @@ const eventsMap = {
   LOCATION_CHANGE: ensure(isValidPageView, pageview)
 };
 ```
+
+### Note
+
+The ensure event does not currently support asynchronous events (see [comment](https://github.com/rangle/redux-beacon/issues/286#issuecomment-423023024)).
+
+This means that it is not possible to use `ensure` with [`debounceEvent`](./debounce-event.md) for the same [`EventDefinition`](../api/event-definition.md) (or the other way around).
