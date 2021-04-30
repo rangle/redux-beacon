@@ -2,9 +2,14 @@ import { Target } from 'redux-beacon';
 
 function GoogleAnalytics(
   trackingId: string,
-  GoogleAnalyticsTracker: any
+  GoogleAnalyticsTracker: any,
+  settings?: { allowIdfa?: boolean }
 ): Target {
   const tracker = new GoogleAnalyticsTracker(trackingId);
+
+  if (settings != null) {
+    if (settings.allowIdfa != null) tracker.allowIDFA(settings.allowIdfa);
+  }
 
   function target(events) {
     events.forEach(event => {

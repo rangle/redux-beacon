@@ -30,10 +30,25 @@ import GoogleAnalytics from '@redux-beacon/react-native-google-analytics';
 // Create or import an events map.
 // See "getting started" pages for instructions.
 
-const trackingId = 'UA-12345678-1' // replace with your own
+const trackingId = 'UA-12345678-1'; // replace with your own
 const ga = GoogleAnalytics(trackingId, GoogleAnalyticsTracker);
 
 const gaMiddleware = createMiddleware(eventsMap, ga);
+```
+
+#### Settings
+
+You can optionally provide a settings object to the tracker during initialisation for additional configuration. Currently, the following settings can be configured in this manner:
+
+* [`allowIdfa`](https://developers.google.com/analytics/devguides/collection/ios/v3/optional-features#idfa) - control whether the tracker collects the device IDFA. *Important:* For iOS you can only use this method if you have done the optional step 6 from the `react-native-google-analytics-bridge` installation guide](https://github.com/idehub/react-native-google-analytics-bridge/wiki/Manual-installation). Only enable this (and link the appropriate libraries) if you plan to use advertising features or advertising click attribution in your app, else your app may get rejected from the App Store.
+
+```js
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge';
+import GoogleAnalytics from '@redux-beacon/react-native-google-analytics';
+
+const trackingId = 'UA-12345678-1'; // replace with your own
+const settings = { allowIdfa: false }; // optional settings object
+const ga = GoogleAnalytics(trackingId, GoogleAnalyticsTracker, settings);
 ```
 
 #### Additional Settings
@@ -49,7 +64,7 @@ These settings can be applied as follows:
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge';
 import GoogleAnalytics from '@redux-beacon/react-native-google-analytics';
 
-const trackingId = 'UA-12345678-1' // replace with your own
+const trackingId = 'UA-12345678-1'; // replace with your own
 const ga = GoogleAnalytics(trackingId, GoogleAnalyticsTracker);
 
 GoogleAnalyticsSettings.setDryRun(true);
