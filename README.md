@@ -133,7 +133,7 @@ const eventsMap = {
       category: 'Videos',
       action: 'load',
       value: action.payload.loadTime,
-    }))
+    })),
     trackEvent(() => ({
       category: 'Videos',
       action: 'play'
