@@ -18,7 +18,7 @@
     "build": "tsc -p tsconfig.build.json"
   },
   "peerDependencies": {
-    "amplitude-js": "^4.1.0",
+    "amplitude-js": ">=4.1.0",
     "redux-beacon": "2.x"
   }
 }
