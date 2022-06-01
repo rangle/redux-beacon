@@ -15,15 +15,15 @@ describe.skip('offlineWeb', () => {
       timeSaved: 1489163254030,
     };
 
-    let purgedEvents = [];
-    const purgeEventCallback: PurgedEventsHandler = _oldEvents =>
-      (purgedEvents = _oldEvents);
+    let oldEvents = [];
+    const purgeEventCallback: PurgedEventsHandler = (purgedEvents) =>
+      (oldEvents = purgedEvents);
 
     return saveEvents(events)
       .then(() => purgeEvents(purgeEventCallback))
       .then(() => {
-        expect(Array.isArray(purgedEvents)).toBe(true);
-        expect(purgedEvents.length).toBe(1);
+        expect(Array.isArray(oldEvents)).toBe(true);
+        expect(oldEvents.length).toBe(1);
 
         // TODO: write assertions once fake-indexeddb is ready
         // console.log(purgedEvents[0]);

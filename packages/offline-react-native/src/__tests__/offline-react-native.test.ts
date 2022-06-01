@@ -55,8 +55,8 @@ describe('When saving events:', () => {
       };
       const isConnected = () => false;
       let oldEvents = [];
-      const purgeEventCallback: PurgedEventsHandler = (_oldEvents) =>
-        (oldEvents = _oldEvents);
+      const purgeEventCallback: PurgedEventsHandler = (purgedEvents) =>
+        (oldEvents = purgedEvents);
 
       const extension = offlineReactNative(AsyncStorage, isConnected);
 
@@ -72,8 +72,8 @@ describe('When saving events:', () => {
       };
       const isConnected = () => false;
       let oldEvents = [];
-      const purgeEventCallback: PurgedEventsHandler = (_oldEvents) =>
-        (oldEvents = _oldEvents);
+      const purgeEventCallback: PurgedEventsHandler = (purgedEvents) =>
+        (oldEvents = purgedEvents);
 
       const extension = offlineReactNative(AsyncStorage, isConnected);
 

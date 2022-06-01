@@ -6,71 +6,73 @@ const actionSymbol = Symbol('actionSymbol');
 interface Scenario {
   title: string;
   eventsMap: any;
-  actionType: string | Symbol;
+  actionType: string | symbol;
   expected: string[];
   only: boolean;
 }
 
-([
-  {
-    title: 'action type matches a key exactly',
-    eventsMap: {
-      ACTION_TYPE_C: 'eventDefC',
-      ACTION_TYPE_AA: 'eventDefAA',
-      ACTION_TYPE_B: 'eventDefB',
+(
+  [
+    {
+      title: 'action type matches a key exactly',
+      eventsMap: {
+        ACTION_TYPE_C: 'eventDefC',
+        ACTION_TYPE_AA: 'eventDefAA',
+        ACTION_TYPE_B: 'eventDefB',
+      },
+      actionType: 'ACTION_TYPE_AA',
+      expected: ['eventDefAA'],
     },
-    actionType: 'ACTION_TYPE_AA',
-    expected: ['eventDefAA'],
-  },
-  {
-    title: 'action type does not match any key',
-    eventsMap: {
-      ACTION_TYPE_A: 'eventDefA',
-      ACTION_TYPE_AA: 'eventDefAA',
-      ACTION_TYPE_B: 'eventDefB',
+    {
+      title: 'action type does not match any key',
+      eventsMap: {
+        ACTION_TYPE_A: 'eventDefA',
+        ACTION_TYPE_AA: 'eventDefAA',
+        ACTION_TYPE_B: 'eventDefB',
+      },
+      actionType: 'ACTION_TYPE_C',
+      expected: [],
     },
-    actionType: 'ACTION_TYPE_C',
-    expected: [],
-  },
-  {
-    title: 'action type matches "*"',
-    eventsMap: {
-      '*': 'eventDefAll',
-      ACTION_TYPE_A: 'eventDefAA',
-      ACTION_TYPE_B: 'eventDefB',
+    {
+      title: 'action type matches "*"',
+      eventsMap: {
+        '*': 'eventDefAll',
+        ACTION_TYPE_A: 'eventDefAA',
+        ACTION_TYPE_B: 'eventDefB',
+      },
+      actionType: '@@ROUTER@@/some/path',
+      expected: ['eventDefAll'],
     },
-    actionType: '@@ROUTER@@/some/path',
-    expected: ['eventDefAll'],
-  },
-  {
-    title: 'action type matches "*" and a key',
-    eventsMap: {
-      '*': 'eventDefAll',
-      ACTION_TYPE_AA: 'eventDefAA',
-      ACTION_TYPE_BB: 'eventDefBB',
+    {
+      title: 'action type matches "*" and a key',
+      eventsMap: {
+        '*': 'eventDefAll',
+        ACTION_TYPE_AA: 'eventDefAA',
+        ACTION_TYPE_BB: 'eventDefBB',
+      },
+      actionType: 'ACTION_TYPE_AA',
+      expected: ['eventDefAll', 'eventDefAA'],
     },
-    actionType: 'ACTION_TYPE_AA',
-    expected: ['eventDefAll', 'eventDefAA'],
-  },
-  {
-    title: 'action type has square braces',
-    eventsMap: {
-      '[Collection] Add Book Success': 'eventDefAddBookSuccess',
+    {
+      title: 'action type has square braces',
+      eventsMap: {
+        '[Collection] Add Book Success': 'eventDefAddBookSuccess',
+      },
+      actionType: '[Collection] Add Book Success',
+      expected: ['eventDefAddBookSuccess'],
     },
-    actionType: '[Collection] Add Book Success',
-    expected: ['eventDefAddBookSuccess'],
-  },
-  {
-    title: 'action type can be a Symbol',
-    eventsMap: {
-      [actionSymbol]: 'eventDefSymbol',
-      [actionSymbolString]: 'eventDefString',
-      [`Symbol(${actionSymbolString})`]: 'eventDefString',
+    {
+      title: 'action type can be a Symbol',
+      eventsMap: {
+        [actionSymbol]: 'eventDefSymbol',
+        [actionSymbolString]: 'eventDefString',
+        [`Symbol(${actionSymbolString})`]: 'eventDefString',
+      },
+      actionType: actionSymbol,
+      expected: ['eventDefSymbol'],
     },
-    actionType: actionSymbol,
-    expected: ['eventDefSymbol'],
-  },
-] as Scenario[]).forEach((scenario, index) => {
+  ] as Scenario[]
+).forEach((scenario, index) => {
   const { title, eventsMap, actionType, expected, only } = scenario;
 
   const runTest = only ? test.only : test;
