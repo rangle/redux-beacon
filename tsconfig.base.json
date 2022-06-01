@@ -5,6 +5,6 @@
     "declaration": true,
     "strict": false,
     "pretty": true,
-    "lib": ["ES2015", "ES2015.Promise", "DOM"]
+    "lib": ["ES2017", "DOM"]
   }
 }

@@ -3,7 +3,8 @@
   "compilerOptions": {
     "baseUrl": "./packages",
     "paths": {
-      "@redux-beacon/*": ["./*/src"]
+      "@redux-beacon/*": ["./*/src"],
+      "redux-beacon": ["./redux-beacon/src"]
     }
   }
 }

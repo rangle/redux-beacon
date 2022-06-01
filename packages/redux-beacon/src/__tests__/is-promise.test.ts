@@ -6,7 +6,7 @@ import isPromise from '../is-promise';
   [{}, false],
   [{ then: 'something happened' }, false],
   [Promise.resolve({}), true],
-  [new Promise(resolve => resolve()), true],
+  [new Promise<void>(resolve => resolve()), true],
 ].forEach(([value, expectedResult], index) => {
   test(`Scenario #${index}`, () => {
     expect(isPromise(value)).toBe(expectedResult);

@@ -4,7 +4,7 @@ function debounceEvent(
   msDelay: number,
   eventDef: EventDefinition
 ): EventDefinition {
-  let timeout: number;
+  let timeout: NodeJS.Timeout | null = null;
   return function debouncedEventDef(action, prevState, nextState) {
     if (timeout) {
       clearTimeout(timeout);

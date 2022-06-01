@@ -1,12 +1,13 @@
+import { PurgedEventsHandler } from '@redux-beacon/offline-react-native/dist/redux-beacon';
 import offlineReactNative from '../';
 
 describe('When saving events:', () => {
   it('calls AsyncStorage.setItem correctly', () => {
     const AsyncStorage = {
       getItem: () => Promise.resolve('[]'),
-      setItem: jest.fn(() => Promise.resolve()),
+      setItem: jest.fn((key: string, value: any) => Promise.resolve()),
     };
-    const isConnected = () => {};
+    const isConnected = () => false;
     const sampleEvent = { hitType: 'pageview', page: '/whatever' };
 
     const extension = offlineReactNative(AsyncStorage, isConnected);
@@ -31,9 +32,9 @@ describe('When saving events:', () => {
       };
       const AsyncStorage = {
         getItem: () => Promise.resolve(JSON.stringify([sampleSavedEvent])),
-        setItem: jest.fn(() => Promise.resolve()),
+        setItem: jest.fn((key: string, events: any) => Promise.resolve()),
       };
-      const isConnected = () => {};
+      const isConnected = () => false;
       const sampleEvent = { hitType: 'pageview', page: '/whatever' };
 
       const extension = offlineReactNative(AsyncStorage, isConnected);
@@ -52,12 +53,14 @@ describe('When saving events:', () => {
       const AsyncStorage = {
         getItem: () => Promise.resolve(null),
       };
-      const isConnected = () => {};
-      const purgeEventCallback = oldEvents => oldEvents;
+      const isConnected = () => false;
+      let oldEvents = [];
+      const purgeEventCallback: PurgedEventsHandler = (purgedEvents) =>
+        (oldEvents = purgedEvents);
 
       const extension = offlineReactNative(AsyncStorage, isConnected);
 
-      return extension.purgeEvents(purgeEventCallback).then(oldEvents => {
+      return extension.purgeEvents(purgeEventCallback).then(() => {
         expect(Array.isArray(oldEvents)).toBe(true);
         expect(oldEvents.length).toBe(0);
       });
@@ -67,12 +70,14 @@ describe('When saving events:', () => {
       const AsyncStorage = {
         getItem: () => Promise.resolve(JSON.stringify([sampleEvent])),
       };
-      const isConnected = () => {};
-      const purgeEventCallback = oldEvents => oldEvents;
+      const isConnected = () => false;
+      let oldEvents = [];
+      const purgeEventCallback: PurgedEventsHandler = (purgedEvents) =>
+        (oldEvents = purgedEvents);
 
       const extension = offlineReactNative(AsyncStorage, isConnected);
 
-      return extension.purgeEvents(purgeEventCallback).then(oldEvents => {
+      return extension.purgeEvents(purgeEventCallback).then(() => {
         expect(Array.isArray(oldEvents)).toBe(true);
         expect(oldEvents.length).toBe(1);
         expect(oldEvents[0]).toEqual(sampleEvent);

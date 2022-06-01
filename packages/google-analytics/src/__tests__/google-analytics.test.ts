@@ -1,8 +1,14 @@
 import * as makeConsoleMock from 'consolemock';
 import GoogleAnalytics from '../';
 
+interface WindowWithGtag extends Window {
+  ga: any;
+}
+
+declare var window: WindowWithGtag;
+
 beforeAll(() => {
-  console = makeConsoleMock(console);
+  console = (makeConsoleMock as any)(console);
 });
 
 beforeEach(() => {
@@ -11,7 +17,7 @@ beforeEach(() => {
 
 /* tslint:disable: no-console */
 afterEach(() => {
-  console.clearHistory();
+  (console as any).clearHistory();
 });
 
 describe('GoogleAnalytics(events)', () => {
@@ -146,21 +152,21 @@ describe('GoogleAnalytics(events)', () => {
     it('does not throw an error', () => {
       window.ga = undefined;
 
-      expect(() => GoogleAnalytics('GA_TRACKING_ID')).not.toThrow();
+      expect(() => GoogleAnalytics()).not.toThrow();
     });
     it('does nothing when events are pushed to the target', () => {
       window.ga = undefined;
 
       const events = [{ type: 'event', action: 'click' }];
 
-      expect(() => GoogleAnalytics('GA_TRACKING_ID')(events)).not.toThrow();
+      expect(() => GoogleAnalytics()(events)).not.toThrow();
     });
     it('logs an error informing the developer that no analytics are being tracked', () => {
       window.ga = undefined;
 
-      GoogleAnalytics('GA_TRACKING_ID');
+      GoogleAnalytics();
 
-      expect(console.printHistory()).toMatchSnapshot();
+      expect((console as any).printHistory()).toMatchSnapshot();
     });
   });
 
@@ -265,7 +271,7 @@ describe('GoogleAnalytics(events)', () => {
 
   describe('when ga enhanced ecommerce is being used', () => {
     beforeEach(() => {
-      window.ga = jest.fn();
+      window.ga = jest.fn() as any;
     });
 
     it('should call ecommerce events using enhanced prefix', () => {

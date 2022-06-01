@@ -10,13 +10,13 @@ test('debounceEvent(msDelay, eventDef)', () => {
 
   const result = expect(
     Promise.race([
-      debouncedEvent('a'),
-      debouncedEvent('b'),
-      debouncedEvent('c'),
+      debouncedEvent({ type: 'a' }, {}, {}),
+      debouncedEvent({ type: 'b' }, {}, {}),
+      debouncedEvent({ type: 'c' }, {}, {}),
     ])
-  ).resolves.toEqual({ event: 'event-name', value: 'c' });
+  ).resolves.toEqual({ event: 'event-name', value: { type: 'c' } });
 
-  jest.runTimersToTime(1500);
+  jest.advanceTimersByTime(1500);
 
   return result;
 });

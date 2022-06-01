@@ -2,8 +2,23 @@ import * as makeConsoleMock from 'consolemock';
 import GoogleAnalyticsGtag from '../';
 import { trackEvent, trackPageView } from '../event-helpers';
 
+interface WindowWithGtag extends Window {
+  gtag: any;
+}
+
+declare const window: WindowWithGtag;
+
+interface Console {
+  group: any;
+  groupEnd: any;
+  clearHistory(): void;
+  printHistory(): void;
+}
+
+declare let console: Console;
+
 beforeAll(() => {
-  console = makeConsoleMock(console);
+  console = (makeConsoleMock as any)(console);
 });
 
 beforeEach(() => {

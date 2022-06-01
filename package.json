@@ -5,6 +5,7 @@
   ],
   "scripts": {
     "build": "node scripts/build.js",
+    "prepare": "yarn build",
     "check": "yarn build && yarn lint && yarn test",
     "check:api": "jest scripts/api.test.ts",
     "clean": "rimraf packages/**/dist packages/**/yarn-error.log _book yarn-error.log",
@@ -21,8 +22,14 @@
     "transform": {
       "^.+\\.ts$": "ts-jest"
     },
+    "roots": [
+      "<rootDir>/packages"
+    ],
+    "testEnvironment": "jsdom",
+    "testEnvironmentOptions": {
+      "url": "http://localhost"
+    },
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(js|ts)$",
-    "testURL": "http://localhost/",
     "moduleFileExtensions": [
       "js",
       "json",
@@ -44,26 +51,27 @@
     ]
   },
   "devDependencies": {
-    "@types/jest": "22.1.4",
-    "@types/joi": "13.0.5",
-    "consolemock": "1.0.4",
-    "execa": "1.0.0",
-    "fake-indexeddb": "2.0.4",
-    "glob": "7.1.2",
-    "husky": "0.14.3",
-    "jest": "22.4.2",
-    "joi": "10.5.2",
-    "lint-staged": "7.0.0",
+    "@types/jest": "27.5.1",
+    "@types/joi": "17.2.2",
+    "@types/node": "^17.0.38",
+    "consolemock": "^1.1.0",
+    "execa": "6.1.0",
+    "fake-indexeddb": "3.1.7",
+    "glob": "8.0.3",
+    "husky": "8.0.1",
+    "jest": "28.1.0",
+    "jest-environment-jsdom": "^28.1.0",
+    "joi": "17.6.0",
+    "lint-staged": "13.0.0",
     "logalot": "2.1.0",
-    "mkdirp": "0.5.1",
-    "moment": "2.21.0",
-    "prettier": "1.11.0",
-    "redux": "3.6.0",
-    "rimraf": "2.6.2",
-    "ts-jest": "22.4.1",
-    "tslint": "5.9.1",
-    "tslint-config-prettier": "1.9.0",
-    "typescript": "2.7.2",
-    "write": "1.0.3"
+    "mkdirp": "1.0.4",
+    "prettier": "2.6.2",
+    "redux": "4.2.0",
+    "rimraf": "3.0.2",
+    "ts-jest": "28.0.3",
+    "tslint": "5.20.1",
+    "tslint-config-prettier": "1.18.0",
+    "typescript": "4.7.2",
+    "write": "2.0.0"
   }
 }
