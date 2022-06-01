@@ -2,7 +2,16 @@ import getEventsWithMatchingKey from '../get-events-with-matching-key';
 
 const actionSymbolString = 'actionSymbol';
 const actionSymbol = Symbol('actionSymbol');
-[
+
+interface Scenario {
+  title: string;
+  eventsMap: any;
+  actionType: string | Symbol;
+  expected: string[];
+  only: boolean;
+}
+
+([
   {
     title: 'action type matches a key exactly',
     eventsMap: {
@@ -61,7 +70,7 @@ const actionSymbol = Symbol('actionSymbol');
     actionType: actionSymbol,
     expected: ['eventDefSymbol'],
   },
-].forEach((scenario, index) => {
+] as Scenario[]).forEach((scenario, index) => {
   const { title, eventsMap, actionType, expected, only } = scenario;
 
   const runTest = only ? test.only : test;
@@ -70,6 +79,7 @@ const actionSymbol = Symbol('actionSymbol');
     if (title === undefined || expected === undefined) {
       throw new Error('tests require title, eventDefs, and expected keys');
     }
+    // @ts-expect-error expected to send incorrect args
     const eventDefs = getEventsWithMatchingKey(eventsMap, actionType);
     expect(eventDefs).toEqual(expected);
   });

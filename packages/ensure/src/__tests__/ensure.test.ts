@@ -24,7 +24,9 @@ test('passing validator', () => {
   const action = { payload: { location: { pathname: '/home' } } };
   const prevState = { currentRoute: '/' };
 
-  expect(ensure(isValidPageView, pageView)(action, prevState)).toEqual({
+  expect(
+    ensure(isValidPageView, pageView)(action, prevState, prevState)
+  ).toEqual({
     hitType: 'pageview',
     route: '/home',
     referrer: '/',
@@ -35,5 +37,7 @@ test('failing validator', () => {
   const action = { payload: { location: { pathname: '/404' } } };
   const prevState = { currentRoute: '/' };
 
-  expect(ensure(isValidPageView, pageView)(action, prevState)).toEqual(null);
+  expect(
+    ensure(isValidPageView, pageView)(action, prevState, prevState)
+  ).toEqual(null);
 });

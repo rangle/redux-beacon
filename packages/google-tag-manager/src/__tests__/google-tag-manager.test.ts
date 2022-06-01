@@ -1,5 +1,12 @@
 import GoogleTagManager from '../';
 
+interface WindowWithGtag extends Window {
+  dataLayer: any;
+  iAmADataLayer: any;
+}
+
+declare var window: WindowWithGtag;
+
 beforeEach(() => {
   window.dataLayer = undefined;
   window.iAmADataLayer = undefined;

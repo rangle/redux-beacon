@@ -32,7 +32,7 @@ const makeAction = () => ({ type: 'ROUTE_CHANGED', payload: '/home' });
 it('1. logs actions and any resulting analytics event', () => {
   const events = [{ hitType: 'pageview', page: '/home' }];
   const action = makeAction();
-  logger(events, action);
+  logger(events, action, {});
   expect(console.printHistory()).toMatchSnapshot();
 });
 
@@ -42,7 +42,7 @@ it('2. logs actions and any resulting analytics events', () => {
     { hitType: 'pageview', page: '/home' },
   ];
   const action = makeAction();
-  logger(events, action);
+  logger(events, action, {});
   expect(console.printHistory()).toMatchSnapshot();
 });
 
@@ -62,7 +62,7 @@ it('4. logs events that were saved offline with a helpful message', () => {
 it('5. logs nothing when there are no events', () => {
   const events = [];
   const action = makeAction();
-  logger(events, action);
+  logger(events, action, {});
   expect(console.printHistory()).toMatchSnapshot();
 });
 
@@ -76,7 +76,7 @@ it('6. logs events correctly even if console.group is undefined (RN)', () => {
   ];
 
   const action = makeAction();
-  logger(events, action);
+  logger(events, action, {});
   expect(console.printHistory()).toMatchSnapshot();
 });
 

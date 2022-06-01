@@ -40,7 +40,7 @@ describe('When given an offline storage extension', () => {
         saveEvents: jest.fn(),
         isConnected: state => state.isConnected,
       },
-    };
+    } as any;
 
     registerEvents(events, target, extensions, prevState, action, nextState);
 
@@ -74,7 +74,7 @@ describe('When given an offline storage extension', () => {
           saveEvents: jest.fn(),
           isConnected: state => state.isConnected,
         },
-      };
+      } as any;
 
       expect(() => {
         registerEvents(

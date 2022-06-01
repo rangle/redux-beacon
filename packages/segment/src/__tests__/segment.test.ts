@@ -6,7 +6,7 @@ window.analytics = {
   page: jest.fn(),
   track: jest.fn(),
   alias: jest.fn(),
-};
+} as any;
 const target = Segment();
 
 describe('Target: Segment.io', () => {
@@ -46,6 +46,7 @@ describe('Target: Segment.io', () => {
 describe('When Segment is not defined', () => {
   it('should throw an error informing the user.', () => {
     window.analytics = undefined;
+    // @ts-expect-error expected to send incorrect args
     expect(() => target()).toThrowErrorMatchingSnapshot();
   });
 });
