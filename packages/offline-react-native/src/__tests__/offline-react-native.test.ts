@@ -5,7 +5,7 @@ describe('When saving events:', () => {
   it('calls AsyncStorage.setItem correctly', () => {
     const AsyncStorage = {
       getItem: () => Promise.resolve('[]'),
-      setItem: jest.fn(() => Promise.resolve()),
+      setItem: jest.fn((key: string, value: any) => Promise.resolve()),
     };
     const isConnected = () => false;
     const sampleEvent = { hitType: 'pageview', page: '/whatever' };
@@ -32,7 +32,7 @@ describe('When saving events:', () => {
       };
       const AsyncStorage = {
         getItem: () => Promise.resolve(JSON.stringify([sampleSavedEvent])),
-        setItem: jest.fn(() => Promise.resolve()),
+        setItem: jest.fn((key: string, events: any) => Promise.resolve()),
       };
       const isConnected = () => false;
       const sampleEvent = { hitType: 'pageview', page: '/whatever' };
@@ -55,7 +55,7 @@ describe('When saving events:', () => {
       };
       const isConnected = () => false;
       let oldEvents = [];
-      const purgeEventCallback: PurgedEventsHandler = _oldEvents =>
+      const purgeEventCallback: PurgedEventsHandler = (_oldEvents) =>
         (oldEvents = _oldEvents);
 
       const extension = offlineReactNative(AsyncStorage, isConnected);
@@ -72,7 +72,7 @@ describe('When saving events:', () => {
       };
       const isConnected = () => false;
       let oldEvents = [];
-      const purgeEventCallback: PurgedEventsHandler = _oldEvents =>
+      const purgeEventCallback: PurgedEventsHandler = (_oldEvents) =>
         (oldEvents = _oldEvents);
 
       const extension = offlineReactNative(AsyncStorage, isConnected);

@@ -1,18 +1,18 @@
 import * as joi from 'joi';
 import ensure from '../ensure';
 
-const hasShape = (event, shape) =>
-  !joi.validate(event, joi.object().keys(shape)).error;
+const hasShape = (event: any, shape: joi.ObjectSchema<any>) =>
+  !shape.validate(event).error;
 
-const isValidPageView = event =>
-  hasShape(event, {
-    hitType: joi
-      .string()
-      .only('pageview')
-      .required(),
-    route: joi.string().disallow('/404'),
-    referrer: joi.string(),
-  });
+const isValidPageView = (event) =>
+  hasShape(
+    event,
+    joi.object({
+      hitType: joi.string().allow('pageview').only().required(),
+      route: joi.string().disallow('/404'),
+      referrer: joi.string(),
+    })
+  );
 
 const pageView = (action, prevState) => ({
   hitType: 'pageview',
