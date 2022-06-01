@@ -1,17 +1,49 @@
+import {
+  identify,
+  logEvent,
+  revenue,
+  setDeviceId,
+  setGroup,
+  setOptOut,
+  setUserId,
+} from '@amplitude/analytics-browser';
 import Amplitude from '../';
-import amplitudeSDKMock, { resetAllMocks } from './amplitude.mocks';
 
-beforeEach(() => {
-  (window as any).amplitude = amplitudeSDKMock;
-});
+jest.mock('@amplitude/analytics-browser', () => ({
+  logEvent: jest.fn(),
+  setUserId: jest.fn(),
+  /* tslint:disable-next-line:max-classes-per-file */
+  Identify: class {
+    public add = jest.fn();
+    public set = jest.fn();
+    public setOnce = jest.fn();
+    public unset = jest.fn();
+    public append = jest.fn();
+    public prepend = jest.fn();
+    public clearAll = jest.fn();
+  },
+  /* tslint:disable-next-line:max-classes-per-file */
+  Revenue: class {
+    public setProductId = jest.fn();
+    public setPrice = jest.fn();
+    public setQuantity = jest.fn();
+    public setRevenueType = jest.fn();
+    public setEventProperties = jest.fn();
+  },
+  identify: jest.fn(),
+  setGroup: jest.fn(),
+  setOptOut: jest.fn(),
+  revenue: jest.fn(),
+  setDeviceId: jest.fn(),
+}));
+
+beforeEach(() => {});
 
 afterEach(() => {
-  resetAllMocks();
+  jest.resetAllMocks();
 });
 
 it('does not call any service when hitType is undefined', () => {
-  const app = (window as any).amplitude.getInstance();
-
   const events = [
     {
       hitType: undefined,
@@ -19,15 +51,15 @@ it('does not call any service when hitType is undefined', () => {
   ];
 
   Amplitude()(events);
-
-  Object.keys(app).forEach(key => {
-    expect(app[key]).not.toHaveBeenCalled();
-  });
+  expect(logEvent).not.toHaveBeenCalled();
+  expect(identify).not.toHaveBeenCalled();
+  expect(revenue).not.toHaveBeenCalled();
+  expect(setDeviceId).not.toHaveBeenCalled();
+  expect(setOptOut).not.toHaveBeenCalled();
+  expect(setGroup).not.toHaveBeenCalled();
 });
 
 it('sets a user id when the setUserId hitType is specified', () => {
-  const app = (window as any).amplitude.getInstance();
-
   const events = [
     {
       hitType: 'setUserId',
@@ -37,12 +69,10 @@ it('sets a user id when the setUserId hitType is specified', () => {
 
   Amplitude()(events);
 
-  expect(app.setUserId).toHaveBeenCalledWith(events[0].userId);
+  expect(setUserId).toHaveBeenCalledWith(events[0].userId);
 });
 
 it('sets user props when the setUserProperties hitType is specified', () => {
-  const app = (window as any).amplitude.getInstance();
-
   const events = [
     {
       hitType: 'setUserProperties',
@@ -53,13 +83,12 @@ it('sets user props when the setUserProperties hitType is specified', () => {
   ];
 
   Amplitude()(events);
-
-  expect(app.setUserProperties).toHaveBeenCalledWith(events[0].userProperties);
+  const identity = (identify as jest.Mock).mock.calls[0][0];
+  expect(identity.set).toBeCalledWith('gender', 'male');
+  expect(identify).toHaveBeenCalledWith(identity);
 });
 
 it('clears props when the clearUserProperties hitType is specified', () => {
-  const app = (window as any).amplitude.getInstance();
-
   const events = [
     {
       hitType: 'clearUserProperties',
@@ -67,13 +96,12 @@ it('clears props when the clearUserProperties hitType is specified', () => {
   ];
 
   Amplitude()(events);
-
-  expect(app.clearUserProperties).toHaveBeenCalled();
+  const identity = (identify as jest.Mock).mock.calls[0][0];
+  expect(identity.clearAll).toBeCalledWith();
+  expect(identify).toHaveBeenCalledWith(identity);
 });
 
 it('logs an event when the logEvent hitType is specified', () => {
-  const app = (window as any).amplitude.getInstance();
-
   const events = [
     {
       hitType: 'logEvent',
@@ -92,16 +120,14 @@ it('logs an event when the logEvent hitType is specified', () => {
 
   Amplitude()(events);
 
-  expect(app.logEvent).toHaveBeenCalledWith(events[0].eventType, undefined);
-  expect(app.logEvent).toHaveBeenCalledWith(
+  expect(logEvent).toHaveBeenCalledWith(events[0].eventType, undefined);
+  expect(logEvent).toHaveBeenCalledWith(
     events[1].eventType,
     events[1].eventProperties
   );
 });
 
 it('sets group info when the setGroup hitType is specified', () => {
-  const app = (window as any).amplitude.getInstance();
-
   const events = [
     {
       hitType: 'setGroup',
@@ -112,15 +138,13 @@ it('sets group info when the setGroup hitType is specified', () => {
 
   Amplitude()(events);
 
-  expect(app.setGroup).toHaveBeenCalledWith(
+  expect(setGroup).toHaveBeenCalledWith(
     events[0].groupType,
     events[0].groupName
   );
 });
 
 it('resets deviceId when the regenerateDeviceId hitType is specified', () => {
-  const app = (window as any).amplitude.getInstance();
-
   const events = [
     {
       hitType: 'regenerateDeviceId',
@@ -129,12 +153,14 @@ it('resets deviceId when the regenerateDeviceId hitType is specified', () => {
 
   Amplitude()(events);
 
-  expect(app.regenerateDeviceId).toHaveBeenCalled();
+  expect(setDeviceId).toHaveBeenCalledWith(
+    expect.stringMatching(
+      /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/
+    )
+  );
 });
 
 it('stops tracking when the setOptOut hitType is specified', () => {
-  const app = (window as any).amplitude.getInstance();
-
   const events = [
     {
       hitType: 'setOptOut',
@@ -143,12 +169,10 @@ it('stops tracking when the setOptOut hitType is specified', () => {
 
   Amplitude()(events);
 
-  expect(app.setOptOut).toHaveBeenCalled();
+  expect(setOptOut).toHaveBeenCalled();
 });
 
 it('sets version name when the setVersionName hitType is specified', () => {
-  const app = (window as any).amplitude.getInstance();
-
   const events = [
     {
       hitType: 'setVersionName',
@@ -157,14 +181,12 @@ it('sets version name when the setVersionName hitType is specified', () => {
   ];
 
   Amplitude()(events);
-
-  expect(app.setVersionName).toHaveBeenCalledWith(events[0].versionName);
+  const identity = (identify as jest.Mock).mock.calls[0][0];
+  expect(identity.set).toHaveBeenCalledWith('version_name', '1.12.3');
+  expect(identify).toHaveBeenCalledWith(identity);
 });
 
 it('builds an identity when the identify hitType is specified', () => {
-  const app = (window as any).amplitude.getInstance();
-  const identity = new (window as any).amplitude.Identify();
-
   const events: any[] = [
     {
       hitType: 'identify',
@@ -190,7 +212,7 @@ it('builds an identity when the identify hitType is specified', () => {
   ];
 
   Amplitude()(events);
-
+  const identity = (identify as jest.Mock).mock.calls[0][0];
   Object.keys(events[0].set).forEach(k => {
     expect(identity.set).toHaveBeenCalledWith(k, events[0].set[k]);
   });
@@ -209,13 +231,10 @@ it('builds an identity when the identify hitType is specified', () => {
   Object.keys(events[0].prepend).forEach(k => {
     expect(identity.prepend).toHaveBeenCalledWith(k, events[0].prepend[k]);
   });
-  expect(app.identify).toHaveBeenCalled();
+  expect(identify).toHaveBeenCalled();
 });
 
 it('tracks revenue when the logRevenueV2 hitType is specified', () => {
-  const app = (window as any).amplitude.getInstance();
-  const revenue = new (window as any).amplitude.Revenue();
-
   const events = [
     {
       hitType: 'logRevenueV2',
@@ -230,48 +249,19 @@ it('tracks revenue when the logRevenueV2 hitType is specified', () => {
   ];
 
   Amplitude()(events);
-
-  expect(revenue.setProductId).toHaveBeenCalledWith(events[0].productId);
-  expect(revenue.setPrice).toHaveBeenCalledWith(events[0].price);
-  expect(revenue.setQuantity).toHaveBeenCalledWith(events[0].quantity);
-  expect(revenue.setRevenueType).toHaveBeenCalledWith(events[0].revenueType);
-  expect(revenue.setEventProperties).toHaveBeenCalledWith(
+  const revenueInstance = (revenue as jest.Mock).mock.calls[0][0];
+  expect(revenueInstance.setProductId).toHaveBeenCalledWith(
+    events[0].productId
+  );
+  expect(revenueInstance.setPrice).toHaveBeenCalledWith(events[0].price);
+  expect(revenueInstance.setQuantity).toHaveBeenCalledWith(events[0].quantity);
+  expect(revenueInstance.setRevenueType).toHaveBeenCalledWith(
+    events[0].revenueType
+  );
+  expect(revenueInstance.setEventProperties).toHaveBeenCalledWith(
     events[0].eventProperties
   );
-  expect(app.logRevenueV2).toHaveBeenCalled();
-});
-
-it("uses options.instance when provided (and there's no amplitude instance on the window object)", () => {
-  (window as any).amplitude = undefined;
-
-  const instance = {
-    setUserId: jest.fn(),
-    setUserProperties: jest.fn(),
-    clearUserProperties: jest.fn(),
-    logEvent: jest.fn(),
-    setGroup: jest.fn(),
-    regenerateDeviceId: jest.fn(),
-    setOptOut: jest.fn(),
-    setVersionName: jest.fn(),
-  };
-
-  const events = [
-    { hitType: 'setUserId' },
-    { hitType: 'setUserProperties' },
-    { hitType: 'logEvent' },
-    { hitType: 'clearUserProperties' },
-    { hitType: 'setGroup' },
-    { hitType: 'regenerateDeviceId' },
-    { hitType: 'setOptOut' },
-    { hitType: 'setVersionName' },
-  ];
-
-  const target = Amplitude({ instance });
-  target(events);
-
-  Object.keys(instance).forEach(key => {
-    expect(instance[key]).toHaveBeenCalled();
-  });
+  expect(revenue).toHaveBeenCalled();
 });
 
 it("does nothing if an amplitude instance isn't provided (either on window or as an option)", () => {

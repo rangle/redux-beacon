@@ -10,7 +10,7 @@ function getEventsWithMatchingKey(
     : [];
   return [...objectKeys, ...symbolKeys]
     .filter(key => key === '*' || key === actionType)
-    .map(matchingKey => eventsMap[matchingKey]);
+    .map(matchingKey => eventsMap[matchingKey as string]);
 }
 
 export default getEventsWithMatchingKey;

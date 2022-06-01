@@ -1,4 +1,4 @@
-const instanceMock = {
+export const instanceMock = {
   setUserId: jest.fn(),
   setUserProperties: jest.fn(),
   clearUserProperties: jest.fn(),

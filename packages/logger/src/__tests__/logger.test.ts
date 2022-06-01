@@ -1,8 +1,17 @@
 import * as makeConsoleMock from 'consolemock';
 import logger, { getTimestamp } from '../logger';
 
+interface Console {
+  group: any;
+  groupEnd: any;
+  clearHistory(): void;
+  printHistory(): void;
+}
+
+declare let console: Console;
+
 beforeAll(() => {
-  console = makeConsoleMock(console);
+  console = (makeConsoleMock as any)(console);
 });
 
 /* tslint:disable: no-console */

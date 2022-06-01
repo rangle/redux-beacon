@@ -17,8 +17,11 @@
     "prepublishOnly": "yarn run build",
     "build": "tsc -p tsconfig.build.json"
   },
+  "devDependencies": {
+    "@amplitude/analytics-browser": "^0.4.1"
+  },
   "peerDependencies": {
-    "amplitude-js": "^4.1.0",
+    "@amplitude/analytics-browser": "^0.4.1",
     "redux-beacon": "2.x"
   }
 }

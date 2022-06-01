@@ -1,53 +1,71 @@
-import { AmplitudeOptions } from './types';
-
-declare let amplitude: any;
-
+import {
+  Identify,
+  identify,
+  logEvent,
+  Revenue,
+  revenue as logRevenue,
+  setDeviceId,
+  setGroup,
+  setOptOut,
+  setUserId,
+} from '@amplitude/analytics-browser';
+import { createDeviceId } from '@amplitude/analytics-browser/lib/cjs/config';
 /**
  * Creates the Amplitude target
  */
-const Amplitude = (options?: AmplitudeOptions) => (events: any[]) => {
+const Amplitude = () => (events: any[]) => {
   if (!window) {
     return;
   }
 
-  const app =
-    (options && options.instance) || (amplitude && amplitude.getInstance());
-
-  if (!app) {
-    return;
-  }
-
-  let identity: any;
   let revenue: any;
 
   events.forEach(event => {
     switch (event.hitType) {
-      case 'setUserId':
-        app.setUserId(event.userId);
+      case 'setUserId': {
+        setUserId(event.userId);
         break;
-      case 'setUserProperties':
-        app.setUserProperties(event.userProperties);
+      }
+      case 'setUserProperties': {
+        if (event.userProperties) {
+          const identity = new Identify();
+          Object.entries(event.userProperties).forEach(([k, v]) =>
+            identity.set(k, v as any)
+          );
+          identify(identity);
+        }
         break;
-      case 'clearUserProperties':
-        app.clearUserProperties();
+      }
+      case 'clearUserProperties': {
+        const identity = new Identify();
+        identity.clearAll();
+        identify(identity);
         break;
-      case 'logEvent':
-        app.logEvent(event.eventType, event.eventProperties);
+      }
+      case 'logEvent': {
+        logEvent(event.eventType, event.eventProperties);
         break;
-      case 'setGroup':
-        app.setGroup(event.groupType, event.groupName);
+      }
+      case 'setGroup': {
+        setGroup(event.groupType, event.groupName);
         break;
-      case 'regenerateDeviceId':
-        app.regenerateDeviceId();
+      }
+      case 'regenerateDeviceId': {
+        setDeviceId(createDeviceId());
         break;
-      case 'setOptOut':
-        app.setOptOut(event.optOut || true);
+      }
+      case 'setOptOut': {
+        setOptOut(event.optOut || true);
         break;
-      case 'setVersionName':
-        app.setVersionName(event.versionName);
+      }
+      case 'setVersionName': {
+        const identity = new Identify();
+        identity.set('version_name', event.versionName);
+        identify(identity);
         break;
-      case 'identify':
-        identity = new amplitude.Identify();
+      }
+      case 'identify': {
+        const identity = new Identify();
 
         Object.keys(event).forEach(op => {
           const args = event[op];
@@ -98,10 +116,11 @@ const Amplitude = (options?: AmplitudeOptions) => (events: any[]) => {
           }
         });
 
-        app.identify(identity);
+        identify(identity);
         break;
+      }
       case 'logRevenueV2':
-        revenue = new amplitude.Revenue();
+        revenue = new Revenue();
 
         Object.keys(event).forEach(attr => {
           const val = event[attr];
@@ -127,7 +146,7 @@ const Amplitude = (options?: AmplitudeOptions) => (events: any[]) => {
           }
         });
 
-        app.logRevenueV2(revenue);
+        logRevenue(revenue);
         break;
       default:
         break;
